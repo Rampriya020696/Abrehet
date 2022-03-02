@@ -1,18 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import ProductItem from '../../components/ProductItem';
 import {DataStore} from 'aws-amplify';
 import {Product} from '../../models';
 
-//import products from '../../data/product';
+import initProducts from '../../data/product';
+interface HomeScreenProps {
+  searchValue: string;
+}
 
-const HomeScreen = ({}: string) => {
+const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const results = await DataStore.query(Product);
-      setProducts(results);
+      //const results = await DataStore.query(Product);
+      //setProducts(results);
+      //comment for testing
+      setProducts([initProducts]);
     };
     fetchProducts();
   }, []);

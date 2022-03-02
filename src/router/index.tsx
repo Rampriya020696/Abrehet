@@ -9,8 +9,8 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Root.Navigator screenOptions={{headerShown: false}}>
-          <Root.Screen component={BottomTabNav} name="HomeTabs" />
-          </Root.Navigator>
+        <Root.Screen component={BottomTabNav} name="HomeTabs" />
+      </Root.Navigator>
     </NavigationContainer>
   );
 };

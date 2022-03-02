@@ -9,7 +9,7 @@ interface ProductItemProps {
     title: string;
     image: string;
     price: number;
-    oldPrice: number;
+    oldPrice?: number;
   };
 }
 
@@ -18,7 +18,7 @@ const ProductItem = ({item}: ProductItemProps) => {
 
   const onPress = () => {
     console.warn('item pressed');
-    navigation.navigate('ProductDetails');
+    navigation.navigate({key: 'ProductDetails'});
   };
 
   return (
@@ -30,9 +30,9 @@ const ProductItem = ({item}: ProductItemProps) => {
           {item.title}
         </Text>
         <Text style={styles.price}>
-          from ${item.price}
+          from {item.price}
           {item.oldPrice && (
-            <Text style={styles.oldPrice}> ${item.oldPrice}</Text>
+            <Text style={styles.oldPrice}> {item.oldPrice}</Text>
           )}
         </Text>
       </View>

@@ -1,8 +1,9 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
-
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {
+  ModelInit,
+  MutableModel,
+  PersistentModelConstructor,
+} from '@aws-amplify/datastore';
 
 export declare class Product {
   readonly id: string;
@@ -14,7 +15,10 @@ export declare class Product {
   readonly price: number;
   readonly oldPrice?: number;
   constructor(init: ModelInit<Product>);
-  static copyOf(source: Product, mutator: (draft: MutableModel<Product>) => MutableModel<Product> | void): Product;
+  static copyOf(
+    source: Product,
+    mutator: (draft: MutableModel<Product>) => MutableModel<Product> | void,
+  ): Product;
 }
 
 export declare class CartProduct {
@@ -25,5 +29,10 @@ export declare class CartProduct {
   readonly productID: string;
   readonly product?: Product;
   constructor(init: ModelInit<CartProduct>);
-  static copyOf(source: CartProduct, mutator: (draft: MutableModel<CartProduct>) => MutableModel<CartProduct> | void): CartProduct;
+  static copyOf(
+    source: CartProduct,
+    mutator: (
+      draft: MutableModel<CartProduct>,
+    ) => MutableModel<CartProduct> | void,
+  ): CartProduct;
 }
