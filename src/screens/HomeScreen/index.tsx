@@ -5,7 +5,7 @@ import ProductItem from '../../components/ProductItem';
 import {DataStore} from 'aws-amplify';
 import {Product} from '../../models';
 
-import initProducts from '../../data/product';
+import initProducts from '../../data/products';
 interface HomeScreenProps {
   searchValue: string;
 }
@@ -18,7 +18,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
       //const results = await DataStore.query(Product);
       //setProducts(results);
       //comment for testing
-      setProducts([initProducts]);
+      setProducts(initProducts);
     };
     fetchProducts();
   }, []);

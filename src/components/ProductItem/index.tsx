@@ -18,7 +18,7 @@ const ProductItem = ({item}: ProductItemProps) => {
 
   const onPress = () => {
     console.warn('item pressed');
-    navigation.navigate({key: 'ProductDetails'});
+    navigation.navigate('ProductDetails');
   };
 
   return (

@@ -17,7 +17,7 @@ const ShopingCartScreen = () => {
   );
 
   const onCheckout = () => {
-    navigation.navigate({key: 'Address'});
+    navigation.navigate('Address');
   };
 
   return (
