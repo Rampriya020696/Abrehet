@@ -14,7 +14,7 @@ const BottomTabNav = () => {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarInactiveTintColor: '#ffbd7d',
-        tabBarActiveTintColor: '#ffffff',
+        tabBarActiveTintColor: '#d68d47',
       }}>
       <Tab.Screen
         component={HomeStack}
