@@ -1,38 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  ModelInit,
-  MutableModel,
-  PersistentModelConstructor,
-} from '@aws-amplify/datastore';
+import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
-export declare class Product {
-  readonly id: string;
-  readonly title: string;
-  readonly description?: string;
-  readonly image: string;
-  readonly images: string[];
-  readonly options?: string[];
-  readonly price: number;
-  readonly oldPrice?: number;
-  constructor(init: ModelInit<Product>);
-  static copyOf(
-    source: Product,
-    mutator: (draft: MutableModel<Product>) => MutableModel<Product> | void,
-  ): Product;
+
+
+
+
+type ProductsMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-export declare class CartProduct {
+export declare class Products {
   readonly id: string;
-  readonly userSub: string;
-  readonly quantity: number;
-  readonly option?: string;
-  readonly productID: string;
-  readonly product?: Product;
-  constructor(init: ModelInit<CartProduct>);
-  static copyOf(
-    source: CartProduct,
-    mutator: (
-      draft: MutableModel<CartProduct>,
-    ) => MutableModel<CartProduct> | void,
-  ): CartProduct;
+  readonly title: string;
+  readonly content: string;
+  readonly country?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Products, ProductsMetaData>);
+  static copyOf(source: Products, mutator: (draft: MutableModel<Products, ProductsMetaData>) => MutableModel<Products, ProductsMetaData> | void): Products;
 }

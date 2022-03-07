@@ -1,14 +1,16 @@
 {
-    "identityPoolName": "abrehetd2851df9_identitypool_d2851df9",
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "abrehet2d81a0c0_identitypool_2d81a0c0",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "abrehed2851df9",
-    "userPoolName": "abrehetd2851df9_userpool_d2851df9",
+    "resourceNameTruncated": "abrehe2d81a0c0",
+    "userPoolName": "abrehet2d81a0c0_userpool_2d81a0c0",
     "autoVerifiedAttributes": [
-        "email"
+      "email"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
-        "SMS Text Message"
+      "SMS Text Message"
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
@@ -18,35 +20,26 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email"
+      "email"
     ],
-    "userpoolClientGenerateSecret": true,
+    "aliasAttributes": [],
+    "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
-        "email"
+      "email"
     ],
     "userpoolClientReadAttributes": [
-        "email"
+      "email"
     ],
-    "userpoolClientLambdaRole": "abrehed2851df9_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "abrehe2d81a0c0_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "d2851df9",
-    "resourceName": "abrehetd2851df9",
+    "sharedId": "2d81a0c0",
+    "resourceName": "abrehet2d81a0c0",
     "authSelections": "identityPoolAndUserPool",
-    "authRoleArn": {
-        "Fn::GetAtt": [
-            "AuthRole",
-            "Arn"
-        ]
-    },
-    "unauthRoleArn": {
-        "Fn::GetAtt": [
-            "UnauthRole",
-            "Arn"
-        ]
-    },
     "useDefault": "default",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
-    "dependsOn": []
+    "usernameCaseSensitive": false,
+    "useEnabledMfas": true
+  }
 }

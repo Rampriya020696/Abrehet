@@ -29,6 +29,7 @@ const BottomTabNav = () => {
         component={ShopingCartStack}
         name="ShoppingCart"
         options={{
+          headerShown: false,
           tabBarIcon: ({color}) => (
             <Entypo name="shopping-cart" color={color} size={25} />
           ),

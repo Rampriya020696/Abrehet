@@ -23,6 +23,7 @@
     "aws-amplify-react-native": "^6.0.2",
     "babel-preset-react-native": "2.1.0",
     "country-list": "^2.2.0",
+    "lodash": "^4.17.21",
     "react": "17.0.2",
     "react-native": "0.67.2",
     "react-native-gesture-handler": "^2.2.0",

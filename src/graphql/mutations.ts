@@ -2,169 +2,46 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createProduct = /* GraphQL */ `
-  mutation CreateProduct(
-    $input: CreateProductInput!
-    $condition: ModelProductConditionInput
+export const createProducts = /* GraphQL */ `
+  mutation CreateProducts(
+    $input: CreateProductsInput!
+    $condition: ModelProductsConditionInput
   ) {
-    createProduct(input: $input, condition: $condition) {
+    createProducts(input: $input, condition: $condition) {
       id
       title
-      description
-      image
-      images
-      options
-      price
-      oldPrice
-      _version
-      _deleted
-      _lastChangedAt
+      content
+      country
       createdAt
       updatedAt
     }
   }
 `;
-export const updateProduct = /* GraphQL */ `
-  mutation UpdateProduct(
-    $input: UpdateProductInput!
-    $condition: ModelProductConditionInput
+export const updateProducts = /* GraphQL */ `
+  mutation UpdateProducts(
+    $input: UpdateProductsInput!
+    $condition: ModelProductsConditionInput
   ) {
-    updateProduct(input: $input, condition: $condition) {
+    updateProducts(input: $input, condition: $condition) {
       id
       title
-      description
-      image
-      images
-      options
-      price
-      oldPrice
-      _version
-      _deleted
-      _lastChangedAt
+      content
+      country
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteProduct = /* GraphQL */ `
-  mutation DeleteProduct(
-    $input: DeleteProductInput!
-    $condition: ModelProductConditionInput
+export const deleteProducts = /* GraphQL */ `
+  mutation DeleteProducts(
+    $input: DeleteProductsInput!
+    $condition: ModelProductsConditionInput
   ) {
-    deleteProduct(input: $input, condition: $condition) {
+    deleteProducts(input: $input, condition: $condition) {
       id
       title
-      description
-      image
-      images
-      options
-      price
-      oldPrice
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createCartProduct = /* GraphQL */ `
-  mutation CreateCartProduct(
-    $input: CreateCartProductInput!
-    $condition: ModelCartProductConditionInput
-  ) {
-    createCartProduct(input: $input, condition: $condition) {
-      id
-      userSub
-      quantity
-      option
-      productID
-      product {
-        id
-        title
-        description
-        image
-        images
-        options
-        price
-        oldPrice
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateCartProduct = /* GraphQL */ `
-  mutation UpdateCartProduct(
-    $input: UpdateCartProductInput!
-    $condition: ModelCartProductConditionInput
-  ) {
-    updateCartProduct(input: $input, condition: $condition) {
-      id
-      userSub
-      quantity
-      option
-      productID
-      product {
-        id
-        title
-        description
-        image
-        images
-        options
-        price
-        oldPrice
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteCartProduct = /* GraphQL */ `
-  mutation DeleteCartProduct(
-    $input: DeleteCartProductInput!
-    $condition: ModelCartProductConditionInput
-  ) {
-    deleteCartProduct(input: $input, condition: $condition) {
-      id
-      userSub
-      quantity
-      option
-      productID
-      product {
-        id
-        title
-        description
-        image
-        images
-        options
-        price
-        oldPrice
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
+      content
+      country
       createdAt
       updatedAt
     }

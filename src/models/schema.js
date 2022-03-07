@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Product": {
-            "name": "Product",
+        "Products": {
+            "name": "Products",
             "fields": {
                 "id": {
                     "name": "id",
@@ -17,49 +17,35 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
+                "content": {
+                    "name": "content",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "country": {
+                    "name": "country",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "image": {
-                    "name": "image",
+                "createdAt": {
+                    "name": "createdAt",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "images": {
-                    "name": "images",
-                    "isArray": true,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": [],
-                    "isArrayNullable": false
-                },
-                "options": {
-                    "name": "options",
-                    "isArray": true,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": [],
-                    "isArrayNullable": true
-                },
-                "price": {
-                    "name": "price",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "oldPrice": {
-                    "name": "oldPrice",
-                    "isArray": false,
-                    "type": "Int",
+                    "type": "AWSDateTime",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
                 }
             },
             "syncable": true,
@@ -86,86 +72,9 @@ export const schema = {
                     }
                 }
             ]
-        },
-        "CartProduct": {
-            "name": "CartProduct",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "userSub": {
-                    "name": "userSub",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "quantity": {
-                    "name": "quantity",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "option": {
-                    "name": "option",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "productID": {
-                    "name": "productID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "product": {
-                    "name": "product",
-                    "isArray": false,
-                    "type": {
-                        "model": "Product"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id"
-                    }
-                }
-            },
-            "syncable": true,
-            "pluralName": "CartProducts",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
         }
     },
     "enums": {},
     "nonModels": {},
-    "version": "4e401ace0799ead90e3067b259db720c"
+    "version": "1a2a4010cd24c66a413945a7a1be02f8"
 };

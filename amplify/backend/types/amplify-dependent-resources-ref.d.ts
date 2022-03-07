@@ -1,19 +1,20 @@
 export type AmplifyDependentResourcesAttributes = {
+    "api": {
+        "Abrehet": {
+            "GraphQLAPIKeyOutput": "string",
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
+        }
+    },
     "auth": {
-        "abrehetd2851df9": {
+        "abrehet2d81a0c0": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
+            "UserPoolArn": "string",
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
-            "AppClientID": "string",
-            "AppClientSecret": "string"
-        }
-    },
-    "api": {
-        "abrehet": {
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
+            "AppClientID": "string"
         }
     }
 }

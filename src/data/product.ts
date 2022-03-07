@@ -12,7 +12,6 @@ export default {
     'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse1.jpg',
     'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse2.jpg',
     'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse3.jpg',
-    'C:\\Users\\Ftewelde\\Desktop\\Abrehet Shopping\\Abrehet\\src\\data\\Tomato.png',
     'https://media.istockphoto.com/photos/tomato-isolated-on-white-background-picture-id466175630?k=6&m=466175630&s=612x612&w=0&h=fu_mQBjGJZIliOWwCR0Vf2myRvKWyQDsymxEIi8tZ38=',
     'https://www.google.com/imgres?imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F8%2F8a%2FBanana-Single.jpg&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBanana_equivalent_dose&tbnid=NNqzUobFI_4jsM&vet=12ahUKEwjxkoPWgIv2AhUjgXIEHYyXBB0QMygFegUIARDIAg..i&docid=OxNQT_ny0cBCbM&w=3030&h=2670&q=banana&ved=2ahUKEwjxkoPWgIv2AhUjgXIEHYyXBB0QMygFegUIARDIAg',
   ],

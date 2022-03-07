@@ -2,29 +2,20 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateProductInput = {
+export type CreateProductsInput = {
   id?: string | null,
   title: string,
-  description?: string | null,
-  image: string,
-  images: Array< string >,
-  options?: Array< string > | null,
-  price: number,
-  oldPrice?: number | null,
-  _version?: number | null,
+  content: string,
+  country?: string | null,
 };
 
-export type ModelProductConditionInput = {
+export type ModelProductsConditionInput = {
   title?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  image?: ModelStringInput | null,
-  images?: ModelStringInput | null,
-  options?: ModelStringInput | null,
-  price?: ModelFloatInput | null,
-  oldPrice?: ModelIntInput | null,
-  and?: Array< ModelProductConditionInput | null > | null,
-  or?: Array< ModelProductConditionInput | null > | null,
-  not?: ModelProductConditionInput | null,
+  content?: ModelStringInput | null,
+  country?: ModelStringInput | null,
+  and?: Array< ModelProductsConditionInput | null > | null,
+  or?: Array< ModelProductsConditionInput | null > | null,
+  not?: ModelProductsConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -67,81 +58,35 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelFloatInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
+export type Products = {
+  __typename: "Products",
+  id: string,
+  title: string,
+  content: string,
+  country?: string | null,
+  createdAt: string,
+  updatedAt: string,
 };
 
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
-export type Product = {
-  __typename: "Product",
-  id?: string,
-  title?: string,
-  description?: string | null,
-  image?: string,
-  images?: Array< string >,
-  options?: Array< string > | null,
-  price?: number,
-  oldPrice?: number | null,
-  _version?: number,
-  _deleted?: boolean | null,
-  _lastChangedAt?: number,
-  createdAt?: string,
-  updatedAt?: string,
-};
-
-export type UpdateProductInput = {
+export type UpdateProductsInput = {
   id: string,
   title?: string | null,
-  description?: string | null,
-  image?: string | null,
-  images?: Array< string > | null,
-  options?: Array< string > | null,
-  price?: number | null,
-  oldPrice?: number | null,
-  _version?: number | null,
+  content?: string | null,
+  country?: string | null,
 };
 
-export type DeleteProductInput = {
+export type DeleteProductsInput = {
   id: string,
-  _version?: number | null,
 };
 
-export type CreateCartProductInput = {
-  id?: string | null,
-  userSub: string,
-  quantity: number,
-  option?: string | null,
-  productID: string,
-  _version?: number | null,
-};
-
-export type ModelCartProductConditionInput = {
-  userSub?: ModelStringInput | null,
-  quantity?: ModelIntInput | null,
-  option?: ModelStringInput | null,
-  productID?: ModelIDInput | null,
-  and?: Array< ModelCartProductConditionInput | null > | null,
-  or?: Array< ModelCartProductConditionInput | null > | null,
-  not?: ModelCartProductConditionInput | null,
+export type ModelProductsFilterInput = {
+  id?: ModelIDInput | null,
+  title?: ModelStringInput | null,
+  content?: ModelStringInput | null,
+  country?: ModelStringInput | null,
+  and?: Array< ModelProductsFilterInput | null > | null,
+  or?: Array< ModelProductsFilterInput | null > | null,
+  not?: ModelProductsFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -160,612 +105,132 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type CartProduct = {
-  __typename: "CartProduct",
-  id?: string,
-  userSub?: string,
-  quantity?: number,
-  option?: string | null,
-  productID?: string,
-  product?: Product,
-  _version?: number,
-  _deleted?: boolean | null,
-  _lastChangedAt?: number,
-  createdAt?: string,
-  updatedAt?: string,
+export type ModelProductsConnection = {
+  __typename: "ModelProductsConnection",
+  items:  Array<Products | null >,
+  nextToken?: string | null,
 };
 
-export type UpdateCartProductInput = {
+export type CreateProductsMutationVariables = {
+  input: CreateProductsInput,
+  condition?: ModelProductsConditionInput | null,
+};
+
+export type CreateProductsMutation = {
+  createProducts?:  {
+    __typename: "Products",
+    id: string,
+    title: string,
+    content: string,
+    country?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateProductsMutationVariables = {
+  input: UpdateProductsInput,
+  condition?: ModelProductsConditionInput | null,
+};
+
+export type UpdateProductsMutation = {
+  updateProducts?:  {
+    __typename: "Products",
+    id: string,
+    title: string,
+    content: string,
+    country?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteProductsMutationVariables = {
+  input: DeleteProductsInput,
+  condition?: ModelProductsConditionInput | null,
+};
+
+export type DeleteProductsMutation = {
+  deleteProducts?:  {
+    __typename: "Products",
+    id: string,
+    title: string,
+    content: string,
+    country?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type GetProductsQueryVariables = {
   id: string,
-  userSub?: string | null,
-  quantity?: number | null,
-  option?: string | null,
-  productID?: string | null,
-  _version?: number | null,
 };
 
-export type DeleteCartProductInput = {
-  id: string,
-  _version?: number | null,
-};
-
-export type ModelProductFilterInput = {
-  id?: ModelIDInput | null,
-  title?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  image?: ModelStringInput | null,
-  images?: ModelStringInput | null,
-  options?: ModelStringInput | null,
-  price?: ModelFloatInput | null,
-  oldPrice?: ModelIntInput | null,
-  and?: Array< ModelProductFilterInput | null > | null,
-  or?: Array< ModelProductFilterInput | null > | null,
-  not?: ModelProductFilterInput | null,
-};
-
-export type ModelProductConnection = {
-  __typename: "ModelProductConnection",
-  items?:  Array<Product | null >,
-  nextToken?: string | null,
-  startedAt?: number | null,
-};
-
-export type ModelCartProductFilterInput = {
-  id?: ModelIDInput | null,
-  userSub?: ModelStringInput | null,
-  quantity?: ModelIntInput | null,
-  option?: ModelStringInput | null,
-  productID?: ModelIDInput | null,
-  and?: Array< ModelCartProductFilterInput | null > | null,
-  or?: Array< ModelCartProductFilterInput | null > | null,
-  not?: ModelCartProductFilterInput | null,
-};
-
-export type ModelCartProductConnection = {
-  __typename: "ModelCartProductConnection",
-  items?:  Array<CartProduct | null >,
-  nextToken?: string | null,
-  startedAt?: number | null,
-};
-
-export type CreateProductMutationVariables = {
-  input?: CreateProductInput,
-  condition?: ModelProductConditionInput | null,
-};
-
-export type CreateProductMutation = {
-  createProduct?:  {
-    __typename: "Product",
+export type GetProductsQuery = {
+  getProducts?:  {
+    __typename: "Products",
     id: string,
     title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    price: number,
-    oldPrice?: number | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateProductMutationVariables = {
-  input?: UpdateProductInput,
-  condition?: ModelProductConditionInput | null,
-};
-
-export type UpdateProductMutation = {
-  updateProduct?:  {
-    __typename: "Product",
-    id: string,
-    title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    price: number,
-    oldPrice?: number | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteProductMutationVariables = {
-  input?: DeleteProductInput,
-  condition?: ModelProductConditionInput | null,
-};
-
-export type DeleteProductMutation = {
-  deleteProduct?:  {
-    __typename: "Product",
-    id: string,
-    title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    price: number,
-    oldPrice?: number | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type CreateCartProductMutationVariables = {
-  input?: CreateCartProductInput,
-  condition?: ModelCartProductConditionInput | null,
-};
-
-export type CreateCartProductMutation = {
-  createCartProduct?:  {
-    __typename: "CartProduct",
-    id: string,
-    userSub: string,
-    quantity: number,
-    option?: string | null,
-    productID: string,
-    product?:  {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      price: number,
-      oldPrice?: number | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateCartProductMutationVariables = {
-  input?: UpdateCartProductInput,
-  condition?: ModelCartProductConditionInput | null,
-};
-
-export type UpdateCartProductMutation = {
-  updateCartProduct?:  {
-    __typename: "CartProduct",
-    id: string,
-    userSub: string,
-    quantity: number,
-    option?: string | null,
-    productID: string,
-    product?:  {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      price: number,
-      oldPrice?: number | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteCartProductMutationVariables = {
-  input?: DeleteCartProductInput,
-  condition?: ModelCartProductConditionInput | null,
-};
-
-export type DeleteCartProductMutation = {
-  deleteCartProduct?:  {
-    __typename: "CartProduct",
-    id: string,
-    userSub: string,
-    quantity: number,
-    option?: string | null,
-    productID: string,
-    product?:  {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      price: number,
-      oldPrice?: number | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type SyncProductsQueryVariables = {
-  filter?: ModelProductFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncProductsQuery = {
-  syncProducts?:  {
-    __typename: "ModelProductConnection",
-    items:  Array< {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      price: number,
-      oldPrice?: number | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type GetProductQueryVariables = {
-  id?: string,
-};
-
-export type GetProductQuery = {
-  getProduct?:  {
-    __typename: "Product",
-    id: string,
-    title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    price: number,
-    oldPrice?: number | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
+    content: string,
+    country?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
 export type ListProductsQueryVariables = {
-  filter?: ModelProductFilterInput | null,
+  filter?: ModelProductsFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
 export type ListProductsQuery = {
   listProducts?:  {
-    __typename: "ModelProductConnection",
+    __typename: "ModelProductsConnection",
     items:  Array< {
-      __typename: "Product",
+      __typename: "Products",
       id: string,
       title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      price: number,
-      oldPrice?: number | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
+      content: string,
+      country?: string | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
-export type SyncCartProductsQueryVariables = {
-  filter?: ModelCartProductFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncCartProductsQuery = {
-  syncCartProducts?:  {
-    __typename: "ModelCartProductConnection",
-    items:  Array< {
-      __typename: "CartProduct",
-      id: string,
-      userSub: string,
-      quantity: number,
-      option?: string | null,
-      productID: string,
-      product?:  {
-        __typename: "Product",
-        id: string,
-        title: string,
-        description?: string | null,
-        image: string,
-        images: Array< string >,
-        options?: Array< string > | null,
-        price: number,
-        oldPrice?: number | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type GetCartProductQueryVariables = {
-  id?: string,
-};
-
-export type GetCartProductQuery = {
-  getCartProduct?:  {
-    __typename: "CartProduct",
-    id: string,
-    userSub: string,
-    quantity: number,
-    option?: string | null,
-    productID: string,
-    product?:  {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      price: number,
-      oldPrice?: number | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListCartProductsQueryVariables = {
-  filter?: ModelCartProductFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListCartProductsQuery = {
-  listCartProducts?:  {
-    __typename: "ModelCartProductConnection",
-    items:  Array< {
-      __typename: "CartProduct",
-      id: string,
-      userSub: string,
-      quantity: number,
-      option?: string | null,
-      productID: string,
-      product?:  {
-        __typename: "Product",
-        id: string,
-        title: string,
-        description?: string | null,
-        image: string,
-        images: Array< string >,
-        options?: Array< string > | null,
-        price: number,
-        oldPrice?: number | null,
-        _version: number,
-        _deleted?: boolean | null,
-        _lastChangedAt: number,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type OnCreateProductSubscription = {
-  onCreateProduct?:  {
-    __typename: "Product",
+export type OnCreateProductsSubscription = {
+  onCreateProducts?:  {
+    __typename: "Products",
     id: string,
     title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    price: number,
-    oldPrice?: number | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
+    content: string,
+    country?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnUpdateProductSubscription = {
-  onUpdateProduct?:  {
-    __typename: "Product",
+export type OnUpdateProductsSubscription = {
+  onUpdateProducts?:  {
+    __typename: "Products",
     id: string,
     title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    price: number,
-    oldPrice?: number | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
+    content: string,
+    country?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnDeleteProductSubscription = {
-  onDeleteProduct?:  {
-    __typename: "Product",
+export type OnDeleteProductsSubscription = {
+  onDeleteProducts?:  {
+    __typename: "Products",
     id: string,
     title: string,
-    description?: string | null,
-    image: string,
-    images: Array< string >,
-    options?: Array< string > | null,
-    price: number,
-    oldPrice?: number | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreateCartProductSubscription = {
-  onCreateCartProduct?:  {
-    __typename: "CartProduct",
-    id: string,
-    userSub: string,
-    quantity: number,
-    option?: string | null,
-    productID: string,
-    product?:  {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      price: number,
-      oldPrice?: number | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateCartProductSubscription = {
-  onUpdateCartProduct?:  {
-    __typename: "CartProduct",
-    id: string,
-    userSub: string,
-    quantity: number,
-    option?: string | null,
-    productID: string,
-    product?:  {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      price: number,
-      oldPrice?: number | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteCartProductSubscription = {
-  onDeleteCartProduct?:  {
-    __typename: "CartProduct",
-    id: string,
-    userSub: string,
-    quantity: number,
-    option?: string | null,
-    productID: string,
-    product?:  {
-      __typename: "Product",
-      id: string,
-      title: string,
-      description?: string | null,
-      image: string,
-      images: Array< string >,
-      options?: Array< string > | null,
-      price: number,
-      oldPrice?: number | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
+    content: string,
+    country?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
