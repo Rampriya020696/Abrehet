@@ -41,7 +41,13 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
         </View>
       </View>
       <View style={styles.quantityContainer}>
-        <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
+        <QuantitySelector
+          quantity={quantity}
+          setQuantity={val => {
+            globalThis.cart[item.id].quantity = quantity;
+            setQuantity(val);
+          }}
+        />
       </View>
     </View>
   );

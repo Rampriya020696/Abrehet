@@ -390,8 +390,6 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Abrehet/Pods-Abrehet-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Abrehet/Pods-Abrehet-resources-${CONFIGURATION}-output-files.xcfilelist",

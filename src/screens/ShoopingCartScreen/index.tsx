@@ -1,32 +1,39 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import CartProductItem from '../../components/CartProductItem';
 import Button from '../../components/Button';
 
-import products from '../../data/cart';
-
 const ShopingCartScreen = () => {
   const navigation = useNavigation();
 
-  const totalPrice = products.reduce(
-    (summedPrice, product) =>
-      summedPrice + product.item.price * product.quantity,
-    0,
-  );
+  const [products, setProducts] = useState([]);
 
   const onCheckout = () => {
     navigation.navigate('Address');
   };
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setProducts(Object.values(globalThis.cart));
+      //console.log(cart);
+    });
+    return unsubscribe;
+  }, [navigation]);
   return (
     <View style={styles.page}>
       <View>
         <Text style={{fontSize: 18, fontWeight: 'bold'}}>
           Subtotal ({products.length} item):{'  '}
           <Text style={{color: '#e47911', fontWeight: 'bold'}}>
-            {totalPrice.toFixed(2)}{' '}
+            {products
+              .reduce(
+                (summedPrice, product) =>
+                  summedPrice + product['item']['price'] * product['quantity'],
+                0,
+              )
+              .toFixed(2)}{' '}
           </Text>
         </Text>
         <Button

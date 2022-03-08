@@ -32,6 +32,9 @@ const ProductScreen = () => {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
+    if (!globalThis.cart) {
+      globalThis.cart = {};
+    }
     const fetchProducts = async () => {
       let getProducts = (await API.graphql(
         graphqlOperation(queries.getProducts, {id: globalThis.itemDetails}),
@@ -53,7 +56,11 @@ const ProductScreen = () => {
         'avgRating',
       ]);
       parsed.images = parsed.images.split(',');
-      parsed.options = parsed.options.split(',');
+      if (!parsed.options) {
+        parsed.options = [];
+      } else {
+        parsed.options = parsed.options.split(',');
+      }
       setProduct(parsed);
     };
     fetchProducts();
@@ -76,13 +83,15 @@ const ProductScreen = () => {
       <ImageCarousel images={product.images} />
 
       {/* Option selector */}
-      <Picker
-        selectedValue={selectedOption}
-        onValueChange={itemValue => setSelectedOption(itemValue)}>
-        {product.options.map(option => (
-          <Picker.Item label={option} value={option} />
-        ))}
-      </Picker>
+      {product.options.length > 0 ? (
+        <Picker
+          selectedValue={selectedOption}
+          onValueChange={itemValue => setSelectedOption(itemValue)}>
+          {product.options.map(option => (
+            <Picker.Item label={option} value={option} />
+          ))}
+        </Picker>
+      ) : null}
 
       {/* Price */}
       <Text style={styles.price}>
@@ -101,7 +110,17 @@ const ProductScreen = () => {
       {/* Buttom */}
       <Button
         text={'Add To Cart'}
-        onPress={() => {}}
+        onPress={() => {
+          if (!globalThis.cart[product.id]) {
+            globalThis.cart[product.id] = {};
+            globalThis.cart[product.id].id = product.id;
+            globalThis.cart[product.id].quantity = quantity;
+            globalThis.cart[product.id].item = product;
+          } else {
+            globalThis.cart[product.id].quantity += quantity;
+          }
+          console.log(globalThis.cart);
+        }}
         containerStyle={{
           backgroundColor: '#e3c905',
         }}
