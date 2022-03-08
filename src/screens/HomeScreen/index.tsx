@@ -20,6 +20,7 @@ interface ProductItemProps {
     image: string;
     price: number;
     oldPrice?: number;
+    country?: string;
   };
 }
 
@@ -39,6 +40,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
             'image',
             'price',
             'oldPrice',
+            'country',
           ]);
         }),
       );
@@ -50,7 +52,14 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     <View style={styles.page}>
       {/* Render Product Component */}
       <FlatList
-        data={products}
+        data={products.filter(val => {
+          console.log(val);
+          return (
+            !searchValue || // eslint-disable-next-line prettier/prettier
+              (val.country && val.country.toLowerCase().startsWith(searchValue.toLowerCase())) ||
+            // eslint-disable-next-line prettier/prettier
+              (val.title && val.title.toLowerCase().startsWith(searchValue.toLowerCase())));
+        })}
         renderItem={({item}) => <ProductItem item={item} />}
         showsVerticalScrollIndicator={false}
       />
