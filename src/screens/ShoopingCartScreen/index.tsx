@@ -16,7 +16,7 @@ const ShopingCartScreen = () => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      setProducts(Object.values(globalThis.cart));
+      setProducts(globalThis.cart ? Object.values(globalThis.cart) : []);
       //console.log(cart);
     });
     return unsubscribe;
