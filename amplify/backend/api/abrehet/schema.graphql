@@ -1,7 +1,20 @@
-type Products @model @auth(rules: [{allow: public}]) {
+type Products 
+@model (subscriptions: { level: public }) 
+@auth(rules: [
+      {allow: public, operations: [read]},
+      {allow: groups, groups: ["Admin"], operations: [create, update, delete, read]}
+]) {
   id: ID!
   title: String!
   content: AWSJSON!
   country: String
+}
+ 
+type Users @model @auth(rules: [{allow: public}]) {
+  email: AWSEmail!
+  phone: AWSPhone
+  name: String
+  address: String
+  other: AWSJSON
 }
  

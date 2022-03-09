@@ -33,3 +33,38 @@ export const listProducts = /* GraphQL */ `
     }
   }
 `;
+export const getUsers = /* GraphQL */ `
+  query GetUsers($id: ID!) {
+    getUsers(id: $id) {
+      email
+      phone
+      name
+      address
+      other
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUsersFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        email
+        phone
+        name
+        address
+        other
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
