@@ -1,0 +1,32 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-abrehet-staging-53841-authRole",
+      "UnauthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-staging-53841-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-staging-53841-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-abrehet-staging-53841-deployment",
+      "UnauthRoleName": "amplify-abrehet-staging-53841-unauthRole",
+      "StackName": "amplify-abrehet-staging-53841",
+      "StackId": "arn:aws:cloudformation:us-east-1:807954077262:stack/amplify-abrehet-staging-53841/5b002570-96c6-11ec-984f-12a1e5ea69b9",
+      "AmplifyAppId": "d3t4jm0uu1bb0n"
+    },
+    "categories": {
+      "auth": {
+        "abrehet2d81a0c0": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3t4jm0uu1bb0n",
+          "type": "manual"
+        }
+      },
+      "function": {
+        "makePayment": {
+          "deploymentBucketName": "amplify-abrehet-staging-53841-deployment",
+          "s3Key": "amplify-builds/makePayment-4f6a6846434a7668686c-build.zip"
+        }
+      }
+    }
+  }
+}

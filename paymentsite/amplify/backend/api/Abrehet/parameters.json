@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "Abrehet",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-02-28T16:28:59.176Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authabrehet2d81a0c0",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

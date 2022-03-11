@@ -1,0 +1,1 @@
+export default ["id","title","country","description","image","images","options","ratings","price","oldPrice","avgRating"];
