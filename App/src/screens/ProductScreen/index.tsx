@@ -10,8 +10,9 @@ import QuantitySelector from '../../components/QuantitySelector';
 import Button from '../../components/Button';
 import ImageCarousel from '../../components/ImageCarousel';
 import * as types from '../../API';
-import {API, graphqlOperation} from 'aws-amplify';
+import {API, graphqlOperation, sectionFooterSecondaryContent} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
+import {useNavigation} from '@react-navigation/native';
 import _ from 'lodash';
 
 interface ProductItemDetails {
@@ -27,9 +28,11 @@ interface ProductItemDetails {
 }
 
 const ProductScreen = () => {
+  const navigation = useNavigation();
   const [product, setProduct] = useState<ProductItemDetails>();
   const [selectedOption, setSelectedOption] = useState('black');
   const [quantity, setQuantity] = useState(1);
+  const [text, setText] = useState("");
 
   useEffect(() => {
     if (!globalThis.cart) {
@@ -119,13 +122,28 @@ const ProductScreen = () => {
           } else {
             globalThis.cart[product.id].quantity += quantity;
           }
+          setText("added to cart");
           console.log(globalThis.cart);
         }}
         containerStyle={{
           backgroundColor: '#e3c905',
         }}
       />
-      <Button text={'Buy Now'} onPress={() => {}} />
+      <Button
+        text={'Buy Now'}
+        onPress={() => {
+          if (!globalThis.cart[product.id]) {
+            globalThis.cart[product.id] = {};
+            globalThis.cart[product.id].id = product.id;
+            globalThis.cart[product.id].quantity = quantity;
+            globalThis.cart[product.id].item = product;
+          } else {
+            globalThis.cart[product.id].quantity += quantity;
+          }
+          console.log(globalThis.cart);
+        }}
+      />
+      <Text>{text}</Text>
     </ScrollView>
   );
 };

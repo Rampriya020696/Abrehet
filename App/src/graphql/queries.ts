@@ -41,6 +41,21 @@ export const getUsers = /* GraphQL */ `
       name
       address
       other
+      orders {
+        items {
+          userID
+          phone
+          name
+          address
+          city
+          Products
+          id
+          createdAt
+          updatedAt
+          usersOrdersId
+        }
+        nextToken
+      }
       id
       createdAt
       updatedAt
@@ -60,9 +75,51 @@ export const listUsers = /* GraphQL */ `
         name
         address
         other
+        orders {
+          nextToken
+        }
         id
         createdAt
         updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getOrder = /* GraphQL */ `
+  query GetOrder($id: ID!) {
+    getOrder(id: $id) {
+      userID
+      phone
+      name
+      address
+      city
+      Products
+      id
+      createdAt
+      updatedAt
+      usersOrdersId
+    }
+  }
+`;
+export const listOrders = /* GraphQL */ `
+  query ListOrders(
+    $filter: ModelOrderFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        userID
+        phone
+        name
+        address
+        city
+        Products
+        id
+        createdAt
+        updatedAt
+        usersOrdersId
       }
       nextToken
     }

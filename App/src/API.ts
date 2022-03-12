@@ -2,6 +2,19 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
+export type PaymentInput = {
+  amount?: number | null,
+  total?: number | null,
+  name?: string | null,
+  email?: string | null,
+};
+
+export type PaymentResult = {
+  __typename: "PaymentResult",
+  statusCode?: number | null,
+  body?: string | null,
+};
+
 export type CreateProductsInput = {
   id?: string | null,
   title: string,
@@ -106,9 +119,30 @@ export type Users = {
   name?: string | null,
   address?: string | null,
   other?: string | null,
+  orders?: ModelOrderConnection | null,
   id: string,
   createdAt: string,
   updatedAt: string,
+};
+
+export type ModelOrderConnection = {
+  __typename: "ModelOrderConnection",
+  items:  Array<Order | null >,
+  nextToken?: string | null,
+};
+
+export type Order = {
+  __typename: "Order",
+  userID?: string | null,
+  phone?: string | null,
+  name?: string | null,
+  address?: string | null,
+  city?: string | null,
+  Products?: string | null,
+  id: string,
+  createdAt: string,
+  updatedAt: string,
+  usersOrdersId?: string | null,
 };
 
 export type UpdateUsersInput = {
@@ -124,14 +158,28 @@ export type DeleteUsersInput = {
   id: string,
 };
 
-export type ModelProductsFilterInput = {
-  id?: ModelIDInput | null,
-  title?: ModelStringInput | null,
-  content?: ModelStringInput | null,
-  country?: ModelStringInput | null,
-  and?: Array< ModelProductsFilterInput | null > | null,
-  or?: Array< ModelProductsFilterInput | null > | null,
-  not?: ModelProductsFilterInput | null,
+export type CreateOrderInput = {
+  userID?: string | null,
+  phone?: string | null,
+  name?: string | null,
+  address?: string | null,
+  city?: string | null,
+  Products?: string | null,
+  id?: string | null,
+  usersOrdersId?: string | null,
+};
+
+export type ModelOrderConditionInput = {
+  userID?: ModelStringInput | null,
+  phone?: ModelStringInput | null,
+  name?: ModelStringInput | null,
+  address?: ModelStringInput | null,
+  city?: ModelStringInput | null,
+  Products?: ModelStringInput | null,
+  and?: Array< ModelOrderConditionInput | null > | null,
+  or?: Array< ModelOrderConditionInput | null > | null,
+  not?: ModelOrderConditionInput | null,
+  usersOrdersId?: ModelIDInput | null,
 };
 
 export type ModelIDInput = {
@@ -148,6 +196,31 @@ export type ModelIDInput = {
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
+};
+
+export type UpdateOrderInput = {
+  userID?: string | null,
+  phone?: string | null,
+  name?: string | null,
+  address?: string | null,
+  city?: string | null,
+  Products?: string | null,
+  id: string,
+  usersOrdersId?: string | null,
+};
+
+export type DeleteOrderInput = {
+  id: string,
+};
+
+export type ModelProductsFilterInput = {
+  id?: ModelIDInput | null,
+  title?: ModelStringInput | null,
+  content?: ModelStringInput | null,
+  country?: ModelStringInput | null,
+  and?: Array< ModelProductsFilterInput | null > | null,
+  or?: Array< ModelProductsFilterInput | null > | null,
+  not?: ModelProductsFilterInput | null,
 };
 
 export type ModelProductsConnection = {
@@ -171,6 +244,31 @@ export type ModelUsersConnection = {
   __typename: "ModelUsersConnection",
   items:  Array<Users | null >,
   nextToken?: string | null,
+};
+
+export type ModelOrderFilterInput = {
+  userID?: ModelStringInput | null,
+  phone?: ModelStringInput | null,
+  name?: ModelStringInput | null,
+  address?: ModelStringInput | null,
+  city?: ModelStringInput | null,
+  Products?: ModelStringInput | null,
+  and?: Array< ModelOrderFilterInput | null > | null,
+  or?: Array< ModelOrderFilterInput | null > | null,
+  not?: ModelOrderFilterInput | null,
+  usersOrdersId?: ModelIDInput | null,
+};
+
+export type CreatePaymentMutationVariables = {
+  input?: PaymentInput | null,
+};
+
+export type CreatePaymentMutation = {
+  createPayment?:  {
+    __typename: "PaymentResult",
+    statusCode?: number | null,
+    body?: string | null,
+  } | null,
 };
 
 export type CreateProductsMutationVariables = {
@@ -237,6 +335,23 @@ export type CreateUsersMutation = {
     name?: string | null,
     address?: string | null,
     other?: string | null,
+    orders?:  {
+      __typename: "ModelOrderConnection",
+      items:  Array< {
+        __typename: "Order",
+        userID?: string | null,
+        phone?: string | null,
+        name?: string | null,
+        address?: string | null,
+        city?: string | null,
+        Products?: string | null,
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        usersOrdersId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     id: string,
     createdAt: string,
     updatedAt: string,
@@ -256,6 +371,23 @@ export type UpdateUsersMutation = {
     name?: string | null,
     address?: string | null,
     other?: string | null,
+    orders?:  {
+      __typename: "ModelOrderConnection",
+      items:  Array< {
+        __typename: "Order",
+        userID?: string | null,
+        phone?: string | null,
+        name?: string | null,
+        address?: string | null,
+        city?: string | null,
+        Products?: string | null,
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        usersOrdersId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     id: string,
     createdAt: string,
     updatedAt: string,
@@ -275,9 +407,89 @@ export type DeleteUsersMutation = {
     name?: string | null,
     address?: string | null,
     other?: string | null,
+    orders?:  {
+      __typename: "ModelOrderConnection",
+      items:  Array< {
+        __typename: "Order",
+        userID?: string | null,
+        phone?: string | null,
+        name?: string | null,
+        address?: string | null,
+        city?: string | null,
+        Products?: string | null,
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        usersOrdersId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     id: string,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type CreateOrderMutationVariables = {
+  input: CreateOrderInput,
+  condition?: ModelOrderConditionInput | null,
+};
+
+export type CreateOrderMutation = {
+  createOrder?:  {
+    __typename: "Order",
+    userID?: string | null,
+    phone?: string | null,
+    name?: string | null,
+    address?: string | null,
+    city?: string | null,
+    Products?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    usersOrdersId?: string | null,
+  } | null,
+};
+
+export type UpdateOrderMutationVariables = {
+  input: UpdateOrderInput,
+  condition?: ModelOrderConditionInput | null,
+};
+
+export type UpdateOrderMutation = {
+  updateOrder?:  {
+    __typename: "Order",
+    userID?: string | null,
+    phone?: string | null,
+    name?: string | null,
+    address?: string | null,
+    city?: string | null,
+    Products?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    usersOrdersId?: string | null,
+  } | null,
+};
+
+export type DeleteOrderMutationVariables = {
+  input: DeleteOrderInput,
+  condition?: ModelOrderConditionInput | null,
+};
+
+export type DeleteOrderMutation = {
+  deleteOrder?:  {
+    __typename: "Order",
+    userID?: string | null,
+    phone?: string | null,
+    name?: string | null,
+    address?: string | null,
+    city?: string | null,
+    Products?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    usersOrdersId?: string | null,
   } | null,
 };
 
@@ -331,6 +543,23 @@ export type GetUsersQuery = {
     name?: string | null,
     address?: string | null,
     other?: string | null,
+    orders?:  {
+      __typename: "ModelOrderConnection",
+      items:  Array< {
+        __typename: "Order",
+        userID?: string | null,
+        phone?: string | null,
+        name?: string | null,
+        address?: string | null,
+        city?: string | null,
+        Products?: string | null,
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        usersOrdersId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     id: string,
     createdAt: string,
     updatedAt: string,
@@ -353,9 +582,59 @@ export type ListUsersQuery = {
       name?: string | null,
       address?: string | null,
       other?: string | null,
+      orders?:  {
+        __typename: "ModelOrderConnection",
+        nextToken?: string | null,
+      } | null,
       id: string,
       createdAt: string,
       updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetOrderQueryVariables = {
+  id: string,
+};
+
+export type GetOrderQuery = {
+  getOrder?:  {
+    __typename: "Order",
+    userID?: string | null,
+    phone?: string | null,
+    name?: string | null,
+    address?: string | null,
+    city?: string | null,
+    Products?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    usersOrdersId?: string | null,
+  } | null,
+};
+
+export type ListOrdersQueryVariables = {
+  filter?: ModelOrderFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListOrdersQuery = {
+  listOrders?:  {
+    __typename: "ModelOrderConnection",
+    items:  Array< {
+      __typename: "Order",
+      userID?: string | null,
+      phone?: string | null,
+      name?: string | null,
+      address?: string | null,
+      city?: string | null,
+      Products?: string | null,
+      id: string,
+      createdAt: string,
+      updatedAt: string,
+      usersOrdersId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -369,6 +648,23 @@ export type OnCreateUsersSubscription = {
     name?: string | null,
     address?: string | null,
     other?: string | null,
+    orders?:  {
+      __typename: "ModelOrderConnection",
+      items:  Array< {
+        __typename: "Order",
+        userID?: string | null,
+        phone?: string | null,
+        name?: string | null,
+        address?: string | null,
+        city?: string | null,
+        Products?: string | null,
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        usersOrdersId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     id: string,
     createdAt: string,
     updatedAt: string,
@@ -383,6 +679,23 @@ export type OnUpdateUsersSubscription = {
     name?: string | null,
     address?: string | null,
     other?: string | null,
+    orders?:  {
+      __typename: "ModelOrderConnection",
+      items:  Array< {
+        __typename: "Order",
+        userID?: string | null,
+        phone?: string | null,
+        name?: string | null,
+        address?: string | null,
+        city?: string | null,
+        Products?: string | null,
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        usersOrdersId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     id: string,
     createdAt: string,
     updatedAt: string,
@@ -397,8 +710,73 @@ export type OnDeleteUsersSubscription = {
     name?: string | null,
     address?: string | null,
     other?: string | null,
+    orders?:  {
+      __typename: "ModelOrderConnection",
+      items:  Array< {
+        __typename: "Order",
+        userID?: string | null,
+        phone?: string | null,
+        name?: string | null,
+        address?: string | null,
+        city?: string | null,
+        Products?: string | null,
+        id: string,
+        createdAt: string,
+        updatedAt: string,
+        usersOrdersId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     id: string,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type OnCreateOrderSubscription = {
+  onCreateOrder?:  {
+    __typename: "Order",
+    userID?: string | null,
+    phone?: string | null,
+    name?: string | null,
+    address?: string | null,
+    city?: string | null,
+    Products?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    usersOrdersId?: string | null,
+  } | null,
+};
+
+export type OnUpdateOrderSubscription = {
+  onUpdateOrder?:  {
+    __typename: "Order",
+    userID?: string | null,
+    phone?: string | null,
+    name?: string | null,
+    address?: string | null,
+    city?: string | null,
+    Products?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    usersOrdersId?: string | null,
+  } | null,
+};
+
+export type OnDeleteOrderSubscription = {
+  onDeleteOrder?:  {
+    __typename: "Order",
+    userID?: string | null,
+    phone?: string | null,
+    name?: string | null,
+    address?: string | null,
+    city?: string | null,
+    Products?: string | null,
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    usersOrdersId?: string | null,
   } | null,
 };

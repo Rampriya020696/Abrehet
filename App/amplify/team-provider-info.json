@@ -15,7 +15,7 @@
       "function": {
         "makePayment": {
           "deploymentBucketName": "amplify-abrehet-staging-53841-deployment",
-          "s3Key": "amplify-builds/makePayment-4f6a6846434a7668686c-build.zip"
+          "s3Key": "amplify-builds/makePayment-365661716a7478344465-build.zip"
         }
       },
       "hosting": {

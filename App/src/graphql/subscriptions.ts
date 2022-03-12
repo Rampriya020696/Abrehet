@@ -10,6 +10,21 @@ export const onCreateUsers = /* GraphQL */ `
       name
       address
       other
+      orders {
+        items {
+          userID
+          phone
+          name
+          address
+          city
+          Products
+          id
+          createdAt
+          updatedAt
+          usersOrdersId
+        }
+        nextToken
+      }
       id
       createdAt
       updatedAt
@@ -24,6 +39,21 @@ export const onUpdateUsers = /* GraphQL */ `
       name
       address
       other
+      orders {
+        items {
+          userID
+          phone
+          name
+          address
+          city
+          Products
+          id
+          createdAt
+          updatedAt
+          usersOrdersId
+        }
+        nextToken
+      }
       id
       createdAt
       updatedAt
@@ -38,9 +68,72 @@ export const onDeleteUsers = /* GraphQL */ `
       name
       address
       other
+      orders {
+        items {
+          userID
+          phone
+          name
+          address
+          city
+          Products
+          id
+          createdAt
+          updatedAt
+          usersOrdersId
+        }
+        nextToken
+      }
       id
       createdAt
       updatedAt
+    }
+  }
+`;
+export const onCreateOrder = /* GraphQL */ `
+  subscription OnCreateOrder {
+    onCreateOrder {
+      userID
+      phone
+      name
+      address
+      city
+      Products
+      id
+      createdAt
+      updatedAt
+      usersOrdersId
+    }
+  }
+`;
+export const onUpdateOrder = /* GraphQL */ `
+  subscription OnUpdateOrder {
+    onUpdateOrder {
+      userID
+      phone
+      name
+      address
+      city
+      Products
+      id
+      createdAt
+      updatedAt
+      usersOrdersId
+    }
+  }
+`;
+export const onDeleteOrder = /* GraphQL */ `
+  subscription OnDeleteOrder {
+    onDeleteOrder {
+      userID
+      phone
+      name
+      address
+      city
+      Products
+      id
+      createdAt
+      updatedAt
+      usersOrdersId
     }
   }
 `;

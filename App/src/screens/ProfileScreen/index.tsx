@@ -18,8 +18,10 @@ import _ from 'lodash';
 const ProfileScreen = () => {
   const [info, setInfo] = useState(null);
   const [text, onChangeText] = useState('');
+  const [name, onChangeName] = useState('');
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [orders, setOrders] = useState([]);
   const [id, setID] = useState('');
   useEffect(() => {
     const userInfo = async () => {
@@ -52,11 +54,21 @@ const ProfileScreen = () => {
       )) as {
         data: types.ListUsersQuery;
       };
+
       let user = getUser.data.listUsers!.items[0];
       console.log(user);
       setID(user!.id);
       if (user!.address) {
         onChangeText(user!.address);
+      }
+      console.log('yello');
+      let getOrders = await API.graphql(
+        graphqlOperation(queries.listOrders, {
+          filter: {userID: {eq: user.id}},
+        }),
+      );
+      if (getOrders) {
+        setOrders(getOrders.data.listOrders.items);
       }
     };
     userInfo();
@@ -80,7 +92,16 @@ const ProfileScreen = () => {
         onChangeText={onChangeText}
         value={text}
       />
-      <Text>Orders: blank</Text>
+      <Text>Name:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeName}
+        value={name}
+      />
+      <Text>
+        Orders:{' '}
+        {orders.map(item => JSON.parse(item.Products).total).join(", ")}
+      </Text>
       <Button
         title="Update Settings"
         onPress={() => {
@@ -90,6 +111,7 @@ const ProfileScreen = () => {
               input: {
                 id: id,
                 address: text,
+                name: name,
               },
             }),
           );

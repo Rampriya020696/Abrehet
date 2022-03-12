@@ -52,7 +52,7 @@ const CartProductItem = ({cartItem, updateCart}: CartProductItemProps) => {
         <QuantitySelector
           quantity={quantity}
           setQuantity={val => {
-            globalThis.cart[item.id].quantity = quantity;
+            globalThis.cart[item.id].quantity = val;
             setQuantity(val);
           }}
         />
