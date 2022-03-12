@@ -99,8 +99,7 @@ const ProfileScreen = () => {
         value={name}
       />
       <Text>
-        Orders:{' '}
-        {orders.map(item => JSON.parse(item.Products).total).join(", ")}
+        Orders: {orders.map(item => JSON.parse(item.Products).total).join(', ')}
       </Text>
       <Button
         title="Update Settings"
@@ -141,6 +140,21 @@ const ProfileScreen = () => {
             .catch(err => console.log(err));
         }}
       />
+      <Text style={styles.text} Order History />
+      <Button
+        title="Order History"
+        onPress={() => {
+          console.log('press ' + text);
+          API.graphql(
+            graphqlOperation(mutations.updateUsers, {
+              input: {
+                id: id,
+                address: text,
+              },
+            }),
+          );
+        }}
+      />
     </View>
   );
 };
@@ -155,6 +169,10 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  text: {
+    fontSize: 70,
+    fontWeight: 'bold',
   },
 });
 

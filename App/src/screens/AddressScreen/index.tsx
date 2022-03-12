@@ -22,7 +22,7 @@ import * as queries from '../../graphql/queries';
 
 const initUrl = 'https://staging.d3t4jm0uu1bb0n.amplifyapp.com/';
 
-const countries = ['Asmara Eritrea'];
+const countries = ['Asmara Eritrea','Uganda Campala','Ethiopia Addis Abeba', 'Kenya Nairobi'];
 
 const AddressScreen = () => {
   const [country, setCountry] = useState(countries[0]);
@@ -270,7 +270,7 @@ const AddressScreen = () => {
           <Text style={styles.label}>Address </Text>
           <TextInput
             style={styles.input}
-            placeholder="Address"
+            placeholder="Full Address"
             value={address}
             onChangeText={setAddress}
           />

@@ -1,43 +1,37 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
+const style = StyleSheet.create({
+  root: {
+    flexDirection: 'row',
+    margin: 2,
+    borderWidth: 4,
+    borderColor: '#ffffff',
+    borderRadius: 100,
+    backgroundColor: '#ffffff',
+  },
+  image: {
+    width: 80,
+    height: 80,
+  },
+  rightContainer: {
+    padding: 20,
+    width: '100%',
+    flex: 10,
+  },
 
- const style = StyleSheet.create({
-    root: {
-        flexDirection: 'row', 
-        margin: 10,
-        borderWidth: 2,
-        borderColor: '#d1d1d1',
-        borderRadius: 5,
-        backgroundColor: '#a1a1a1',
-     },
-    image: {
-        width: 150,
-        height: 150,
-    },
-    rightContainer: {
-        padding: 7,
-        width: '100%',
-        flex: 3,
-    },
- 
- 
-    title: {
-        fontSize: 22,
-        fontWeight: 'bold'
-        
- 
-    },
-    price: {
-     fontSize: 22,
-     fontWeight: 'bold'
-     
-    },
-    oldPrice: {
-        fontSize: 22,
-        fontWeight: 'bold'
-        
-       }
-   });
- 
-   export default style;
- 
+  title: {
+    fontSize: 20,
+    fontWeight: '500',
+  },
+  price: {
+    fontSize: 18,
+    fontWeight: '900',
+  },
+
+  oldPrice: {
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+});
+
+export default style;
