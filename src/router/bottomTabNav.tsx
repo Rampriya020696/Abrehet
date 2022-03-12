@@ -14,7 +14,7 @@ const BottomTabNav = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarShowLabel: false,
-        tabBarInactiveTintColor: '#ffbd7d',
+        tabBarInactiveTintColor: '#08b3fc',
         tabBarActiveTintColor: '#d68d47',
       }}>
       <Tab.Screen

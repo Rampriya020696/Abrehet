@@ -31,7 +31,7 @@ const ProductItem = ({item}: ProductItemProps) => {
           {item.title}
         </Text>
         <Text style={styles.price}>
-          from {item.price}
+           {item.price}
           {item.oldPrice && (
             <Text style={styles.oldPrice}> {item.oldPrice}</Text>
           )}

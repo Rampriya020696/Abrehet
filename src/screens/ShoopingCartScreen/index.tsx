@@ -24,8 +24,8 @@ const ShopingCartScreen = () => {
   return (
     <View style={styles.page}>
       <View>
-        <Text style={{fontSize: 18, fontWeight: 'bold'}}>
-          Subtotal ({products.length} item):{'  '}
+        <Text style={{fontSize: 15, fontWeight: 'bold'}}>
+          Subtotal ({products.length} item): {' '}
           <Text style={{color: '#e47911', fontWeight: 'bold'}}>
             {products
               .reduce(
@@ -55,8 +55,10 @@ const ShopingCartScreen = () => {
 
 const styles = StyleSheet.create({
   page: {
-    padding: 10,
+    padding: 15,
+    margin: 10
   },
+ 
 });
 
 export default ShopingCartScreen;

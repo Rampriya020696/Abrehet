@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -7,10 +7,10 @@ import {
   TextInput,
   Text,
 } from 'react-native';
-import {Auth} from 'aws-amplify';
-import {UserAgent} from 'amazon-cognito-identity-js';
+import { Auth } from 'aws-amplify';
+import { UserAgent } from 'amazon-cognito-identity-js';
 import * as types from '../../API';
-import {API, graphqlOperation} from 'aws-amplify';
+import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import _ from 'lodash';
@@ -28,7 +28,7 @@ const ProfileScreen = () => {
       setInfo(auth_user.attributes);
       let getUser = (await API.graphql(
         graphqlOperation(queries.listUsers, {
-          filter: {email: {eq: auth_user.attributes.email}},
+          filter: { email: { eq: auth_user.attributes.email } },
         }),
       )) as {
         data: types.ListUsersQuery;
@@ -47,7 +47,7 @@ const ProfileScreen = () => {
       }
       getUser = (await API.graphql(
         graphqlOperation(queries.listUsers, {
-          filter: {email: {eq: auth_user.attributes.email}},
+          filter: { email: { eq: auth_user.attributes.email } },
         }),
       )) as {
         data: types.ListUsersQuery;
@@ -80,9 +80,9 @@ const ProfileScreen = () => {
         onChangeText={onChangeText}
         value={text}
       />
-      <Text>Orders: blank</Text>
+
       <Button
-        title="Update Settings"
+        title="Update Adress"
         onPress={() => {
           console.log('press ' + text);
           API.graphql(
@@ -119,6 +119,23 @@ const ProfileScreen = () => {
             .catch(err => console.log(err));
         }}
       />
+      <Text style={styles.text} Order History />
+      <Button
+        title="Order History"
+        onPress={() => {
+          console.log('press ' + text);
+          API.graphql(
+            graphqlOperation(mutations.updateUsers, {
+              input: {
+                id: id,
+                address: text,
+              },
+            }),
+          );
+        }}
+        
+      />
+      
     </View>
   );
 };
@@ -134,6 +151,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  text: {
+    
+    fontSize: 70,
+    fontWeight: 'bold',
+
+  }
 });
 
 export default ProfileScreen;

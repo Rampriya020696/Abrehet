@@ -9,14 +9,14 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
-import countryList from 'country-list';
+//import countryList from 'country-list';
 import Button from '../../components/Button';
 import styles from './styles';
 
-const countries = countryList.getData();
+//const countries = countryList.getData();
 
 const AddressScreen = () => {
-  const [country, setCountry] = useState(countries[0].code);
+  //const [country, setCountry] = useState(countries[0].code);
   const [fullname, setFullname] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -48,14 +48,15 @@ const AddressScreen = () => {
       keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}>
       <ScrollView style={styles.root}>
         <View style={styles.row}>
-          <Picker selectedValue={country} onValueChange={setCountry}>
+         
+        </View>
+       
+        {/*  <Picker selectedValue={country} onValueChange={setCountry}>
             {countries.map(c => (
               <Picker.Item value={c.code} label={c.name} />
             ))}
           </Picker>
-        </View>
-
-        {/* Full name */}
+        Full name */}
         <View style={styles.row}>
           <Text style={styles.label}>Full Name (First and Last Name)</Text>
           <TextInput
@@ -82,7 +83,7 @@ const AddressScreen = () => {
           <Text style={styles.label}>Address </Text>
           <TextInput
             style={styles.input}
-            placeholder="Address"
+            placeholder="Full Address"
             value={address}
             onChangeText={setAddress}
           />
