@@ -7,18 +7,18 @@ const style = StyleSheet.create({
     borderColor: '#d1d1d1',
     borderRadius: 40,
     backgroundColor: '#fff',
-    marginVertical: 1,
+    marginVertical: 4,
     padding: 1,
   },
   row: {
     flexDirection: 'row',
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 140,
+    height: 110,
   },
   rightContainer: {
-    padding: 14,
+    padding: 10,
     width: '100%',
     flex: 10,
   },

@@ -42,7 +42,7 @@ const ShopingCartScreen = () => {
         <Button
           text="Proceed to checkout"
           onPress={onCheckout}
-          containerStyle={{backgroundColor: '#fff23d', borderColor: '#c7b782'}}
+          containerStyle={{backgroundColor: '#f5dd42', borderColor: '#c7b782'}}
         />
       </View>
       {/* Render Product Component */}
