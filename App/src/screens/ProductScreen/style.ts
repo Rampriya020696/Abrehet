@@ -2,8 +2,8 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   root: {
-    padding: 2,
-    margin: 10,
+    padding: 1,
+    margin: 1,
     backgroundColor: 'white',
     marginVertical: 1,
     lineHeight: 1,
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginVertical: 1,
-    lineHeight: 19,
+    lineHeight: 20,
   },
 
   oldPrice: {
@@ -28,10 +28,12 @@ const styles = StyleSheet.create({
   },
   description: {
     flexDirection: 'row',
-    marginVertical: 6,
-    lineHeight: 20,
-    fontSize: 10,
-    fontWeight: '600',
+    marginVertical: 9,
+    lineHeight: 15,
+    fontSize: 15,
+    fontWeight: '800',
+    color: '#0ea9f0',
+    
   },
 });
 

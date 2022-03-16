@@ -3,33 +3,35 @@ import {StyleSheet} from 'react-native';
 const style = StyleSheet.create({
   root: {
     margin: 1,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#d1d1d1',
     borderRadius: 40,
     backgroundColor: '#fff',
-    marginVertical: 6,
-    padding: 14,
+    marginVertical: 1,
+    padding: 1,
   },
   row: {
     flexDirection: 'row',
   },
   image: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
   },
   rightContainer: {
-    padding: 20,
+    padding: 14,
     width: '100%',
-    flex: 3,
+    flex: 10,
   },
 
   title: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'normal',
+    marginVertical: 1,
+    marginLeft: 1,
   },
 
   price: {
-    fontSize: 27,
+    fontSize: 22,
     fontWeight: 'bold',
   },
   oldPrice: {
@@ -38,7 +40,7 @@ const style = StyleSheet.create({
     textDecorationLine: 'line-through',
   },
   quantityContainer: {
-    marginVertical: 3,
+    marginVertical: 2,
     marginLeft: 5,
   },
 });

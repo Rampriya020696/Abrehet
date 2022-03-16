@@ -67,8 +67,8 @@ const ShopingCartScreen = () => {
 
 const styles = StyleSheet.create({
   page: {
-    padding: 15,
-    margin: 10,
+    padding: 6,
+    margin: 2,
   },
 });
 

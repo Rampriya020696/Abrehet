@@ -56,7 +56,7 @@ const CartProductItem = ({cartItem, updateCart}: CartProductItemProps) => {
             setQuantity(val);
           }}
         />
-        <Button title="Remove Item" onPress={() => setQuantity(0)} />
+        <Button title="Remove Item" onPress={() => setQuantity(0)} /> 
       </View>
     </View>
   );

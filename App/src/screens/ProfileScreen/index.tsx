@@ -92,17 +92,23 @@ const ProfileScreen = () => {
         onChangeText={onChangeText}
         value={text}
       />
-      <Text>Name:</Text>
+     { /* <Text>Name:</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangeName}
         value={name}
-      />
+  /> */ }
       <Text>
-        Orders: {orders.map(item => JSON.parse(item.Products).total).join(', ')}
+         {orders.map(item => JSON.parse(item.Products).total).join(', ')}
       </Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={setOldPassword}
+        value={oldPassword}
+        placeholder="Update Address"
+      />
       <Button
-        title="Update Settings"
+        title="Update Address"
         onPress={() => {
           console.log('press ' + text);
           API.graphql(
@@ -116,6 +122,7 @@ const ProfileScreen = () => {
           );
         }}
       />
+      
       <TextInput
         style={styles.input}
         onChangeText={setOldPassword}
