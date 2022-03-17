@@ -5,11 +5,13 @@ import MenuScreen from '../screens/MenuScreen';
 import Entypo from 'react-native-vector-icons/Entypo';
 import HomeStack from './HomeStack';
 import ShopingCartStack from './ShoppingCartStack';
-import {View} from 'react-native';
+import {NavigatorIOS, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNav = () => {
+  const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -27,6 +29,14 @@ const BottomTabNav = () => {
           tabBarIcon: ({color}) => (
             <Entypo name="home" color={color} size={25} />
           ),
+        }}
+        listeners={{
+          tabPress: e => {
+            // Prevent default action
+            navigation.navigate('HomeScreen');
+      
+            //Any custom code here
+          },
         }}
       />
       <Tab.Screen
