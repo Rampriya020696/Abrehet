@@ -12,7 +12,6 @@ import HomepageLayout from "./HomepageLayout";
 import ReactWidgetsForm from "./Test";
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-const ENDPOINT = "http://127.0.0.1:4001";
 
 class App extends Component {
   componentDidMount() {

@@ -140,6 +140,7 @@ const ProductScreen = () => {
           } else {
             globalThis.cart[product.id].quantity += quantity;
           }
+          navigation.navigate("ShoppingCart");
           console.log(globalThis.cart);
         }}
       />

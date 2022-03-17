@@ -23,6 +23,7 @@ const BottomTabNav = () => {
         component={HomeStack}
         name="Home"
         options={{
+          headerShown: false,
           headerStyle: {
             backgroundColor: '#08b3fc',
           },

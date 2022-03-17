@@ -8,20 +8,19 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 365,
-              "apiKeyExpirationDate": "2023-03-08T18:06:03.104Z",
+              "apiKeyExpirationDays": 30,
               "description": "api key description"
             }
           },
           "additionalAuthenticationProviders": [
             {
+              "authenticationType": "AWS_IAM"
+            },
+            {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
                 "userPoolId": "authabrehet2d81a0c0"
               }
-            },
-            {
-              "authenticationType": "AWS_IAM"
             }
           ]
         }
@@ -52,6 +51,36 @@
           "EMAIL"
         ]
       }
+    }
+  },
+  "storage": {},
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "providerPlugin": "awscloudformation",
+      "type": "manual"
+    }
+  },
+  "function": {
+    "makePayment": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "sendemail": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "Abrehet",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        }
+      ]
     }
   }
 }

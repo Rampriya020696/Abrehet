@@ -3,8 +3,10 @@ import { Icon, Label, Menu, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as actions from "../actions";
+import '../App.css'
 
 import ids from "../ids";
+import { AppState } from "@aws-amplify/core";
 
 const TableTop = ({ data }) => {
   /*const keys = !data[0] || Object.keys(data[0]);
@@ -109,6 +111,7 @@ class DataTable extends React.Component {
     return (
         <div>
         <Redirect to={this.props.row.link ? this.props.row.link : "/table"} />
+        <div className="container__table">    
         <Table celled>
             <Table.Header>
             <Table.Row>
@@ -120,6 +123,7 @@ class DataTable extends React.Component {
             <TableBody data={this.state.data} query={this.state.query} key={this.state.query}/>
             </Table.Body>
         </Table>
+        </div>
         </div>
     );
   }

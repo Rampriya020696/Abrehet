@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
 import {SafeAreaView, View, TextInput} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -63,5 +64,16 @@ const HomeStack = () => {
     </Stack.Navigator>
   );
 };
+const Drawer = createDrawerNavigator();
 
-export default HomeStack;
+function MyDrawer() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Groceries" component={HomeStack} />
+      <Drawer.Screen name="Electronics" component={HomeStack} />
+      <Drawer.Screen name="Furniture" component={HomeStack} />
+      <Drawer.Screen name="Jewelry" component={HomeStack} />
+    </Drawer.Navigator>
+  );
+}
+export default MyDrawer;
