@@ -10,15 +10,14 @@ exports.handler = async event => {
       //const candidateEmail = streamedItem.dynamodb.NewImage.email.S
       const obj = streamedItem.dynamodb.NewImage;
       const products = obj.Products.M;
-      console.log(products);
-      console.log(JSON.stringify(products));
       let str = 'total money: ' + products.total.S;
       str += '\naddress: ' + obj.address.S;
       str += '\ncity: ' + obj.city.S;
       str += '\nphone: ' + obj.phone.S;
       str += '\nname: ' + obj.name.S;
       str += '\n\nitems:';
-      for (let val in products.cart.L) {
+      for (let i = 0; i < products.cart.L.length(); i++) {
+        let val = products.cart.L[i];
         str +=
           '\ntitle: ' +
           val.M.item.M.price.S +

@@ -2,15 +2,10 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import ids from "../ids";
 import { Dropdown } from 'semantic-ui-react';
 import 'react-widgets/dist/css/react-widgets.css';
 
-const idsObj = ids.map((id) => {
-    return { key: id, value: id, text:id};
-});
-
-console.log(idsObj);
+console.log(localStorage.getItem("ids"));
 
 const DropdownExampleSearchSelection = props => (
     <Dropdown
@@ -18,7 +13,9 @@ const DropdownExampleSearchSelection = props => (
       value={props.input.value}
       onChange={(param,data) => {props.input.onChange(data.value)}}
       placeholder={props.label} 
-      options={idsObj}
+      options={JSON.parse(localStorage.getItem("ids")).map((id) => {
+        return { key: id, value: id, text:id};
+    })}
     />
   )
 
@@ -68,10 +65,14 @@ let DataInput = (props) => {
             //reset();
             //props.fetchData("","");
             //console.log(props);
-            await props.Switch('orders');
+            if(localStorage.getItem("type") === 'orders'){
+              await props.Switch('products');
+            } else {
+              await props.Switch('orders');
+            }
             reset();
             }}>
-          Switch to Orders
+          Switch to {localStorage.getItem("type")}
         </button>
         </form>
     </div>

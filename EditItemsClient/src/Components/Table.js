@@ -5,15 +5,16 @@ import { Redirect } from "react-router-dom";
 import * as actions from "../actions";
 import '../App.css'
 
-import ids from "../ids";
 import { AppState } from "@aws-amplify/core";
+
+console.log(localStorage.getItem("ids"));
 
 const TableTop = ({ data }) => {
   /*const keys = !data[0] || Object.keys(data[0]);
   if (keys === true) {
     return [];
   }*/
-  return ids.map((val) => {
+  return JSON.parse(localStorage.getItem("ids")).map((val) => {
     return <Table.HeaderCell key={val}>{val}</Table.HeaderCell>;
   });
 };
@@ -30,7 +31,7 @@ let TableRow = ({ data, num, query,form}) => {
     console.log(!(Object.keys(query).length===0) && query[Object.keys(query)[0]]);
     return [];
   }
-  return ids.map((val) => {
+  return JSON.parse(localStorage.getItem("ids")).map((val) => {
     if (!(val in data[num])) {
       return <Table.Cell key={val}>N/A</Table.Cell>;
     }

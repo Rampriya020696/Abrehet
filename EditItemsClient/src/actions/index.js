@@ -75,6 +75,9 @@ export const rowClick = (obj = {link:"/table", num:""}) => async(dispatch) =>{
 
 export const Switch = (val) => async(dispatch) =>{
   console.log(val);
-  console.log(globalThis);
+  console.log(JSON.parse(localStorage.getItem("ids")),localStorage.getItem("type"));
+  await localStorage.setItem("ids", JSON.stringify(["id","title","country","description","image","images","options","ratings","price","oldPrice","avgRating"]));
+  await localStorage.setItem("type", val);
+  window.location.reload();
   dispatch({ type: SWITCH, payload: val });
 };

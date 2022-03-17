@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import ids from "../ids";
 import { render } from "@testing-library/react";
 import { Redirect } from "react-router-dom";
 import { Input, TextArea, Form } from "semantic-ui-react";
@@ -45,7 +44,7 @@ class DataAdd extends Component {
   };
 
   Helper = () => {
-    return ids.map((id) => {
+    return JSON.parse(localStorage.getItem("ids")).map((id) => {
       return (
         <div className="field" style={{ width: "50%" }}>
             <label>{id}</label>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import ids from "../ids";
 import { render } from "@testing-library/react";
 import { Redirect } from "react-router-dom";
 import { Input, TextArea, Form } from "semantic-ui-react";
@@ -81,14 +80,13 @@ class DataRow extends Component {
       updateObject[key] = object[key];
     }
     console.log(updateObject);
-    //object[ids[0]]=this.props.row.num;
     this.props.changeData(updateObject);
     this.props.fetchData("", "");
   };
 
   Helper = () => {
-    return ids.map((id) => {
-        if(id===ids[0]){
+    return JSON.parse(localStorage.getItem("ids")).map((id) => {
+        if(id===JSON.parse(localStorage.getItem("ids"))[0]){
           console.log(this.props.data.data[id]);
             return (
                 <div className="field" style={{ width: "50%" }}>

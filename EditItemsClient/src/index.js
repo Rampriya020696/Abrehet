@@ -19,6 +19,9 @@ const user =  Auth.currentAuthenticatedUser().then(data=>{
   console.log(data);
 });
 
+if(!localStorage.getItem('ids')) localStorage.setItem("ids",JSON.stringify(["id","title","country","description","image","images","options","ratings","price","oldPrice","avgRating"]));
+if(!localStorage.getItem('type')) localStorage.setItem("type","products");
+
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
