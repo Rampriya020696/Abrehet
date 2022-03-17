@@ -64,6 +64,15 @@ let DataInput = (props) => {
             }}>
           Add item
         </button>
+        <button className="ui button" type="reset" onClick={async () => {
+            //reset();
+            //props.fetchData("","");
+            //console.log(props);
+            await props.Switch('orders');
+            reset();
+            }}>
+          Switch to Orders
+        </button>
         </form>
     </div>
   );

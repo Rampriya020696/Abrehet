@@ -1,4 +1,4 @@
-import { FETCH_DATA, ROW_CLICK, CHANGE_DATA } from "./types";
+import { FETCH_DATA, ROW_CLICK, CHANGE_DATA, SWITCH } from "./types";
 import axios from 'axios';
 import { API,graphqlOperation } from 'aws-amplify'
 import { createProducts, updateProducts, deleteProducts } from '../graphql/mutations'
@@ -71,4 +71,10 @@ export const rowClick = (obj = {link:"/table", num:""}) => async(dispatch) =>{
     dispatch({ type: FETCH_DATA, payload: {data: result[obj.num]} });
   }
   dispatch({ type: ROW_CLICK, payload: obj });
+};
+
+export const Switch = (val) => async(dispatch) =>{
+  console.log(val);
+  console.log(globalThis);
+  dispatch({ type: SWITCH, payload: val });
 };

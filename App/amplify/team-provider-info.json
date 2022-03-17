@@ -20,7 +20,7 @@
         "sendemail": {
           "sesEmail": "ram.potham@gmail.com",
           "deploymentBucketName": "amplify-abrehet-staging-53841-deployment",
-          "s3Key": "amplify-builds/sendemail-64646761313937694943-build.zip"
+          "s3Key": "amplify-builds/sendemail-362b754250766c565130-build.zip"
         }
       },
       "hosting": {
