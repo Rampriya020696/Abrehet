@@ -215,6 +215,7 @@ const AddressScreen = () => {
             name: fullname,
             address: address,
             city: city,
+            Status: 'Ordered',
             Products: JSON.stringify(obj),
           },
         }),

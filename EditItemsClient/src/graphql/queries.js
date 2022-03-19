@@ -26,6 +26,7 @@ export const listProducts = /* GraphQL */ `
         title
         content
         country
+        category
         createdAt
         updatedAt
       }
@@ -96,6 +97,7 @@ export const getOrder = /* GraphQL */ `
       city
       Products
       id
+      Status
       createdAt
       updatedAt
       usersOrdersId
@@ -117,6 +119,7 @@ export const listOrders = /* GraphQL */ `
         city
         Products
         id
+        Status
         createdAt
         updatedAt
         usersOrdersId

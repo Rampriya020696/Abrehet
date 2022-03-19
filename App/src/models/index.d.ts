@@ -2,7 +2,11 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-
+export declare class PaymentResult {
+  readonly statusCode?: number;
+  readonly body?: string;
+  constructor(init: ModelInit<PaymentResult>);
+}
 
 type ProductsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
@@ -12,9 +16,14 @@ type UsersMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type OrderMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class Products {
   readonly id: string;
   readonly title: string;
+  readonly category: string;
   readonly content: string;
   readonly country?: string;
   readonly createdAt?: string;
@@ -30,8 +39,25 @@ export declare class Users {
   readonly name?: string;
   readonly address?: string;
   readonly other?: string;
+  readonly orders?: (Order | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Users, UsersMetaData>);
   static copyOf(source: Users, mutator: (draft: MutableModel<Users, UsersMetaData>) => MutableModel<Users, UsersMetaData> | void): Users;
+}
+
+export declare class Order {
+  readonly id: string;
+  readonly userID?: string;
+  readonly phone?: string;
+  readonly name?: string;
+  readonly address?: string;
+  readonly city?: string;
+  readonly Products?: string;
+  readonly Status?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  readonly usersOrdersId?: string;
+  constructor(init: ModelInit<Order, OrderMetaData>);
+  static copyOf(source: Order, mutator: (draft: MutableModel<Order, OrderMetaData>) => MutableModel<Order, OrderMetaData> | void): Order;
 }

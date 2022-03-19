@@ -18,6 +18,7 @@ export const onCreateUsers = /* GraphQL */ `
           address
           city
           Products
+          Status
           id
           createdAt
           updatedAt
@@ -47,6 +48,7 @@ export const onUpdateUsers = /* GraphQL */ `
           address
           city
           Products
+          Status
           id
           createdAt
           updatedAt
@@ -76,6 +78,7 @@ export const onDeleteUsers = /* GraphQL */ `
           address
           city
           Products
+          Status
           id
           createdAt
           updatedAt
@@ -98,6 +101,7 @@ export const onCreateOrder = /* GraphQL */ `
       address
       city
       Products
+      Status
       id
       createdAt
       updatedAt
@@ -114,6 +118,7 @@ export const onUpdateOrder = /* GraphQL */ `
       address
       city
       Products
+      Status
       id
       createdAt
       updatedAt
@@ -130,6 +135,7 @@ export const onDeleteOrder = /* GraphQL */ `
       address
       city
       Products
+      Status
       id
       createdAt
       updatedAt

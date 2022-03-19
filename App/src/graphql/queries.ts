@@ -7,6 +7,7 @@ export const getProducts = /* GraphQL */ `
     getProducts(id: $id) {
       id
       title
+      category
       content
       country
       createdAt
@@ -24,6 +25,7 @@ export const listProducts = /* GraphQL */ `
       items {
         id
         title
+        category
         content
         country
         createdAt
@@ -49,6 +51,7 @@ export const getUsers = /* GraphQL */ `
           address
           city
           Products
+          Status
           id
           createdAt
           updatedAt
@@ -95,6 +98,7 @@ export const getOrder = /* GraphQL */ `
       address
       city
       Products
+      Status
       id
       createdAt
       updatedAt
@@ -116,6 +120,7 @@ export const listOrders = /* GraphQL */ `
         address
         city
         Products
+        Status
         id
         createdAt
         updatedAt

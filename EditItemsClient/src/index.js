@@ -20,7 +20,7 @@ const user =  Auth.currentAuthenticatedUser().then(data=>{
 });
 
 if(!localStorage.getItem('ids')) localStorage.setItem("ids",JSON.stringify(["id","title","country","description","image","images","options","ratings","price","oldPrice","avgRating"]));
-if(!localStorage.getItem('type')) localStorage.setItem("type","products");
+if(!localStorage.getItem('type')) localStorage.setItem("type","Groceries");
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 

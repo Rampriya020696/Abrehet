@@ -18,6 +18,7 @@ export const createProducts = /* GraphQL */ `
     createProducts(input: $input, condition: $condition) {
       id
       title
+      category
       content
       country
       createdAt
@@ -33,6 +34,7 @@ export const updateProducts = /* GraphQL */ `
     updateProducts(input: $input, condition: $condition) {
       id
       title
+      category
       content
       country
       createdAt
@@ -48,6 +50,7 @@ export const deleteProducts = /* GraphQL */ `
     deleteProducts(input: $input, condition: $condition) {
       id
       title
+      category
       content
       country
       createdAt
@@ -74,6 +77,7 @@ export const createUsers = /* GraphQL */ `
           address
           city
           Products
+          Status
           id
           createdAt
           updatedAt
@@ -106,6 +110,7 @@ export const updateUsers = /* GraphQL */ `
           address
           city
           Products
+          Status
           id
           createdAt
           updatedAt
@@ -138,6 +143,7 @@ export const deleteUsers = /* GraphQL */ `
           address
           city
           Products
+          Status
           id
           createdAt
           updatedAt
@@ -163,6 +169,7 @@ export const createOrder = /* GraphQL */ `
       address
       city
       Products
+      Status
       id
       createdAt
       updatedAt
@@ -182,6 +189,7 @@ export const updateOrder = /* GraphQL */ `
       address
       city
       Products
+      Status
       id
       createdAt
       updatedAt
@@ -201,6 +209,7 @@ export const deleteOrder = /* GraphQL */ `
       address
       city
       Products
+      Status
       id
       createdAt
       updatedAt

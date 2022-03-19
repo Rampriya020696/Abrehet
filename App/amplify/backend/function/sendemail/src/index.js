@@ -16,7 +16,7 @@ exports.handler = async event => {
       str += '\nphone: ' + obj.phone.S;
       str += '\nname: ' + obj.name.S;
       str += '\n\nitems:';
-      for (let i = 0; i < products.cart.L.length(); i++) {
+      for (let i = 0; i < products.cart.L.length; i++) {
         let val = products.cart.L[i];
         str +=
           '\ntitle: ' +

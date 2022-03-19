@@ -44,5 +44,6 @@ type Order @model @auth(rules: [{allow: public}]) {
   address: String
   city: String
   Products: AWSJSON
+  Status: String
 }
  

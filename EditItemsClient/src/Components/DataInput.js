@@ -2,10 +2,22 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Select } from 'semantic-ui-react';
 import 'react-widgets/dist/css/react-widgets.css';
+import { ModelAttributeAuthProvider } from "@aws-amplify/datastore";
 
 console.log(localStorage.getItem("ids"));
+
+const mapID = id => {
+  return {
+    key: id,
+    value: id,
+    text: id
+  }
+}
+
+const inputOptions = ["Groceries","Electronics","Furniture","Jewelry","Orders"].map(mapID);
+
 
 const DropdownExampleSearchSelection = props => (
     <Dropdown
@@ -13,9 +25,7 @@ const DropdownExampleSearchSelection = props => (
       value={props.input.value}
       onChange={(param,data) => {props.input.onChange(data.value)}}
       placeholder={props.label} 
-      options={JSON.parse(localStorage.getItem("ids")).map((id) => {
-        return { key: id, value: id, text:id};
-    })}
+      options={JSON.parse(localStorage.getItem("ids")).map(mapID)}
     />
   )
 
@@ -52,7 +62,7 @@ let DataInput = (props) => {
             onChange={handleChange}
           />
             </div>
-        <button className="ui button" type="reset" onClick={async () => {
+        {localStorage.getItem("type")!=="Orders"?<button className="ui button" type="reset" onClick={async () => {
             //reset();
             //props.fetchData("","");
             //console.log(props);
@@ -60,20 +70,12 @@ let DataInput = (props) => {
             reset();
             }}>
           Add item
-        </button>
-        <button className="ui button" type="reset" onClick={async () => {
-            //reset();
-            //props.fetchData("","");
-            //console.log(props);
-            if(localStorage.getItem("type") === 'orders'){
-              await props.Switch('products');
-            } else {
-              await props.Switch('orders');
-            }
-            reset();
-            }}>
-          Switch to {localStorage.getItem("type")}
-        </button>
+        </button>:null}
+        <Select placeholder='Select your table' options={inputOptions} defaultValue={localStorage.getItem("type")} onChange={async (event,data) =>{
+          console.log(mapID(localStorage.getItem("type")));
+          await props.Switch(data.value);
+          reset();
+        }} />
         </form>
     </div>
   );

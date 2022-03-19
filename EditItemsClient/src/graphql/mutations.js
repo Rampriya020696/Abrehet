@@ -164,6 +164,7 @@ export const createOrder = /* GraphQL */ `
       city
       Products
       id
+      Status
       createdAt
       updatedAt
       usersOrdersId
@@ -183,6 +184,7 @@ export const updateOrder = /* GraphQL */ `
       city
       Products
       id
+      Status
       createdAt
       updatedAt
       usersOrdersId
@@ -202,6 +204,7 @@ export const deleteOrder = /* GraphQL */ `
       city
       Products
       id
+      Status
       createdAt
       updatedAt
       usersOrdersId

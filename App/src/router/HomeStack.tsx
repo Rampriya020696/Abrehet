@@ -45,7 +45,7 @@ const HeaderComponent = ({
     </SafeAreaView>
   );
 };
-const HomeStack = () => {
+const HomeStack = ({Status}) => {
   const [searchValue, setSearchValue] = useState('');
   return (
     <Stack.Navigator
@@ -58,7 +58,7 @@ const HomeStack = () => {
         ),
       }}>
       <Stack.Screen name="HomeScreen" options={{title: 'Home'}}>
-        {() => <HomeScreen searchValue={searchValue} />}
+        {() => <HomeScreen searchValue={searchValue} Status ={Status}/>}
       </Stack.Screen>
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
     </Stack.Navigator>
@@ -69,10 +69,10 @@ const Drawer = createDrawerNavigator();
 function MyDrawer() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Groceries" component={HomeStack} />
-      <Drawer.Screen name="Electronics" component={HomeStack} />
-      <Drawer.Screen name="Furniture" component={HomeStack} />
-      <Drawer.Screen name="Jewelry" component={HomeStack} />
+      <Drawer.Screen name="Groceries" component={() => <HomeStack Status="Groceries" />}/>
+      <Drawer.Screen name="Electronics" component={() => <HomeStack Status="Electronics" />}/>
+      <Drawer.Screen name="Furniture" component={() => <HomeStack Status="Furniture" />}/>
+      <Drawer.Screen name="Jewelry" component={() => <HomeStack Status="Jewelry" />}/>
     </Drawer.Navigator>
   );
 }
