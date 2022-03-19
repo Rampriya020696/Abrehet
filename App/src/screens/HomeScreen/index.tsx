@@ -7,7 +7,7 @@ import * as types from '../../API';
 import {API} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import _ from 'lodash';
-import { useDrawerStatus } from '@react-navigation/drawer';
+import {useDrawerStatus} from '@react-navigation/drawer';
 import {useNavigation} from '@react-navigation/native';
 
 import initProducts from '../../data/products';
@@ -29,17 +29,15 @@ interface ProductItemProps {
 
 const HomeScreen = ({searchValue, Status}: HomeScreenProps) => {
   const [products, setProducts] = useState<ProductItemProps[]>([]);
+  const [fetched, setFetched] = useState(false);
+
   const navigation = useNavigation();
 
   //console.log("drawer:"+useDrawerStatus());
-
   useEffect(() => {
     const fetchProducts = async () => {
       //let testProducts =  await API.graphql({query: listProducts, variables:{filter: {category: {eq: "Groceries"}}}});
-      
-      let allProducts = (await API.graphql({query: queries.listProducts})) as {
-        data: types.ListProductsQuery;
-      };
+      let allProducts = (await API.graphql({query: queries.listProducts,variables:{filter: {category: {eq: Status}}}}));
       setProducts(
         allProducts.data.listProducts!.items.map(item => {
           return _.pick(JSON.parse(item!.content), [
@@ -53,8 +51,11 @@ const HomeScreen = ({searchValue, Status}: HomeScreenProps) => {
         }),
       );
     };
-    fetchProducts();
-  }, [navigation]);
+    if (!fetched) {
+      setFetched(true);
+      fetchProducts();
+    }
+  });
 
   return (
     <View style={styles.page}>

@@ -34,8 +34,11 @@ const BottomTabNav = () => {
         listeners={{
           tabPress: e => {
             // Prevent default action
-            navigation.navigate('HomeScreen');
-      
+            console.log(
+              'state: ' +
+                JSON.stringify(navigation.getState().history),
+            );
+            navigation.navigate('HomeScreen'+globalThis.category);
             //Any custom code here
           },
         }}

@@ -10,7 +10,11 @@ import QuantitySelector from '../../components/QuantitySelector';
 import Button from '../../components/Button';
 import ImageCarousel from '../../components/ImageCarousel';
 import * as types from '../../API';
-import {API, graphqlOperation, sectionFooterSecondaryContent} from 'aws-amplify';
+import {
+  API,
+  graphqlOperation,
+  sectionFooterSecondaryContent,
+} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import {useNavigation} from '@react-navigation/native';
 import _ from 'lodash';
@@ -32,19 +36,24 @@ const ProductScreen = () => {
   const [product, setProduct] = useState<ProductItemDetails>();
   const [selectedOption, setSelectedOption] = useState('black');
   const [quantity, setQuantity] = useState(1);
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
+
+  //console.log('state: ' + JSON.stringify(navigation.getState()));
 
   useEffect(() => {
+    //console.log("state: "+JSON.stringify(navigation.getState()));
+    console.log(globalThis.itemDetails);
     if (!globalThis.cart) {
       globalThis.cart = {};
     }
     const fetchProducts = async () => {
+      //console.log("state: "+JSON.stringify(navigation.getState()));
       let getProducts = (await API.graphql(
-        graphqlOperation(queries.getProducts, {id: globalThis.itemDetails}),
+        graphqlOperation(queries.getProducts, {id: globalThis.itemDetails.id}),
       )) as {
         data: types.GetProductsQuery;
       };
-
+      globalThis.category = getProducts.data.getProducts!.category;
       let parsed = _.pick(JSON.parse(getProducts.data.getProducts!.content), [
         'id',
         'title',
@@ -66,8 +75,12 @@ const ProductScreen = () => {
       }
       setProduct(parsed);
     };
+    const willFocusSubscription = navigation.addListener('focus', () => {
+      fetchProducts();
+    });
     fetchProducts();
-  }, []);
+    return willFocusSubscription;
+  }, [navigation]);
 
   const route = useRoute();
 
@@ -122,7 +135,7 @@ const ProductScreen = () => {
           } else {
             globalThis.cart[product.id].quantity += quantity;
           }
-          setText("added to cart");
+          setText('added to cart');
           console.log(globalThis.cart);
         }}
         containerStyle={{
@@ -140,7 +153,7 @@ const ProductScreen = () => {
           } else {
             globalThis.cart[product.id].quantity += quantity;
           }
-          navigation.navigate("ShoppingCart");
+          navigation.navigate('ShoppingCart');
           console.log(globalThis.cart);
         }}
       />

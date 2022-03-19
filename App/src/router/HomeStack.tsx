@@ -57,8 +57,8 @@ const HomeStack = ({Status}) => {
           />
         ),
       }}>
-      <Stack.Screen name="HomeScreen" options={{title: 'Home'}}>
-        {() => <HomeScreen searchValue={searchValue} Status ={Status}/>}
+      <Stack.Screen name={'HomeScreen' + Status} options={{title: 'Home'}}>
+        {() => <HomeScreen searchValue={searchValue} Status={Status} />}
       </Stack.Screen>
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
     </Stack.Navigator>
@@ -68,11 +68,19 @@ const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Groceries" component={() => <HomeStack Status="Groceries" />}/>
-      <Drawer.Screen name="Electronics" component={() => <HomeStack Status="Electronics" />}/>
-      <Drawer.Screen name="Furniture" component={() => <HomeStack Status="Furniture" />}/>
-      <Drawer.Screen name="Jewelry" component={() => <HomeStack Status="Jewelry" />}/>
+    <Drawer.Navigator initialRouteName="Groceries">
+      <Drawer.Screen name="Groceries">
+        {() => <HomeStack Status="Groceries" />}
+      </Drawer.Screen>
+      <Drawer.Screen name="Electronics">
+        {() => <HomeStack Status="Electronics" />}
+      </Drawer.Screen>
+      <Drawer.Screen name="Furniture">
+        {() => <HomeStack Status="Furniture" />}
+      </Drawer.Screen>
+      <Drawer.Screen name="Jewelry">
+        {() => <HomeStack Status="Jewelry" />}
+      </Drawer.Screen>
     </Drawer.Navigator>
   );
 }

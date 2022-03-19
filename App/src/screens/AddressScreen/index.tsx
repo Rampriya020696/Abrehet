@@ -14,6 +14,7 @@ import {
   ScrollView,
   ActivityIndicator,
   Dimensions,
+  Alert
 } from 'react-native';
 import {WebView} from 'react-native-webview';
 import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';

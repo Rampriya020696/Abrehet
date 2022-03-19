@@ -17,7 +17,9 @@ const ProductItem = ({item}: ProductItemProps) => {
   const navigation = useNavigation();
 
   const onPress = () => {
-    globalThis.itemDetails = item.id;
+    globalThis.itemDetails = item;
+    console.log("test");
+    console.log(item);
     console.log('item pressed');
     navigation.navigate('ProductDetails');
   };
