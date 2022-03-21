@@ -3,9 +3,15 @@ import React, {useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
-import {SafeAreaView, View, TextInput} from 'react-native';
+import {SafeAreaView, View, TextInput, Button, Text} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+import {Auth} from 'aws-amplify'
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -68,7 +74,19 @@ const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator initialRouteName="Groceries">
+    <Drawer.Navigator
+      initialRouteName="Groceries"
+      drawerContent={props => {
+        return (
+          <DrawerContentScrollView {...props}>
+            <DrawerItemList {...props} />
+            <DrawerItem
+              label={() => <Text style={{ color: 'red' }}>Logout</Text>}
+              onPress={() => Auth.signOut()}
+            />
+          </DrawerContentScrollView>
+        );
+      }}>
       <Drawer.Screen name="Groceries">
         {() => <HomeStack Status="Groceries" />}
       </Drawer.Screen>
