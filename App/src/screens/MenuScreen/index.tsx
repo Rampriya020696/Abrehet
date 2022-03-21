@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, Text, ScrollView} from 'react-native';
 import Button from '../../components/Button';
 import {onChange} from 'react-native-reanimated';
 import * as types from '../../API';
@@ -30,7 +30,7 @@ const mapOrders = res2 => {
           ' | quantity: ' +
           val.quantity +
           ' | price: ' +
-          val.item.id +
+          val.item.price +
           '\n',
       );
     });
@@ -55,15 +55,17 @@ const MenuScreen = () => {
   },[]);
   return (
     <SafeAreaView>
+      <ScrollView>
       {orders.map(val => (
         <List.Section>
           <List.Accordion
             title={val.Status + " | Total: "+val.total}
             left={props => <Text>{val.date}</Text>}>
-              {val.cart.map(o => <List.Item title={o} />)}
+              {val.cart.map(o => <List.Item titleStyle={{ fontSize: 12 }} title={o} />)}
           </List.Accordion>
         </List.Section>
       ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };
