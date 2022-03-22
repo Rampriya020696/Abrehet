@@ -61,7 +61,6 @@ const ProfileScreen = () => {
       if (user!.address) {
         onChangeText(user!.address);
       }
-      console.log('yello');
       let getOrders = await API.graphql(
         graphqlOperation(queries.listOrders, {
           filter: {userID: {eq: user.id}},
@@ -91,16 +90,8 @@ const ProfileScreen = () => {
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
+        placeholder="Old Address"
       />
-     { /* <Text>Name:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeName}
-        value={name}
-  /> */ }
-      <Text>
-         {orders.map(item => JSON.parse(item.Products).total).join(', ')}
-      </Text>
       <TextInput
         style={styles.input}
         onChangeText={setOldPassword}
@@ -145,21 +136,6 @@ const ProfileScreen = () => {
             })
             .then(data => console.log(data))
             .catch(err => console.log(err));
-        }}
-      />
-      <Text style={styles.text} Order History />
-      <Button
-        title="Order History"
-        onPress={() => {
-          console.log('press ' + text);
-          API.graphql(
-            graphqlOperation(mutations.updateUsers, {
-              input: {
-                id: id,
-                address: text,
-              },
-            }),
-          );
         }}
       />
     </View>

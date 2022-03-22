@@ -8,8 +8,8 @@
  * @format
  */
 import 'react-native-gesture-handler';
-import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import React, {useEffect} from 'react';
+import {SafeAreaView, StatusBar, useColorScheme, Alert} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Router from './src/router';
@@ -19,11 +19,12 @@ import {withAuthenticator} from 'aws-amplify-react-native';
 
 //import config from './src/aws-exports';
 
-import Amplify, {Auth} from 'aws-amplify';
+import Amplify, {Auth, Hub} from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
-globalThis.category = "Groceries";
+globalThis.category = 'Groceries';
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -31,7 +32,21 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     flex: 1,
   };
+  useEffect(() => {
+    const countries = [
+      'Asmara Eritrea',
+      'Uganda Campala',
+      'Ethiopia Addis Abeba',
+      'Kenya Nairobi',
+    ];
+    const listener = data => {
+      if (data.payload.event == 'signIn') {
+        Alert.alert('We only provide service to the following locations: '+countries.join(", "));
+      }
+    };
 
+    Hub.listen('auth', listener);
+  }, []);
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
