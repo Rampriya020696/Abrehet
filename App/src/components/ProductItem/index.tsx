@@ -21,7 +21,8 @@ const ProductItem = ({item}: ProductItemProps) => {
     console.log("test");
     console.log(item);
     console.log('item pressed');
-    navigation.navigate('ProductDetails');
+    console.log(globalThis.category);
+    navigation.navigate('ProductDetails'+globalThis.category);
   };
 
   return (

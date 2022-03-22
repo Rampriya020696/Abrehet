@@ -31,7 +31,7 @@ interface ProductItemDetails {
   oldPrice?: number;
 }
 
-const ProductScreen = () => {
+const ProductScreen = ({Status}) => {
   const navigation = useNavigation();
   const [product, setProduct] = useState<ProductItemDetails>();
   const [selectedOption, setSelectedOption] = useState('black');
@@ -42,6 +42,7 @@ const ProductScreen = () => {
 
   useEffect(() => {
     //console.log("state: "+JSON.stringify(navigation.getState()));
+    console.log("itemdetails: ")
     console.log(globalThis.itemDetails);
     if (!globalThis.cart) {
       globalThis.cart = {};
@@ -53,6 +54,8 @@ const ProductScreen = () => {
       )) as {
         data: types.GetProductsQuery;
       };
+      console.log("getproducts");
+      console.log(getProducts);
       globalThis.category = getProducts.data.getProducts!.category;
       let parsed = _.pick(JSON.parse(getProducts.data.getProducts!.content), [
         'id',
@@ -81,6 +84,13 @@ const ProductScreen = () => {
     fetchProducts();
     return willFocusSubscription;
   }, [navigation]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      globalThis.category = Status;
+    });
+    return unsubscribe;
+  }, [navigation, Status]);
 
   const route = useRoute();
 

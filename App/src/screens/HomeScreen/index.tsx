@@ -38,16 +38,19 @@ const HomeScreen = ({searchValue, Status}: HomeScreenProps) => {
     const fetchProducts = async () => {
       //let testProducts =  await API.graphql({query: listProducts, variables:{filter: {category: {eq: "Groceries"}}}});
       let allProducts = (await API.graphql({query: queries.listProducts,variables:{filter: {category: {eq: Status}}}}));
+      console.log("itemes");
+      console.log(allProducts.data.listProducts!.items);
       setProducts(
         allProducts.data.listProducts!.items.map(item => {
-          return _.pick(JSON.parse(item!.content), [
-            'id',
+          let r = _.pick(JSON.parse(item!.content), [
             'title',
             'image',
             'price',
             'oldPrice',
             'country',
           ]);
+          r.id = item.id;
+          return r;
         }),
       );
     };
@@ -56,6 +59,14 @@ const HomeScreen = ({searchValue, Status}: HomeScreenProps) => {
       fetchProducts();
     }
   });
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      console.log("gotoscreen"+Status);
+      globalThis.category = Status;
+    });
+    return unsubscribe;
+  }, [navigation, Status]);
 
   return (
     <View style={styles.page}>

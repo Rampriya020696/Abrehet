@@ -66,7 +66,9 @@ const HomeStack = ({Status}) => {
       <Stack.Screen name={'HomeScreen' + Status} options={{title: 'Home'}}>
         {() => <HomeScreen searchValue={searchValue} Status={Status} />}
       </Stack.Screen>
-      <Stack.Screen component={ProductScreen} name="ProductDetails" />
+      <Stack.Screen name={"ProductDetails"+Status}>
+        {()=> <ProductScreen Status={Status}/>}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 };

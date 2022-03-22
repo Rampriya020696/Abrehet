@@ -41,13 +41,13 @@ async function createCheckOutSession(amount, customer) {
   return new Promise(function (resolve, reject) {
     stripe.checkout.sessions
       .create({
-        payment_method_types: ['card', 'ideal'],
+        payment_method_types: ['card'],
         customer: customer,
         line_items: [
           {
             name: 'Buy your stuff here',
-            amount: amount * 100,
-            currency: 'eur',
+            amount: (amount * 100).toFixed(0),
+            currency: 'usd',
             quantity: 1,
           },
         ],
@@ -55,7 +55,7 @@ async function createCheckOutSession(amount, customer) {
           'https://staging.d3t4jm0uu1bb0n.amplifyapp.com/payment-success',
         cancel_url:
           'https://staging.d3t4jm0uu1bb0n.amplifyapp.com/payment-failure',
-        locale: 'nl',
+        locale: 'en',
       })
       .then(source => {
         // Success response

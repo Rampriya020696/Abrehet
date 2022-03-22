@@ -130,7 +130,9 @@ export const addData = (obj={}) => async (dispatch) => {
     objDetails.content = JSON.stringify(obj);
     objDetails.id = obj.id;
     objDetails.title = obj.title;
+    objDetails.category = localStorage.getItem("type");
     if(obj.country) objDetails.country = obj.country;
+    console.log(objDetails);
     let res = await API.graphql({query:createProducts, variables:{input:objDetails}, authMode: "AMAZON_COGNITO_USER_POOLS"})
     console.log(res);
     resp = await API.graphql({query: listProducts, variables:{filter: {category: {eq: localStorage.getItem("type")}}}});

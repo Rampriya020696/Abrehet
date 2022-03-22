@@ -18,7 +18,7 @@
           "s3Key": "amplify-builds/makePayment-365661716a7478344465-build.zip"
         },
         "sendemail": {
-          "sesEmail": "ram.potham@gmail.com",
+          "sesEmail": "mesobinternational@gmail.com",
           "deploymentBucketName": "amplify-abrehet-staging-53841-deployment",
           "s3Key": "amplify-builds/sendemail-367a4f59456555447a6f-build.zip"
         }
