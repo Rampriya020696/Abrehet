@@ -14,7 +14,7 @@ import {
   ScrollView,
   ActivityIndicator,
   Dimensions,
-  Alert
+  Alert,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
 import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify';
@@ -23,7 +23,12 @@ import * as queries from '../../graphql/queries';
 
 const initUrl = 'https://staging.d3t4jm0uu1bb0n.amplifyapp.com/';
 
-const countries = ['Asmara Eritrea','Uganda Campala','Ethiopia Addis Abeba', 'Kenya Nairobi'];
+const countries = [
+  'Asmara Eritrea',
+  'Uganda Campala',
+  'Ethiopia Addis Abeba',
+  'Kenya Nairobi',
+];
 
 const AddressScreen = () => {
   const [country, setCountry] = useState(countries[0]);
@@ -86,16 +91,16 @@ const AddressScreen = () => {
     };
     let user = getUser.data.listUsers!.items[0];
     console.log(user);
-    if  (user.phone) {
+    if (user.phone) {
       setPhone(user.phone);
     }
-    if  (user.email) {
+    if (user.email) {
       setMail(user.email);
     }
-    if  (user.name) {
+    if (user.name) {
       setFullname(user.name);
     }
-    if  (user.address) {
+    if (user.address) {
       setAddress(user.address);
     }
     setuserID(user.id);
@@ -191,10 +196,6 @@ const AddressScreen = () => {
       Alert.alert('Please fill in the full name');
       return;
     }
-    if (!phone) {
-      Alert.alert('Please fill in the Phone number');
-      return;
-    }
     if (!city) {
       Alert.alert('Please fill in the city');
       return;
@@ -208,19 +209,21 @@ const AddressScreen = () => {
       return startPayment();
     case 'success':
       let obj = {cart: Object.values(globalThis.cart), total: total};
-      API.graphql(
-        graphqlOperation(mutations.createOrder, {
-          input: {
-            userID: userID,
-            phone: phone,
-            name: fullname,
-            address: address,
-            city: city,
-            Status: 'Ordered',
-            Products: JSON.stringify(obj),
-          },
-        }),
-      );
+      Auth.currentAuthenticatedUser().then(auth_user => {
+        API.graphql(
+          graphqlOperation(mutations.createOrder, {
+            input: {
+              userID: userID,
+              phone: auth_user.attributes.phone_number,
+              name: fullname,
+              address: address,
+              city: city,
+              Status: 'Ordered',
+              Products: JSON.stringify(obj),
+            },
+          }),
+        );
+      });
       console.log('success in payment');
       return (
         <View>
@@ -255,17 +258,6 @@ const AddressScreen = () => {
             placeholder="Full Name"
             value={fullname}
             onChangeText={setFullname}
-          />
-        </View>
-
-        <View style={styles.row}>
-          <Text style={styles.label}>Phone Number </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Phone Number"
-            value={phone}
-            onChangeText={setPhone}
-            keyboardType={'phone-pad'}
           />
         </View>
         <View style={styles.row}>

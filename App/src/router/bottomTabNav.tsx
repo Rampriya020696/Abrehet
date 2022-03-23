@@ -64,10 +64,10 @@ const BottomTabNav = () => {
       />
       <Tab.Screen
         component={MenuScreen}
-        name="More"
+        name="Orders"
         options={{
           tabBarIcon: ({color}) => (
-            <Entypo name="menu" color={color} size={25} />
+            <Entypo name="box" color={color} size={25} />
           ),
         }}
       />

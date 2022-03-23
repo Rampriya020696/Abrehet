@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
-import {SafeAreaView, View, TextInput, Button, Text} from 'react-native';
+import {SafeAreaView, View, TextInput, Button, Text, TouchableOpacity} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {
   createDrawerNavigator,
@@ -80,8 +80,14 @@ function MyDrawer() {
       initialRouteName="Groceries"
       drawerContent={props => {
         return (
-          <DrawerContentScrollView {...props}>
-            <DrawerItemList {...props} />
+          <DrawerContentScrollView {...props} contentContainerStyle={{flex: 1,  flexDirection: 'column', justifyContent: 'space-between' }}>
+            <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+            <View style={{height: 100,alignItems: 'center', justifyContent: 'center'}}>
+
+<Text style={{fontSize: 32}}>LOGO</Text>
+</View>
+              <DrawerItemList {...props} />
+            </SafeAreaView>
             <DrawerItem
               label={() => <Text style={{ color: 'red' }}>Logout</Text>}
               onPress={() => Auth.signOut()}

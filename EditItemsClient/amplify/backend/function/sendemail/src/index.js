@@ -20,11 +20,11 @@ exports.handler = async event => {
         let val = products.cart.L[i];
         str +=
           '\ntitle: ' +
-          val.M.item.M.price.S +
+          val.M.item.M.title.S +
           ' | quantity: ' +
           val.M.quantity.N +
-          ' | id: ' +
-          val.M.id.S;
+          ' | price: ' +
+          val.M.item.M.price.S;
       }
       await ses
         .sendEmail({

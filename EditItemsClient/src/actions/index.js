@@ -24,12 +24,13 @@ const mapOrders = res2 => {
     deconstruct.cart.forEach(val => {
       obj.cart +=
         'title: ' +
-        val.item.price +
+        val.item.title +
         ' | quantity: ' +
         val.quantity +
-        ' | id: ' +
-        val.id + '\n';
+        ' | price: ' +
+        val.item.price + '||\n';
     });
+    console.log(obj.cart);
     return obj;
   });
 }

@@ -15,11 +15,12 @@ import _ from 'lodash';
 import {List} from 'react-native-paper';
 
 const mapOrders = res2 => {
-  return res2.data.listOrders.items.map(val => {
+  let arr = res2.data.listOrders.items.map(val => {
     console.log(val);
     let obj = {};
     obj.Status = val.Status;
     obj.date = val.createdAt.split('T')[0];
+    obj.timestamp = new Date(val.createdAt).getTime();
     let deconstruct = JSON.parse(val.Products);
     obj.total = deconstruct.total;
     obj.cart = [];
@@ -36,9 +37,14 @@ const mapOrders = res2 => {
     });
     return obj;
   });
+  arr.sort((a,b) => {
+    return a.timestamp < b.timestamp;
+  });
+  return arr;
 };
 
 const MenuScreen = () => {
+  const navigation = useNavigation();
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     const fetchOrders = async () => {
@@ -51,8 +57,12 @@ const MenuScreen = () => {
       setOrders(mapOrders(result));
     };
 
+    const willFocusSubscription = navigation.addListener('focus', () => {
+      fetchOrders();
+    });
     fetchOrders();
-  },[]);
+    return willFocusSubscription;
+  },[navigation]);
   return (
     <SafeAreaView>
       <ScrollView>
