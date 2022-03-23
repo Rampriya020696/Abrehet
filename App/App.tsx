@@ -24,6 +24,7 @@ import awsconfig from './src/aws-exports';
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
 globalThis.category = 'Groceries';
+globalThis.itemDetails = {};
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';

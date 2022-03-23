@@ -42,15 +42,16 @@ const ProductScreen = ({Status}) => {
 
   useEffect(() => {
     //console.log("state: "+JSON.stringify(navigation.getState()));
-    console.log("itemdetails: ")
-    console.log(globalThis.itemDetails);
+    console.log("itemdetails: ");
+    console.log(Status);
+    console.log(globalThis.itemDetails[Status]);
     if (!globalThis.cart) {
       globalThis.cart = {};
     }
     const fetchProducts = async () => {
       //console.log("state: "+JSON.stringify(navigation.getState()));
       let getProducts = (await API.graphql(
-        graphqlOperation(queries.getProducts, {id: globalThis.itemDetails.id}),
+        graphqlOperation(queries.getProducts, {id: globalThis.itemDetails[Status].id}),
       )) as {
         data: types.GetProductsQuery;
       };

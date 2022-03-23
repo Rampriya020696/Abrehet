@@ -17,7 +17,7 @@ const ProductItem = ({item}: ProductItemProps) => {
   const navigation = useNavigation();
 
   const onPress = () => {
-    globalThis.itemDetails = item;
+    globalThis.itemDetails[globalThis.category] = item;
     console.log("test");
     console.log(item);
     console.log('item pressed');
