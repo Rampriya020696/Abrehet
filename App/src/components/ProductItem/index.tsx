@@ -18,11 +18,11 @@ const ProductItem = ({item}: ProductItemProps) => {
 
   const onPress = () => {
     globalThis.itemDetails[globalThis.category] = item;
-    console.log("test");
+    console.log('test');
     console.log(item);
     console.log('item pressed');
     console.log(globalThis.category);
-    navigation.navigate('ProductDetails'+globalThis.category);
+    navigation.navigate('ProductDetails' + globalThis.category);
   };
 
   return (
@@ -32,6 +32,9 @@ const ProductItem = ({item}: ProductItemProps) => {
       <View style={styles.rightContainer}>
         <Text style={styles.title} numberOfLines={3}>
           {item.title}
+        </Text>
+        <Text style={styles.subtitle} numberOfLines={3}>
+          {item.country}
         </Text>
         <Text style={styles.price}>
           {item.price}
