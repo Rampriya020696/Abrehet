@@ -3,7 +3,15 @@ import React, {useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
-import {SafeAreaView, View, TextInput, Button, Text, TouchableOpacity} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  TextInput,
+  Button,
+  Text,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {
   createDrawerNavigator,
@@ -11,7 +19,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import {Auth} from 'aws-amplify'
+import {Auth} from 'aws-amplify';
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -66,8 +74,8 @@ const HomeStack = ({Status}) => {
       <Stack.Screen name={'HomeScreen' + Status} options={{title: 'Home'}}>
         {() => <HomeScreen searchValue={searchValue} Status={Status} />}
       </Stack.Screen>
-      <Stack.Screen name={"ProductDetails"+Status}>
-        {()=> <ProductScreen Status={Status}/>}
+      <Stack.Screen name={'ProductDetails' + Status}>
+        {() => <ProductScreen Status={Status} />}
       </Stack.Screen>
     </Stack.Navigator>
   );
@@ -80,16 +88,34 @@ function MyDrawer() {
       initialRouteName="Groceries"
       drawerContent={props => {
         return (
-          <DrawerContentScrollView {...props} contentContainerStyle={{flex: 1,  flexDirection: 'column', justifyContent: 'space-between' }}>
-            <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-            <View style={{height: 100,alignItems: 'center', justifyContent: 'center'}}>
-
-<Text style={{fontSize: 32}}>LOGO</Text>
-</View>
+          <DrawerContentScrollView
+            {...props}
+            contentContainerStyle={{
+              flex: 1,
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}>
+            <SafeAreaView forceInset={{top: 'always', horizontal: 'never'}}>
+              <View
+                style={{
+                  height: 100,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Image
+                  style={{
+                    width: 50,
+                    height: 50,
+                  }}
+                  source={{
+                    uri: 'https://appimagesabrehet.s3.amazonaws.com/logo.png',
+                  }}
+                />
+              </View>
               <DrawerItemList {...props} />
             </SafeAreaView>
             <DrawerItem
-              label={() => <Text style={{ color: 'red' }}>Logout</Text>}
+              label={() => <Text style={{color: 'red'}}>Logout</Text>}
               onPress={() => Auth.signOut()}
             />
           </DrawerContentScrollView>
