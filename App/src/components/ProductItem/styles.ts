@@ -19,6 +19,13 @@ const style = StyleSheet.create({
     flex: 10,
   },
 
+  paddingRightContainer: {
+    padding: 5,
+    marginTop: 5,
+    width: '100%',
+    flex: 10,
+  },
+
   title: {
     fontSize: 20,
     fontWeight: '500',

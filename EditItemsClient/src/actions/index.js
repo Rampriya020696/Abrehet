@@ -26,7 +26,7 @@ const mapOrders = res2 => {
         'title: ' +
         val.item.title +
         ' | quantity: ' +
-        val.quantity +
+        val.quantity + ' '+val.item.description+
         ' | price: ' +
         val.item.price + '||\n';
     });

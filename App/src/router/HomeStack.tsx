@@ -114,6 +114,18 @@ function MyDrawer() {
               </View>
               <DrawerItemList {...props} />
             </SafeAreaView>
+            <SafeAreaView forceInset={{horizontal: 'never'}}>
+              <View
+                style={{
+                  height: 100,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{margin: 10}}>
+                  Contact mesobinternational@gmail.com for issues
+                </Text>
+              </View>
+            </SafeAreaView>
             <DrawerItem
               label={() => <Text style={{color: 'red'}}>Logout</Text>}
               onPress={() => Auth.signOut()}
@@ -124,12 +136,12 @@ function MyDrawer() {
       <Drawer.Screen name="Groceries">
         {() => <HomeStack Status="Groceries" />}
       </Drawer.Screen>
-      <Drawer.Screen name="Electronics">
+      {/*<Drawer.Screen name="Electronics">
         {() => <HomeStack Status="Electronics" />}
       </Drawer.Screen>
       <Drawer.Screen name="Furniture">
         {() => <HomeStack Status="Furniture" />}
-      </Drawer.Screen>
+    </Drawer.Screen>*/}
       <Drawer.Screen name="Jewelry">
         {() => <HomeStack Status="Jewelry" />}
       </Drawer.Screen>

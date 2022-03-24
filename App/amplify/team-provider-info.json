@@ -20,7 +20,7 @@
         "sendemail": {
           "sesEmail": "mesobinternational@gmail.com",
           "deploymentBucketName": "amplify-abrehet-staging-53841-deployment",
-          "s3Key": "amplify-builds/sendemail-367a4f59456555447a6f-build.zip"
+          "s3Key": "amplify-builds/sendemail-324a34544e4e51394579-build.zip"
         }
       },
       "hosting": {
