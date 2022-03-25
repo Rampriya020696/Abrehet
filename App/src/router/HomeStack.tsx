@@ -98,14 +98,14 @@ function MyDrawer() {
             <SafeAreaView forceInset={{top: 'always', horizontal: 'never'}}>
               <View
                 style={{
-                  height: 100,
+                  height: 130,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
                 <Image
                   style={{
-                    width: 50,
-                    height: 50,
+                    width: 270,
+                    height: 120,
                   }}
                   source={{
                     uri: 'https://appimagesabrehet.s3.amazonaws.com/logo.png',
@@ -114,18 +114,7 @@ function MyDrawer() {
               </View>
               <DrawerItemList {...props} />
             </SafeAreaView>
-            <SafeAreaView forceInset={{horizontal: 'never'}}>
-              <View
-                style={{
-                  height: 100,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text style={{margin: 10}}>
-                  Contact mesobinternational@gmail.com for issues
-                </Text>
-              </View>
-            </SafeAreaView>
+            
             <DrawerItem
               label={() => <Text style={{color: 'red'}}>Logout</Text>}
               onPress={() => Auth.signOut()}
@@ -145,7 +134,11 @@ function MyDrawer() {
       <Drawer.Screen name="Jewelry">
         {() => <HomeStack Status="Jewelry" />}
       </Drawer.Screen>
+      <Drawer.Screen name="Contact Us">
+        {() => <HomeStack Status="Contact Us"/>}
+    </Drawer.Screen>
     </Drawer.Navigator>
+    
   );
 }
 export default MyDrawer;
