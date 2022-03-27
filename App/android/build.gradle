@@ -18,6 +18,7 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+project.ext.react = [enableHermes: false,] // update here true
 
 allprojects {
     repositories {
