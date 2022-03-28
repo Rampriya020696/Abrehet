@@ -140,6 +140,7 @@ function MyDrawer() {
           <View style={styles.page}>
             {/* Render Product Component */}
             <Text>Email: mesobinternational@gmail.com</Text>
+            <Text>Phone Number: +1 (571) 216-3509</Text>
           </View>
         )}
       </Drawer.Screen>

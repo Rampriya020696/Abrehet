@@ -210,6 +210,8 @@ const AddressScreen = () => {
     case 'success':
       let obj = {cart: Object.values(globalThis.cart), total: total};
       Auth.currentAuthenticatedUser().then(auth_user => {
+        let new_obj = obj;
+        new_obj.phone = phone;
         API.graphql(
           graphqlOperation(mutations.createOrder, {
             input: {
@@ -219,7 +221,7 @@ const AddressScreen = () => {
               address: address,
               city: city,
               Status: 'Ordered',
-              Products: JSON.stringify(obj),
+              Products: JSON.stringify(new_obj),
             },
           }),
         );
@@ -276,6 +278,15 @@ const AddressScreen = () => {
             placeholder="City"
             value={city}
             onChangeText={setCity}
+          />
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.label}>Phone Number </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Phone"
+            value={phone}
+            onChangeText={setPhone}
           />
         </View>
         <Button text="Checkout" onPress={onCheckout} />

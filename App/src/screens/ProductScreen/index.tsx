@@ -29,6 +29,7 @@ interface ProductItemDetails {
   options: string[];
   ratings: number;
   oldPrice?: number;
+  country: string;
 }
 
 const ProductScreen = ({Status}) => {
@@ -71,7 +72,9 @@ const ProductScreen = ({Status}) => {
         'title',
         'avgRating',
       ]);
+      parsed.country = getProducts.data.getProducts!.country;
       parsed.images = parsed.images.split(',');
+      parsed.id = globalThis.itemDetails[Status].id;
       if (!parsed.options) {
         parsed.options = [];
       } else {

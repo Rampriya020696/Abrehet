@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, FlatList, Text} from 'react-native';
+import {View, StyleSheet, FlatList, Text, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import CartProductItem from '../../components/CartProductItem';
 import Button from '../../components/Button';
@@ -11,7 +11,13 @@ const ShopingCartScreen = () => {
   const [products, setProducts] = useState([]);
 
   const onCheckout = () => {
-    navigation.navigate('Address');
+    if (
+      !products.map(x => x.item.country).every((val, i, arr) => val === arr[0])
+    ) {
+      Alert.alert('Products must all be from the same country');
+    } else {
+      navigation.navigate('Address');
+    }
   };
 
   useEffect(() => {

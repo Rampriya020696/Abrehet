@@ -13,13 +13,13 @@ const mapOrders = res2 => {
   return res2.data.listOrders.items.map(val=>{
     let obj = {};
     obj.name = val.name;
-    obj.phone = val.phone;
     obj.city = val.city;
     obj.address = val.address;
     obj.Status = val.Status;
     obj.id = val.id
     let deconstruct = JSON.parse(val.Products);
     obj.total = deconstruct.total;
+    obj.phone = deconstruct.phone;
     obj.cart = '';
     deconstruct.cart.forEach(val => {
       obj.cart +=
