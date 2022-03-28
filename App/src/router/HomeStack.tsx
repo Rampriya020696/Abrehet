@@ -10,6 +10,7 @@ import {
   Button,
   Text,
   TouchableOpacity,
+  StyleSheet,
   Image,
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
@@ -82,7 +83,6 @@ const HomeStack = ({Status}) => {
 };
 const Drawer = createDrawerNavigator();
 
-
 function MyDrawer() {
   return (
     <Drawer.Navigator
@@ -115,7 +115,7 @@ function MyDrawer() {
               </View>
               <DrawerItemList {...props} />
             </SafeAreaView>
-            
+
             <DrawerItem
               label={() => <Text style={{color: 'red'}}>Logout</Text>}
               onPress={() => Auth.signOut()}
@@ -136,10 +136,26 @@ function MyDrawer() {
         {() => <HomeStack Status="Jewelry" />}
       </Drawer.Screen>
       <Drawer.Screen name="Contact Us">
-        {() => <HomeStack Status="Contact Us"/>}
-    </Drawer.Screen>
+        {() => (
+          <View style={styles.page}>
+            {/* Render Product Component */}
+            <Text>Email: mesobinternational@gmail.com</Text>
+          </View>
+        )}
+      </Drawer.Screen>
     </Drawer.Navigator>
-    
   );
 }
+
+const styles = StyleSheet.create({
+  page: {
+    padding: 10,
+    flex: 1,
+  },
+  text: {
+    fontSize: 70,
+    fontWeight: 'bold',
+  },
+});
+
 export default MyDrawer;
