@@ -40,13 +40,13 @@ const App = () => {
       'Ethiopia Addis Abeba',
       'Kenya Nairobi',
     ];
-    const listener = data => {
+    /*const listener = data => {
       if (data.payload.event == 'signIn') {
         Alert.alert('We only provide service to the following locations: '+countries.join(", "));
       }
     };
 
-    Hub.listen('auth', listener);
+    Hub.listen('auth', listener);*/
   }, []);
   return (
     <SafeAreaView style={backgroundStyle}>
