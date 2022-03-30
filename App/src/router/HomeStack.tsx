@@ -128,13 +128,13 @@ function MyDrawer() {
       </Drawer.Screen>
       {/*<Drawer.Screen name="Electronics">
         {() => <HomeStack Status="Electronics" />}
-      </Drawer.Screen>
+    </Drawer.Screen>*/}
       <Drawer.Screen name="Furniture">
         {() => <HomeStack Status="Furniture" />}
-    </Drawer.Screen>*/}
-      <Drawer.Screen name="Jewelry">
-        {() => <HomeStack Status="Jewelry" />}
       </Drawer.Screen>
+      {/*<Drawer.Screen name="Jewelry">
+        {() => <HomeStack Status="Jewelry" />}
+  </Drawer.Screen>*/}
       <Drawer.Screen name="Contact Us">
         {() => (
           <View style={styles.page}>
