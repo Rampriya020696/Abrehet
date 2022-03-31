@@ -10,7 +10,7 @@ export const queryData = (key = "", val = "") => async (dispatch) => {
 };
 
 const mapOrders = res2 => {
-  return res2.data.listOrders.items.map(val=>{
+  let arr = res2.data.listOrders.items.map(val=>{
     let obj = {};
     obj.name = val.name;
     obj.city = val.city;
@@ -21,6 +21,7 @@ const mapOrders = res2 => {
     obj.total = deconstruct.total;
     obj.phone = deconstruct.phone;
     obj.cart = '';
+    obj.date = (new Date(val.createdAt)).toString();
     deconstruct.cart.forEach(val => {
       obj.cart +=
         'title: ' +
@@ -33,6 +34,14 @@ const mapOrders = res2 => {
     console.log(obj.cart);
     return obj;
   });
+  arr.sort((x,y)=>{
+    let a = new Date(x.date);
+    let b = new Date(y.date);
+    if(a.getTime() > b.getTime()) return -1;
+    if(a.getTime() === b.getTime()) return 0;
+    return 1;
+  });
+  return arr;
 }
 
 export const fetchData = (key = "", val = "") => async (dispatch) => {
@@ -166,7 +175,7 @@ export const Switch = (val) => async(dispatch) =>{
     await localStorage.setItem("ids", JSON.stringify(["id","title","country","description","image","images","options","ratings","price","oldPrice","avgRating"]));
     await localStorage.setItem("type", val);
   } else {
-    await localStorage.setItem("ids", JSON.stringify(['name', 'phone', 'city', 'address', 'Status', 'total', 'cart']));
+    await localStorage.setItem("ids", JSON.stringify(['name', 'phone', 'city', 'address', 'Status', 'total', 'cart','date']));
     await localStorage.setItem("type", val);
   }
   window.location.reload();

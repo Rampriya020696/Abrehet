@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import { Dropdown, Select } from 'semantic-ui-react';
+import { Dropdown, Select, Button } from 'semantic-ui-react';
 import 'react-widgets/dist/css/react-widgets.css';
 import { ModelAttributeAuthProvider } from "@aws-amplify/datastore";
 
@@ -17,6 +17,7 @@ const mapID = id => {
 }
 
 const inputOptions = ["Groceries","Electronics","Furniture","Jewelry","Orders"].map(mapID);
+const inputs = ["Groceries","Electronics","Furniture","Jewelry","Orders"];
 
 
 const DropdownExampleSearchSelection = props => (
@@ -71,11 +72,20 @@ let DataInput = (props) => {
             }}>
           Add item
         </button>:null}
-        <Select placeholder='Select your table' options={inputOptions} defaultValue={localStorage.getItem("type")} onChange={async (event,data) =>{
+        {/*<Select placeholder='Select your table' options={inputOptions} defaultValue={localStorage.getItem("type")} onChange={async (event,data) =>{
           console.log(mapID(localStorage.getItem("type")));
           await props.Switch(data.value);
           reset();
-        }} />
+        }} />*/}
+        <Button.Group>
+    {inputs.map(val=>{
+      return <Button onClick={async ()=>{
+        props.Switch(val);
+        reset()
+      }}>{val}</Button>
+    })}
+  </Button.Group>
+
         </form>
     </div>
   );
