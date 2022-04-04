@@ -9,6 +9,14 @@ export const queryData = (key = "", val = "") => async (dispatch) => {
   dispatch({ type: "query_data", payload: {[key]: val} });
 };
 
+const productMap = res => {
+  return res.data.listProducts.items.map(val=>{
+    let obj = JSON.parse(val.content);
+    obj.id = val.id;
+    return obj;
+  });
+}
+
 const mapOrders = res2 => {
   let arr = res2.data.listOrders.items.map(val=>{
     let obj = {};
@@ -51,7 +59,7 @@ export const fetchData = (key = "", val = "") => async (dispatch) => {
     result = mapOrders(result);
   } else {
     result = await API.graphql({query: listProducts, variables:{filter: {category: {eq: localStorage.getItem("type")}}}});
-    result = result.data.listProducts.items.map(val=>JSON.parse(val.content));
+    result = productMap(result);
   }
   /*await result.forEach(async element => {
     let objDetails = element;
@@ -100,7 +108,7 @@ export const changeData = (obj={}) => async (dispatch) => {
     res = await API.graphql({query:updateProducts,variables:{input:objDetails}, authMode: "AMAZON_COGNITO_USER_POOLS"});
     console.log(res);
     resp = await API.graphql({query: listProducts, variables:{filter: {category: {eq: localStorage.getItem("type")}}}});
-    resp = resp.data.listProducts.items.map(val=>JSON.parse(val.content));
+    resp = productMap(resp);
   }
   dispatch({ type: ROW_CLICK, payload: res });
   dispatch({ type: FETCH_DATA, payload: {data: resp}  });
@@ -124,7 +132,7 @@ export const deleteData = (obj="") => async (dispatch) => {
     let res = await API.graphql(({query:deleteProducts,variables:{input:{id:toDelete.data.getProducts.id}}, authMode: "AMAZON_COGNITO_USER_POOLS"}))
     console.log(res);
     resp = await API.graphql({query: listProducts, variables:{filter: {category: {eq: localStorage.getItem("type")}}}});
-    resp = resp.data.listProducts.items.map(val=>JSON.parse(val.content));
+    resp = productMap(resp);
   }
   //dispatch({ type: ROW_CLICK, payload: res });"The variables input contains a field name 'title' that is not defined for input object type 'DeleteProductsInput' "
   dispatch({ type: FETCH_DATA, payload: {data: resp}  });
@@ -146,7 +154,7 @@ export const addData = (obj={}) => async (dispatch) => {
     let res = await API.graphql({query:createProducts, variables:{input:objDetails}, authMode: "AMAZON_COGNITO_USER_POOLS"})
     console.log(res);
     resp = await API.graphql({query: listProducts, variables:{filter: {category: {eq: localStorage.getItem("type")}}}});
-    resp = resp.data.listProducts.items.map(val=>JSON.parse(val.content));
+    resp = productMap(resp);
   }
   dispatch({ type: ROW_CLICK, payload: {link:"/table", num:""} });
   dispatch({ type: FETCH_DATA, payload: {data: resp}  });
@@ -161,7 +169,7 @@ export const rowClick = (obj = {link:"/table", num:""}) => async(dispatch) =>{
       result = mapOrders(result);
     } else {
       result = await API.graphql({query: listProducts, variables:{filter: {category: {eq: localStorage.getItem("type")}}}});
-      result = result.data.listProducts.items.map(val=>JSON.parse(val.content));
+      result = productMap(result);
     }
     console.log(result[obj.num]);
     dispatch({ type: FETCH_DATA, payload: {data: result[obj.num]} });

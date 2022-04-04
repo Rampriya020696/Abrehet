@@ -18,10 +18,9 @@ import _ from 'lodash';
 const ProfileScreen = () => {
   const [info, setInfo] = useState(null);
   const [text, onChangeText] = useState('');
-  const [name, onChangeName] = useState('');
+  const [address, onChangeAddress] = useState('');
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [orders, setOrders] = useState([]);
   const [id, setID] = useState('');
   useEffect(() => {
     const userInfo = async () => {
@@ -61,14 +60,6 @@ const ProfileScreen = () => {
       if (user!.address) {
         onChangeText(user!.address);
       }
-      let getOrders = await API.graphql(
-        graphqlOperation(queries.listOrders, {
-          filter: {userID: {eq: user.id}},
-        }),
-      );
-      if (getOrders) {
-        setOrders(getOrders.data.listOrders.items);
-      }
     };
     userInfo();
   }, []);
@@ -94,23 +85,22 @@ const ProfileScreen = () => {
       />
       <TextInput
         style={styles.input}
-        onChangeText={setOldPassword}
-        value={oldPassword}
+        onChangeText={onChangeAddress}
+        value={address}
         placeholder="Update Address"
       />
       <Button
         title="Update Address"
         onPress={() => {
           console.log('press ' + text);
-          API.graphql(
+          console.log(API.graphql(
             graphqlOperation(mutations.updateUsers, {
               input: {
                 id: id,
                 address: text,
-                name: name,
               },
             }),
-          );
+          ));
         }}
       />
       
