@@ -37,10 +37,10 @@ npm-debug.log
 yarn-error.log
 
 # BUCK
-buck-out/
-\.buckd/
-*.keystore
-!debug.keystore
+# buck-out/
+# \.buckd/
+# *.keystore
+# !debug.keystore
 
 # fastlane
 #
@@ -60,22 +60,22 @@ buck-out/
 /ios/Pods/
 
 #amplify-do-not-edit-begin
-amplify/\#current-cloud-backend
-amplify/.config/local-*
-amplify/logs
-amplify/mock-data
-amplify/backend/amplify-meta.json
-amplify/backend/.temp
-build/
-dist/
-node_modules/
-aws-exports.js
-awsconfiguration.json
-amplifyconfiguration.json
-amplifyconfiguration.dart
-amplify-build-config.json
-amplify-gradle-config.json
-amplifytools.xcconfig
-.secret-*
-**.sample
+# amplify/\#current-cloud-backend
+# amplify/.config/local-*
+# amplify/logs
+# amplify/mock-data
+# amplify/backend/amplify-meta.json
+# amplify/backend/.temp
+# build/
+# dist/
+# node_modules/
+# aws-exports.js
+# awsconfiguration.json
+# amplifyconfiguration.json
+# amplifyconfiguration.dart
+# amplify-build-config.json
+# amplify-gradle-config.json
+# amplifytools.xcconfig
+# .secret-*
+# **.sample
 #amplify-do-not-edit-end
