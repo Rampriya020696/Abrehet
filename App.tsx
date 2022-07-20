@@ -17,7 +17,6 @@ import Router from './src/router';
 //import Amplify from 'aws-amplify';
 import {withAuthenticator} from 'aws-amplify-react-native';
 
-//import config from './src/aws-exports';
 
 import Amplify, {Auth} from 'aws-amplify';
 import awsconfig from './src/aws-exports';
@@ -35,7 +34,7 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Router />
+      <Router/>
     </SafeAreaView>
   );
 };

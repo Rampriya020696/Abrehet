@@ -24,6 +24,7 @@ interface ProductItemProps {
   };
 }
 
+
 const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<ProductItemProps[]>([]);
 
@@ -66,6 +67,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   page: {

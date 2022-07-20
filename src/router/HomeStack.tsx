@@ -1,10 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import React, { useState } from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
-import {SafeAreaView, View, TextInput} from 'react-native';
+import { SafeAreaView, View, TextInput, Image } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -18,28 +19,58 @@ const HeaderComponent = ({
   setSearchValue,
 }: HeaderComponentProps) => {
   return (
-    <SafeAreaView style={{backgroundColor: '#08b3fc'}}>
+    <SafeAreaView style={{ backgroundColor: '#08b3fc' }}>
       <View
         style={{
-          margin: 10,
-          padding: 5,
-          backgroundColor: 'white',
           flexDirection: 'row',
+          // justifyContent: 'space-between',
           alignItems: 'center',
+          backgroundColor: '#6A91C7',
+          paddingHorizontal: 20,
+          paddingVertical: 10,
+          height:60,
+
         }}>
-        <Feather name="search" size={30} />
-        <TextInput
-          style={{
-            height: 40,
-            marginLeft: 10,
-            padding: 7,
-            color: '#0a0300',
-            fontSize: 22
-          }}
-          placeholder="Search..."
-          value={searchValue}
-          onChangeText={setSearchValue}
-        />
+        {/* <Feather name="search" size={30} /> */}
+        <View style={{
+          backgroundColor: 'white', flexDirection: 'row', width: '80%',
+          alignItems: 'center', paddingLeft: 5, borderRadius: 12,
+        }}>
+          <Image
+            style={{ width: 20, height: 20 }}
+            source={require('../Assets/SearchIcon.png')} />
+          <TextInput
+            style={{
+              height: 40,
+              marginLeft: 10,
+              padding: 7,
+              color: '#0a0300',
+              fontSize: 17
+            }}
+            placeholder="Search..."
+            value={searchValue}
+            onChangeText={setSearchValue}
+          />
+        </View>
+        <TouchableOpacity
+        
+        >
+          <Image
+            style={{ width: 22, height: 20, marginLeft: 10, }}
+            source={require('../Assets/ChatICon.png')}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+        
+        >
+          <Image
+            style={{ width: 22, height: 20, marginLeft: 10, }}
+            source={require('../Assets/Notification.png')}
+          />
+        </TouchableOpacity>
+
+
       </View>
     </SafeAreaView>
   );
@@ -56,7 +87,7 @@ const HomeStack = () => {
           />
         ),
       }}>
-      <Stack.Screen name="HomeScreen" options={{title: 'Home'}}>
+      <Stack.Screen name="HomeScreen" options={{ title: 'Home' }}>
         {() => <HomeScreen searchValue={searchValue} />}
       </Stack.Screen>
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
