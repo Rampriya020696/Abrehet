@@ -39,8 +39,7 @@ const BottomTabNav = () => {
         component={HomeStack}
         name="Home"
         options={{
-          headerStyle: {
-            
+          headerStyle: {       
             backgroundColor: '#08b3fc',
           },
           tabBarIcon: ({ color }) => (

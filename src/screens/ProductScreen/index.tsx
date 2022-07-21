@@ -13,6 +13,8 @@ import * as types from '../../API';
 import {API, graphqlOperation} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import _ from 'lodash';
+import ImageSlider from 'react-native-image-slider-banner';
+
 
 interface ProductItemDetails {
   id: string;
@@ -25,6 +27,9 @@ interface ProductItemDetails {
   ratings: number;
   oldPrice?: number;
 }
+
+
+
 
 const ProductScreen = () => {
   const [product, setProduct] = useState<ProductItemDetails>();
@@ -78,6 +83,7 @@ const ProductScreen = () => {
   return (
     <ScrollView style={styles.root}>
       <Text style={styles.title}>{product.title}</Text>
+      
 
       {/* Image corousel */}
       <ImageCarousel images={product.images} />
