@@ -94,7 +94,7 @@ const HomeScreen = ({ searchValue }: HomeScreenProps) => {
         </Text>
       </View>
 
-      <View>
+      <View style={{marginTop:30}}>
         <MenuIcon  onPress={() => navigation.navigate('Home')} />
       </View>
 
