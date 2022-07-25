@@ -21,12 +21,12 @@ const BottomTabNav = () => {
 
     <Tab.Navigator
       screenOptions={{
-        headerShown:false,
-        tabBarStyle:{padding:15,height:60,},
+        headerShown: false,
+        tabBarStyle: { padding: 15, height: 60, },
         tabBarShowLabel: true,
         tabBarLabelStyle: {
           fontSize: 14,
-          height:20,
+          height: 20,
           fontWeight: 'bold',
           fontFamily: 'Poppins-Black',
         },
@@ -39,7 +39,7 @@ const BottomTabNav = () => {
         component={HomeStack}
         name="Home"
         options={{
-          headerStyle: {       
+          headerStyle: {
             backgroundColor: '#08b3fc',
           },
           tabBarIcon: ({ color }) => (

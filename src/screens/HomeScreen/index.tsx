@@ -10,10 +10,9 @@ import _ from 'lodash';
 
 import initProducts from '../../data/products';
 
-import Carousel from 'react-native-snap-carousel';
 import Banner from '../../components/Banner';
 import MenuIcon from '../../components/MenuIcon';
-import { useNavigation,  NavigationProp} from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 // import useNavigationContainer from 'reac-native-'
 
 
@@ -94,8 +93,8 @@ const HomeScreen = ({ searchValue }: HomeScreenProps) => {
         </Text>
       </View>
 
-      <View style={{marginTop:30}}>
-        <MenuIcon  onPress={() => navigation.navigate('Home')} />
+      <View style={{ marginTop: 30 }}>
+        <MenuIcon onPress={() => navigation.navigate('Home')} />
       </View>
 
       {/* <FlatList
