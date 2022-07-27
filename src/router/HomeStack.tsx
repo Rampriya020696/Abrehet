@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
+import Login from '../screens/Signin';
 import ProductScreen from '../screens/ProductScreen';
 import { SafeAreaView, View, TextInput, Image } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
@@ -87,6 +88,10 @@ const HomeStack = () => {
           />
         ),
       }}>
+        <Stack.Screen 
+        component={Login}
+        name="Login" options={{title:'Login'}} />
+
       <Stack.Screen name="HomeScreen" options={{ title: 'Home' }}>
         {() => <HomeScreen searchValue={searchValue} />}
       </Stack.Screen>

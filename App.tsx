@@ -8,14 +8,14 @@
  * @format
  */
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useState } from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Router from './src/router';
 
 //import Amplify from 'aws-amplify';
-import {withAuthenticator} from 'aws-amplify-react-native';
+import {withAuthenticator , AmplifyTheme} from 'aws-amplify-react-native';
 
 
 import Amplify, {Auth} from 'aws-amplify';
@@ -23,13 +23,19 @@ import awsconfig from './src/aws-exports';
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
 
+
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+
+  let [email,setEmail]=useState('');
+  let [password,setPassword]=useState('')
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     flex: 1,
   };
+
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -39,4 +45,36 @@ const App = () => {
   );
 };
 
+// const signUpConfig={
+//   header:"",
+//   hideAllDefaults:true,
+//   signUpFields:[
+//     {
+//       label: 'Full Name',
+//       key:'fullName',
+//       required:true,
+//       displayOrder:1,
+//       type:'string',
+//     },
+//     {
+//       label:'Password',
+//       key:'password',
+//       required:true,
+//       displayOrder:2,
+//       type:'string',
+//     },
+//     {
+//       label:'Skip',
+//       key:'skip',
+//       required:true,
+//       type:'string',
+     
+//     }
+//   ]
+// }
+
+
+
 export default withAuthenticator(App);
+
+// ,{signUpConfig}

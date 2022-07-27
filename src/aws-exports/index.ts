@@ -26,6 +26,8 @@ const awsmobile = {
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
     ]
+    
+    
 };
 
 
