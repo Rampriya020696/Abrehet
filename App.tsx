@@ -16,6 +16,7 @@ import Router from './src/router';
 
 //import Amplify from 'aws-amplify';
 import {withAuthenticator , AmplifyTheme} from 'aws-amplify-react-native';
+import Signin from './src/screens/Signin';
 
 
 import Amplify, {Auth} from 'aws-amplify';
@@ -27,9 +28,6 @@ Auth.configure(awsconfig);
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
-  let [email,setEmail]=useState('');
-  let [password,setPassword]=useState('')
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -74,7 +72,6 @@ const App = () => {
 // }
 
 
-
-export default withAuthenticator(App);
+export default withAuthenticator(App,{Signin});
 
 // ,{signUpConfig}
