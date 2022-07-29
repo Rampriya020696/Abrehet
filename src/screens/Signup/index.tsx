@@ -11,18 +11,21 @@ Amplify.configure({Auth:awsconfig});
 
 
 
-const Signin = ({ navigation, type }) => {
+const Signup = ({ navigation, type }) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber,setPhoneNumber] =useState('');
 
 
-    const handleSignIn=async()=>{
+
+    const handleSignUp=async()=>{
 
     try {
-        const response=await Auth.signIn(username,password);
+        const response=await Auth.signUp(username,password,email,phoneNumber);
         console.log(response)
-        console.log('Hello')
+        console.log('SignUp Done')
         navigation.navigate('BottomTabNav');
     } catch (e:any) {
         Alert.alert('Error',e.message)
@@ -47,50 +50,6 @@ const Signin = ({ navigation, type }) => {
                     </View>
 
                     <View style={{ alignSelf: 'center', marginTop: 20, width: '100%', }}>
-                        <TouchableOpacity
-                            style={{
-                                backgroundColor: '#536DFE', width: '90%', padding: 10, flexDirection: 'row',
-                                alignItems: 'center', borderRadius: 12, alignSelf: 'center', justifyContent: 'center',
-
-                            }}
-                        >
-                            <Image
-                                style={{ width: 10, height: 20, alignSelf: 'center' }}
-                                source={require('../../Assets/icon_facebook.png')} />
-                            <Text style={{
-                                fontSize: 14, color: 'white', padding: 2, paddingLeft: 20,
-                                alignSelf: 'center', fontWeight: '600',
-                            }}>
-                                Login with Facebook
-                            </Text>
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity
-                            style={{
-                                backgroundColor: 'white', width: '90%', padding: 10, flexDirection: 'row',
-                                borderRadius: 12, alignSelf: 'center', marginTop: 10, alignItems: 'center',
-                                justifyContent: 'center',
-                            }}
-                        >
-                            <Image
-                                style={{ width: 16, height: 16, alignSelf: 'center' }}
-                                source={require('../../Assets/Logo-Google.png')} />
-                            <Text style={{
-                                fontSize: 14, color: 'black', padding: 2, paddingLeft: 20,
-                                alignSelf: 'center', fontWeight: '600',
-                            }}>
-                                Login with Google
-                            </Text>
-                        </TouchableOpacity>
-
-                        <Text style={{
-                            fontSize: 17, fontWeight: '600', alignSelf: 'center',
-                            color: 'white', marginTop: 10,
-                        }}
-                        >
-                            OR
-                        </Text>
 
                         <View style={{
                             backgroundColor: 'white', borderRadius: 15, padding: 5,
@@ -126,19 +85,54 @@ const Signin = ({ navigation, type }) => {
                             />
                         </View>
 
+
+                        <View style={{
+                            backgroundColor: 'white', borderRadius: 15, padding: 5,
+                            marginTop: 10,flexDirection:'row',alignItems:'center',
+                        }}>
+                            {/* <Image 
+                            style={{height:15,width:25,marginLeft:20}}
+                            source={require('../../Assets/Icon-Password.png')} /> */}
+                            <TextInput
+                                placeholder='Email'
+                                onChangeText={(value) => setEmail(value)}
+
+                                style={{
+                                    fontSize: 14, paddingLeft: 65
+                                }}
+                            />
+                        </View>
+
+                        <View style={{
+                            backgroundColor: 'white', borderRadius: 15, padding: 5,
+                            marginTop: 10,flexDirection:'row',alignItems:'center',
+                        }}>
+                            {/* <Image 
+                            style={{height:15,width:25,marginLeft:20}}
+                            source={require('../../Assets/Icon-Password.png')} /> */}
+                            <TextInput
+                                placeholder='Phone No'
+                                keyboardType="numeric"
+                                onChangeText={(value) => setPhoneNumber(value)}
+
+                                style={{
+                                    fontSize: 14, paddingLeft: 65
+                                }}
+                            />
+                        </View>
+
+
                         <View style={{ alignSelf: 'center', marginTop: 20 }}>
-                            <TouchableOpacity
-                            onPress={()=>navigation.navigate('Signup')}
-                            >
+                            <TouchableOpacity>
                                 <Text style={{ color: 'white', fontSize: 15 }}>
-                                    Not Have Account ? SignUp
+                                    Already Have An Account ? SignIn
                                 </Text>
                             </TouchableOpacity>
 
                         </View>
 
                         <TouchableOpacity
-                        onPress={()=>handleSignIn()}
+                        onPress={()=>handleSignUp()}
                         >
                             <LinearGradient
                                 start={{ x: 0.0, y: 0 }}
@@ -155,7 +149,7 @@ const Signin = ({ navigation, type }) => {
                                     alignItems: 'center',
                                 }}>
                                 <Text style={{ fontSize: 17, color: 'white', fontWeight: '600' }}>
-                                    Sign In
+                                    Sign Up
                                 </Text>
                             </LinearGradient>
                         </TouchableOpacity>
@@ -179,7 +173,7 @@ const Signin = ({ navigation, type }) => {
 
 }
 
-export default Signin;
+export default Signup;
 
 const styles = StyleSheet.create({
     page: {

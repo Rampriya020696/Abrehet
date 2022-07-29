@@ -1,37 +1,81 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import BottomTabNav from './bottomTabNav';
 import Signin from '../screens/Signin';
 import HomeStack from './HomeStack';
+import ProductScreen from '../screens/ProductScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import ShopingCartStack from './ShoppingCartStack';
+import MenuScreen from '../screens/MenuScreen';
+import AddressScreen from '../screens/AddressScreen';
+import Signup from '../screens/Signup';
 
 const Root = createStackNavigator();
 const Stack = createNativeStackNavigator();
 
-const MainStackNavigator = ({route}) => {
+const MainStackNavigator = () => {
   return (
-   <Stack.Navigator>
-    <Stack.Screen 
-    name="Signin"
-    component={Signin}
-    options={{headerShown:false}}
-    />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Signin"
+        component={Signin}
+        options={{ headerShown: false }}
+      />
 
-    <Stack.Screen 
-    name="BottomTabNav"
-    component={BottomTabNav}
-    options={{headerShown:false}}
-    />
+      <Stack.Screen 
+      name="Signup"
+      component={Signup}
+      options={{headerShown:false}}
+      />
 
-    <Stack.Screen
-    name="Home"
-    component={HomeStack}
-    options={{headerShown:false}}
-    />
+      <Stack.Screen
+        name="BottomTabNav"
+        component={BottomTabNav}
+        options={{ headerShown: false }}
+      />
 
-   </Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeStack}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="ProductDetails"
+        component={ProductScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Account"
+        component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Cart"
+        component={ShopingCartStack}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Brand"
+        component={MenuScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Address"
+        component={AddressScreen}
+        options={{ headerShown: false }}
+      />
+
+
+
+    </Stack.Navigator>
   );
 };
 

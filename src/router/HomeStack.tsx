@@ -88,9 +88,9 @@ const HomeStack = () => {
           />
         ),
       }}>
-        <Stack.Screen 
+        {/* <Stack.Screen 
         component={Login}
-        name="Login" options={{title:'Login'}} />
+        name="Login" options={{title:'Login'}} /> */}
 
       <Stack.Screen name="HomeScreen" options={{ title: 'Home' }}>
         {() => <HomeScreen searchValue={searchValue} />}
