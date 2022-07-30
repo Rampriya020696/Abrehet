@@ -12,6 +12,8 @@ import ShopingCartStack from './ShoppingCartStack';
 import MenuScreen from '../screens/MenuScreen';
 import AddressScreen from '../screens/AddressScreen';
 import Signup from '../screens/Signup';
+import HomeProductScreen from '../screens/HomeScreen/main';
+import Splash from '../screens/Splash';
 
 const Root = createStackNavigator();
 const Stack = createNativeStackNavigator();
@@ -19,16 +21,23 @@ const Stack = createNativeStackNavigator();
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator>
+
+      <Stack.Screen
+        name="Splash"
+        component={Splash}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen
         name="Signin"
         component={Signin}
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen 
-      name="Signup"
-      component={Signup}
-      options={{headerShown:false}}
+      <Stack.Screen
+        name="Signup"
+        component={Signup}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
@@ -40,6 +49,12 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name="Home"
         component={HomeStack}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="HomeProductScreen"
+        component={HomeProductScreen}
         options={{ headerShown: false }}
       />
 

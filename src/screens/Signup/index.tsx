@@ -7,7 +7,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 
 
-Amplify.configure({Auth:awsconfig});
+Amplify.configure({ Auth: awsconfig });
 
 
 
@@ -16,20 +16,20 @@ const Signup = ({ navigation, type }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [phoneNumber,setPhoneNumber] =useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
 
 
-    const handleSignUp=async()=>{
+    const handleSignUp = async () => {
 
-    try {
-        const response=await Auth.signUp(username,password,email,phoneNumber);
-        console.log(response)
-        console.log('SignUp Done')
-        navigation.navigate('BottomTabNav');
-    } catch (e:any) {
-        Alert.alert('Error',e.message)
-    }
+        try {
+            const response = await Auth.signUp(username, password, email, phoneNumber);
+            console.log(response)
+            console.log('SignUp Done')
+            navigation.navigate('BottomTabNav');
+        } catch (e: any) {
+            Alert.alert('Error', e.message)
+        }
     }
 
     return (
@@ -53,11 +53,11 @@ const Signup = ({ navigation, type }) => {
 
                         <View style={{
                             backgroundColor: 'white', borderRadius: 15, padding: 5,
-                            marginTop: 10,flexDirection:'row',alignItems:'center',
+                            marginTop: 10, flexDirection: 'row', alignItems: 'center',
                         }}>
-                            <Image 
-                            style={{height:20,width:25,marginLeft:20}}
-                            source={require('../../Assets/Icon-Mail.png')} />
+                            <Image
+                                style={{ height: 25, width: 25, marginLeft: 20 }}
+                                source={require('../../Assets/userNameAbrehet.png')} />
                             <TextInput
                                 placeholder='Username'
                                 onChangeText={(value) => setUsername(value)}
@@ -70,11 +70,11 @@ const Signup = ({ navigation, type }) => {
 
                         <View style={{
                             backgroundColor: 'white', borderRadius: 15, padding: 5,
-                            marginTop: 10,flexDirection:'row',alignItems:'center',
+                            marginTop: 10, flexDirection: 'row', alignItems: 'center',
                         }}>
-                            <Image 
-                            style={{height:15,width:25,marginLeft:20}}
-                            source={require('../../Assets/Icon-Password.png')} />
+                            <Image
+                                style={{ height: 15, width: 25, marginLeft: 20 }}
+                                source={require('../../Assets/Icon-Password.png')} />
                             <TextInput
                                 placeholder='Password'
                                 onChangeText={(value) => setPassword(value)}
@@ -88,42 +88,48 @@ const Signup = ({ navigation, type }) => {
 
                         <View style={{
                             backgroundColor: 'white', borderRadius: 15, padding: 5,
-                            marginTop: 10,flexDirection:'row',alignItems:'center',
+                            marginTop: 10, flexDirection: 'row', alignItems: 'center',
                         }}>
-                            {/* <Image 
-                            style={{height:15,width:25,marginLeft:20}}
-                            source={require('../../Assets/Icon-Password.png')} /> */}
+                            <Image
+                                style={{ height: 15, width: 25, marginLeft: 20 }}
+                                source={require('../../Assets/Icon-Mail.png')} />
                             <TextInput
                                 placeholder='Email'
                                 onChangeText={(value) => setEmail(value)}
 
                                 style={{
-                                    fontSize: 14, paddingLeft: 65
+                                    fontSize: 14, paddingLeft: 20
                                 }}
                             />
                         </View>
 
                         <View style={{
                             backgroundColor: 'white', borderRadius: 15, padding: 5,
-                            marginTop: 10,flexDirection:'row',alignItems:'center',
+                            marginTop: 10, flexDirection: 'row', alignItems: 'center',
                         }}>
-                            {/* <Image 
-                            style={{height:15,width:25,marginLeft:20}}
-                            source={require('../../Assets/Icon-Password.png')} /> */}
+                            <Image
+                                style={{ height: 20, width: 20, marginLeft: 20 }}
+                                source={require('../../Assets/phoneNumber.png')} />
                             <TextInput
-                                placeholder='Phone No'
-                                keyboardType="numeric"
-                                onChangeText={(value) => setPhoneNumber(value)}
+                                placeholder='Phone Number'
+                                // keyboardType="numeric"
+                                // onChangeText={(value) => {setPhoneNumber(value)}
+                                onChangeText={(value) => {
+                                    let newValue = '+1' + value
+                                    setPhoneNumber(newValue)
+                                }}
 
                                 style={{
-                                    fontSize: 14, paddingLeft: 65
+                                    fontSize: 14, paddingLeft: 20
                                 }}
                             />
                         </View>
 
 
                         <View style={{ alignSelf: 'center', marginTop: 20 }}>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                            onPress={()=>navigation.navigate('Signin')}
+                            >
                                 <Text style={{ color: 'white', fontSize: 15 }}>
                                     Already Have An Account ? SignIn
                                 </Text>
@@ -132,7 +138,7 @@ const Signup = ({ navigation, type }) => {
                         </View>
 
                         <TouchableOpacity
-                        onPress={()=>handleSignUp()}
+                            onPress={() => handleSignUp()}
                         >
                             <LinearGradient
                                 start={{ x: 0.0, y: 0 }}
@@ -154,15 +160,16 @@ const Signup = ({ navigation, type }) => {
                             </LinearGradient>
                         </TouchableOpacity>
 
-                        <TouchableOpacity 
-                        onPress={()=>navigation.navigate('BottomTabNav')}
-                        style={{backgroundColor:'red',width:'30%',padding:5,alignItems:'center',
-                            borderRadius:20,marginBottom:20
-                    }}>
-                            <Text style={{fontSize:14,color:'white'}}>
+                        {/* <TouchableOpacity
+                            onPress={() => navigation.navigate('BottomTabNav')}
+                            style={{
+                                backgroundColor: 'red', width: '30%', padding: 5, alignItems: 'center',
+                                borderRadius: 20, marginBottom: 20
+                            }}>
+                            <Text style={{ fontSize: 14, color: 'white' }}>
                                 Skip
                             </Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
 
                     </View>
                 </View>

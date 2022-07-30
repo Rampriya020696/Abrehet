@@ -44,7 +44,7 @@ const images = [
 ]
 
 
-const HomeScreen = ({ searchValue }: HomeScreenProps) => {
+const HomeProductScreen = ({ searchValue }: HomeScreenProps) => {
   const [products, setProducts] = useState<ProductItemProps[]>([]);
   const carouselRef = useRef();
 
@@ -128,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default HomeProductScreen;

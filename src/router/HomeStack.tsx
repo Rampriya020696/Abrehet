@@ -7,6 +7,7 @@ import ProductScreen from '../screens/ProductScreen';
 import { SafeAreaView, View, TextInput, Image } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import HomeProductScreen from '../screens/HomeScreen/main';
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -29,7 +30,7 @@ const HeaderComponent = ({
           backgroundColor: '#6A91C7',
           paddingHorizontal: 20,
           paddingVertical: 10,
-          height:60,
+          height: 60,
 
         }}>
         {/* <Feather name="search" size={30} /> */}
@@ -54,7 +55,7 @@ const HeaderComponent = ({
           />
         </View>
         <TouchableOpacity
-        
+
         >
           <Image
             style={{ width: 22, height: 20, marginLeft: 10, }}
@@ -63,7 +64,7 @@ const HeaderComponent = ({
         </TouchableOpacity>
 
         <TouchableOpacity
-        
+
         >
           <Image
             style={{ width: 22, height: 20, marginLeft: 10, }}
@@ -88,13 +89,14 @@ const HomeStack = () => {
           />
         ),
       }}>
-        {/* <Stack.Screen 
+      {/* <Stack.Screen 
         component={Login}
         name="Login" options={{title:'Login'}} /> */}
 
       <Stack.Screen name="HomeScreen" options={{ title: 'Home' }}>
         {() => <HomeScreen searchValue={searchValue} />}
       </Stack.Screen>
+      <Stack.Screen name="HomeProductScreen" component={HomeProductScreen} options={{ title: 'HomeProduct' }} />
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
     </Stack.Navigator>
   );
