@@ -14,7 +14,8 @@ import AddressScreen from '../screens/AddressScreen';
 import Signup from '../screens/Signup';
 import HomeProductScreen from '../screens/HomeScreen/main';
 import Splash from '../screens/Splash';
-
+import Slider from '../screens/Slider';
+import DrawerNavigator from './DrawerNavigator';
 const Root = createStackNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,12 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name="Splash"
         component={Splash}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Slider"
+        component={Slider}
         options={{ headerShown: false }}
       />
 
@@ -45,6 +52,7 @@ const MainStackNavigator = () => {
         component={BottomTabNav}
         options={{ headerShown: false }}
       />
+
 
       <Stack.Screen
         name="Home"
@@ -88,6 +96,11 @@ const MainStackNavigator = () => {
         options={{ headerShown: false }}
       />
 
+      {/* <Stack.Screen
+        name="DrawerNavigator"
+        component={DrawerNavigator}
+        options={{ headerShown: false }}
+      /> */}
 
 
     </Stack.Navigator>

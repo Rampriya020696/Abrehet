@@ -26,7 +26,7 @@ const Signup = ({ navigation, type }) => {
             const response = await Auth.signUp(username, password, email, phoneNumber);
             console.log(response)
             console.log('SignUp Done')
-            navigation.navigate('BottomTabNav');
+            navigation.navigate('Signin');
         } catch (e: any) {
             Alert.alert('Error', e.message)
         }

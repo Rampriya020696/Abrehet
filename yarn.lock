@@ -3548,6 +3548,15 @@
     "query-string" "^7.0.0"
     "react-is" "^16.13.0"
 
+"@react-navigation/drawer@^6.4.3":
+  "integrity" "sha512-qdOwZxrJe05uaDzpLPhEvXqvt0iop0AGlaGYpc3nnG44KYpzpym8/Zxoy6dIw0pn5ZPU0afvKqm+UxS2Uoz+ZQ=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/drawer/-/drawer-6.4.3.tgz"
+  "version" "6.4.3"
+  dependencies:
+    "@react-navigation/elements" "^1.3.4"
+    "color" "^4.2.3"
+    "warn-once" "^0.1.0"
+
 "@react-navigation/elements@^1.3.1", "@react-navigation/elements@^1.3.4":
   "integrity" "sha512-O0jICpjn3jskVo4yiWzZozmj7DZy1ZBbn3O7dbenuUjZSj/cscjwaapmZZFGcI/IMmjmx8UTKsybhCFEIbGf3g=="
   "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.4.tgz"
@@ -5195,7 +5204,7 @@
   dependencies:
     "color-name" "^1.0.0"
 
-"color-string@^1.6.0":
+"color-string@^1.6.0", "color-string@^1.9.0":
   "integrity" "sha512-9Mrz2AQLefkH1UvASKj6v6hj/7eWgjnT/cVsR8CumieLoT+g900exWeNogqtweI8dxloXN9BDQTYro1oWu/5CQ=="
   "resolved" "https://registry.npmjs.org/color-string/-/color-string-1.9.0.tgz"
   "version" "1.9.0"
@@ -5219,6 +5228,14 @@
   dependencies:
     "color-convert" "^1.9.3"
     "color-string" "^1.6.0"
+
+"color@^4.2.3":
+  "integrity" "sha512-1rXeuUUiGGrykh+CeBdu5Ie7OJwinCgQY0bc7GCRxy5xVHy+moaqkpL/jqQq0MtQOeYcrqEz4abc5f0KtU7W4A=="
+  "resolved" "https://registry.npmjs.org/color/-/color-4.2.3.tgz"
+  "version" "4.2.3"
+  dependencies:
+    "color-convert" "^2.0.1"
+    "color-string" "^1.9.0"
 
 "colorette@^1.0.7":
   "integrity" "sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g=="
@@ -8971,7 +8988,7 @@
   "resolved" "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz"
   "version" "2.6.2"
 
-"react-native-reanimated@^2.4.1":
+"react-native-reanimated@^2.4.1", "react-native-reanimated@>= 1.0.0":
   "integrity" "sha512-kvf7ylGlwa5hxMQ+wpPFjQrI2c6eexf53/xRo+dvXBNefGmSYaYR5sFtD0XMMzIPQlkCB9tJ0Pu9+2WCQUY7Cg=="
   "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-2.4.1.tgz"
   "version" "2.4.1"

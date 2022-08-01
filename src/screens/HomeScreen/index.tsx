@@ -91,6 +91,11 @@ const HomeScreen = ({ searchValue }: HomeScreenProps) => {
         <Text style={styles.menuText}>
           Menu
         </Text>
+        <TouchableOpacity onPress={()=>navigation.openDrawer()}>
+          <Text>
+            Open Drawer
+          </Text>
+        </TouchableOpacity>
       </View>
 
       <View style={{ marginTop: 30 }}>

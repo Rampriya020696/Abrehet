@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View, Image, Alert } from 'react-native';
+import { 
+    ImageBackground, ScrollView, StyleSheet,
+     Text, TouchableOpacity, View,
+      Image, Alert,
+     }
+ from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import { colors, fonts } from '../../utils';
@@ -8,7 +13,6 @@ import awsconfig from '../../aws-exports';
 
 
 Amplify.configure({Auth:awsconfig});
-
 
 
 const Signin = ({ navigation, type }) => {
@@ -97,8 +101,8 @@ const Signin = ({ navigation, type }) => {
                             marginTop: 10,flexDirection:'row',alignItems:'center',
                         }}>
                             <Image 
-                            style={{height:20,width:25,marginLeft:20}}
-                            source={require('../../Assets/Icon-Mail.png')} />
+                            style={{height:25,width:25,marginLeft:20}}
+                            source={require('../../Assets/userNameAbrehet.png')} />
                             <TextInput
                                 placeholder='Username'
                                 onChangeText={(value) => setUsername(value)}
