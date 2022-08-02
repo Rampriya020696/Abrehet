@@ -24,6 +24,7 @@ import awsconfig from './src/aws-exports';
 import MainStackNavigator from './src/router/stackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 
+
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
 
@@ -43,6 +44,7 @@ const App = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer>
         <MainStackNavigator />
+        
       </NavigationContainer>
       {/* <Router/> */}
     </SafeAreaView>

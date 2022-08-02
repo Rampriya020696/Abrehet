@@ -6,10 +6,7 @@ import { colors, fonts } from '../../utils';
 import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 
-
 Amplify.configure({ Auth: awsconfig });
-
-
 
 const Signup = ({ navigation, type }) => {
 
@@ -17,8 +14,6 @@ const Signup = ({ navigation, type }) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-
-
 
     const handleSignUp = async () => {
 
@@ -45,7 +40,7 @@ const Signup = ({ navigation, type }) => {
                             source={require('../../Assets/Logo.png')} />
 
                         <Text style={styles.title}>
-                            Abrehet Shop
+                            Mesob Shop
                         </Text>
                     </View>
 
@@ -128,7 +123,7 @@ const Signup = ({ navigation, type }) => {
 
                         <View style={{ alignSelf: 'center', marginTop: 20 }}>
                             <TouchableOpacity
-                            onPress={()=>navigation.navigate('Signin')}
+                                onPress={() => navigation.navigate('Signin')}
                             >
                                 <Text style={{ color: 'white', fontSize: 15 }}>
                                     Already Have An Account ? SignIn

@@ -46,7 +46,7 @@ const Signin = ({ navigation, type }) => {
                             source={require('../../Assets/Logo.png')} />
 
                         <Text style={styles.title}>
-                            Abrehet Shop
+                        Mesob Shop
                         </Text>
                     </View>
 

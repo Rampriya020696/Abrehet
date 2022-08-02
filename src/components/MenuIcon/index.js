@@ -20,7 +20,7 @@ const MenuIcon = ({ onPress }) => {
   return (
     <View style={styles.menu}>
       <View style={[styles.menuColoumn]}>
-        
+
         <TouchableOpacity style={styles.menuIcon} onPress={onPress}>
           <Image
             style={{ width: 26, height: 26 }}
@@ -36,14 +36,14 @@ const MenuIcon = ({ onPress }) => {
           <Text style={styles.title}>Garments</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuIcon} onPress={onPress}>
-         
-         <Icon 
-         name="table-furniture"
-         color={'brown'}
-         size={27}
-         />
-        
-       
+
+          <Icon
+            name="table-furniture"
+            color={'brown'}
+            size={27}
+          />
+
+
           {/* <Image
             style={{ width: 22, height: 25 }}
             source={require('../../Assets/EquitmentIcon.png')} /> */}
@@ -53,15 +53,72 @@ const MenuIcon = ({ onPress }) => {
       </View>
 
 
-      <View style={styles.menuColoumn1}>
-        <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
-          <Image
-            style={styles.image}
-            source={require('../../Assets/ComputerIcon.png')}
-          />
-          <Text style={styles.title}>Electronics</Text>
-        </TouchableOpacity>
-       
+      <View style={{ flexDirection: 'row', }}>
+        <View style={styles.menuColoumn}>
+          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+            <Image
+              style={styles.image}
+              source={require('../../Assets/ComputerIcon.png')}
+            />
+            <Text style={styles.title}>Electronics</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.menuColoumn}>
+          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+            <Image
+              style={styles.image}
+              source={require('../../Assets/ComputerIcon.png')}
+            />
+            <Text style={styles.title}>Jewelry and Beauty</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.menuColoumn}>
+          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+            <Image
+              style={styles.image}
+              source={require('../../Assets/ComputerIcon.png')}
+            />
+            <Text style={styles.title}>Real Estate</Text>
+          </TouchableOpacity>
+        </View>
+
+      </View>
+
+
+
+      <View style={{ flexDirection: 'row',marginTop:60, }}>
+        <View style={styles.menuColoumn}>
+          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+            <Image
+              style={styles.image}
+              source={require('../../Assets/BookIcon.png')}
+            />
+            <Text style={styles.title}>Books</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.menuColoumn}>
+          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+            <Image
+              style={styles.image}
+              source={require('../../Assets/ComputerIcon.png')}
+            />
+            <Text style={styles.title}>Cars And Trucks</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.menuColoumn}>
+          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+            <Image
+              style={styles.image}
+              source={require('../../Assets/ComputerIcon.png')}
+            />
+            <Text style={styles.title}>Books</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
 
 
@@ -78,12 +135,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  menu1: {
+    flex: 1,
+    marginTop: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   menuColoumn: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginTop:20,
+    marginTop: 50,
     marginBottom: 10,
   },
   menuColoumn1: {

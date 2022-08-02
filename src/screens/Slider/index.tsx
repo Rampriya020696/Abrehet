@@ -31,11 +31,11 @@ const images = [
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.wrapper}>
-            <Text style={styles.name}>Abrehet Shop</Text>
+            <Text style={styles.name}>Mesob Shop</Text>
             {/* <View style={styles.strip} /> */}
             <View style={{ height: 20, width: 20 }}></View>
 
-            <Text style={styles.text1}>Get best product in Abrehet shop</Text>
+            <Text style={styles.text1}>Get best product in Mesob shop</Text>
             <View style={{ height: 20, width: 20 }}></View>
             <View>
               <TouchableOpacity 
