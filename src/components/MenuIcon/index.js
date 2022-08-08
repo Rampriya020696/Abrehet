@@ -88,7 +88,7 @@ const MenuIcon = ({ onPress }) => {
 
 
 
-      <View style={{ flexDirection: 'row',marginTop:60, }}>
+      <View style={{ flexDirection: 'row',marginTop:5, }}>
         <View style={styles.menuColoumn}>
           <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
             <Image
@@ -131,7 +131,7 @@ export default MenuIcon;
 const styles = StyleSheet.create({
   menu: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginTop: 50,
+    marginTop: 0,
     marginBottom: 10,
   },
   menuColoumn1: {
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   },
 
   menuIcon: {
-    height: 50,
+    height:50,
     flexDirection: 'column',
     flex: 1,
     justifyContent: 'center',

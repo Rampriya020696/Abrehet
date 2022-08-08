@@ -15,7 +15,8 @@ import Signup from '../screens/Signup';
 import HomeProductScreen from '../screens/HomeScreen/main';
 import Splash from '../screens/Splash';
 import Slider from '../screens/Slider';
-import DrawerNavigator from './DrawerNavigator';
+
+
 const Root = createStackNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -96,13 +97,7 @@ const MainStackNavigator = () => {
         options={{ headerShown: false }}
       />
 
-      {/* <Stack.Screen
-        name="DrawerNavigator"
-        component={DrawerNavigator}
-        options={{ headerShown: false }}
-      /> */}
-
-
+    
     </Stack.Navigator>
   );
 };

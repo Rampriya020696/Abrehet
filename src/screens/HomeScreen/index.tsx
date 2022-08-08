@@ -13,6 +13,7 @@ import initProducts from '../../data/products';
 import Banner from '../../components/Banner';
 import MenuIcon from '../../components/MenuIcon';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 // import useNavigationContainer from 'reac-native-'
 
 
@@ -77,32 +78,34 @@ const HomeScreen = ({ searchValue }: HomeScreenProps) => {
 
 
   return (
-    <View style={styles.page}>
-      {/* Render Product Component */}
+    <ScrollView>
 
-      <View style={{ width: '100%', height: 200 }}>
-        <Banner images={images} />
-      </View>
+      <View style={styles.page}>
+        {/* Render Product Component */}
 
-      <View style={{
-        backgroundColor: 'transparent', paddingHorizontal: 20, paddingVertical: 20,
-        zIndex: 100,
-      }}>
-        <Text style={styles.menuText}>
-          Menu
-        </Text>
-        <TouchableOpacity onPress={()=>navigation.openDrawer()}>
-          <Text>
-            Open Drawer
+        <View style={{ width: '100%', height: 200 }}>
+          <Banner images={images} />
+        </View>
+
+        <View style={{
+          backgroundColor: 'transparent', paddingHorizontal: 20, paddingVertical: 20,
+          zIndex: 100,
+        }}>
+          <Text style={styles.menuText}>
+            Menu
           </Text>
-        </TouchableOpacity>
-      </View>
+          {/* <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Text>
+              Open Drawer
+            </Text>
+          </TouchableOpacity> */}
+        </View>
 
-      <View style={{ marginTop: 30 }}>
-        <MenuIcon onPress={() => navigation.navigate('Home')} />
-      </View>
+        <View style={{ marginTop: 5 }}>
+          <MenuIcon onPress={() => navigation.navigate('Home')} />
+        </View>
 
-      {/* <FlatList
+        {/* <FlatList
      
         data={products.filter(val => {
           console.log(val);
@@ -115,7 +118,9 @@ const HomeScreen = ({ searchValue }: HomeScreenProps) => {
         renderItem={({ item }) => <ProductItem item={item} />}
         showsVerticalScrollIndicator={false}
       /> */}
-    </View>
+      </View>
+    </ScrollView>
+
   );
 };
 
