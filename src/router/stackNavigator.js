@@ -15,6 +15,7 @@ import Signup from '../screens/Signup';
 import HomeProductScreen from '../screens/HomeScreen/main';
 import Splash from '../screens/Splash';
 import Slider from '../screens/Slider';
+import Profile from '../screens/Profile';
 
 
 const Root = createStackNavigator();
@@ -97,7 +98,13 @@ const MainStackNavigator = () => {
         options={{ headerShown: false }}
       />
 
-    
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{ headerShown: false }}
+      />
+
+
     </Stack.Navigator>
   );
 };

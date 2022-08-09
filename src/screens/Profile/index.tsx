@@ -8,28 +8,28 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  DummyUser,
-  DummyWomen,
-  ICAboutApp,
-  ICCallCenter,
-  ICLanguage,
-  ICMessage,
-  ICMyOrders,
-  ICNotification,
-  ICPayment,
-  ICSetting,
-  ILBGProfile,
-} from '../../assets';
-import {Gap, Strip} from '../../components';
-import {colors, fonts} from '../../utils';
+// import {
+//   DummyUser,
+//   DummyWomen,
+//   ICAboutApp,
+//   ICCallCenter,
+//   ICLanguage,
+//   ICMessage,
+//   ICMyOrders,
+//   ICNotification,
+//   ICPayment,
+//   ICSetting,
+//   ILBGProfile,
+// } from '../../assets';
+// import { Gap, Strip } from '../../components';
+import { colors, fonts } from '../../utils';
 
-const Profile = ({onPress, navigation}) => {
+const Profile = ({ onPress, navigation }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
         <View>
-          <ImageBackground source={ILBGProfile} style={styles.image}>
+          <ImageBackground source={require('../../Assets/Background-Profile.png')} style={styles.image}>
             <Image source={DummyWomen} style={styles.avatar} />
             <Text style={styles.name}>Alisa Hearth</Text>
             <TouchableOpacity>
@@ -42,6 +42,9 @@ const Profile = ({onPress, navigation}) => {
           style={styles.list}
           onPress={() => navigation.navigate('Notification')}>
           <ICNotification style={styles.icon} />
+          <Image
+            style={{ width: 20, height: 20 }}
+            source={require('../../Assets/Icon-Notification.png')} />
           <Text style={styles.titleList}>Notification</Text>
         </TouchableOpacity>
 
