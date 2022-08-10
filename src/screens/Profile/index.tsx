@@ -30,89 +30,116 @@ const Profile = ({ onPress, navigation }) => {
       <View style={styles.container}>
         <View>
           <ImageBackground source={require('../../Assets/Background-Profile.png')} style={styles.image}>
-            <Image source={DummyWomen} style={styles.avatar} />
+            {/* <Image source={DummyWomen} style={styles.avatar}/> */}
+
+            <Image
+              style={styles.avatar}
+              source={require('../../Assets/womanface.jpg')} />
+
             <Text style={styles.name}>Alisa Hearth</Text>
             <TouchableOpacity>
               <Text style={styles.title}>Edit Profile</Text>
             </TouchableOpacity>
           </ImageBackground>
         </View>
-        <Gap height={140} />
-        <TouchableOpacity
-          style={styles.list}
-          onPress={() => navigation.navigate('Notification')}>
-          <ICNotification style={styles.icon} />
-          <Image
-            style={{ width: 20, height: 20 }}
-            source={require('../../Assets/Icon-Notification.png')} />
-          <Text style={styles.titleList}>Notification</Text>
-        </TouchableOpacity>
+        {/* <Gap height={140} /> */}
+        <View style={{ height: 140 }}>
+        </View>
+        <View>
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => navigation.navigate('Notification')}>
+            {/* <ICNotification style={styles.icon} /> */}
+            <Image
+              style={{ width: 25, height: 30 }}
+              source={require('../../Assets/Icon-Notification.png')} />
 
-        <View style={styles.strip} />
+            <Text style={styles.titleList}>Notification</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.list}
-          onPress={() => navigation.navigate('Payments')}>
-          <ICPayment style={styles.icon} />
-          <Text style={styles.titleList}>Payments</Text>
-        </TouchableOpacity>
+          <View style={styles.strip} />
 
-        <View style={styles.strip} />
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => navigation.navigate('Payments')}>
+            {/* <ICPayment style={styles.icon} /> */}
+            <Image
+              style={{ width: 25, height: 27 }}
+              source={require('../../Assets/Icon-Payments.png')} />
+            <Text style={styles.titleList}>Payments</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.list}
-          onPress={() => navigation.navigate('Chat')}>
-          <ICMessage style={styles.icon} />
-          <Text style={styles.titleList}>Message</Text>
-        </TouchableOpacity>
+          <View style={styles.strip} />
 
-        <View style={styles.strip} />
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => navigation.navigate('Chat')}>
+            {/* <ICMessage style={styles.icon} /> */}
+            <Image
+              style={{ width: 25, height: 23 }}
+              source={require('../../Assets/Icon-Message.png')} />
+            <Text style={styles.titleList}>Message</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.list}
-          onPress={() => navigation.navigate('MyOrder')}>
-          <ICMyOrders style={styles.icon} />
-          <Text style={styles.titleList}>My Orders</Text>
-        </TouchableOpacity>
+          <View style={styles.strip} />
 
-        <View style={styles.strip} />
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => navigation.navigate('MyOrder')}>
+            {/* <ICMyOrders style={styles.icon} /> */}
+            <Image 
+            style={{height:18,width:25}}
+            source={require('../../Assets/Icon-My-Orders.png')}
+            />
+            <Text style={styles.titleList}>My Orders</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.list}
-          onPress={() => navigation.navigate('SettingAccount')}>
-          <ICSetting style={styles.icon} />
-          <Text style={styles.titleList}>Setting Account</Text>
-        </TouchableOpacity>
+          <View style={styles.strip} />
 
-        <View style={styles.strip} />
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => navigation.navigate('SettingAccount')}>
+            {/* <ICSetting style={styles.icon} /> */}
+            <Image 
+            style={{height:20,width:25}}
+            source={require('../../Assets/Icon-Setting-Account.png')}/>
+            <Text style={styles.titleList}>Setting Account</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.list}
-          onPress={() => navigation.navigate('CallCenter')}>
-          <ICCallCenter style={styles.icon} />
-          <Text style={styles.titleList}>Call Center</Text>
-        </TouchableOpacity>
+          <View style={styles.strip} />
 
-        <View style={styles.strip} />
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => navigation.navigate('CallCenter')}>
+              {/* <Image 
+              style={{height:20,width:25}}
+              source={require('../../Assets/ICCallCenter.png')}
+              /> */}
+            {/* <ICCallCenter style={styles.icon} /> */}
+            <Text style={styles.titleList}>Call Center</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.list}
-          onPress={() => navigation.navigate('Language')}>
-          <ICLanguage style={styles.icon} />
-          <Text style={styles.titleList}>Language</Text>
-        </TouchableOpacity>
+          <View style={styles.strip} />
 
-        <View style={styles.strip} />
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => navigation.navigate('Language')}>
+            {/* <ICLanguage style={styles.icon} /> */}
+            <Text style={styles.titleList}>Language</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.list}
-          onPress={() => navigation.navigate('About')}>
-          <ICAboutApp style={styles.icon} />
-          <Text style={styles.titleList}>About Apps</Text>
-        </TouchableOpacity>
+          <View style={styles.strip} />
 
-        <View style={styles.strip} />
-        <Gap height={20} />
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => navigation.navigate('About')}>
+            {/* <ICAboutApp style={styles.icon} /> */}
+            <Text style={styles.titleList}>About Apps</Text>
+          </TouchableOpacity>
+
+          <View style={styles.strip} />
+          {/* <Gap height={20} /> */}
+        </View>
       </View>
     </ScrollView>
   );

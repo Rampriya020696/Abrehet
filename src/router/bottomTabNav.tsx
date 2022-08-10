@@ -12,6 +12,7 @@ import ShopingCartStack from './ShoppingCartStack';
 import { Image, View } from 'react-native';
 import { Constants } from '@aws-amplify/core';
 import SvgUri from 'react-native-svg-uri';
+import Profile from '../screens/Profile';
 
 
 const Tab = createBottomTabNavigator();
@@ -79,7 +80,7 @@ const BottomTabNav = () => {
       />
 
       <Tab.Screen
-        component={ProfileScreen}
+        component={Profile}
         name="Account"
         options={{
           tabBarIcon: ({ color }) => (
