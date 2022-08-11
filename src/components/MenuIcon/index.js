@@ -15,6 +15,10 @@ import {
   ICTiket,
 } from '../IconImages/index';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon2 from 'react-native-vector-icons/AntDesign';
+import Icon3 from 'react-native-vector-icons/Foundation';
+
+
 
 const MenuIcon = ({ onPress }) => {
   return (
@@ -68,7 +72,7 @@ const MenuIcon = ({ onPress }) => {
           <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
             <Image
               style={styles.image}
-              source={require('../../Assets/ComputerIcon.png')}
+              source={require('../../Assets/jewellery.png')}
             />
             <Text style={styles.title}>Jewelry and Beauty</Text>
           </TouchableOpacity>
@@ -76,10 +80,11 @@ const MenuIcon = ({ onPress }) => {
 
         <View style={styles.menuColoumn}>
           <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
-            <Image
-              style={styles.image}
-              source={require('../../Assets/ComputerIcon.png')}
-            />
+          <Icon2
+            name="home"
+            color={'red'}
+            size={25}
+          />
             <Text style={styles.title}>Real Estate</Text>
           </TouchableOpacity>
         </View>
@@ -101,9 +106,10 @@ const MenuIcon = ({ onPress }) => {
 
         <View style={styles.menuColoumn}>
           <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
-            <Image
-              style={styles.image}
-              source={require('../../Assets/ComputerIcon.png')}
+           
+          <Image 
+              style={{height:20,width:30}}
+            source={require('../../Assets/Icon-My-Orders.png')}
             />
             <Text style={styles.title}>Cars And Trucks</Text>
           </TouchableOpacity>
@@ -111,11 +117,17 @@ const MenuIcon = ({ onPress }) => {
 
         <View style={styles.menuColoumn}>
           <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
-            <Image
+            
+          <Icon3
+            name="burst-sale"
+            color={'green'}
+            size={22}
+          />
+            {/* <Image
               style={styles.image}
               source={require('../../Assets/ComputerIcon.png')}
-            />
-            <Text style={styles.title}>Books</Text>
+            /> */}
+            <Text style={styles.title}>Flash Sale</Text>
           </TouchableOpacity>
         </View>
 

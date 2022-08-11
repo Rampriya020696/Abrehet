@@ -101,7 +101,7 @@ const Profile = ({ onPress, navigation }) => {
             onPress={() => navigation.navigate('SettingAccount')}>
             {/* <ICSetting style={styles.icon} /> */}
             <Image 
-            style={{height:20,width:25}}
+            style={{height:24,width:25}}
             source={require('../../Assets/Icon-Setting-Account.png')}/>
             <Text style={styles.titleList}>Setting Account</Text>
           </TouchableOpacity>
@@ -111,10 +111,10 @@ const Profile = ({ onPress, navigation }) => {
           <TouchableOpacity
             style={styles.list}
             onPress={() => navigation.navigate('CallCenter')}>
-              {/* <Image 
-              style={{height:20,width:25}}
-              source={require('../../Assets/ICCallCenter.png')}
-              /> */}
+              <Image 
+              style={{height:25,width:25}}
+              source={require('../../Assets/Icon-Call-Center.png')}
+              />
             {/* <ICCallCenter style={styles.icon} /> */}
             <Text style={styles.titleList}>Call Center</Text>
           </TouchableOpacity>
@@ -125,6 +125,10 @@ const Profile = ({ onPress, navigation }) => {
             style={styles.list}
             onPress={() => navigation.navigate('Language')}>
             {/* <ICLanguage style={styles.icon} /> */}
+            <Image 
+            style={{width:25,height:24}}
+            source={require('../../Assets/Icon-Language.png')}
+            />
             <Text style={styles.titleList}>Language</Text>
           </TouchableOpacity>
 
@@ -134,6 +138,10 @@ const Profile = ({ onPress, navigation }) => {
             style={styles.list}
             onPress={() => navigation.navigate('About')}>
             {/* <ICAboutApp style={styles.icon} /> */}
+            <Image 
+            style={{width:20,height:30,padding:10,marginRight:5}}
+            source={require('../../Assets/Icon-About-Apps.png')}
+            />
             <Text style={styles.titleList}>About Apps</Text>
           </TouchableOpacity>
 
