@@ -1,10 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, FlatList, Text, TouchableOpacity, Image, } from 'react-native';
+import React, {useState, useEffect, useRef} from 'react';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import ProductItem from '../../components/ProductItem';
-import { DataStore } from 'aws-amplify';
+import {DataStore} from 'aws-amplify';
 import * as types from '../../API';
-import { API } from 'aws-amplify';
+import {API} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import _ from 'lodash';
 
@@ -12,14 +19,11 @@ import initProducts from '../../data/products';
 
 import Banner from '../../components/Banner';
 import MenuIcon from '../../components/MenuIcon';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import {useNavigation, NavigationProp} from '@react-navigation/native';
 // import useNavigationContainer from 'reac-native-'
-
-
 
 interface HomeScreenProps {
   searchValue: string;
-
 }
 
 interface ProductItemProps {
@@ -33,7 +37,6 @@ interface ProductItemProps {
   };
 }
 
-
 const images = [
   require('../../Assets/Banner.png'),
   require('../../Assets/Baner2.png'),
@@ -41,17 +44,16 @@ const images = [
   require('../../Assets/Baner5.png'),
   require('../../Assets/Category1.png'),
   require('../../Assets/Baner3.png'),
-]
+];
 
-
-const HomeProductScreen = ({ searchValue }: HomeScreenProps) => {
+const HomeProductScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<ProductItemProps[]>([]);
   const carouselRef = useRef();
 
   const navigation = useNavigation<any>();
   useEffect(() => {
     const fetchProducts = async () => {
-      let allProducts = (await API.graphql({ query: queries.listProducts })) as {
+      let allProducts = (await API.graphql({query: queries.listProducts})) as {
         data: types.ListProductsQuery;
       };
       setProducts(
@@ -70,31 +72,26 @@ const HomeProductScreen = ({ searchValue }: HomeScreenProps) => {
     fetchProducts();
   }, []);
 
-
-
-
-
-
-
   return (
     <View style={styles.page}>
       {/* Render Product Component */}
 
-      <View style={{ width: '100%', height: 200 }}>
+      <View style={{width: '100%', height: 200}}>
         <Banner images={images} />
       </View>
 
-      <View style={{
-        backgroundColor: 'transparent', paddingHorizontal: 20, paddingVertical: 20,
-        zIndex: 100,
-      }}>
-        <Text style={styles.menuText}>
-          Menu
-        </Text>
+      <View
+        style={{
+          backgroundColor: 'transparent',
+          paddingHorizontal: 20,
+          paddingVertical: 20,
+          zIndex: 100,
+        }}>
+        <Text style={styles.menuText}>Menu</Text>
       </View>
 
-      <View style={{ marginTop: 30 }}>
-        <MenuIcon onPress={() => navigation.navigate('Home')} />
+      <View style={{marginTop: 30}}>
+        <MenuIcon />
       </View>
 
       {/* <FlatList
@@ -114,7 +111,6 @@ const HomeProductScreen = ({ searchValue }: HomeScreenProps) => {
   );
 };
 
-
 const styles = StyleSheet.create({
   page: {
     flex: 1,
@@ -123,8 +119,7 @@ const styles = StyleSheet.create({
   menuText: {
     fontSize: 18,
     fontWeight: '900',
-    color: 'black'
-
+    color: 'black',
   },
 });
 

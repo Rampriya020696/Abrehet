@@ -1,7 +1,6 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import BottomTabNav from './bottomTabNav';
 import Signin from '../screens/Signin';
@@ -16,7 +15,7 @@ import HomeProductScreen from '../screens/HomeScreen/main';
 import Splash from '../screens/Splash';
 import Slider from '../screens/Slider';
 import Profile from '../screens/Profile';
-
+import FlashSale from '../screens/FlashSale';
 
 const Root = createStackNavigator();
 const Stack = createNativeStackNavigator();
@@ -24,87 +23,89 @@ const Stack = createNativeStackNavigator();
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator>
-
       <Stack.Screen
         name="Splash"
         component={Splash}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="Slider"
         component={Slider}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="Signin"
         component={Signin}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="Signup"
         component={Signup}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="BottomTabNav"
         component={BottomTabNav}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
-
 
       <Stack.Screen
         name="Home"
         component={HomeStack}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="HomeProductScreen"
         component={HomeProductScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="ProductDetails"
         component={ProductScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="Account"
         component={ProfileScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="Cart"
         component={ShopingCartStack}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="Brand"
         component={MenuScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="Address"
         component={AddressScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
       <Stack.Screen
         name="Profile"
         component={Profile}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
 
-
+      <Stack.Screen
+        name="FlashSale"
+        component={FlashSale}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

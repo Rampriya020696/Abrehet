@@ -1,10 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, FlatList, Text, TouchableOpacity, Image, } from 'react-native';
+// THIS IS THE ONE
+import React, {useState, useEffect, useRef} from 'react';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  Image,
+  Alert,
+} from 'react-native';
 import ProductItem from '../../components/ProductItem';
-import { DataStore } from 'aws-amplify';
+import {DataStore} from 'aws-amplify';
 import * as types from '../../API';
-import { API } from 'aws-amplify';
+import {API} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import _ from 'lodash';
 
@@ -12,15 +21,12 @@ import initProducts from '../../data/products';
 
 import Banner from '../../components/Banner';
 import MenuIcon from '../../components/MenuIcon';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {useNavigation, NavigationProp} from '@react-navigation/native';
+import {ScrollView} from 'react-native-gesture-handler';
 // import useNavigationContainer from 'reac-native-'
-
-
 
 interface HomeScreenProps {
   searchValue: string;
-
 }
 
 interface ProductItemProps {
@@ -34,7 +40,6 @@ interface ProductItemProps {
   };
 }
 
-
 const images = [
   require('../../Assets/Banner.png'),
   require('../../Assets/Baner2.png'),
@@ -42,17 +47,17 @@ const images = [
   require('../../Assets/Baner5.png'),
   require('../../Assets/Category1.png'),
   require('../../Assets/Baner3.png'),
-]
+];
 
-
-const HomeScreen = ({ searchValue }: HomeScreenProps) => {
+const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<ProductItemProps[]>([]);
+
   const carouselRef = useRef();
 
   const navigation = useNavigation<any>();
   useEffect(() => {
     const fetchProducts = async () => {
-      let allProducts = (await API.graphql({ query: queries.listProducts })) as {
+      let allProducts = (await API.graphql({query: queries.listProducts})) as {
         data: types.ListProductsQuery;
       };
       setProducts(
@@ -71,29 +76,26 @@ const HomeScreen = ({ searchValue }: HomeScreenProps) => {
     fetchProducts();
   }, []);
 
-
-
-
-
-
-
   return (
     <ScrollView>
-
       <View style={styles.page}>
         {/* Render Product Component */}
 
-        <View style={{ width: '100%', height: 200 }}>
-          <Banner images={images} />
+        <View style={{width: '100%', height: 200}}>
+          <Banner
+            images={images}
+            onPress={() => navigation.navigate('FlashSale')}
+          />
         </View>
 
-        <View style={{
-          backgroundColor: 'transparent', paddingHorizontal: 20, paddingVertical: 20,
-          zIndex: 100,
-        }}>
-          <Text style={styles.menuText}>
-            Menu
-          </Text>
+        <View
+          style={{
+            backgroundColor: 'transparent',
+            paddingHorizontal: 20,
+            paddingVertical: 20,
+            zIndex: 100,
+          }}>
+          <Text style={styles.menuText}>Menu</Text>
           {/* <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <Text>
               Open Drawer
@@ -101,8 +103,8 @@ const HomeScreen = ({ searchValue }: HomeScreenProps) => {
           </TouchableOpacity> */}
         </View>
 
-        <View style={{ marginTop: 5 }}>
-          <MenuIcon onPress={() => navigation.navigate('Home')} />
+        <View style={{marginTop: 5}}>
+          <MenuIcon />
         </View>
 
         {/* <FlatList
@@ -120,10 +122,8 @@ const HomeScreen = ({ searchValue }: HomeScreenProps) => {
       /> */}
       </View>
     </ScrollView>
-
   );
 };
-
 
 const styles = StyleSheet.create({
   page: {
@@ -133,8 +133,7 @@ const styles = StyleSheet.create({
   menuText: {
     fontSize: 18,
     fontWeight: '900',
-    color: 'black'
-
+    color: 'black',
   },
 });
 

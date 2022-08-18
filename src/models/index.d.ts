@@ -35,3 +35,4 @@ export declare class Users {
   constructor(init: ModelInit<Users, UsersMetaData>);
   static copyOf(source: Users, mutator: (draft: MutableModel<Users, UsersMetaData>) => MutableModel<Users, UsersMetaData> | void): Users;
 }
+

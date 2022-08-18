@@ -7,8 +7,8 @@ import {
   Image,
   Text,
 } from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-import {event} from 'react-native-reanimated';
 import {colors} from '../../utils/colors';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
@@ -26,7 +26,7 @@ class Banner extends React.Component {
   componentDidMount = () => {
     setInterval(() => {
       this.setState(
-        (prev) => ({
+        prev => ({
           selectedIndex:
             prev.selectedIndex === this.props.images.length - 1
               ? 0
@@ -43,7 +43,7 @@ class Banner extends React.Component {
     }, 3000);
   };
 
-  setSelectedIndex = (event) => {
+  setSelectedIndex = event => {
     // width of the viewSize
     const viewSize = event.nativeEvent.layoutMeasurement.width;
     // get current position of the scrollview
@@ -58,26 +58,32 @@ class Banner extends React.Component {
     const {selectedIndex} = this.state;
     return (
       <View style={{height: '100%', width: '100%'}}>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          pagingEnabled
-          onMomentumScrollEnd={this.setSelectedIndex}
-          ref={this.scrollRef}>
-          {images.map((image) => (
-            <Image key={image} source={image} style={styles.backgroundImage} />
-          ))}
-        </ScrollView>
+        <TouchableOpacity onPress={this.props.onPress}>
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            pagingEnabled
+            onMomentumScrollEnd={this.setSelectedIndex}
+            ref={this.scrollRef}>
+            {images.map(image => (
+              <Image
+                key={image}
+                source={image}
+                style={styles.backgroundImage}
+              />
+            ))}
+          </ScrollView>
 
-        <View style={styles.circleDiv}>
-          {images.map((image, i) => (
-            <Text
-              key={image}
-              style={selectedIndex === i ? styles.dotActive : styles.dot}>
-              ●
-            </Text>
-          ))}
-        </View>
+          <View style={styles.circleDiv}>
+            {images.map((image, i) => (
+              <Text
+                key={image}
+                style={selectedIndex === i ? styles.dotActive : styles.dot}>
+                ●
+              </Text>
+            ))}
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
