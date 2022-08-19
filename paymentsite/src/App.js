@@ -1,10 +1,10 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import queryString from "query-string";
-import { loadStripe } from "@stripe/stripe-js";
+import React from 'react';
+import './App.css';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import queryString from 'query-string';
+import {loadStripe} from '@stripe/stripe-js';
 
-const stripePromise = loadStripe("STRIPE_PUBLIC_KEY");
+const stripePromise = loadStripe('STRIPE_PUBLIC_KEY');
 
 // Showing null, because we will show the result in the app and not on the web
 function Success() {
@@ -35,7 +35,7 @@ async function initStripe() {
 
   const stripe = await stripePromise;
   await stripe.redirectToCheckout({
-    sessionId
+    sessionId,
   });
 }
 
