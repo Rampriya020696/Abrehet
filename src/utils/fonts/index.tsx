@@ -14,6 +14,6 @@ export const fonts = {
     600: 'Poppins-SemiBold',
     700: 'Poppins-Bold',
     800: 'Poppins-ExtraBold',
-    900: 'Poppins-Black',
+    // 900: 'Poppins-Black',
   },
 };

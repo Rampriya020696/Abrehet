@@ -7,7 +7,7 @@ import DummyPes from './pes.png';
 import DummyCamera from './camera.png';
 import ICLocationImage from './Ic-Location.png';
 import ICStar from './star.png';
-
+import ILCartItem from './Cart-Item.png';
 export {
   ILBannerFlashsale,
   DummyMacbook,
@@ -18,4 +18,5 @@ export {
   DummyPes,
   ICLocationImage,
   ICStar,
+  ILCartItem,
 };
