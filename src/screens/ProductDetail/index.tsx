@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {
   Dimensions,
@@ -33,33 +34,37 @@ const images = [
   require('../../Assets/Recomended-Image3.png'),
 ];
 
+type NavigationProp = {
+  navigate: (value: string) => void;
+  goBack: () => void;
+};
 const ProductDetail = props => {
   const [active, setActive] = React.useState(0);
+  const navigation = useNavigation<NavigationProp>();
 
-  //   change(nativeEvent) {
-  //     console.log('nativeEvent:', nativeEvent);
-  //     const slide = Math.ceil(
-  //       nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width,
-  //     );
-  //     if (slide !== this.state.active) {
-  //       this.setState({
-  //         active: slide,
-  //       });
-  //     }
-  //   }
+  const change = nativeEventX => {
+    const {nativeEvent} = nativeEventX;
+    console.log('nativeEvent:', nativeEvent);
+    const slide = Math.ceil(
+      nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width,
+    );
+    console.log({slide});
+    if (slide !== active) {
+      setActive(slide);
+    }
+  };
 
-  // const {active, selected} = this.state;
   return (
     <SafeAreaView style={styles.container}>
       <Header
         title="Product Detail"
         icon={ICCart2}
-        //   onPress={() => this.props.navigation.goBack()}
+        onPress={() => navigation.goBack()}
       />
       <ScrollView>
         <View style={styles.wrap}>
           <ScrollView
-            //   onScroll={({nativeEvent}) => this.change(nativeEvent)}
+            onScroll={change}
             showsHorizontalScrollIndicator={false}
             pagingEnabled
             horizontal
@@ -215,14 +220,12 @@ const ProductDetail = props => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.borderIcon}
-          // onPress={() => this.props.navigation.navigate('Chat')}
-        >
+          onPress={() => navigation.navigate('Chat')}>
           <Image source={ICChatWarna} style={styles.icon} />
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.payButton}
-          // onPress={() => this.props.navigation.navigate('Delivery')}
-        >
+          onPress={() => navigation.navigate('Delivery')}>
           <Text style={styles.pay}>Pay</Text>
         </TouchableOpacity>
       </View>
