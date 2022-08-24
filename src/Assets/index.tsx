@@ -8,7 +8,8 @@ import DummyCamera from './camera.png';
 import ICLocationImage from './Ic-Location.png';
 import ICStar from './star.png';
 import ILCartItem from './Cart-Item.png';
-
+import ICStarWhite from './ic-star-white.png';
+import ICCart2 from './Chart.png';
 import ILRecomended1 from './Recomended-Image1.png';
 import ILRecomended2 from './Recomended-Image2.png';
 import ILRecomended3 from './Recomended-Image3.png';
@@ -17,6 +18,10 @@ import ILRecomended5 from './Recomended-Image5.png';
 import ILRecomended6 from './Recomended-Image6.png';
 import ILRecomended7 from './Recomended-Image7.png';
 import ILRecomended8 from './Recomended-Image8.jpg';
+import ICStarBorder from './ic-star-border.png';
+import ICCartWarna from './IconChart.png';
+import ICChatWarna from './IconMessage.png';
+import DummyMan6 from './Man6.png';
 export {
   ILBannerFlashsale,
   DummyMacbook,
@@ -36,4 +41,10 @@ export {
   ILRecomended6,
   ILRecomended7,
   ILRecomended8,
+  ICStarWhite,
+  ICStarBorder,
+  ICCartWarna,
+  ICChatWarna,
+  DummyMan6,
+  ICCart2,
 };
