@@ -1,5 +1,5 @@
 {
-  "name": "Abrehet",
+  "name": "abrehet",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,8 +9,7 @@
     "test": "jest",
     "clean": "cd android && ./gradlew clean  && cd ..",
     "vr": "npx react-native run-android --variant=release",
-    "build-r": "cd android && ./gradlew bundleRelease && cd ..",
-    
+    "build-r": "cd android && ./gradlew bundleRelease && cd ..",    
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
