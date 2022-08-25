@@ -21,6 +21,8 @@ import MyOrder from '../screens/MyOrder';
 import About from '../screens/About';
 import ContactUs from '../screens/ContactUs';
 import SettingAccount from '../screens/SettingAccount';
+import OfferDeals from '../screens/OfferDeals';
+import Payments from '../screens/Payment';
 
 const Root = createStackNavigator();
 const Stack = createNativeStackNavigator();
@@ -134,6 +136,16 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name="SettingAccount"
         component={SettingAccount}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OfferDeals"
+        component={OfferDeals}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Payments"
+        component={Payments}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

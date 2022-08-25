@@ -52,7 +52,7 @@ const Profile = ({onPress, navigation}) => {
 
           <TouchableOpacity
             style={styles.list}
-            onPress={() => navigation.navigate('Payments')}>
+            onPress={() => navigation.navigate('OfferDeals')}>
             <MaterialIcons size={25} name="local-offer" color="#5c6cc1c9" />
             <Text style={styles.titleList}>Offers Deals</Text>
           </TouchableOpacity>
