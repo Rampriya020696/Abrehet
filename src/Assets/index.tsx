@@ -27,7 +27,7 @@ import ICBox from './Ic-Box.png';
 import ICKurir from './Ic-Kurir.png';
 import ICNote from './Ic-Note.png';
 import ICHand from './Ic-Hand.png';
-
+import ICChatNull from './Ic-Chat-Null.png';
 // svg
 import ICOrder from './svg/ICOrder';
 import ICBlipOrder from './svg/ICBlipOrder';
@@ -64,4 +64,5 @@ export {
   ICHand,
   ICBlipOrder,
   ICOrder,
+  ICChatNull,
 };

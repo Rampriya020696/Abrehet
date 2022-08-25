@@ -19,6 +19,7 @@ import FlashSale from '../screens/FlashSale';
 import ProductDetail from '../screens/ProductDetail';
 import MyOrder from '../screens/MyOrder';
 import About from '../screens/About';
+import ContactUs from '../screens/ContactUs';
 
 const Root = createStackNavigator();
 const Stack = createNativeStackNavigator();
@@ -122,6 +123,11 @@ const MainStackNavigator = () => {
       <Stack.Screen
         name="About"
         component={About}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ContactUs"
+        component={ContactUs}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

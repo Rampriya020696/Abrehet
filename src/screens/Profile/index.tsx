@@ -89,7 +89,7 @@ const Profile = ({onPress, navigation}) => {
 
           <TouchableOpacity
             style={styles.list}
-            onPress={() => navigation.navigate('CallCenter')}>
+            onPress={() => navigation.navigate('ContactUs')}>
             <Image
               style={{height: 25, width: 25}}
               source={require('../../Assets/Icon-Call-Center.png')}
