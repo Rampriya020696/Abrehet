@@ -10,19 +10,7 @@ import {
 } from 'react-native';
 import Gap from '../../components/Gap';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-// import {
-//   DummyUser,
-//   DummyWomen,
-//   ICAboutApp,
-//   ICCallCenter,
-//   ICLanguage,
-//   ICMessage,
-//   ICMyOrders,
-//   ICNotification,
-//   ICPayment,
-//   ICSetting,
-//   ILBGProfile,
-// } from '../../assets';
+
 import {colors, fonts} from '../../utils';
 
 const Profile = ({onPress, navigation}) => {
@@ -122,7 +110,7 @@ const Profile = ({onPress, navigation}) => {
               style={{width: 20, height: 30, padding: 10, marginRight: 5}}
               source={require('../../Assets/Icon-About-Apps.png')}
             />
-            <Text style={styles.titleList}>About Apps</Text>
+            <Text style={styles.titleList}>About App</Text>
           </TouchableOpacity>
 
           <View style={styles.strip} />
