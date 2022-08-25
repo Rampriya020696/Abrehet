@@ -22,6 +22,16 @@ import ICStarBorder from './ic-star-border.png';
 import ICCartWarna from './IconChart.png';
 import ICChatWarna from './IconMessage.png';
 import DummyMan6 from './Man6.png';
+import ICHouse from './Ic-House.png';
+import ICBox from './Ic-Box.png';
+import ICKurir from './Ic-Kurir.png';
+import ICNote from './Ic-Note.png';
+import ICHand from './Ic-Hand.png';
+
+// svg
+import ICOrder from './svg/ICOrder';
+import ICBlipOrder from './svg/ICBlipOrder';
+
 export {
   ILBannerFlashsale,
   DummyMacbook,
@@ -47,4 +57,11 @@ export {
   ICChatWarna,
   DummyMan6,
   ICCart2,
+  ICHouse,
+  ICBox,
+  ICKurir,
+  ICNote,
+  ICHand,
+  ICBlipOrder,
+  ICOrder,
 };

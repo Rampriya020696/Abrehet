@@ -89,7 +89,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
   }, []);
 
   return (
-    <ScrollView>
+    <ScrollView style={{flex: 1}}>
       <View style={styles.page}>
         {/* Render Product Component */}
 
@@ -115,9 +115,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         </View>
 
         {/* Akhir Category Component */}
-
         <View style={styles.gap} />
-
         {/* Recomended */}
         <Gap height={20} />
         <Text style={styles.title}>Recomended</Text>
