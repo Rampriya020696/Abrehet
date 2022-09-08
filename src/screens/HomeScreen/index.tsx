@@ -37,6 +37,7 @@ import {
 } from '../../Assets';
 import Recomended from '../../components/Recomended';
 import {HeaderComponent} from '../../router/HomeStack';
+import { FlashList } from '@shopify/flash-list';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -125,11 +126,12 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           <Text style={styles.title}>Recomended</Text>
           <Gap height={5} />
           <View style={styles.recomended}>
-            <FlatList
-              data={products.slice(0, 30)}
-              // data={products}
+            <FlashList
+              // data={products.slice(0, 30)}
+              data={products}
               numColumns={2}
-              keyExtractor={(item: any) => item.id}
+              keyExtractor={(item: any) => String(item.id)}
+              estimatedItemSize={200}
               renderItem={({item}: any) => {
                 // return <ProductItem item={item}  />;
                 return (
