@@ -21,15 +21,18 @@ Amplify.configure({Auth: awsconfig});
 const Signin = ({navigation, type}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSignIn = async () => {
+    setLoading(true)
     try {
+
       const response = await Auth.signIn(username, password);
       console.log(response);
-      console.log('Hello');
-      navigation.navigate('BottomTabNav');
     } catch (e: any) {
       Alert.alert('Error', e.message);
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -53,7 +56,7 @@ const Signin = ({navigation, type}) => {
           </View>
 
           <View style={{alignSelf: 'center', marginTop: 20, width: '100%'}}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={{
                 backgroundColor: '#536DFE',
                 width: '90%',
@@ -119,7 +122,7 @@ const Signin = ({navigation, type}) => {
                 marginTop: 10,
               }}>
               OR
-            </Text>
+            </Text> */}
 
             <View
               style={{
@@ -192,12 +195,12 @@ const Signin = ({navigation, type}) => {
                   alignItems: 'center',
                 }}>
                 <Text style={{fontSize: 17, color: 'white', fontWeight: '600'}}>
-                  Sign In
+                  { loading ? "loading..." : "Sign In"} 
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => navigation.navigate('BottomTabNav')}
               style={{
                 backgroundColor: 'red',
@@ -208,7 +211,7 @@ const Signin = ({navigation, type}) => {
                 marginBottom: 20,
               }}>
               <Text style={{fontSize: 14, color: 'white'}}>Skip</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </ScrollView>
@@ -224,8 +227,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   page2: {
-    flexGrow: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    height: "75%"    
+
   },
   wraperLogo: {
     flexDirection: 'row',

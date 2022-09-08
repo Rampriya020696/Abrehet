@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
 import { fonts } from '../../utils';
 
-const Splash = ({ navigation }) => {
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.replace('Slider');
-    }, 3000);
-  }, [navigation]);
+const Splash = () => {
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     navigation.replace('Slider');
+  //   }, 3000);
+  // }, [navigation]);
   return (
     // <View>
       <ImageBackground source={require('../../Assets/AbrehetBackgroundImage.png')} style={styles.container}>

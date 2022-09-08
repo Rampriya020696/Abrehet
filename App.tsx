@@ -34,6 +34,9 @@ const App = () => {
     flex: 1,
   };
 
+
+
+  
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -44,5 +47,5 @@ const App = () => {
 };
 
 // export default withAuthenticator(App, {Signin});
-export default withAuthenticator(App);
-// export default App;
+// export default withAuthenticator(App);
+export default App;
