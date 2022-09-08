@@ -16,7 +16,7 @@ const ShopingCartStack = () => {
       <Stack.Screen
         component={AddressScreen}
         name="Address"
-        options={{title: 'Address'}}
+        options={{title: 'Address', headerShown: false}}
       />
     </Stack.Navigator>
   );

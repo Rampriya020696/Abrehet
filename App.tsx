@@ -8,27 +8,23 @@
  * @format
  */
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
-import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
+import React, {useState} from 'react';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Router from './src/router';
 
 // import Amplify from 'aws-amplify';
-import {withAuthenticator , AmplifyTheme} from 'aws-amplify-react-native';
+import {withAuthenticator, AmplifyTheme} from 'aws-amplify-react-native';
 import Signin from './src/screens/Signin';
 
-
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify, {Auth} from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 import MainStackNavigator from './src/router/stackNavigator';
-import { NavigationContainer } from '@react-navigation/native';
-
+import {NavigationContainer} from '@react-navigation/native';
 
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
-
-
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,49 +34,15 @@ const App = () => {
     flex: 1,
   };
 
-
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NavigationContainer>
-        {/* <MainStackNavigator /> */}
-        
-      </NavigationContainer>
-      <Router/>
+      {/* <NavigationContainer><MainStackNavigator /></NavigationContainer> */}
+      <Router />
     </SafeAreaView>
   );
 };
 
-// const signUpConfig={
-//   header:"",
-//   hideAllDefaults:true,
-//   signUpFields:[
-//     {
-//       label: 'Full Name',
-//       key:'fullName',
-//       required:true,
-//       displayOrder:1,
-//       type:'string',
-//     },
-//     {
-//       label:'Password',
-//       key:'password',
-//       required:true,
-//       displayOrder:2,
-//       type:'string',
-//     },
-//     {
-//       label:'Skip',
-//       key:'skip',
-//       required:true,
-//       type:'string',
-
-//     }
-//   ]
-// }
-
-
-// export default withAuthenticator(App,{Signin});
-export default App;
-
-// ,{signUpConfig}
+// export default withAuthenticator(App, {Signin});
+export default withAuthenticator(App);
+// export default App;

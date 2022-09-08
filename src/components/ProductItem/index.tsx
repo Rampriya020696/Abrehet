@@ -18,7 +18,7 @@ const ProductItem = ({item}: ProductItemProps) => {
 
   const onPress = () => {
     globalThis.itemDetails = item.id;
-    console.log('item pressed');
+    console.log('item pressed', globalThis);
     navigation.navigate('ProductDetails');
   };
 
@@ -31,7 +31,7 @@ const ProductItem = ({item}: ProductItemProps) => {
           {item.title}
         </Text>
         <Text style={styles.price}>
-           {item.price}
+          {item.price}
           {item.oldPrice && (
             <Text style={styles.oldPrice}> {item.oldPrice}</Text>
           )}

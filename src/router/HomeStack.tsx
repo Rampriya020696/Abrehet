@@ -81,14 +81,9 @@ const HomeStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        header: () => (
-          <HeaderComponent
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-          />
-        ),
+        headerShown: false,
       }}>
-      <Stack.Screen name="HomeScreen" options={{title: 'Home'}}>
+      <Stack.Screen name="HomeScreen">
         {() => <HomeScreen searchValue={searchValue} />}
       </Stack.Screen>
       <Stack.Screen
@@ -102,3 +97,4 @@ const HomeStack = () => {
 };
 
 export default HomeStack;
+export {HeaderComponent};

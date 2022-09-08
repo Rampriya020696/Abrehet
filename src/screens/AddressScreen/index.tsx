@@ -12,10 +12,12 @@ import {Picker} from '@react-native-picker/picker';
 //import countryList from 'country-list';
 import Button from '../../components/Button';
 import styles from './styles';
-
+import Header from '../../components/Header';
+import {ICCart2} from '../../Assets';
+import ActionBtn from '../../components/ActionBtn';
 //const countries = countryList.getData();
 
-const AddressScreen = () => {
+const AddressScreen = ({navigation}) => {
   //const [country, setCountry] = useState(countries[0].code);
   const [fullname, setFullname] = useState('');
   const [phone, setPhone] = useState('');
@@ -46,11 +48,14 @@ const AddressScreen = () => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}>
+      <Header
+        title="Address"
+        icon={ICCart2}
+        onPress={() => navigation.goBack()}
+      />
       <ScrollView style={styles.root}>
-        <View style={styles.row}>
-         
-        </View>
-       
+        <View style={styles.row}></View>
+
         {/*  <Picker selectedValue={country} onValueChange={setCountry}>
             {countries.map(c => (
               <Picker.Item value={c.code} label={c.name} />
@@ -98,7 +103,14 @@ const AddressScreen = () => {
             onChangeText={setCity}
           />
         </View>
-        <Button text="Checkout" onPress={onCheckout} />
+        {/* <Button text="Checkout" onPress={onCheckout} /> */}
+        <ActionBtn
+          title="Checkout"
+          onPress={onCheckout}
+          containerStyle={{
+            borderRadius: 5,
+          }}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );

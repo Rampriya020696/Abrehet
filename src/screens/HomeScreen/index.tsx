@@ -36,6 +36,7 @@ import {
   ILRecomended7,
 } from '../../Assets';
 import Recomended from '../../components/Recomended';
+import {HeaderComponent} from '../../router/HomeStack';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -64,8 +65,6 @@ const images = [
 const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<ProductItemProps[]>([]);
 
-  const carouselRef = useRef();
-
   const navigation = useNavigation<any>();
   useEffect(() => {
     const fetchProducts = async () => {
@@ -88,100 +87,72 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     fetchProducts();
   }, []);
 
+  // console.log(products);
+
   return (
-    <ScrollView style={{flex: 1}}>
-      <View style={styles.page}>
-        {/* Render Product Component */}
+    <View style={{flex: 1}}>
+      <HeaderComponent searchValue="Search..." setSearchValue={() => {}} />
 
-        <View style={{width: '100%', height: 200}}>
-          <Banner
-            images={images}
-            onPress={() => navigation.navigate('FlashSale')}
-          />
+      <ScrollView style={{flex: 1}}>
+        <View style={styles.page}>
+          {/* Render Product Component */}
+
+          <View style={{width: '100%', height: 200}}>
+            <Banner
+              images={images}
+              onPress={() => navigation.navigate('FlashSale')}
+            />
+          </View>
+
+          <View
+            style={{
+              backgroundColor: 'transparent',
+              paddingHorizontal: 20,
+              paddingVertical: 20,
+              zIndex: 100,
+            }}>
+            <Text style={styles.menuText}>Menu</Text>
+          </View>
+
+          <View style={{marginTop: 5}}>
+            <MenuIcon />
+          </View>
+
+          {/* Akhir Category Component */}
+          <View style={styles.gap} />
+          {/* Recomended */}
+          <Gap height={20} />
+          <Text style={styles.title}>Recomended</Text>
+          <Gap height={5} />
+          <View style={styles.recomended}>
+            <FlatList
+              data={products.slice(0, 30)}
+              // data={products}
+              numColumns={2}
+              keyExtractor={(item: any) => item.id}
+              renderItem={({item}: any) => {
+                // return <ProductItem item={item}  />;
+                return (
+                  <Recomended
+                    image={{uri: item?.image}}
+                    title={item?.title}
+                    price={item?.price}
+                    rating="4.8"
+                    totalSale="932 Sale"
+                    onPress={() => {
+                      globalThis.itemDetails = item.id;
+                      // console.log('item pressed', globalThis);
+                      navigation.navigate('ProductDetails');
+                    }}
+                  />
+                );
+              }}
+            />
+          </View>
+          {/* Akhir Recomended Component */}
         </View>
-
-        <View
-          style={{
-            backgroundColor: 'transparent',
-            paddingHorizontal: 20,
-            paddingVertical: 20,
-            zIndex: 100,
-          }}>
-          <Text style={styles.menuText}>Menu</Text>
-        </View>
-
-        <View style={{marginTop: 5}}>
-          <MenuIcon />
-        </View>
-
-        {/* Akhir Category Component */}
-        <View style={styles.gap} />
-        {/* Recomended */}
-        <Gap height={20} />
-        <Text style={styles.title}>Recomended</Text>
-        <Gap height={5} />
-        <View style={styles.recomended}>
-          <Recomended
-            image={ILRecomended1}
-            title="Firona Skirt"
-            price="$ 10"
-            rating="4.8"
-            totalSale="932 Sale"
-            onPress={() => navigation.navigate('ProductDetail')}
-          />
-
-          <Recomended
-            image={ILRecomended2}
-            title="Arpenaz 4 family ..."
-            price="$ 200"
-            rating="4.2"
-            totalSale="892 Sale"
-            onPress={() => navigation.navigate('FlashSaleDetail')}
-          />
-          <Recomended
-            image={ILRecomended3}
-            title="Mizzu valicipous ...."
-            price="$ 4"
-            rating="4.7"
-            totalSale="1422 Sale"
-            onPress={() => navigation.navigate('ProductDetail')}
-          />
-          <Recomended
-            image={ILRecomended4}
-            title="Menty solid blue ...."
-            price="$ 15"
-            rating="4.4"
-            totalSale="523 Sale"
-            onPress={() => navigation.navigate('ProductDetail')}
-          />
-          <Recomended
-            image={ILRecomended5}
-            title="Korea choker ther .."
-            price="$ 20"
-            rating="4.7"
-            totalSale="1422 Sale"
-            onPress={() => navigation.navigate('ProductDetail')}
-          />
-          <Recomended
-            image={ILRecomended6}
-            title="Mon cheri pinguin"
-            price="$ 3"
-            rating="4.4"
-            totalSale="523 Sale"
-            onPress={() => navigation.navigate('ProductDetail')}
-          />
-          <Recomended
-            image={ILRecomended7}
-            title="Dr. Kevin Women .."
-            price="$ 15"
-            rating="4.1"
-            totalSale="654 Sale"
-            onPress={() => navigation.navigate('ProductDetail')}
-          />
-        </View>
-        {/* Akhir Recomended Component */}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 const width = Dimensions.get('window').width;

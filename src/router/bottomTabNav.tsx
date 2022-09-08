@@ -13,6 +13,7 @@ import {Image, View} from 'react-native';
 import {Constants} from '@aws-amplify/core';
 import SvgUri from 'react-native-svg-uri';
 import Profile from '../screens/Profile';
+import ProfileStack from './ProfileStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -77,7 +78,8 @@ const BottomTabNav = () => {
       />
 
       <Tab.Screen
-        component={Profile}
+        // component={ProfileScreen} //old
+        component={ProfileStack}
         name="Account"
         options={{
           tabBarIcon: ({color}) => <Icon name="user" color={color} size={25} />,

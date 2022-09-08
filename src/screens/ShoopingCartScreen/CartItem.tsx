@@ -3,73 +3,85 @@ import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {ILCartItem} from '../../Assets';
-import ActionBtn from '../../components/ActionBtn';
 import Button from '../../components/Button';
 import CartProductItem from '../../components/CartProductItem';
 import Strip from '../../components/Strip';
 import {colors, fonts} from '../../utils';
-import CartItem from './CartItem';
 
-const Cart = ({onPress}) => {
-  const [products, setProducts] = useState([]);
-  const navigation = useNavigation<any>();
-
-  const onCheckout = () => {
-    navigation.navigate('Address');
+interface CartProductItemProps {
+  cartItem: {
+    id: string;
+    quantity: number;
+    option?: string;
+    item: {
+      id: string;
+      description: string;
+      title: string;
+      image: string;
+      price: number;
+      oldPrice: number;
+    };
   };
+}
+const CartItem = ({cartItem}: CartProductItemProps) => {
+  const navigation = useNavigation<any>();
+  const {quantity: quantityProp, item} = cartItem;
+  const [quantity, setQuantity] = useState(quantityProp);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      setProducts(globalThis.cart ? Object.values(globalThis.cart) : []);
-    });
-    return unsubscribe;
-  }, [navigation]);
-
-  console.log({products});
   return (
-    <View style={styles.page}>
-      <Text style={styles.cart}>Cart</Text>
-      <View
-        style={{
-          marginLeft: 20,
-        }}>
-        <Text
-          style={{
-            fontSize: 15,
-            fontWeight: 'bold',
-            fontFamily: fonts.primary[600],
-          }}>
-          Subtotal ({products.length} item):{' '}
-          <Text style={{color: '#e47911', fontWeight: 'bold'}}>
-            {products
-              .reduce(
-                (summedPrice, product) =>
-                  summedPrice + product['item']['price'] * product['quantity'],
-                0,
-              )
-              .toFixed(2)}
+    <View style={styles.wrapper}>
+      <View style={styles.container}>
+        <Image source={{uri: cartItem.item.image}} style={styles.image} />
+        <View style={styles.name}>
+          <Text numberOfLines={2} style={styles.title}>
+            {cartItem.item.title}
           </Text>
-        </Text>
-
-        <ActionBtn
-          title="Proceed to checkout"
-          onPress={onCheckout}
-          containerStyle={{marginHorizontal: 20, marginLeft: 0}}
-        />
+          <Text style={styles.desc}>
+            {`${cartItem.item.description.substring(0, 80)}...`}
+          </Text>
+          <Text style={styles.price}>{cartItem.item.price}</Text>
+          <View style={styles.pilih}>
+            <TouchableOpacity
+              onPress={() => {
+                let newQty = quantity - 1;
+                globalThis.cart[item.id].quantity = newQty;
+                setQuantity(newQty);
+              }}>
+              <Text style={styles.nomer}>-</Text>
+            </TouchableOpacity>
+            <View style={styles.strip} />
+            <TouchableOpacity>
+              <Text style={styles.nomer}>{quantity}</Text>
+            </TouchableOpacity>
+            <View style={styles.strip} />
+            <TouchableOpacity
+              onPress={() => {
+                let newQty = quantity + 1;
+                globalThis.cart[item.id].quantity = newQty;
+                setQuantity(newQty);
+              }}>
+              <Text style={styles.nomer}>+</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
-      <FlatList
-        data={products}
-        renderItem={({item}) => <CartItem cartItem={item} />}
-        showsVerticalScrollIndicator={false}
-      />
-      {/* item start */}
-
-      {/* item end */}
+      <Strip />
+      <View style={styles.pay}>
+        <Text style={styles.total}> Qty: {cartItem.quantity}</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            globalThis.itemDetails = item.id;
+            // console.log('item pressed', globalThis);
+            navigation.navigate('ProductDetails');
+          }}>
+          <Text style={styles.titlePay}>View</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
-
-export default Cart;
+export default CartItem;
 
 const styles = StyleSheet.create({
   page: {

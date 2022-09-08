@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,11 +6,12 @@ import {
   FlatList,
   TextInput,
   Text,
+  Alert,
 } from 'react-native';
-import { Auth } from 'aws-amplify';
-import { UserAgent } from 'amazon-cognito-identity-js';
+import {Auth} from 'aws-amplify';
+import {UserAgent} from 'amazon-cognito-identity-js';
 import * as types from '../../API';
-import { API, graphqlOperation } from 'aws-amplify';
+import {API, graphqlOperation} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import _ from 'lodash';
@@ -23,40 +24,45 @@ const ProfileScreen = () => {
   const [id, setID] = useState('');
   useEffect(() => {
     const userInfo = async () => {
-      let auth_user = await Auth.currentAuthenticatedUser();
-      console.log('attributes:', auth_user.attributes);
-      setInfo(auth_user.attributes);
-      let getUser = (await API.graphql(
-        graphqlOperation(queries.listUsers, {
-          filter: { email: { eq: auth_user.attributes.email } },
-        }),
-      )) as {
-        data: types.ListUsersQuery;
-      };
-      if (getUser.data.listUsers!.items.length === 0) {
-        let createUser = (await API.graphql(
-          graphqlOperation(mutations.createUsers, {
-            input: {
-              email: auth_user.attributes.email,
-              phone: auth_user.attributes.phone_number,
-            },
+      try {
+        let auth_user = await Auth.currentAuthenticatedUser();
+        console.log({auth_user}, 'auth_user');
+        console.log('attributes:', auth_user.attributes);
+        setInfo(auth_user.attributes);
+        let getUser = (await API.graphql(
+          graphqlOperation(queries.listUsers, {
+            filter: {email: {eq: auth_user.attributes.email}},
           }),
         )) as {
-          data: types.CreateUsersMutation;
+          data: types.ListUsersQuery;
         };
-      }
-      getUser = (await API.graphql(
-        graphqlOperation(queries.listUsers, {
-          filter: { email: { eq: auth_user.attributes.email } },
-        }),
-      )) as {
-        data: types.ListUsersQuery;
-      };
-      let user = getUser.data.listUsers!.items[0];
-      console.log(user);
-      setID(user!.id);
-      if (user!.address) {
-        onChangeText(user!.address);
+        if (getUser.data.listUsers!.items.length === 0) {
+          let createUser = (await API.graphql(
+            graphqlOperation(mutations.createUsers, {
+              input: {
+                email: auth_user.attributes.email,
+                phone: auth_user.attributes.phone_number,
+              },
+            }),
+          )) as {
+            data: types.CreateUsersMutation;
+          };
+        }
+        getUser = (await API.graphql(
+          graphqlOperation(queries.listUsers, {
+            filter: {email: {eq: auth_user.attributes.email}},
+          }),
+        )) as {
+          data: types.ListUsersQuery;
+        };
+        let user = getUser.data.listUsers!.items[0];
+        console.log(user);
+        setID(user!.id);
+        if (user!.address) {
+          onChangeText(user!.address);
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
     userInfo();
@@ -133,9 +139,7 @@ const ProfileScreen = () => {
             }),
           );
         }}
-        
       />
-      
     </View>
   );
 };
@@ -152,11 +156,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   text: {
-    
     fontSize: 70,
     fontWeight: 'bold',
-
-  }
+  },
 });
 
 export default ProfileScreen;

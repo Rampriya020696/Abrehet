@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Image,
   ImageBackground,
@@ -12,8 +12,72 @@ import Gap from '../../components/Gap';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {colors, fonts} from '../../utils';
+import {API, Auth, graphqlOperation} from 'aws-amplify';
 
-const Profile = ({onPress, navigation}) => {
+import {UserAgent} from 'amazon-cognito-identity-js';
+import * as types from '../../API';
+import * as queries from '../../graphql/queries';
+import * as mutations from '../../graphql/mutations';
+import _ from 'lodash';
+
+const Profile = ({navigation}) => {
+  const [info, setInfo] = useState<any>(null);
+  const [text, onChangeText] = useState('');
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [id, setID] = useState('');
+  useEffect(() => {
+    const userInfo = async () => {
+      let auth_user = await Auth.currentAuthenticatedUser();
+      console.log('attributes:', auth_user.attributes);
+      setInfo(auth_user.attributes);
+      let getUser = (await API.graphql(
+        graphqlOperation(queries.listUsers, {
+          filter: {email: {eq: auth_user.attributes.email}},
+        }),
+      )) as {
+        data: types.ListUsersQuery;
+      };
+      if (getUser.data.listUsers!.items.length === 0) {
+        let createUser = (await API.graphql(
+          graphqlOperation(mutations.createUsers, {
+            input: {
+              email: auth_user.attributes.email,
+              phone: auth_user.attributes.phone_number,
+            },
+          }),
+        )) as {
+          data: types.CreateUsersMutation;
+        };
+      }
+      getUser = (await API.graphql(
+        graphqlOperation(queries.listUsers, {
+          filter: {email: {eq: auth_user.attributes.email}},
+        }),
+      )) as {
+        data: types.ListUsersQuery;
+      };
+      let user = getUser.data.listUsers!.items[0];
+      console.log(user);
+      setID(user!.id);
+      if (user!.address) {
+        onChangeText(user!.address);
+      }
+    };
+    userInfo();
+  }, []);
+  if (!info) {
+    return (
+      <View
+        style={{
+          padding: 10,
+          flex: 1,
+        }}>
+        <Text>Loading</Text>
+      </View>
+    );
+  }
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -28,7 +92,10 @@ const Profile = ({onPress, navigation}) => {
               source={require('../../Assets/womanface.jpg')}
             />
 
-            <Text style={styles.name}>Alisa Hearth</Text>
+            <Text style={styles.name}>{info?.email}</Text>
+            {/* <Text style={[styles.name, {marginTop: 5, fontSize: 10}]}>
+              {info?.phone_number}
+            </Text> */}
             <TouchableOpacity>
               <Text style={styles.title}>Edit Profile</Text>
             </TouchableOpacity>
@@ -41,8 +108,7 @@ const Profile = ({onPress, navigation}) => {
 
           <TouchableOpacity
             style={styles.list}
-            onPress={() => navigation.navigate('Payments')}>
-            {/* <ICPayment style={styles.icon} /> */}
+            onPress={() => navigation.navigate('PaymentScreen')}>
             <Image
               style={{width: 25, height: 27}}
               source={require('../../Assets/Icon-Payments.png')}
@@ -50,20 +116,11 @@ const Profile = ({onPress, navigation}) => {
             <Text style={styles.titleList}>Payments</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.list}
-            onPress={() => navigation.navigate('OfferDeals')}>
-            <MaterialIcons size={25} name="local-offer" color="#5c6cc1c9" />
-            <Text style={styles.titleList}>Offers Deals</Text>
-          </TouchableOpacity>
-
-          <View style={styles.strip} />
-
           <View style={styles.strip} />
 
           <TouchableOpacity
             style={styles.list}
-            onPress={() => navigation.navigate('MyOrder')}>
+            onPress={() => navigation.navigate('OrdersScreens')}>
             {/* <ICMyOrders style={styles.icon} /> */}
             <Image
               style={{height: 18, width: 25}}
@@ -76,7 +133,7 @@ const Profile = ({onPress, navigation}) => {
 
           <TouchableOpacity
             style={styles.list}
-            onPress={() => navigation.navigate('SettingAccount')}>
+            onPress={() => navigation.navigate('AccountSettingScreen')}>
             {/* <ICSetting style={styles.icon} /> */}
             <Image
               style={{height: 24, width: 25}}
@@ -89,7 +146,7 @@ const Profile = ({onPress, navigation}) => {
 
           <TouchableOpacity
             style={styles.list}
-            onPress={() => navigation.navigate('ContactUs')}>
+            onPress={() => navigation.navigate('ContactUsScreen')}>
             <Image
               style={{height: 25, width: 25}}
               source={require('../../Assets/Icon-Call-Center.png')}
@@ -104,7 +161,7 @@ const Profile = ({onPress, navigation}) => {
 
           <TouchableOpacity
             style={styles.list}
-            onPress={() => navigation.navigate('About')}>
+            onPress={() => navigation.navigate('AboutUsScreen')}>
             {/* <ICAboutApp style={styles.icon} /> */}
             <Image
               style={{width: 20, height: 30, padding: 10, marginRight: 5}}

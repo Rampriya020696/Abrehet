@@ -30,7 +30,7 @@ const MenuIcon = () => {
             style={{width: 25, height: 25}}
             source={require('../../Assets/FashionIcon.png')}
           />
-          <Text style={styles.title}>Garments</Text>
+          <Text style={styles.title}>Fashion</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuIcon} onPress={onPress}>
           <Icon name="table-furniture" color={'brown'} size={27} />
