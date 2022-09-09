@@ -8,6 +8,11 @@ import {SafeAreaView, View, TextInput, Image} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import HomeProductScreen from '../screens/HomeScreen/main';
+import StaticPage from '../screens/StaticPage';
+import FlashSale from '../screens/FlashSale';
+import ChatScreen from '../screens/ChatScreen';
+import {NavigationActions} from 'react-navigation';
+import {useNavigation} from '@react-navigation/native';
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -20,12 +25,13 @@ const HeaderComponent = ({
   searchValue,
   setSearchValue,
 }: HeaderComponentProps) => {
+  const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={{backgroundColor: '#08b3fc'}}>
       <View
         style={{
           flexDirection: 'row',
-          // justifyContent: 'space-between',
+          // justifyContent: 'space-evenly',
           alignItems: 'center',
           backgroundColor: '#6A91C7',
           paddingHorizontal: 20,
@@ -41,6 +47,7 @@ const HeaderComponent = ({
             alignItems: 'center',
             paddingLeft: 5,
             borderRadius: 12,
+            flex: 1,
           }}>
           <Image
             style={{width: 20, height: 20}}
@@ -59,19 +66,21 @@ const HeaderComponent = ({
             onChangeText={setSearchValue}
           />
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={{marginHorizontal: 10}}
+          onPress={() => navigation.navigate('ChatScreen')}>
           <Image
-            style={{width: 22, height: 20, marginLeft: 10}}
+            style={{width: 22, height: 20}}
             source={require('../Assets/ChatICon.png')}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <Image
             style={{width: 22, height: 20, marginLeft: 10}}
             source={require('../Assets/Notification.png')}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </SafeAreaView>
   );
@@ -92,6 +101,9 @@ const HomeStack = () => {
         options={{title: 'HomeProduct'}}
       />
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
+      <Stack.Screen component={StaticPage} name="StaticPage" />
+      <Stack.Screen component={FlashSale} name="FlashSale" />
+      <Stack.Screen component={ChatScreen} name="ChatScreen" />
     </Stack.Navigator>
   );
 };

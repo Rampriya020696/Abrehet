@@ -11,10 +11,11 @@ import {ICGo} from '../../Assets';
 import Gap from '../../components/Gap';
 import Header from '../../components/Header';
 import Strip from '../../components/Strip';
-
+import {Auth} from 'aws-amplify';
 import {colors, fonts} from '../../utils';
 
 const SettingAccount = ({navigation}) => {
+  const onLogOutPress = () => Auth.signOut();
   return (
     <View style={styles.page}>
       <Header title="Setting Account" onPress={navigation.goBack} />
@@ -25,46 +26,25 @@ const SettingAccount = ({navigation}) => {
         <Text style={styles.title}>Account</Text>
         <Gap height={20} />
         <Strip />
-        <TouchableOpacity style={styles.account}>
-          <Text style={styles.name}>Address</Text>
+        <TouchableOpacity
+          style={styles.account}
+          onPress={() => navigation.navigate('ChangeAddress')}>
+          <Text style={styles.name}>Change Address</Text>
           <Image source={ICGo} style={styles.go} />
         </TouchableOpacity>
         <Strip />
-        <TouchableOpacity style={styles.account}>
-          <Text style={styles.name}>Telephone</Text>
+        <TouchableOpacity
+          style={styles.account}
+          onPress={() => navigation.navigate('ChangePassword')}>
+          <Text style={styles.name}>Change Password</Text>
           <Image source={ICGo} style={styles.go} />
         </TouchableOpacity>
         <Strip />
-        <TouchableOpacity style={styles.account}>
-          <Text style={styles.name}>Email</Text>
-          <Image source={ICGo} style={styles.go} />
-        </TouchableOpacity>
-        <Strip />
+
         <Gap height={20} />
         <View style={styles.gap} />
         <Gap height={20} />
-        <Text style={styles.title}>Setting</Text>
-        <Gap height={20} />
-        <Strip />
-        <TouchableOpacity style={styles.account}>
-          <Text style={styles.name}>Order Notifications</Text>
-          <Image source={ICGo} style={styles.go} />
-        </TouchableOpacity>
-        <Strip />
-        <TouchableOpacity style={styles.account}>
-          <Text style={styles.name}>Discount Notifications</Text>
-          <Image source={ICGo} style={styles.go} />
-        </TouchableOpacity>
-        <Strip />
-        <TouchableOpacity style={styles.account}>
-          <Text style={styles.name}>Scredit Card</Text>
-          <Image source={ICGo} style={styles.go} />
-        </TouchableOpacity>
-        <Strip />
-        <Gap height={20} />
-        <View style={styles.gap} />
-        <Gap height={20} />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onLogOutPress}>
           <Text style={styles.title}>Logout</Text>
         </TouchableOpacity>
         <Gap height={40} />

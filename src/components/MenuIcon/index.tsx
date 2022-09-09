@@ -6,33 +6,37 @@ import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Foundation';
 import {useNavigation} from '@react-navigation/native';
 
-type NavigationProps = {
-  navigate: (str: string) => void;
-};
 const MenuIcon = () => {
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useNavigation<any>();
 
-  const onPress = () => {
-    navigation.navigate('FlashSale');
-  };
   return (
     <View style={styles.menu}>
       <View style={[styles.menuColoumn]}>
-        <TouchableOpacity style={styles.menuIcon} onPress={onPress}>
+        <TouchableOpacity
+          style={styles.menuIcon}
+          onPress={() =>
+            navigation.navigate('StaticPage', {title: 'Groceries'})
+          }>
           <Image
             style={{width: 26, height: 26}}
             source={require('../../Assets/FoodIcon.png')}
           />
           <Text style={styles.title}>Groceries</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuIcon} onPress={onPress}>
+        <TouchableOpacity
+          style={styles.menuIcon}
+          onPress={() => navigation.navigate('StaticPage', {title: 'Fashion'})}>
           <Image
             style={{width: 25, height: 25}}
             source={require('../../Assets/FashionIcon.png')}
           />
           <Text style={styles.title}>Fashion</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuIcon} onPress={onPress}>
+        <TouchableOpacity
+          style={styles.menuIcon}
+          onPress={() =>
+            navigation.navigate('StaticPage', {title: 'Furniture'})
+          }>
           <Icon name="table-furniture" color={'brown'} size={27} />
 
           <Text style={styles.title}>Furniture</Text>
@@ -41,7 +45,11 @@ const MenuIcon = () => {
 
       <View style={{flexDirection: 'row'}}>
         <View style={styles.menuColoumn}>
-          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+          <TouchableOpacity
+            style={[styles.menuIcon]}
+            onPress={() =>
+              navigation.navigate('StaticPage', {title: 'Electronics'})
+            }>
             <Image
               style={styles.image}
               source={require('../../Assets/ComputerIcon.png')}
@@ -51,7 +59,11 @@ const MenuIcon = () => {
         </View>
 
         <View style={styles.menuColoumn}>
-          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+          <TouchableOpacity
+            style={[styles.menuIcon]}
+            onPress={() =>
+              navigation.navigate('StaticPage', {title: 'Jewelry and Beauty'})
+            }>
             <Image
               style={styles.image}
               source={require('../../Assets/jewellery.png')}
@@ -61,7 +73,11 @@ const MenuIcon = () => {
         </View>
 
         <View style={styles.menuColoumn}>
-          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+          <TouchableOpacity
+            style={[styles.menuIcon]}
+            onPress={() =>
+              navigation.navigate('StaticPage', {title: 'Real Estate'})
+            }>
             <Icon2 name="home" color={'red'} size={25} />
             <Text style={styles.title}>Real Estate</Text>
           </TouchableOpacity>
@@ -70,7 +86,9 @@ const MenuIcon = () => {
 
       <View style={{flexDirection: 'row', marginTop: 5}}>
         <View style={styles.menuColoumn}>
-          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+          <TouchableOpacity
+            style={[styles.menuIcon]}
+            onPress={() => navigation.navigate('StaticPage', {title: 'Books'})}>
             <Image
               style={styles.image}
               source={require('../../Assets/BookIcon.png')}
@@ -80,7 +98,11 @@ const MenuIcon = () => {
         </View>
 
         <View style={styles.menuColoumn}>
-          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+          <TouchableOpacity
+            style={[styles.menuIcon]}
+            onPress={() =>
+              navigation.navigate('StaticPage', {title: 'Cars And Trucks'})
+            }>
             <Image
               style={{height: 20, width: 30}}
               source={require('../../Assets/Icon-My-Orders.png')}
@@ -90,7 +112,9 @@ const MenuIcon = () => {
         </View>
 
         <View style={styles.menuColoumn}>
-          <TouchableOpacity style={[styles.menuIcon]} onPress={onPress}>
+          <TouchableOpacity
+            style={[styles.menuIcon]}
+            onPress={() => navigation.navigate('FlashSale')}>
             <Icon3 name="burst-sale" color={'green'} size={22} />
 
             <Text style={styles.title}>Flash Sale</Text>

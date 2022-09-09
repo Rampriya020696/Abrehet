@@ -18,21 +18,20 @@ import {APP_ICON} from '../../../assets/images';
 
 Amplify.configure({Auth: awsconfig});
 
-const Signin = ({navigation, type}) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const Signin = ({navigation}) => {
+  const [username, setUsername] = useState('mspl');
+  const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
 
   const handleSignIn = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-
       const response = await Auth.signIn(username, password);
       console.log(response);
     } catch (e: any) {
       Alert.alert('Error', e.message);
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -195,13 +194,13 @@ const Signin = ({navigation, type}) => {
                   alignItems: 'center',
                 }}>
                 <Text style={{fontSize: 17, color: 'white', fontWeight: '600'}}>
-                  { loading ? "loading..." : "Sign In"} 
+                  {loading ? 'loading...' : 'Sign In'}
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
 
-            {/* <TouchableOpacity
-              onPress={() => navigation.navigate('BottomTabNav')}
+            <TouchableOpacity
+              // onPress={() => navigation.navigate('BottomTabNav')}
               style={{
                 backgroundColor: 'red',
                 width: '30%',
@@ -211,7 +210,7 @@ const Signin = ({navigation, type}) => {
                 marginBottom: 20,
               }}>
               <Text style={{fontSize: 14, color: 'white'}}>Skip</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -228,8 +227,7 @@ const styles = StyleSheet.create({
   },
   page2: {
     justifyContent: 'center',
-    height: "75%"    
-
+    height: '75%',
   },
   wraperLogo: {
     flexDirection: 'row',

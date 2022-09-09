@@ -1,8 +1,7 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import {Auth} from 'aws-amplify';
-import Button from '../../components/Button';
-import { onChange } from 'react-native-reanimated';
+import ActionBtn from '../../components/ActionBtn';
 
 const MenuScreen = () => {
   const onLogout = () => {
@@ -10,9 +9,16 @@ const MenuScreen = () => {
   };
   return (
     <SafeAreaView>
-      <Button text="Sign out" onPress={onLogout} />
+      {/* <Button text="Sign out" onPress={onLogout} /> */}
+      <View
+        style={{
+          flex: 1,
+          marginHorizontal: 20,
+          marginTop: 30,
+        }}>
+        <ActionBtn title="Sign out" onPress={onLogout} />
+      </View>
     </SafeAreaView>
-    
   );
 };
 

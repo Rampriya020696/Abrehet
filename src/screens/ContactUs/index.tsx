@@ -18,7 +18,9 @@ const ContactUs = ({navigation}) => {
           <Text style={styles.text}>
             If you have complain about {'\n'}the product chat me
           </Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('ChatScreen')}>
             <Text style={styles.textButton}>Contact Us</Text>
           </TouchableOpacity>
         </View>

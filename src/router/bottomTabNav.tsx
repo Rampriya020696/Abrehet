@@ -51,7 +51,6 @@ const BottomTabNav = () => {
         name="Brand"
         options={{
           tabBarIcon: ({focused}) => (
-            // <Icon4 name="shopping-bag" color={color} size={21} />
             <View>
               <Image
                 style={{

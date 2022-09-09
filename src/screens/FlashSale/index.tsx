@@ -38,7 +38,9 @@ const FlashSale = ({navigation}) => {
             available="9 Available"
             bar={0.6}
             colorBar={'#FFA500'}
-            onPress={() => navigation.navigate('FlashSaleDetail')}
+            onPress={() => {
+              // navigation.navigate('FlashSaleDetail')
+            }}
           />
           <FlashSaleCard
             image={DummyKarinaDress}
@@ -50,7 +52,9 @@ const FlashSale = ({navigation}) => {
             available="24 Available"
             bar={0.8}
             colorBar={'#52B640'}
-            onPress={() => navigation.navigate('FlashSaleDetail')}
+            onPress={() => {
+              // navigation.navigate('FlashSaleDetail')
+            }}
           />
         </View>
         <View style={styles.card}>
