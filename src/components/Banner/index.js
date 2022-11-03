@@ -40,7 +40,7 @@ class Banner extends React.Component {
           });
         },
       );
-    }, 3000);
+    }, 10000);
   };
 
   setSelectedIndex = event => {

@@ -1,17 +1,85 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/AntDesign';
 import Icon3 from 'react-native-vector-icons/Foundation';
 import {useNavigation} from '@react-navigation/native';
+import {API, graphqlOperation} from 'aws-amplify';
+import {getMenuItems} from './queries';
+
+type MenuType = {
+  id: string;
+  name: string;
+  icon: string;
+};
+
+const makeMenuData = data => {
+  const res: any = [];
+  while (data.length) {
+    res.push(data.splice(0, 3));
+  }
+  return res;
+};
 
 const MenuIcon = () => {
   const navigation = useNavigation<any>();
+  const [menuList, setMenuList] = useState([]);
+
+  useEffect(() => {
+    const getMenuList = async () => {
+      try {
+        const res = (await API.graphql(
+          graphqlOperation(getMenuItems, {}),
+        )) as any;
+        console.log(res?.data?.listMenus?.items, 'menuList');
+        setMenuList(makeMenuData(res?.data?.listMenus?.items));
+      } catch (error: any) {
+        console.log(error?.message);
+      }
+    };
+    getMenuList();
+  }, []);
+
+  console.log({menuList});
 
   return (
     <View style={styles.menu}>
-      <View style={[styles.menuColoumn]}>
+      {/* --- */}
+      {menuList?.map((group: MenuType[], index) => {
+        return (
+          <View key={`${index}`} style={{flexDirection: 'row', marginTop: 5}}>
+            {group?.map(item => {
+              return (
+                <View key={item?.id} style={styles.menuColoumn}>
+                  <TouchableOpacity
+                    style={[styles.menuIcon]}
+                    onPress={() =>
+                      navigation.navigate('StaticPage', {title: item?.name})
+                    }>
+                    {item?.icon ? (
+                      <Image
+                        style={styles.image}
+                        source={{
+                          uri: item?.icon,
+                        }}
+                      />
+                    ) : (
+                      <Image
+                        style={styles.image}
+                        source={require('../../Assets/BookIcon.png')}
+                      />
+                    )}
+                    <Text style={styles.title}>{item?.name}</Text>
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
+        );
+      })}
+      {/* --- */}
+      {/* <View style={[styles.menuColoumn]}>
         <TouchableOpacity
           style={styles.menuIcon}
           onPress={() =>
@@ -82,9 +150,9 @@ const MenuIcon = () => {
             <Text style={styles.title}>Real Estate</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
 
-      <View style={{flexDirection: 'row', marginTop: 5}}>
+      {/* <View style={{flexDirection: 'row', marginTop: 5}}>
         <View style={styles.menuColoumn}>
           <TouchableOpacity
             style={[styles.menuIcon]}
@@ -120,7 +188,7 @@ const MenuIcon = () => {
             <Text style={styles.title}>Flash Sale</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 };

@@ -22,6 +22,7 @@ const AddressScreen = ({navigation}) => {
   const [fullname, setFullname] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
+  const [otherDetails, setOtherDetails] = useState('');
   const [city, setCity] = useState('');
 
   {
@@ -91,6 +92,16 @@ const AddressScreen = ({navigation}) => {
             placeholder="Full Address"
             value={address}
             onChangeText={setAddress}
+          />
+        </View>
+        {/* Address */}
+        <View style={styles.row}>
+          <Text style={styles.label}>Other Details </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Other Details"
+            value={otherDetails}
+            onChangeText={setOtherDetails}
           />
         </View>
         {/* City */}
