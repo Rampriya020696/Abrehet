@@ -15,6 +15,7 @@ import {colors, fonts} from '../../utils';
 import Amplify, {Auth} from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import {APP_ICON} from '../../../assets/images';
+import {ResourceContext} from '../../context/ResourceContext';
 
 Amplify.configure({Auth: awsconfig});
 
@@ -23,7 +24,7 @@ const Signup = ({navigation, type}) => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-
+  const {resource} = React.useContext(ResourceContext) as any;
   const handleSignUp = async () => {
     try {
       const response = await Auth.signUp(
@@ -42,7 +43,11 @@ const Signup = ({navigation, type}) => {
 
   return (
     <ImageBackground
-      source={require('../../Assets/Login.png')}
+      source={
+        resource?.signup
+          ? {uri: resource?.signup}
+          : require('../../Assets/Login.png')
+      }
       style={styles.page}>
       <ScrollView
         showsVerticalScrollIndicator={false}

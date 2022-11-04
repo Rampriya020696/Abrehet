@@ -355,6 +355,8 @@ PODS:
     - React
   - RNCPicker (2.3.0):
     - React-Core
+  - RNFlashList (1.2.2):
+    - React-Core
   - RNGestureHandler (2.5.0):
     - React-Core
   - RNReanimated (2.9.1):
@@ -456,6 +458,7 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
+  - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -553,6 +556,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/masked-view"
   RNCPicker:
     :path: "../node_modules/@react-native-picker/picker"
+  RNFlashList:
+    :path: "../node_modules/@shopify/flash-list"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
@@ -616,6 +621,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNCPicker: c796ddf16cd93e980a5a5642eebcee9eb9da1e76
+  RNFlashList: 13d14d9502661134ad3ba892f81d76bdcbd79755
   RNGestureHandler: bad495418bcbd3ab47017a38d93d290ebd406f50
   RNReanimated: b5b17149593e7c05e4ec5c0efea1f21e05829510
   RNScreens: 2559f98b0835103cbef3b26ba77fa61d4bb37ae7
@@ -626,4 +632,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7bc2b333b33315724d26497232b7e77f853741b0
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

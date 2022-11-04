@@ -15,6 +15,7 @@ import {colors, fonts} from '../../utils';
 import Amplify, {Auth} from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import {APP_ICON} from '../../../assets/images';
+import {ResourceContext} from '../../context/ResourceContext';
 
 Amplify.configure({Auth: awsconfig});
 
@@ -22,7 +23,7 @@ const Signin = ({navigation}) => {
   const [username, setUsername] = useState('mspl');
   const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
-
+  const {resource} = React.useContext(ResourceContext) as any;
   const handleSignIn = async () => {
     setLoading(true);
     try {
@@ -37,7 +38,11 @@ const Signin = ({navigation}) => {
 
   return (
     <ImageBackground
-      source={require('../../Assets/Login.png')}
+      source={
+        resource?.login
+          ? {uri: resource.login}
+          : require('../../Assets/Login.png')
+      }
       style={styles.page}>
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -46,7 +51,6 @@ const Signin = ({navigation}) => {
           <View style={styles.wraperLogo}>
             <Image
               style={{height: 80, width: 80}}
-              //   source={require('../../Assets/Logo.png')}
               source={APP_ICON}
               resizeMode="contain"
             />

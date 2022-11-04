@@ -1,0 +1,6 @@
+3. Create a test environment to test that the new UI works correctly with Stripe and the end user is able to sign in with federated Facebook and Gmail and set up a federated account.
+5. Order notification email needs some updates.
+8. Chat with customers should come to the email so my workers can return customer questions in a timely manner.
+
+
+4. Make the menus and all the login Pics and marketing pictures to be dynamic so that I can update all from the DaynamoDB. All the UI templates are ready just need some code only to curtain to my needs.

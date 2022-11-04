@@ -22,7 +22,7 @@ import Amplify, {Auth} from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 import MainStackNavigator from './src/router/stackNavigator';
 import {NavigationContainer} from '@react-navigation/native';
-
+import ResourceContext from './src/context/ResourceContext';
 Amplify.configure(awsconfig);
 Auth.configure(awsconfig);
 
@@ -34,14 +34,12 @@ const App = () => {
     flex: 1,
   };
 
-
-
-  
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      {/* <NavigationContainer><MainStackNavigator /></NavigationContainer> */}
-      <Router />
+      <ResourceContext>
+        <Router />
+      </ResourceContext>
     </SafeAreaView>
   );
 };
