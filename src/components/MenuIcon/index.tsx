@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Image, Text, View, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/AntDesign';
@@ -7,6 +14,7 @@ import Icon3 from 'react-native-vector-icons/Foundation';
 import {useNavigation} from '@react-navigation/native';
 import {API, graphqlOperation} from 'aws-amplify';
 import {getMenuItems} from './queries';
+import {colors} from '../../utils';
 
 type MenuType = {
   id: string;
@@ -25,9 +33,11 @@ const makeMenuData = data => {
 const MenuIcon = () => {
   const navigation = useNavigation<any>();
   const [menuList, setMenuList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getMenuList = async () => {
+      setLoading(true);
       try {
         const res = (await API.graphql(
           graphqlOperation(getMenuItems, {}),
@@ -36,6 +46,8 @@ const MenuIcon = () => {
         setMenuList(makeMenuData(res?.data?.listMenus?.items));
       } catch (error: any) {
         console.log(error?.message);
+      } finally {
+        setLoading(false);
       }
     };
     getMenuList();
@@ -45,6 +57,9 @@ const MenuIcon = () => {
 
   return (
     <View style={styles.menu}>
+      {loading && (
+        <ActivityIndicator size={'small'} color={colors.blueButton} />
+      )}
       {/* --- */}
       {menuList?.map((group: MenuType[], index) => {
         return (

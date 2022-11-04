@@ -12,7 +12,7 @@ import {
   Dimensions,
 } from 'react-native';
 import ProductItem from '../../components/ProductItem';
-import {DataStore} from 'aws-amplify';
+import {DataStore, graphqlOperation} from 'aws-amplify';
 import * as types from '../../API';
 import {API} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
@@ -43,6 +43,17 @@ interface HomeScreenProps {
   searchValue: string;
 }
 
+const listBannerQuerie = `
+query MyQuery {
+  listBanners {
+    items {
+      id
+      image
+    }
+  }
+}
+`;
+
 interface ProductItemProps {
   item: {
     id: string;
@@ -63,8 +74,15 @@ const images = [
   require('../../Assets/Baner3.png'),
 ];
 
+const makeBanneData = data => {
+  return data.map(item => {
+    return {uri: item.image, ...item};
+  });
+};
+
 const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<ProductItemProps[]>([]);
+  const [bannerImages, setBannerImages] = useState<ProductItemProps[]>([]);
 
   const navigation = useNavigation<any>();
   useEffect(() => {
@@ -85,10 +103,22 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         }),
       );
     };
+
+    const fetchBannerImages = async () => {
+      try {
+        const res = (await API.graphql(
+          graphqlOperation(listBannerQuerie, {}),
+        )) as any;
+        setBannerImages(makeBanneData(res?.data?.listBanners?.items));
+      } catch (error) {
+        console.log(error, 'fetchBannerImages');
+      }
+    };
     fetchProducts();
+    fetchBannerImages();
   }, []);
 
-  // console.log(products);
+  console.log(bannerImages, 'bannerImages');
 
   return (
     <View style={{flex: 1}}>
@@ -96,11 +126,9 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
 
       <ScrollView style={{flex: 1}}>
         <View style={styles.page}>
-          {/* Render Product Component */}
-
           <View style={{width: '100%', height: 200}}>
             <Banner
-              images={images}
+              images={bannerImages}
               onPress={() => navigation.navigate('FlashSale')}
             />
           </View>
