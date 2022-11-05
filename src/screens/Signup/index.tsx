@@ -162,7 +162,7 @@ const Signup = ({navigation, type}) => {
             </View>
 
             <View style={{alignSelf: 'center', marginTop: 20}}>
-              <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
+              <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Text style={{color: 'white', fontSize: 15}}>
                   Already Have An Account ? SignIn
                 </Text>
