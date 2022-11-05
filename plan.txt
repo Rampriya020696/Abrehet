@@ -1,9 +1,0 @@
-1. Create a test environment to test that the new UI works correctly with Stripe 
-2. the end user is able to sign in with federated Facebook and Gmail and set up a federated account.
-3. Order notification email needs some updates.
-4. Chat with customers should come to the email so my workers can return customer questions in a timely manner.
-
-
-
-
-

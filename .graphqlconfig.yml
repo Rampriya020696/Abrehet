@@ -1,6 +1,6 @@
 projects:
-  abrehet:
-    schemaPath: yes/graphql/schema.json
+  Abrehet-staging:
+    schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.ts
     excludes:
@@ -10,6 +10,9 @@ projects:
         codeGenTarget: typescript
         generatedFileName: src/API.ts
         docsFilePath: src/graphql
+        region: us-east-1
+        apiId: 7tqahdabdndl7mhgoxdx7ytzeq
+        maxDepth: 2
 extensions:
   amplify:
     version: 3
