@@ -8,7 +8,7 @@ import {colors, fonts} from '../../utils';
 const About = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header title="About Apps" onPress={() => navigation.goBack()} />
+      <Header title="About App" onPress={() => navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Gap height={10} />
         <View style={styles.strip} />
@@ -16,25 +16,19 @@ const About = ({navigation}) => {
         <View style={styles.container}>
           {/* <Image source={ICLogoNotification} style={styles.icon} /> */}
           <View style={styles.title}>
-            <Text style={styles.treva}>Abrehet</Text>
-            <Text style={styles.desc}> E-Commerce</Text>
+            <Text style={styles.treva}>Mesob Store</Text>
+            <Text style={styles.desc}>E-Commerce</Text>
           </View>
         </View>
         <Gap height={20} />
         <View style={styles.strip} />
         <Gap height={20} />
         <Text style={styles.text}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+        I started building the Mesob store on October 5th, 2021 for a school project. At that time I didn’t have any plan to publish it. A good friend and family of mine by the name of Peter Tesfamichael advises me that it will be a good business model for our country Eritrea. In addition to the support, I got from my father, my wife, friends, family, and the Eritrean community thankfully by God`s grace I was able to publish this amazing app on March 20th 2022.
         </Text>
-        <Gap height={30} />
+        <Gap height={10} />
         <Text style={styles.text}>
-          It has survived not only five centuries, but also the leap into
-          electronic typesetting, remaining essentially unchanged. It was
-          popularised in the 1960s with the release of Letraset sheets
-          containing Lorem Ipsum passages.
+        The brand vision is to create a two-way shopping experience not only for Eritrea but for the whole of Africa and beyond. Iwill take time to encourage all young adults to take their dream one stepfurther to accomplish their goals.
         </Text>
         <Gap height={20} />
       </ScrollView>
@@ -46,12 +40,12 @@ export default About;
 
 const styles = StyleSheet.create({
   page: {
-    flex: 1,
+    flex: 6,
     backgroundColor: colors.white,
   },
   container: {
     flexDirection: 'row',
-    marginLeft: 20,
+    marginLeft: 10,
     backgroundColor: colors.white,
   },
   icon: {
@@ -63,22 +57,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   treva: {
-    fontSize: 16,
+    fontSize: 50,
     fontFamily: fonts.secondary[600],
     color: colors.text.secondary,
-    opacity: 0.7,
+    opacity: 0.9,
   },
   desc: {
-    fontSize: 16,
+    fontSize: 20,
     fontFamily: fonts.secondary[400],
     color: colors.text.secondary,
-    opacity: 0.5,
+    opacity: 0.9,
     marginTop: 4,
   },
   strip: {
     height: 0,
     borderColor: colors.borderstrip,
-    opacity: 0.5,
+    opacity: 0.3,
     borderWidth: 0.5,
     marginLeft: 20,
     marginRight: 20,
@@ -89,6 +83,6 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     marginHorizontal: 20,
     textAlign: 'justify',
-    opacity: 0.5,
+    opacity: 0.9,
   },
 });
