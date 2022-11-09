@@ -1,63 +1,37 @@
-// const express = require('express');
-// const Stripe = require('stripe');
-// const cors = require('cors');
-
 const STRIPE_SK =
   'sk_test_51M0L2VSFJgtn9Lb9Yi2MWeE0t4IHAnC9QbsBRWmBAnGvYw9DTiJWbHtoQEivXt8Jk0kznog2MnZUIK4SIxsIO3wo00QuHVLzl2';
-// const stripe = new Stripe(STRIPE_SK, {
-//   //@ts-ignore
-//   apiVersion: '2020-08-27',
-//   typescript: true,
-// });
-
-// const app = express();
-
-// app.use(express.json());
-// app.get('/stripe-token', async (req, res) => {
-//   console.log('OK');
-//   try {
-//     const paymentIntent = await stripe.paymentIntents.create({
-//       amount: 5000, // 50$
-//       currency: 'usd',
-//     });
-
-//     res.send({
-//       clientSecret: paymentIntent.client_secret,
-//     });
-//   } catch (error) {
-//     res.status(400).send({
-//       error: error,
-//     });
-//   }
-// });
-
-// app.get('/', (req, res) => {
-//   res.send('heelo');
-// });
-
-// app.listen(3000, () => console.log('running: 3000'));
-
-// ------
 
 const express = require('express');
 const app = express();
-const {resolve} = require('path');
+
+// const body = {
+//   name: '',
+//   address: '',
+//   postal_code: '',
+//   city: '',
+//   state: '',
+//   country: '',
+//   product: {
+//     amount: '',
+//     des: '',
+//   },
+// };
+
 const stripe = require('stripe')(STRIPE_SK);
 app.use(express.static('.'));
 app.use(express.json());
-// An endpoint for your checkout
-app.post('/checkout', async (req, res) => {
-  // Create or retrieve the Stripe Customer object associated with your user.
 
+const handleStripeCheckout = async (req, res) => {
+  // Create or retrieve the Stripe Customer object associated with your user.
   const customer = await stripe.customers.create({
-    name: 'abc',
+    name: req.body.name || '',
     // temp adding  address to handle indian rule
     address: {
-      line1: '510 Townsend St',
-      postal_code: '98140',
-      city: 'San Francisco',
-      state: 'CA',
-      country: 'US',
+      line1: req.body.address || '',
+      postal_code: req.body.postal_code || '',
+      city: req.body.city || '',
+      state: req.body.state || '',
+      country: req.body.country || '',
     },
   });
 
@@ -69,20 +43,21 @@ app.post('/checkout', async (req, res) => {
 
   // Create a PaymentIntent with the payment amount, currency, and customer
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 500,
-    description: 'social services',
+    amount: req.body.product.amount || '',
+    description: req.body.product.des || '',
     // temp adding  address to handle indian rule
     shipping: {
-      name: 'Jenny Rosen',
+      name: req.body.name || '',
       address: {
-        line1: '510 Townsend St',
-        postal_code: '98140',
-        city: 'San Francisco',
-        state: 'CA',
-        country: 'US',
+        line1: req.body.address || '',
+        postal_code: req.body.postal_code || '',
+        city: req.body.city || '',
+        state: req.body.state || '',
+        country: req.body.country || '',
       },
     },
-    currency: 'inr',
+    // currency: 'inr',
+    currency: 'usd',
     customer: customer.id,
   });
   res.send({
@@ -91,6 +66,9 @@ app.post('/checkout', async (req, res) => {
     customer: customer.id,
     ephemeralKey: ephemeralKey.secret,
   });
-});
+};
+
+// An endpoint for your checkout
+app.post('/checkout', handleStripeCheckout);
 
 app.listen(8000, () => console.log(`Node server listening on port ${8000}!`));

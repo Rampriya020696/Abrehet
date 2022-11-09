@@ -60,10 +60,10 @@ export default App;
 const test = {
   publishableKey:
     'sk_test_51M0L2VSFJgtn9Lb9Yi2MWeE0t4IHAnC9QbsBRWmBAnGvYw9DTiJWbHtoQEivXt8Jk0kznog2MnZUIK4SIxsIO3wo00QuHVLzl2',
-  paymentIntent: 'pi_3M29e8SFJgtn9Lb91GXBQd85_secret_IVmFWsYXwksE0zehiA51chzYE',
-  customer: 'cus_Mlh2KVepd3yvPO',
+  paymentIntent: 'pi_3M2BOjSFJgtn9Lb90mTP8E5H_secret_lv9XLznq16MNxm2x2bmHwXTeQ',
+  customer: 'cus_Mliq9h0sOuUvtw',
   ephemeralKey:
-    'ek_test_YWNjdF8xTTBMMlZTRkpndG45TGI5LEhtQnR3Y1drRkF0RnBFemkzMjV5Z0NUN2Q2T2x1V0o_00zRpkUOvB',
+    'ek_test_YWNjdF8xTTBMMlZTRkpndG45TGI5LGhDVzY0MDFzYnNkaEdnbGMzU3hTTXY0V0pURGgzeFo_00CZn7zl5c',
 };
 const StripeTest: React.FC = () => {
   const {confirmPayment, initPaymentSheet, presentPaymentSheet} = useStripe();
