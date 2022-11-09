@@ -60,10 +60,10 @@ const Signup = ({navigation, type}) => {
               resizeMode="contain"
             />
 
-            <Text style={styles.title}>Mesob Shop</Text>
+            <Text style={styles.title}>Mesob Store</Text>
           </View>
 
-          <View style={{alignSelf: 'center', marginTop: 20, width: '100%'}}>
+          <View style={{alignSelf: 'center', marginTop: 30, width: '100%'}}>
             <View
               style={{
                 backgroundColor: 'white',
@@ -78,7 +78,7 @@ const Signup = ({navigation, type}) => {
                 source={require('../../Assets/userNameAbrehet.png')}
               />
               <TextInput
-                placeholder="Username"
+                placeholder="Email"
                 onChangeText={value => setUsername(value)}
                 style={{
                   fontSize: 14,
@@ -163,8 +163,12 @@ const Signup = ({navigation, type}) => {
 
             <View style={{alignSelf: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={{color: 'white', fontSize: 15}}>
-                  Already Have An Account ? SignIn
+                <Text style=
+                {{color: 'white', 
+                fontSize: 20,
+                fontWeight: "300",
+                }}>
+                  Already have an account ? SignIn
                 </Text>
               </TouchableOpacity>
             </View>
@@ -186,7 +190,7 @@ const Signup = ({navigation, type}) => {
                   alignItems: 'center',
                 }}>
                 <Text style={{fontSize: 17, color: 'white', fontWeight: '600'}}>
-                  Sign Up
+                  Register
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -238,11 +242,12 @@ const styles = StyleSheet.create({
     height: 70,
   },
   title: {
-    fontSize: 20,
-    fontFamily: fonts.primary[800],
-    marginLeft: 20,
+    fontSize: 30,
+    fontFamily: fonts.primary[900],
+    marginLeft: 1,
+    marginRight: 29,
     alignSelf: 'center',
-    color: 'white',
+    color: 'gray',
   },
   or: {
     fontSize: 16,

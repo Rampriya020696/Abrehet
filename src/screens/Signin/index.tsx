@@ -55,7 +55,7 @@ const Signin = ({navigation}) => {
               resizeMode="contain"
             />
 
-            <Text style={styles.title}>Mesob Shop</Text>
+            <Text style={styles.title}>Mesob Store</Text>
           </View>
 
           <View style={{alignSelf: 'center', marginTop: 20, width: '100%'}}>
@@ -141,7 +141,7 @@ const Signin = ({navigation}) => {
                 source={require('../../Assets/userNameAbrehet.png')}
               />
               <TextInput
-                placeholder="Username"
+                placeholder="Email"
                 onChangeText={value => setUsername(value)}
                 style={{
                   fontSize: 14,
@@ -175,8 +175,8 @@ const Signin = ({navigation}) => {
 
             <View style={{alignSelf: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                <Text style={{color: 'white', fontSize: 15}}>
-                  Not Have Account ? SignUp
+                <Text style={{color: 'white', fontSize: 20}}>
+                  Not a Member? Register
                 </Text>
               </TouchableOpacity>
             </View>
@@ -201,6 +201,13 @@ const Signin = ({navigation}) => {
                   {loading ? 'loading...' : 'Sign In'}
                 </Text>
               </LinearGradient>
+              <View style={{alignSelf: 'center', marginTop: 1}}>
+                <TouchableOpacity onPress={() => navigation.navigate('Reset')}>
+                  <Text style={{color: 'white', fontSize: 15}}>
+                    Reset your password
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -208,10 +215,11 @@ const Signin = ({navigation}) => {
               style={{
                 backgroundColor: 'red',
                 width: '30%',
-                padding: 5,
+                padding: 6,
                 alignItems: 'center',
-                borderRadius: 20,
-                marginBottom: 20,
+                borderRadius: 30,
+                marginBottom: 1,
+                marginVertical: 60,
               }}>
               <Text style={{fontSize: 14, color: 'white'}}>Skip</Text>
             </TouchableOpacity>
@@ -227,7 +235,7 @@ export default Signin;
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    paddingHorizontal: 30,
+    paddingHorizontal: 10,
   },
   page2: {
     justifyContent: 'center',
@@ -254,7 +262,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: fonts.primary[800],
-    marginLeft: 20,
+    marginLeft: 1,
+    marginRight: 40,
     alignSelf: 'center',
     color: 'white',
   },
