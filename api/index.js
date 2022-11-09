@@ -48,7 +48,18 @@ app.use(express.json());
 // An endpoint for your checkout
 app.post('/checkout', async (req, res) => {
   // Create or retrieve the Stripe Customer object associated with your user.
-  let customer = await stripe.customers.create(); // This example just creates a new Customer every time
+
+  const customer = await stripe.customers.create({
+    name: 'abc',
+    // temp adding  address to handle indian rule
+    address: {
+      line1: '510 Townsend St',
+      postal_code: '98140',
+      city: 'San Francisco',
+      state: 'CA',
+      country: 'US',
+    },
+  });
 
   // Create an ephemeral key for the Customer; this allows the app to display saved payment methods and save new ones
   const ephemeralKey = await stripe.ephemeralKeys.create(
@@ -58,11 +69,22 @@ app.post('/checkout', async (req, res) => {
 
   // Create a PaymentIntent with the payment amount, currency, and customer
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 973,
-    currency: 'usd',
+    amount: 500,
+    description: 'social services',
+    // temp adding  address to handle indian rule
+    shipping: {
+      name: 'Jenny Rosen',
+      address: {
+        line1: '510 Townsend St',
+        postal_code: '98140',
+        city: 'San Francisco',
+        state: 'CA',
+        country: 'US',
+      },
+    },
+    currency: 'inr',
     customer: customer.id,
   });
-
   res.send({
     publishableKey: STRIPE_SK,
     paymentIntent: paymentIntent.client_secret,

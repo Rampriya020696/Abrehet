@@ -60,12 +60,11 @@ export default App;
 const test = {
   publishableKey:
     'sk_test_51M0L2VSFJgtn9Lb9Yi2MWeE0t4IHAnC9QbsBRWmBAnGvYw9DTiJWbHtoQEivXt8Jk0kznog2MnZUIK4SIxsIO3wo00QuHVLzl2',
-  paymentIntent: 'pi_3M26mNSFJgtn9Lb90MZcfzLZ_secret_8oFuFAH2lCMgveFwrrxg6PZ9Y',
-  customer: 'cus_Mle4GkdN6axCTV',
+  paymentIntent: 'pi_3M29e8SFJgtn9Lb91GXBQd85_secret_IVmFWsYXwksE0zehiA51chzYE',
+  customer: 'cus_Mlh2KVepd3yvPO',
   ephemeralKey:
-    'ek_test_YWNjdF8xTTBMMlZTRkpndG45TGI5LDh3cnZZREtuOWp3ME54dnU5VG83bTlySnhCdk1na2k_004A1wHDdG',
+    'ek_test_YWNjdF8xTTBMMlZTRkpndG45TGI5LEhtQnR3Y1drRkF0RnBFemkzMjV5Z0NUN2Q2T2x1V0o_00zRpkUOvB',
 };
-
 const StripeTest: React.FC = () => {
   const {confirmPayment, initPaymentSheet, presentPaymentSheet} = useStripe();
   const [key, setKey] = useState(test.paymentIntent);
