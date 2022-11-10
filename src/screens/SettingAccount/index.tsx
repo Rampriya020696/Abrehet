@@ -45,7 +45,7 @@ const SettingAccount = ({navigation}) => {
         <View style={styles.gap} />
         <Gap height={20} />
         <TouchableOpacity onPress={onLogOutPress}>
-          <Text style={styles.title}>Logout</Text>
+          <Text style={styles.title1}>Logout</Text>
         </TouchableOpacity>
         <Gap height={40} />
       </ScrollView>
@@ -65,9 +65,15 @@ const styles = StyleSheet.create({
     borderWidth: 3,
   },
   title: {
+    fontSize: 25,
+    fontFamily: fonts.secondary[800],
+    color: 'black',
+    marginHorizontal: 20,
+  },
+  title1: {
     fontSize: 16,
     fontFamily: fonts.secondary[600],
-    color: colors.text.secondary,
+    color: 'red',
     marginHorizontal: 20,
   },
   account: {
