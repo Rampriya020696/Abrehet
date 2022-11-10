@@ -7,10 +7,10 @@ const app = express();
 // const body = {
 //   name: '',
 //   address: '',
-//   postal_code: '',
+//   postal_code: '', --
 //   city: '',
 //   state: '',
-//   country: '',
+//   country: '', ---
 //   product: {
 //     amount: '',
 //     des: '',
