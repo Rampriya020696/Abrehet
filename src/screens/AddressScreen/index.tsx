@@ -8,6 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import React, {useState} from 'react';
+import {Auth} from 'aws-amplify';
 import {Picker} from '@react-native-picker/picker';
 //import countryList from 'country-list';
 import Button from '../../components/Button';
@@ -16,9 +17,10 @@ import Header from '../../components/Header';
 import {ICCart2} from '../../Assets';
 import ActionBtn from '../../components/ActionBtn';
 import {useStripe} from '@stripe/stripe-react-native';
+import {api_send_mail, CHECKOUT_API_URL} from '../../api_service';
+import {getUsers} from '../../graphql/queries';
 //const countries = countryList.getData();
-const CHECKOUT_API_URL =
-  'https://25u2tyctv3.execute-api.us-east-1.amazonaws.com/staging';
+
 const AddressScreen = ({navigation}) => {
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   //const [country, setCountry] = useState(countries[0].code);
@@ -30,6 +32,7 @@ const AddressScreen = ({navigation}) => {
   const [state, setState] = useState('');
   const [postal_code, setPostal_code] = useState('');
   const [country, setCountry] = useState('');
+  const [email, setEmail] = useState('');
   const [stripeData, setStripeData] = useState(null);
 
   const [loading, setLoading] = useState('');
@@ -107,6 +110,7 @@ const AddressScreen = ({navigation}) => {
       if (res?.error) {
         Alert.alert(`Error code: ${res?.error.code}`, res?.error.message);
       } else {
+        sendOrderMail();
         Alert.alert('Success', 'Your order is confirmed!');
       }
 
@@ -152,6 +156,30 @@ const AddressScreen = ({navigation}) => {
     getStripeIntent();
   };
 
+  const sendOrderMail = async () => {
+    if (!email) return;
+    try {
+      const payload = {
+        email: email,
+        message: `${email} , Your order is placed successfully!`,
+        subject: 'Order Placed Successfully!',
+      };
+      const res = await api_send_mail(payload);
+      Alert.alert('Alert', res?.message);
+    } catch (error: any) {
+      Alert.alert('Alert', error.message);
+    }
+  };
+
+  React.useEffect(() => {
+    const getAuthUser = async () => {
+      const user = await Auth.currentAuthenticatedUser();
+      if (user?.attributes?.email) {
+        setEmail(user.attributes.email);
+      }
+    };
+    getAuthUser();
+  }, []);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -202,15 +230,15 @@ const AddressScreen = ({navigation}) => {
           />
         </View>
         {/* Address */}
-        {/* <View style={styles.row}>
-          <Text style={styles.label}>Other Details </Text>
+        <View style={styles.row}>
+          <Text style={styles.label}>Email </Text>
           <TextInput
             style={styles.input}
-            placeholder="Other Details"
-            value={otherDetails}
-            onChangeText={setOtherDetails}
+            placeholder="email"
+            value={email}
+            onChangeText={setEmail}
           />
-        </View> */}
+        </View>
         {/* City */}
         <View style={styles.row}>
           <Text style={styles.label}>City </Text>
@@ -253,7 +281,7 @@ const AddressScreen = ({navigation}) => {
         </View>
         {/* <Button text="Checkout" onPress={onCheckout} /> */}
         <ActionBtn
-          title="Checkout"
+          title={loading || 'Checkout'}
           onPress={onCheckout}
           containerStyle={{
             borderRadius: 5,

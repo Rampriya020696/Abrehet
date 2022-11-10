@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   root: {
     padding: 10,
     marginHorizontal: 10,
-    // flex: 1
+    marginBottom: 90
   },
 
   row: {
