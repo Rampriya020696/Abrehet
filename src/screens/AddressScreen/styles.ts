@@ -1,9 +1,10 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   root: {
     padding: 10,
     marginHorizontal: 10,
+    // flex: 1
   },
 
   row: {
