@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {
   Image,
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   strip: {
-    height: 0,
+    height: 1,
     borderColor: colors.borderstrip,
     borderWidth: 0.5,
     marginLeft: 100,
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   title: {
-    fontSize: 16,
+    fontSize: 17,
     fontFamily: fonts.primary[600],
     color: colors.borderstrip,
     textAlign: 'center',
@@ -227,9 +228,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   titleList: {
-    fontSize: 15,
-    fontFamily: fonts.secondary[400],
-    color: colors.text.secondary,
-    marginLeft: 32,
+    fontSize: 20,
+    fontFamily: fonts.secondary[500],
+    color: '#262b25',
+    marginLeft: 38,
   },
 });

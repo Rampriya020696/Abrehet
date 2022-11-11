@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // THIS IS THE ONE
 import React, {useState, useEffect, useRef} from 'react';
@@ -137,13 +139,15 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
             style={{
               backgroundColor: 'transparent',
               paddingHorizontal: 20,
-              paddingVertical: 20,
+              paddingVertical: 15,
               zIndex: 100,
             }}>
             <Text style={styles.menuText}>Menu</Text>
           </View>
 
-          <View style={{marginTop: 5}}>
+          <View style={{
+            marginTop: 1,
+          }}>
             <MenuIcon />
           </View>
 
@@ -189,7 +193,7 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   menuText: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: '900',
     color: 'black',
   },
@@ -200,7 +204,7 @@ const styles = StyleSheet.create({
   gap: {
     height: 0,
     borderColor: colors.borderGap,
-    borderWidth: 10,
+    borderWidth: 0,
   },
   circleDiv: {
     position: 'absolute',
@@ -215,7 +219,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.header,
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 20,
   },
   search: {
     flexDirection: 'row',
@@ -227,13 +231,13 @@ const styles = StyleSheet.create({
     height: 40,
   },
   linearGradient: {
-    height: 60,
+    height: 80,
     width: '100%',
     justifyContent: 'center',
   },
   title: {
-    fontSize: 16,
-    fontFamily: fonts.primary[700],
+    fontSize: 26,
+    fontFamily: fonts.primary[900],
     marginLeft: 20,
   },
   titleSearch: {
@@ -244,12 +248,12 @@ const styles = StyleSheet.create({
     color: colors.borderstrip,
   },
   image: {
-    height: 200,
+    height: 400,
     width: 400,
   },
   icon: {
     width: 20,
-    height: 19,
+    height: 30,
   },
   menu: {
     flex: 1,
