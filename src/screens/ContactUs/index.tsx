@@ -1,5 +1,16 @@
+import {Auth} from 'aws-amplify';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  View,
+  Alert,
+} from 'react-native';
+import {api_send_mail, CUSTOMER_SUPPORT_EMAIL_ID} from '../../api_service';
+
 import {ICChatNull} from '../../Assets';
 
 import Gap from '../../components/Gap';
@@ -8,6 +19,43 @@ import Header from '../../components/Header';
 import {colors, fonts} from '../../utils';
 
 const ContactUs = ({navigation}) => {
+  const [message, setMessage] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+
+  const sendOrderMail = async () => {
+    if (!email) return;
+    setLoading(true);
+    try {
+      const payload = {
+        email: CUSTOMER_SUPPORT_EMAIL_ID,
+        message: `
+        customer's email : ${email} , 
+        customer's message : "${message}" , 
+        `,
+        subject: 'Customer Support',
+      };
+      const res = await api_send_mail(payload);
+      setMessage('');
+      setEmail('');
+      Alert.alert('Alert', res?.message);
+    } catch (error: any) {
+      Alert.alert('Alert', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    const getAuthUser = async () => {
+      const user = await Auth.currentAuthenticatedUser();
+      if (user?.attributes?.email) {
+        setEmail(user.attributes.email);
+      }
+    };
+    getAuthUser();
+  }, []);
+
   return (
     <>
       <Header title="Contact Us" onPress={navigation.goBack} />
@@ -16,12 +64,32 @@ const ContactUs = ({navigation}) => {
           <Image source={ICChatNull} style={styles.image} />
           <Text style={styles.title}>We're Happy to Help You!</Text>
           <Text style={styles.text}>
-            If you have complain about {'\n'}the product chat me
+            If you have complain about {'\n'}the product email me
           </Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('ChatScreen')}>
-            <Text style={styles.textButton}>Contact Us</Text>
+
+          <View style={{alignItems: 'center', marginTop: 12}}>
+            <Text style={styles.inputLabel}>Email Address</Text>
+            <TextInput
+              placeholder="Enter Your Email Address"
+              style={styles.textInput}
+              value={email}
+              onChangeText={setEmail}
+            />
+          </View>
+          <View style={{alignItems: 'center', marginTop: 12}}>
+            <Text style={styles.inputLabel}>Message</Text>
+            <TextInput
+              style={[styles.textInput]}
+              placeholder="enter your message here "
+              value={message}
+              multiline={true}
+              onChangeText={setMessage}
+            />
+          </View>
+          <TouchableOpacity style={styles.button} onPress={sendOrderMail}>
+            <Text style={styles.textButton}>
+              {loading ? 'Sending Email...' : 'Send Mail'}
+            </Text>
           </TouchableOpacity>
         </View>
         <Gap height={20} />
@@ -73,5 +141,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: fonts.primary[700],
     color: colors.white,
+  },
+  inputLabel: {
+    alignSelf: 'flex-start',
+    marginLeft: '12%',
+  },
+  textInput: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    width: '78%',
+    padding: 10,
+    marginTop: 8,
   },
 });

@@ -11,8 +11,8 @@ import HomeProductScreen from '../screens/HomeScreen/main';
 import StaticPage from '../screens/StaticPage';
 import FlashSale from '../screens/FlashSale';
 import ChatScreen from '../screens/ChatScreen';
-import {NavigationActions} from 'react-navigation';
 import {useNavigation} from '@react-navigation/native';
+import ContactUs from '../screens/ContactUs';
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -38,7 +38,6 @@ const HeaderComponent = ({
           paddingVertical: 10,
           height: 60,
         }}>
-        {/* <Feather name="search" size={30} /> */}
         <View
           style={{
             backgroundColor: 'white',
@@ -68,19 +67,12 @@ const HeaderComponent = ({
         </View>
         <TouchableOpacity
           style={{marginHorizontal: 10}}
-          onPress={() => navigation.navigate('ChatScreen')}>
+          onPress={() => navigation.navigate('ContactUsScreen')}>
           <Image
             style={{width: 22, height: 20}}
             source={require('../Assets/ChatICon.png')}
           />
         </TouchableOpacity>
-
-        {/* <TouchableOpacity>
-          <Image
-            style={{width: 22, height: 20, marginLeft: 10}}
-            source={require('../Assets/Notification.png')}
-          />
-        </TouchableOpacity> */}
       </View>
     </SafeAreaView>
   );
@@ -104,6 +96,7 @@ const HomeStack = () => {
       <Stack.Screen component={StaticPage} name="StaticPage" />
       <Stack.Screen component={FlashSale} name="FlashSale" />
       <Stack.Screen component={ChatScreen} name="ChatScreen" />
+      <Stack.Screen component={ContactUs} name="ContactUsScreen" />
     </Stack.Navigator>
   );
 };

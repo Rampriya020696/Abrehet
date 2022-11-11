@@ -15,7 +15,6 @@ const Header = ({title, onPress, icon, type}: Props) => {
     return (
       <View style={styles.containerBrand}>
         <Text style={styles.titleBrand}>Category Brand</Text>
-        {/* <ICSearchGrey style={styles.iconBrand} /> */}
       </View>
     );
   }

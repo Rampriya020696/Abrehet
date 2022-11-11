@@ -1,26 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import ProductItem from '../../components/ProductItem';
-import {DataStore} from 'aws-amplify';
+import {View, StyleSheet, Text} from 'react-native';
 import * as types from '../../API';
 import {API} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import _ from 'lodash';
 
-import initProducts from '../../data/products';
-
 import Banner from '../../components/Banner';
 import MenuIcon from '../../components/MenuIcon';
-import {useNavigation, NavigationProp} from '@react-navigation/native';
-// import useNavigationContainer from 'reac-native-'
+import {useNavigation} from '@react-navigation/native';
 
 interface HomeScreenProps {
   searchValue: string;
