@@ -254,10 +254,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     fontWeight: '600',
-    marginTop: 7,
+    color: 'black',
+    marginTop: 3,
+    marginBottom: 1,
   },
   image: {
-    width: 40,
-    height: 40,
+    width: 60,
+    height: 45,
+    marginTop: 9,
+    marginVertical: 0,
+    marginBottom: 0,
   },
 });

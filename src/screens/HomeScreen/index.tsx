@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -194,8 +195,9 @@ const width = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   menuText: {
     fontSize: 25,
-    fontWeight: '900',
+    fontWeight: '600',
     color: 'black',
+    fontStyle: 'normal',
   },
   page: {
     flex: 1,
@@ -236,8 +238,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 26,
+    fontSize: 23,
     fontFamily: fonts.primary[900],
+    fontWeight: '400',
+    color: 'black',
+    fontStyle: 'normal',
     marginLeft: 20,
   },
   titleSearch: {

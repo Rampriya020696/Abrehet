@@ -1,9 +1,11 @@
+/* eslint-disable prettier/prettier */
 export const schema = {
     "models": {
         "Products": {
             "name": "Products",
             "fields": {
                 "id": {
+                    // eslint-disable-next-line prettier/prettier
                     "name": "id",
                     "isArray": false,
                     "type": "ID",
