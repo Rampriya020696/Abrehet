@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {Image, View, Text, Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/native';

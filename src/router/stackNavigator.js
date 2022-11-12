@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -19,10 +20,12 @@ import FlashSale from '../screens/FlashSale';
 import ProductDetail from '../screens/ProductDetail';
 import MyOrder from '../screens/MyOrder';
 import About from '../screens/About';
+import DeleteUser from '../screens/DeleteUser';
 import ContactUs from '../screens/ContactUs';
 import SettingAccount from '../screens/SettingAccount';
 import OfferDeals from '../screens/OfferDeals';
 import Payments from '../screens/Payment';
+
 
 const Root = createStackNavigator();
 const Stack = createNativeStackNavigator();
@@ -127,6 +130,11 @@ const MainStackNavigator = () => {
         name="About"
         component={About}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+      name="DeleteUser"
+      component={DeleteUser}
+      options={{headerShown: false}}
       />
       <Stack.Screen
         name="ContactUs"

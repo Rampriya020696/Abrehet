@@ -142,11 +142,11 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               paddingVertical: 15,
               zIndex: 100,
             }}>
-            <Text style={styles.menuText}>Menu</Text>
+            <Text style={styles.menuText}>Shop Categories</Text>
           </View>
 
           <View style={{
-            marginTop: 1,
+            marginTop: 4,
           }}>
             <MenuIcon />
           </View>
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   menu: {
-    flex: 1,
+    flex: 2,
     height: 250,
   },
   promotionCategory: {

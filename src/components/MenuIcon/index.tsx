@@ -1,3 +1,6 @@
+/* eslint-disable quotes */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
@@ -34,6 +37,7 @@ const MenuIcon = () => {
   const navigation = useNavigation<any>();
   const [menuList, setMenuList] = useState([]);
   const [loading, setLoading] = useState(false);
+  
 
   useEffect(() => {
     const getMenuList = async () => {
@@ -219,7 +223,7 @@ const styles = StyleSheet.create({
   },
   menu1: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -237,22 +241,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginTop: 50,
+    marginTop: 30,
   },
 
   menuIcon: {
-    height: 50,
+    height: 70,
     flexDirection: 'column',
-    flex: 1,
+    flex: 9,
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
-    fontSize: 12,
-    marginTop: 4,
+    fontSize: 15,
+    fontWeight: '600',
+    marginTop: 7,
   },
   image: {
-    width: 25,
-    height: 23,
+    width: 40,
+    height: 40,
   },
 });

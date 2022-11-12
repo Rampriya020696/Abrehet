@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   menuText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '900',
     color: 'black',
   },

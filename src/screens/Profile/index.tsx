@@ -170,6 +170,16 @@ const Profile = ({navigation}) => {
             />
             <Text style={styles.titleList}>About App</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => navigation.navigate('AboutUsScreen')}>
+            {/* <ICAboutApp style={styles.icon} /> */}
+            <Image
+              style={{width: 20, height: 30, padding: 10, marginRight: 5}}
+              source={require('../../Assets/Icon-About-Apps.png')}
+            />
+            <Text style={styles.titleList}>Delete Account</Text>
+          </TouchableOpacity>
 
           <View style={styles.strip} />
           <Gap height={20} />
@@ -205,30 +215,30 @@ const styles = StyleSheet.create({
     borderColor: colors.white,
     borderWidth: 3,
     alignSelf: 'center',
-    marginTop: 140,
+    marginTop: 170,
   },
   name: {
     fontSize: 20,
     fontFamily: fonts.primary[700],
     textAlign: 'center',
-    marginTop: 12,
+    marginTop: 10,
   },
   title: {
-    fontSize: 17,
+    fontSize: 18,
     fontFamily: fonts.primary[600],
     color: colors.borderstrip,
     textAlign: 'center',
-    marginBottom: 40,
+    marginBottom: 20,
   },
   list: {
     flexDirection: 'row',
     marginLeft: 50,
     alignItems: 'center',
     marginBottom: 20,
-    marginTop: 20,
+    marginTop: 15,
   },
   titleList: {
-    fontSize: 20,
+    fontSize: 17,
     fontFamily: fonts.secondary[500],
     color: '#262b25',
     marginLeft: 38,

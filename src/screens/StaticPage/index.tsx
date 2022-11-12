@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {SafeAreaView} from 'react-native';
 import React from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';

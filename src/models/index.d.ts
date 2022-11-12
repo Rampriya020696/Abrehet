@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
 

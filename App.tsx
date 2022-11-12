@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import 'react-native-gesture-handler';
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';

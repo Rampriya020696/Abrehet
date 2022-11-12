@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import CountDown from 'react-native-countdown-component';
 import {StyleSheet, View} from 'react-native';

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -6,6 +7,7 @@ import Profile from '../screens/Profile';
 import Payments from '../screens/Payment';
 import ContactUs from '../screens/ContactUs';
 import About from '../screens/About';
+import DeleteUser from '../screens/DeleteUser';
 import MyOrder from '../screens/MyOrder';
 import SettingAccount from '../screens/SettingAccount';
 import ChangePassword from '../screens/ChangePassword';
@@ -22,6 +24,7 @@ const ProfileStack = () => {
       }}>
       <Stack.Screen name="ProfileScreen" component={Profile} />
       <Stack.Screen name="AboutUsScreen" component={About} />
+      <Stack.Screen name="DeleteUserScreen" component={DeleteUser} />
       <Stack.Screen name="OrdersScreens" component={MyOrder} />
       <Stack.Screen name="AccountSettingScreen" component={SettingAccount} />
       <Stack.Screen name="ContactUsScreen" component={ContactUs} />
