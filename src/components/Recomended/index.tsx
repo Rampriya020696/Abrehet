@@ -61,10 +61,11 @@ const Recomended = props => {
           <TouchableOpacity
             style={styles.wrapperDetail}
             onPress={props.onPress}>
-            <Text numberOfLines={2} style={styles.title}>
+            <Text numberOfLines={1} style={styles.title}>
               {props.title}
             </Text>
             <Text style={styles.price}>{props.price}</Text>
+            <Text style={[styles.price, {fontSize: 10}]}>{props.country}</Text>
             <View style={styles.wrapperRating}>
               <View style={styles.wrapperRating2}>
                 <Text style={styles.titleRating}>{props.rating}</Text>

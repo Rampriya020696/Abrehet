@@ -58,14 +58,12 @@ query MyQuery {
 `;
 
 interface ProductItemProps {
-  item: {
-    id: string;
-    title: string;
-    image: string;
-    price: number;
-    oldPrice?: number;
-    country?: string;
-  };
+  id: string;
+  title: string;
+  image: string;
+  price: number;
+  oldPrice?: number;
+  country?: string;
 }
 
 const images = [
@@ -84,7 +82,7 @@ const makeBanneData = data => {
 };
 
 const HomeScreen = ({searchValue}: HomeScreenProps) => {
-  const [products, setProducts] = useState<ProductItemProps[]>([]);
+  const [products, setProducts] = useState<any>([]);
   const [bannerImages, setBannerImages] = useState<ProductItemProps[]>([]);
 
   const navigation = useNavigation<any>();
@@ -93,18 +91,37 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
       let allProducts = (await API.graphql({query: queries.listProducts})) as {
         data: types.ListProductsQuery;
       };
+
+      const data = allProducts?.data?.listProducts?.items.map(item => {
+        if (!item?.content) {
+          return item;
+        }
+        let temp = item;
+        temp.content = JSON.parse(item.content);
+        temp.cost = item.content?.cost;
+        temp.country = item.content?.country;
+        temp.description = item.content?.description;
+        temp.image = item.content?.image;
+        temp.images = item.content?.images;
+        temp.price = item.content?.price;
+        return temp;
+      });
+
       setProducts(
-        allProducts.data.listProducts!.items.map(item => {
-          return _.pick(JSON.parse(item!.content), [
-            'id',
-            'title',
-            'image',
-            'price',
-            'oldPrice',
-            'country',
-          ]);
-        }),
+        data?.filter(item => item?.title !== 'Product unavailable. '),
       );
+      // setProducts(
+      //   allProducts.data.listProducts!.items.map(item => {
+      //     return _.pick(JSON.parse(item!.content), [
+      //       'id',
+      //       'title',
+      //       'image',
+      //       'price',
+      //       'oldPrice',
+      //       'country',
+      //     ]);
+      //   }),
+      // );
     };
 
     const fetchBannerImages = async () => {
@@ -121,72 +138,77 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     fetchBannerImages();
   }, []);
 
-  console.log(bannerImages, 'bannerImages');
-
+  console.log(products, 'products');
   return (
     <View style={{flex: 1}}>
       <HeaderComponent searchValue="Search..." setSearchValue={() => {}} />
 
-      <ScrollView style={{flex: 1}}>
-        <View style={styles.page}>
-          <View style={{width: '100%', height: 200}}>
-            <Banner
-              images={bannerImages}
-              onPress={() => navigation.navigate('FlashSale')}
-            />
-          </View>
+      <FlatList
+        style={{
+          flex: 1,
+        }}
+        // data={products.slice(0, 30)}
+        data={products}
+        ListHeaderComponent={() => {
+          return (
+            <>
+              <View style={{width: '100%', height: 200}}>
+                <Banner
+                  images={bannerImages}
+                  onPress={() => navigation.navigate('FlashSale')}
+                />
+              </View>
 
-          <View
-            style={{
-              backgroundColor: 'transparent',
-              paddingHorizontal: 20,
-              paddingVertical: 15,
-              zIndex: 100,
-            }}>
-            <Text style={styles.menuText}>Shop Categories</Text>
-          </View>
+              <View
+                style={{
+                  backgroundColor: 'transparent',
+                  paddingHorizontal: 20,
+                  paddingVertical: 15,
+                  zIndex: 100,
+                }}>
+                <Text style={styles.menuText}>Shop Categories</Text>
+              </View>
 
-          <View style={{
-            marginTop: 4,
-          }}>
-            <MenuIcon />
-          </View>
+              <View
+                style={{
+                  marginTop: 4,
+                }}>
+                <MenuIcon />
+              </View>
 
-          {/* Akhir Category Component */}
-          <View style={styles.gap} />
-          {/* Recomended */}
-          <Gap height={20} />
-          <Text style={styles.title}>Recomended</Text>
-          <Gap height={5} />
-          <View style={styles.recomended}>
-            <FlashList
-              data={products.slice(0, 30)}
-              // data={products}
-              numColumns={2}
-              keyExtractor={(item: any) => String(item.id)}
-              estimatedItemSize={200}
-              renderItem={({item}: any) => {
-                // return <ProductItem item={item}  />;
-                return (
-                  <Recomended
-                    image={{uri: item?.image}}
-                    title={item?.title}
-                    price={item?.price}
-                    rating="4.8"
-                    totalSale="932 Sale"
-                    onPress={() => {
-                      globalThis.itemDetails = item.id;
-                      // console.log('item pressed', globalThis);
-                      navigation.navigate('ProductDetails');
-                    }}
-                  />
-                );
-              }}
-            />
-          </View>
-          {/* Akhir Recomended Component */}
-        </View>
-      </ScrollView>
+              {/* Akhir Category Component */}
+              <View style={styles.gap} />
+              {/* Recomended */}
+              <Gap height={20} />
+              <Text style={styles.title}>Recomended</Text>
+              <Gap height={5} />
+            </>
+          );
+        }}
+        numColumns={2}
+        keyExtractor={(item: any) => String(item.id)}
+        renderItem={({item}: any) => {
+          // return <ProductItem item={item}  />;
+          return (
+            <View key={`${item.id}`} style={styles.page}>
+              <View style={styles.recomended}>
+                <Recomended
+                  image={{uri: item?.image}}
+                  title={item?.title}
+                  price={item?.price}
+                  rating="4.8"
+                  totalSale="932 Sale"
+                  country={item.country}
+                  onPress={() => {
+                    globalThis.itemDetails = item.id;
+                    navigation.navigate('ProductDetails');
+                  }}
+                />
+              </View>
+            </View>
+          );
+        }}
+      />
     </View>
   );
 };

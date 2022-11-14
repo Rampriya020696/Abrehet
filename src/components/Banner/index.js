@@ -40,7 +40,7 @@ class Banner extends React.Component {
           });
         },
       );
-    }, 10000);
+    }, 100000);
   };
 
   setSelectedIndex = event => {
@@ -65,9 +65,9 @@ class Banner extends React.Component {
             pagingEnabled
             onMomentumScrollEnd={this.setSelectedIndex}
             ref={this.scrollRef}>
-            {images.map(image => (
+            {images.map((image, index) => (
               <Image
-                key={image}
+                key={`${image}-${index}`}
                 source={image}
                 style={styles.backgroundImage}
               />
@@ -75,10 +75,10 @@ class Banner extends React.Component {
           </ScrollView>
 
           <View style={styles.circleDiv}>
-            {images.map((image, i) => (
+            {images.map((image, index) => (
               <Text
-                key={image}
-                style={selectedIndex === i ? styles.dotActive : styles.dot}>
+                key={`${image}-${index}`}
+                style={selectedIndex === index ? styles.dotActive : styles.dot}>
                 ●
               </Text>
             ))}
