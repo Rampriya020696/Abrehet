@@ -10,12 +10,10 @@ import {
   View,
 } from 'react-native';
 import Gap from '../../components/Gap';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {colors, fonts} from '../../utils';
 import {API, Auth, graphqlOperation} from 'aws-amplify';
 
-import {UserAgent} from 'amazon-cognito-identity-js';
 import * as types from '../../API';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
@@ -79,6 +77,10 @@ const Profile = ({navigation}) => {
     );
   }
 
+  function handleSignOut() {
+    Auth.signOut();
+  }
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -117,7 +119,6 @@ const Profile = ({navigation}) => {
           <TouchableOpacity
             style={styles.list}
             onPress={() => navigation.navigate('OrdersScreens')}>
-            {/* <ICMyOrders style={styles.icon} /> */}
             <Image
               style={{height: 18, width: 25}}
               source={require('../../Assets/Icon-My-Orders.png')}
@@ -130,7 +131,6 @@ const Profile = ({navigation}) => {
           <TouchableOpacity
             style={styles.list}
             onPress={() => navigation.navigate('AccountSettingScreen')}>
-            {/* <ICSetting style={styles.icon} /> */}
             <Image
               style={{height: 24, width: 25}}
               source={require('../../Assets/Icon-Setting-Account.png')}
@@ -147,28 +147,35 @@ const Profile = ({navigation}) => {
               style={{height: 25, width: 25}}
               source={require('../../Assets/Icon-Call-Center.png')}
             />
-            {/* <ICCallCenter style={styles.icon} /> */}
+
             <Text style={styles.titleList}>Contact us</Text>
           </TouchableOpacity>
-
-          <View style={styles.strip} />
 
           <View style={styles.strip} />
 
           <TouchableOpacity
             style={styles.list}
             onPress={() => navigation.navigate('AboutUsScreen')}>
-            {/* <ICAboutApp style={styles.icon} /> */}
             <Image
               style={{width: 20, height: 30, padding: 10, marginRight: 5}}
               source={require('../../Assets/Icon-About-Apps.png')}
             />
             <Text style={styles.titleList}>About App</Text>
           </TouchableOpacity>
+          <View style={styles.strip} />
+          <TouchableOpacity style={styles.list} onPress={handleSignOut}>
+            <Image
+              style={{width: 20, height: 30, padding: 10, marginRight: 5}}
+              source={require('../../Assets/Icon-About-Apps.png')}
+            />
+            <Text style={styles.titleList}>Sign Out</Text>
+          </TouchableOpacity>
+
+          <View style={styles.strip} />
+
           <TouchableOpacity
             style={styles.list}
             onPress={() => navigation.navigate('AboutUsScreen')}>
-            {/* <ICAboutApp style={styles.icon} /> */}
             <Image
               style={{width: 20, height: 30, padding: 10, marginRight: 5}}
               source={require('../../Assets/Icon-About-Apps.png')}

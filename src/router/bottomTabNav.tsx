@@ -48,7 +48,7 @@ const BottomTabNav = () => {
         }}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         component={MenuScreen}
         name="Brand"
         options={{
@@ -65,7 +65,7 @@ const BottomTabNav = () => {
             </View>
           ),
         }}
-      />
+      /> */}
 
       <Tab.Screen
         component={ShopingCartStack}
