@@ -160,17 +160,10 @@ const Profile = ({navigation}) => {
               style={{width: 20, height: 30, padding: 10, marginRight: 5}}
               source={require('../../Assets/Icon-About-Apps.png')}
             />
-            <Text style={styles.titleList}>About App</Text>
+            <Text style={styles.titleList}>About Mesob Store</Text>
           </TouchableOpacity>
           <View style={styles.strip} />
-          <TouchableOpacity style={styles.list} onPress={handleSignOut}>
-            <Image
-              style={{width: 20, height: 30, padding: 10, marginRight: 5}}
-              source={require('../../Assets/Icon-About-Apps.png')}
-            />
-            <Text style={styles.titleList}>Sign Out</Text>
-          </TouchableOpacity>
-
+        
           <View style={styles.strip} />
 
           <TouchableOpacity
@@ -184,7 +177,7 @@ const Profile = ({navigation}) => {
           </TouchableOpacity>
 
           <View style={styles.strip} />
-          <Gap height={20} />
+          <Gap height={50} />
         </View>
       </View>
     </ScrollView>
@@ -208,14 +201,14 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     marginLeft: 100,
     marginRight: 50,
-    opacity: 0.5,
+    opacity: 0,
   },
   avatar: {
     width: 100,
     height: 100,
     borderRadius: 110 / 2,
     borderColor: colors.white,
-    borderWidth: 3,
+    borderWidth: 2,
     alignSelf: 'center',
     marginTop: 170,
   },

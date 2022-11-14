@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable quotes */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
@@ -245,24 +246,25 @@ const styles = StyleSheet.create({
   },
 
   menuIcon: {
-    height: 70,
+    height: 90,
     flexDirection: 'column',
-    flex: 9,
+    flex: 3,
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '600',
     color: 'black',
-    marginTop: 3,
-    marginBottom: 1,
+    marginTop: 4,
+    marginBottom: 10,
   },
   image: {
-    width: 60,
-    height: 45,
-    marginTop: 9,
-    marginVertical: 0,
-    marginBottom: 0,
+    width: 80,
+    height: 59,
+    marginTop: -40,
+    marginVertical: 10,
+    marginBottom: -3,
+    borderRadius: 15000,
   },
 });
