@@ -86,23 +86,18 @@ const Profile = ({navigation}) => {
           <ImageBackground
             source={require('../../Assets/Background-Profile.png')}
             style={styles.image}>
-            {/* <Image source={DummyWomen} style={styles.avatar}/> */}
-
-            <Image
+            {/* <Image
               style={styles.avatar}
               source={require('../../Assets/womanface.jpg')}
-            />
+            /> */}
 
-            <Text style={styles.name}>{info?.email}</Text>
-            {/* <Text style={[styles.name, {marginTop: 5, fontSize: 10}]}>
-              {info?.phone_number}
-            </Text> */}
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
               <Text style={styles.title}>Edit Profile</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </ImageBackground>
+          <Text style={styles.name}>{info?.email}</Text>
         </View>
-        <Gap height={140} />
+        <Gap height={20} />
 
         <View>
           <View style={styles.strip} />
