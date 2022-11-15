@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {View, StyleSheet, SafeAreaView} from 'react-native';
 import React, {useState, useCallback, useEffect} from 'react';
 import Header from '../../components/Header';

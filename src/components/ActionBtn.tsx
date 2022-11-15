@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import {TouchableOpacity, Text} from 'react-native';
 import React from 'react';
 import {colors, fonts} from '../utils';

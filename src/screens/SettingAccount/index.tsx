@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {
   Image,
@@ -24,7 +25,7 @@ const SettingAccount = ({navigation}) => {
         <View style={styles.gap} />
         <Gap height={20} />
         <Text style={styles.title}>Account</Text>
-        <Gap height={20} />
+        <Gap height={30} />
         <Strip />
         <TouchableOpacity
           style={styles.account}
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   },
   gap: {
     borderColor: colors.borderGap,
-    borderWidth: 3,
+    borderWidth: 7,
   },
   title: {
     fontSize: 25,
@@ -74,7 +75,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fonts.secondary[600],
     color: 'red',
-    marginHorizontal: 20,
+    marginHorizontal: 30,
+    marginVertical: 290
   },
   account: {
     flexDirection: 'row',

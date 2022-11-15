@@ -31,7 +31,7 @@ const ImageCarousel = ({images}: {images: string[]}) => {
         )}
         horizontal
         showsHorizontalScrollIndicator={false}
-        snapToInterval={windowWidth - 20}
+        snapToInterval={windowWidth - 60}
         snapToAlignment={'center'}
         decelerationRate={'fast'}
         viewabilityConfig={{

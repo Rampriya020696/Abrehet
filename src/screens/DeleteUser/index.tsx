@@ -25,7 +25,7 @@ const DeleteUser = ({navigation}) => {
         <View style={styles.strip} />
         <Gap height={20} />
         <Text style={styles.text}>
-        started building the Mesob store on October 5th, 2021 for a school project. At that time I didn’t have any plan to publish it. A good friend and family of mine by the name of Peter Tesfamichael advises me that it will be a good business model for our country Eritrea. In addition to the support, I got from my father, my wife, friends, family, and the Eritrean community thankfully by God`s grace I was able to publish this amazing app on March 20th 2022.
+        tarted building the Mesob store on October 5th, 2021 for a school project. At that time I didn’t have any plan to publish it. A good friend and family of mine by the name of Peter Tesfamichael advises me that it will be a good business model for our country Eritrea. In addition to the support, I got from my father, my wife, friends, family, and the Eritrean community thankfully by God`s grace I was able to publish this amazing app on March 20th 2022.
         </Text>
         <Gap height={10} />
         
