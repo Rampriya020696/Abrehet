@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { StyleSheet } from "react-native";
 
 
@@ -25,8 +26,9 @@ import { StyleSheet } from "react-native";
     },
     
     title: {
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'normal',
+        color: 'black',
     },
 
     price: {
