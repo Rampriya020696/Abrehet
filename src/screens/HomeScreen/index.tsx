@@ -113,7 +113,10 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
   }, []);
 
   useEffect(() => {
-    if (!searchString) return;
+    if (!searchString.length) {
+      setFilterProducts([]);
+      return;
+    }
 
     setFilterProducts(
       products.filter(item =>
@@ -121,6 +124,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
       ),
     );
   }, [searchString]);
+  console.log({filterProducts, searchString}, 'LL');
 
   return (
     <View style={{flex: 1}}>
@@ -128,13 +132,13 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         searchValue={searchString}
         setSearchValue={setSearchString}
       />
-
       <FlatList
         style={{
           flex: 1,
         }}
-        data={filterProducts || products}
+        data={searchString ? filterProducts : products}
         ListHeaderComponent={() => {
+          if (searchString) return <View />;
           return (
             <>
               <View style={{width: '100%', height: 200}}>
