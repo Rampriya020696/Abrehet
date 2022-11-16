@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 20,
     color: colors.text.secondary,
-    fontFamily: fonts.secondary[400],
+    fontFamily: fonts.secondary[600],
   },
   container: {
     elevation: 3,
@@ -119,14 +118,13 @@ const styles = StyleSheet.create({
     height: 40,
     width: 140,
     justifyContent: 'center',
-    backgroundColor: '#1151b8',
+    backgroundColor: colors.pay,
   },
   titlePay: {
-    fontSize: 19,
+    fontSize: 18,
     color: colors.white,
     alignSelf: 'center',
     fontFamily: fonts.primary[600],
-    
   },
   image: {
     width: 130,
@@ -139,10 +137,9 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   title: {
-    fontSize: 17,
+    fontSize: 14,
     marginTop: 10,
-    fontFamily: fonts.primary[900],
-    color: 'black',
+    fontFamily: fonts.primary[700],
   },
   total: {
     fontSize: 16,
@@ -176,7 +173,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   nomer: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: fonts.secondary[600],
   },
 });

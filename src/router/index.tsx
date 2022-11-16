@@ -10,6 +10,7 @@ import Splash from '../screens/Splash';
 import OnBoarding from '../screens/OnBoarding';
 import Signup from '../screens/Signup';
 import {ResourceContext} from '../context/ResourceContext';
+import {OnBoardingContext} from '../context/OnBoardingContext';
 
 const resourceQuerie = `
 query MyQuery {
@@ -23,10 +24,26 @@ query MyQuery {
   }
 }
 `;
+const onBoardingGetQuerie = `
+query MyQuery {
+  listOnBoardings {
+    items {
+      id
+      image
+      subtitle
+      title
+      backgroundColor
+    }
+  }
+}
+
+`;
+
 const Root = createStackNavigator();
 const Router = () => {
   const [user, setUser] = React.useState<any>(undefined);
   const {setResource} = React.useContext(ResourceContext) as any;
+  const {setOnboardingRes} = React.useContext(OnBoardingContext) as any;
   const checkUser = async () => {
     try {
       const res = await Auth.currentAuthenticatedUser({bypassCache: true});
@@ -38,6 +55,19 @@ const Router = () => {
     }
   };
   React.useEffect(() => {
+    const getOnBoardingResource = async () => {
+      try {
+        const res = (await API.graphql(
+          graphqlOperation(onBoardingGetQuerie, {}),
+        )) as any;
+        const data = res?.data?.listOnBoardings?.items;
+        if (data) {
+          setOnboardingRes(data.sort((a, b) => Number(a.id) - Number(b.id)));
+        }
+      } catch (error: any) {
+        console.log(error.message);
+      }
+    };
     const getResource = async () => {
       try {
         const res = (await API.graphql(
@@ -52,6 +82,7 @@ const Router = () => {
       }
     };
     checkUser();
+    getOnBoardingResource();
     getResource();
   }, []);
   React.useEffect(() => {

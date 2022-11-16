@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import {
   Dimensions,
@@ -22,7 +21,7 @@ const shadowOpt = {
   color: '#000',
   border: 2,
   radius: 10,
-  opacity: 0.6,
+  opacity: 0.1,
   x: 0.2,
   y: 0.3,
   style: {
@@ -96,20 +95,19 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 150,
+    height: 200,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    marginVertical: 16,
   },
   wrapperDetail: {
     flex: 1,
     padding: 10,
   },
   title: {
-    fontSize: 19,
+    fontSize: 14,
     marginTop: 10,
     fontFamily: fonts.primary[400],
-    color: 'black',
+    color: colors.text.secondary,
   },
   price: {
     fontSize: 16,
@@ -130,10 +128,10 @@ const styles = StyleSheet.create({
   icon: {
     width: 10,
     height: 10,
-    marginTop: -8,
+    marginTop: -4,
   },
   titleRating: {
-    fontSize: 13,
+    fontSize: 12,
     fontFamily: fonts.secondary[400],
     color: colors.text.secondary,
     marginRight: 10,
@@ -153,6 +151,6 @@ const styles = StyleSheet.create({
     width: 300,
     height: 420,
     marginHorizontal: -25,
-    marginVertical: -20,
+    marginVertical: -30,
   },
 });

@@ -149,6 +149,20 @@ const ProductDetail = props => {
         </TouchableOpacity>
 
         <Gap height={20} />
+
+        {/* Description */}
+        <Text style={styles.title}>Description</Text>
+        <Text style={styles.desc}>
+          Lorem ipsum is simply dummy text ot the printing and typesetting
+          industry. Lorem ipsum has been the industry’s standart dummy text ever
+          since the 1500s, when an unknown printer took a gallery of type and
+          scrambled it to make a type specimen.....
+        </Text>
+        <TouchableOpacity>
+          <Text style={styles.more}>View More</Text>
+        </TouchableOpacity>
+
+        <Gap height={20} />
         <View style={styles.stripGap} />
         <View style={styles.gap} />
         <View style={styles.stripGap} />

@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {Image, View, Text} from 'react-native';
 import QuantitySelector from '../QuantitySelector';

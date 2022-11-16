@@ -20,10 +20,11 @@ import {useStripe} from '@stripe/stripe-react-native';
 import {api_send_mail, CHECKOUT_API_URL} from '../../api_service';
 import {getUsers} from '../../graphql/queries';
 //const countries = countryList.getData();
+import CheckBox from '@react-native-community/checkbox';
 
 const AddressScreen = ({navigation}) => {
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
-  //const [country, setCountry] = useState(countries[0].code);
+  const [toggleCheckBox, setToggleCheckBox] = useState('reciver');
   const [fullname, setFullname] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -208,6 +209,35 @@ const AddressScreen = ({navigation}) => {
           />
         </View>
 
+        {/* Checkbox */}
+        <View style={styles.row}>
+          <Text style={styles.label}>Are You ? ("sender" or "reciver")</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <CheckBox
+              disabled={false}
+              value={toggleCheckBox === 'sender'}
+              onValueChange={newValue => setToggleCheckBox('sender')}
+            />
+            <Text>Sender </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <CheckBox
+              disabled={false}
+              value={toggleCheckBox === 'reciver'}
+              onValueChange={newValue => setToggleCheckBox('reciver')}
+            />
+            <Text>reciver </Text>
+          </View>
+        </View>
+
         {/* Phone */}
         <View style={styles.row}>
           <Text style={styles.label}>Phone Number </Text>
@@ -279,7 +309,7 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setCountry}
           />
         </View>
-        {/* <Button text="Checkout" onPress={onCheckout} /> */}
+
         <ActionBtn
           title={loading || 'Checkout'}
           onPress={onCheckout}

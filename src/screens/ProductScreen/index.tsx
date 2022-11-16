@@ -55,6 +55,7 @@ interface ProductItemDetails {
   options: string[];
   ratings: number;
   oldPrice?: number;
+  country?: string;
 }
 
 const ProductScreen = () => {
@@ -89,6 +90,7 @@ const ProductScreen = () => {
         'ratings',
         'title',
         'avgRating',
+        'country',
       ]);
       parsed.images = parsed.images.split(',');
       if (!parsed.options) {
@@ -111,59 +113,7 @@ const ProductScreen = () => {
       </ScrollView>
     );
   }
-  // return (
-  //   <ScrollView style={styles.root}>
-  //     <Text style={styles.title}>{product.title}</Text>
 
-  //     {/* Image corousel */}
-  //     <ImageCarousel images={product.images} />
-
-  //     {/* Option selector */}
-  //     {product.options.length > 0 ? (
-  //       <Picker
-  //         selectedValue={selectedOption}
-  //         onValueChange={itemValue => setSelectedOption(itemValue)}>
-  //         {product.options.map(option => (
-  //           <Picker.Item label={option} value={option} />
-  //         ))}
-  //       </Picker>
-  //     ) : null}
-
-  //     {/* Price */}
-  //     <Text style={styles.price}>
-  //       {product.price}
-  //       {product.oldPrice && (
-  //         <Text style={styles.oldPrice}> {product.oldPrice}</Text>
-  //       )}
-  //     </Text>
-
-  //     {/* Decription */}
-  //     <Text style={styles.description}>{product.description}</Text>
-
-  //     {/* Quantity selctor */}
-  //     <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
-
-  //     {/* Buttom */}
-  //     <Button
-  //       text={'Add To Cart'}
-  //       onPress={() => {
-  //         if (!globalThis.cart[product.id]) {
-  //           globalThis.cart[product.id] = {};
-  //           globalThis.cart[product.id].id = product.id;
-  //           globalThis.cart[product.id].quantity = quantity;
-  //           globalThis.cart[product.id].item = product;
-  //         } else {
-  //           globalThis.cart[product.id].quantity += quantity;
-  //         }
-  //         console.log(globalThis.cart);
-  //       }}
-  //       containerStyle={{
-  //         backgroundColor: '#e3c905',
-  //       }}
-  //     />
-  //     <Button text={'Buy Now'} onPress={() => {}} />
-  //   </ScrollView>
-  // );
   return (
     <View style={{flex: 1}}>
       <Header
@@ -218,33 +168,17 @@ const ProductScreen = () => {
         <View style={styles2.stripGap} />
         <Gap height={20} />
 
-        {/* Choose Size */}
-        {/* <Text style={styles2.title}>Size</Text>
+        {/* Country */}
+        <Text style={styles2.title}>Country</Text>
         <View style={styles2.row}>
-          <Label type="size" text="S" />
-          <Label type="size" text="M" selected />
-          <Label type="size" text="L" />
-          <Label type="size" text="XL" />
-        </View>
-        <Gap height={10} />
-
-        <View style={styles2.strip} />
-        <Gap height={10} /> */}
-
-        {/* Choose Color */}
-        {/* <Text style={styles2.title}>Color</Text>
-        <View style={styles2.row}>
-          <Label type="color" color={colors.black} />
-          <Label type="color" color={colors.blueButton} />
-          <Label type="color" color={colors.price} selected />
-          <Label type="color" color={colors.facebook} />
+          <Text>{product?.country}</Text>
         </View>
         <Gap height={10} />
 
         <View style={styles2.stripGap} />
         <View style={styles2.gap} />
         <View style={styles2.stripGap} />
-        <Gap height={20} /> */}
+        <Gap height={20} />
 
         {/* Description */}
         <Text style={styles2.title}>Description</Text>

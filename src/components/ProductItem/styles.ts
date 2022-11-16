@@ -24,8 +24,6 @@ import { StyleSheet } from "react-native";
     title: {
         fontSize: 20,
         fontWeight: '500',
-        
-        
     },
     price: {
      fontSize: 18,

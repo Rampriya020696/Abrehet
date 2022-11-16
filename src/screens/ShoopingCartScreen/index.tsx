@@ -26,6 +26,7 @@ const Cart = ({onPress}) => {
   }, [navigation]);
 
   console.log({products});
+  console.log(globalThis.cart, 'CART');
   return (
     <View style={styles.page}>
       <Text style={styles.cart}>Cart</Text>
@@ -39,14 +40,16 @@ const Cart = ({onPress}) => {
             fontWeight: 'bold',
             fontFamily: fonts.primary[600],
           }}>
-          Subtotal ({products.length} item):{' '}
+          Subtotal ({products.length} item):
           <Text style={{color: '#e47911', fontWeight: 'bold'}}>
             {products
-              .reduce(
-                (summedPrice, product) =>
-                  summedPrice + product['item']['price'] * product['quantity'],
-                0,
-              )
+              .reduce((summedPrice, product) => {
+                let itemPrice = summedPrice + product['item']['price'];
+                if (typeof itemPrice === 'string') {
+                  itemPrice = Number(itemPrice?.replaceAll('$', ''));
+                }
+                return itemPrice * product['quantity'];
+              }, 0)
               .toFixed(2)}
           </Text>
         </Text>

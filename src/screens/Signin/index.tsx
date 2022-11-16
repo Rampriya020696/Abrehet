@@ -211,7 +211,7 @@ const Signin = ({navigation}) => {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
               // onPress={() => navigation.navigate('BottomTabNav')}
               style={{
                 backgroundColor: 'red',
@@ -223,7 +223,7 @@ const Signin = ({navigation}) => {
                 marginVertical: 60,
               }}>
               <Text style={{fontSize: 14, color: 'white'}}>Skip</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </ScrollView>

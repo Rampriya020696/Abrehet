@@ -4,6 +4,7 @@ import React from 'react';
 import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Onboarding from 'react-native-onboarding-swiper';
+import {OnBoardingContext} from '../../context/OnBoardingContext';
 import {fonts} from '../../utils';
 import {colors} from '../../utils/colors';
 
@@ -26,6 +27,9 @@ const Done = ({...props}) => (
 );
 
 const OnBoarding = ({navigation}) => {
+  const {onboardingRes} = React.useContext(OnBoardingContext);
+  console.log(onboardingRes, 'onboardingRes');
+
   return (
     <Onboarding
       SkipButtonComponent={Skip}
@@ -38,41 +42,57 @@ const OnBoarding = ({navigation}) => {
       bottomBarHeight={50}
       onSkip={() => navigation.navigate('Sigin')}
       onDone={() => navigation.navigate('Sigin')}
+      // pages={data}
       pages={[
         {
-          backgroundColor: colors.white,
+          backgroundColor: onboardingRes[0]?.backgroundColor || colors.white,
           image: (
             <Image
               style={styles.image}
-              source={require('../../Assets/illustration/Ilustration-Onboarding1.png')}
+              source={
+                onboardingRes[0]?.image
+                  ? {uri: onboardingRes[0]?.image}
+                  : require('../../Assets/illustration/Ilustration-Onboarding1.png')
+              }
             />
           ),
-          title: 'E-Commerce App',
+          title: onboardingRes[0]?.title || 'E-Commerce App',
           subtitle:
+            onboardingRes[0]?.subtitle ||
             'E commerce aplication template \n buy this code template in codecanyon',
         },
         {
-          backgroundColor: colors.white,
+          backgroundColor: onboardingRes[1]?.backgroundColor || colors.white,
           image: (
             <Image
               style={styles.image}
-              source={require('../../Assets/illustration/Ilustration-Onboarding2.png')}
+              source={
+                onboardingRes[1]?.image
+                  ? {uri: onboardingRes[1]?.image}
+                  : require('../../Assets/illustration/Ilustration-Onboarding2.png')
+              }
             />
           ),
-          title: 'Choose Item',
+          title: onboardingRes[1]?.title || 'Choose Item',
           subtitle:
+            onboardingRes[1]?.subtitle ||
             'Choose items whereever you are with \n this application to make life \n easier',
         },
         {
-          backgroundColor: colors.white,
+          backgroundColor: onboardingRes[2]?.backgroundColor || colors.white,
           image: (
             <Image
               style={styles.image}
-              source={require('../../Assets/illustration/Ilustration-Onboarding3.png')}
+              source={
+                onboardingRes[2]?.image
+                  ? {uri: onboardingRes[2]?.image}
+                  : require('../../Assets/illustration/Ilustration-Onboarding3.png')
+              }
             />
           ),
-          title: 'Buy Item',
+          title: onboardingRes[2]?.title || 'Buy Item',
           subtitle:
+            onboardingRes[2]?.subtitle ||
             'Shop from thousand brands in the \n world in one application at \n throwaway prices',
         },
       ]}

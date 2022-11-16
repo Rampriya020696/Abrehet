@@ -1,7 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable quotes */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
@@ -11,10 +7,6 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon2 from 'react-native-vector-icons/AntDesign';
-import Icon3 from 'react-native-vector-icons/Foundation';
 import {useNavigation} from '@react-navigation/native';
 import {API, graphqlOperation} from 'aws-amplify';
 import {getMenuItems} from './queries';
@@ -38,7 +30,6 @@ const MenuIcon = () => {
   const navigation = useNavigation<any>();
   const [menuList, setMenuList] = useState([]);
   const [loading, setLoading] = useState(false);
-  
 
   useEffect(() => {
     const getMenuList = async () => {
@@ -47,7 +38,6 @@ const MenuIcon = () => {
         const res = (await API.graphql(
           graphqlOperation(getMenuItems, {}),
         )) as any;
-        console.log(res?.data?.listMenus?.items, 'menuList');
         setMenuList(makeMenuData(res?.data?.listMenus?.items));
       } catch (error: any) {
         console.log(error?.message);
@@ -57,8 +47,6 @@ const MenuIcon = () => {
     };
     getMenuList();
   }, []);
-
-  console.log({menuList});
 
   return (
     <View style={styles.menu}>
@@ -98,117 +86,6 @@ const MenuIcon = () => {
           </View>
         );
       })}
-      {/* --- */}
-      {/* <View style={[styles.menuColoumn]}>
-        <TouchableOpacity
-          style={styles.menuIcon}
-          onPress={() =>
-            navigation.navigate('StaticPage', {title: 'Groceries'})
-          }>
-          <Image
-            style={{width: 26, height: 26}}
-            source={require('../../Assets/FoodIcon.png')}
-          />
-          <Text style={styles.title}>Groceries</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.menuIcon}
-          onPress={() => navigation.navigate('StaticPage', {title: 'Fashion'})}>
-          <Image
-            style={{width: 25, height: 25}}
-            source={require('../../Assets/FashionIcon.png')}
-          />
-          <Text style={styles.title}>Fashion</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.menuIcon}
-          onPress={() =>
-            navigation.navigate('StaticPage', {title: 'Furniture'})
-          }>
-          <Icon name="table-furniture" color={'brown'} size={27} />
-
-          <Text style={styles.title}>Furniture</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={{flexDirection: 'row'}}>
-        <View style={styles.menuColoumn}>
-          <TouchableOpacity
-            style={[styles.menuIcon]}
-            onPress={() =>
-              navigation.navigate('StaticPage', {title: 'Electronics'})
-            }>
-            <Image
-              style={styles.image}
-              source={require('../../Assets/ComputerIcon.png')}
-            />
-            <Text style={styles.title}>Electronics</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.menuColoumn}>
-          <TouchableOpacity
-            style={[styles.menuIcon]}
-            onPress={() =>
-              navigation.navigate('StaticPage', {title: 'Jewelry and Beauty'})
-            }>
-            <Image
-              style={styles.image}
-              source={require('../../Assets/jewellery.png')}
-            />
-            <Text style={styles.title}>Jewelry and Beauty</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.menuColoumn}>
-          <TouchableOpacity
-            style={[styles.menuIcon]}
-            onPress={() =>
-              navigation.navigate('StaticPage', {title: 'Real Estate'})
-            }>
-            <Icon2 name="home" color={'red'} size={25} />
-            <Text style={styles.title}>Real Estate</Text>
-          </TouchableOpacity>
-        </View>
-      </View> */}
-
-      {/* <View style={{flexDirection: 'row', marginTop: 5}}>
-        <View style={styles.menuColoumn}>
-          <TouchableOpacity
-            style={[styles.menuIcon]}
-            onPress={() => navigation.navigate('StaticPage', {title: 'Books'})}>
-            <Image
-              style={styles.image}
-              source={require('../../Assets/BookIcon.png')}
-            />
-            <Text style={styles.title}>Books</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.menuColoumn}>
-          <TouchableOpacity
-            style={[styles.menuIcon]}
-            onPress={() =>
-              navigation.navigate('StaticPage', {title: 'Cars And Trucks'})
-            }>
-            <Image
-              style={{height: 20, width: 30}}
-              source={require('../../Assets/Icon-My-Orders.png')}
-            />
-            <Text style={styles.title}>Cars And Trucks</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.menuColoumn}>
-          <TouchableOpacity
-            style={[styles.menuIcon]}
-            onPress={() => navigation.navigate('FlashSale')}>
-            <Icon3 name="burst-sale" color={'green'} size={22} />
-
-            <Text style={styles.title}>Flash Sale</Text>
-          </TouchableOpacity>
-        </View>
-      </View> */}
     </View>
   );
 };
@@ -237,8 +114,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   menuColoumn1: {
-    // flex: 1,
-
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
@@ -260,11 +135,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   image: {
-    width: 80,
-    height: 59,
+    width: 55,
+    height: 55,
     marginTop: -40,
     marginVertical: 10,
     marginBottom: -3,
     borderRadius: 15000,
+    resizeMode: 'contain',
   },
 });

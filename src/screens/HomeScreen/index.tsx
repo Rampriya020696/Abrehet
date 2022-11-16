@@ -1,46 +1,18 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// THIS IS THE ONE
-import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  Image,
-  Alert,
-  Dimensions,
-} from 'react-native';
-import ProductItem from '../../components/ProductItem';
-import {DataStore, graphqlOperation} from 'aws-amplify';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, FlatList, Text, Dimensions} from 'react-native';
+import {graphqlOperation} from 'aws-amplify';
 import * as types from '../../API';
 import {API} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import _ from 'lodash';
 
-import initProducts from '../../data/products';
-
 import Banner from '../../components/Banner';
 import MenuIcon from '../../components/MenuIcon';
-import {useNavigation, NavigationProp} from '@react-navigation/native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 import Gap from '../../components/Gap';
 import {colors, fonts} from '../../utils';
-import {
-  ILRecomended1,
-  ILRecomended2,
-  ILRecomended3,
-  ILRecomended4,
-  ILRecomended5,
-  ILRecomended6,
-  ILRecomended7,
-} from '../../Assets';
 import Recomended from '../../components/Recomended';
 import {HeaderComponent} from '../../router/HomeStack';
-import {FlashList} from '@shopify/flash-list';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -83,6 +55,8 @@ const makeBanneData = data => {
 
 const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<any>([]);
+  const [filterProducts, setFilterProducts] = useState<any>([]);
+  const [searchString, setSearchString] = useState('');
   const [bannerImages, setBannerImages] = useState<ProductItemProps[]>([]);
 
   const navigation = useNavigation<any>();
@@ -138,16 +112,20 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     fetchBannerImages();
   }, []);
 
-  console.log(products, 'products');
+  useEffect(() => {
+    console.log(searchString, 'searchString');
+  }, [searchString]);
   return (
     <View style={{flex: 1}}>
-      <HeaderComponent searchValue="Search..." setSearchValue={() => {}} />
+      <HeaderComponent
+        searchValue={searchString}
+        setSearchValue={setSearchString}
+      />
 
       <FlatList
         style={{
           flex: 1,
         }}
-        // data={products.slice(0, 30)}
         data={products}
         ListHeaderComponent={() => {
           return (
@@ -188,7 +166,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         numColumns={2}
         keyExtractor={(item: any) => String(item.id)}
         renderItem={({item}: any) => {
-          // return <ProductItem item={item}  />;
           return (
             <View key={`${item.id}`} style={styles.page}>
               <View style={styles.recomended}>
@@ -199,6 +176,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                   rating="4.8"
                   totalSale="932 Sale"
                   country={item.country}
+                  category={item.category}
                   onPress={() => {
                     globalThis.itemDetails = item.id;
                     navigation.navigate('ProductDetails');
