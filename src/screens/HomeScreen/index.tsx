@@ -113,8 +113,15 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
   }, []);
 
   useEffect(() => {
-    console.log(searchString, 'searchString');
+    if (!searchString) return;
+
+    setFilterProducts(
+      products.filter(item =>
+        item.title.toLowerCase().includes(searchString.toLowerCase()),
+      ),
+    );
   }, [searchString]);
+
   return (
     <View style={{flex: 1}}>
       <HeaderComponent
@@ -126,7 +133,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         style={{
           flex: 1,
         }}
-        data={products}
+        data={filterProducts || products}
         ListHeaderComponent={() => {
           return (
             <>
