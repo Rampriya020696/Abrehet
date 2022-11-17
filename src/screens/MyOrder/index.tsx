@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import {API, Auth, graphqlOperation} from 'aws-amplify';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import {
   ICBlipOrder,
@@ -16,10 +17,54 @@ import Header from '../../components/Header';
 import {colors, fonts} from '../../utils';
 
 const MyOrder = ({navigation}) => {
+  const [order, setOrder] = useState<any>([]);
+  React.useEffect(() => {
+    const getMyOrders = async () => {
+      const user = await Auth.currentAuthenticatedUser();
+
+      const userSUb = user?.attributes?.sub;
+      try {
+        const res = (await API.graphql(
+          graphqlOperation(
+            `
+            query MyQuery {
+            listOrders(filter: {userID: {eq: "${userSUb}"}}) {
+              items {
+                userID
+                name
+                Products
+                Status
+                address
+                city
+                createdAt
+                id
+                isSender
+                phone
+                senderAddress
+                updatedAt
+                usersOrdersId
+              }
+            }
+          }          
+          `,
+            {},
+          ),
+        )) as any;
+        setOrder(res?.data?.listOrders?.items);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getMyOrders();
+  }, []);
+
   return (
     <View style={styles.page}>
       <Header title="Track My Order" onPress={() => navigation.goBack()} />
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+
+      <Text>{JSON.stringify(order, '2')}</Text>
+      {/* <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <Gap height={10} />
         <Text style={styles.detail}>Wed, 12 September</Text>
         <Text style={styles.detail}>Order ID : 5l36 - 9iu2</Text>
@@ -82,7 +127,7 @@ const MyOrder = ({navigation}) => {
             </Text>
           </View>
         </View>
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 };

@@ -23,25 +23,6 @@ import {getUsers} from '../../graphql/queries';
 import CheckBox from '@react-native-community/checkbox';
 import {createOrder} from '../../graphql/mutations';
 
-const orderCreateQuery = `
-mutation MyMutation {
-  createOrder(input: {
-    Status: "Orderd",
-    address: "asd",
-    city: "sda",
-    isSender: true,
-    name: "dfsd",
-    phone: "123",
-    senderAddress: "asds",
-    userID: "123",
-    usersOrdersId: "123",
-    Products: "false"
-    }) {
-    id
-  }
-}
-`;
-
 const AddressScreen = ({navigation}) => {
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const [toggleCheckBox, setToggleCheckBox] = useState('reciver');
