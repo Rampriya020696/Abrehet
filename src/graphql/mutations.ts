@@ -130,6 +130,8 @@ export const createOrder = /* GraphQL */ `
       address
       city
       Products
+      senderAddress
+      isSender
       Status
       id
       createdAt

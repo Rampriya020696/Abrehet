@@ -8,7 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import React, {useState} from 'react';
-import {Auth} from 'aws-amplify';
+import {API, Auth, graphqlOperation} from 'aws-amplify';
 import {Picker} from '@react-native-picker/picker';
 //import countryList from 'country-list';
 import Button from '../../components/Button';
@@ -21,6 +21,26 @@ import {api_send_mail, CHECKOUT_API_URL} from '../../api_service';
 import {getUsers} from '../../graphql/queries';
 //const countries = countryList.getData();
 import CheckBox from '@react-native-community/checkbox';
+import {createOrder} from '../../graphql/mutations';
+
+const orderCreateQuery = `
+mutation MyMutation {
+  createOrder(input: {
+    Status: "Orderd",
+    address: "asd",
+    city: "sda",
+    isSender: true,
+    name: "dfsd",
+    phone: "123",
+    senderAddress: "asds",
+    userID: "123",
+    usersOrdersId: "123",
+    Products: "false"
+    }) {
+    id
+  }
+}
+`;
 
 const AddressScreen = ({navigation}) => {
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
@@ -34,6 +54,7 @@ const AddressScreen = ({navigation}) => {
   const [postal_code, setPostal_code] = useState('');
   const [country, setCountry] = useState('');
   const [email, setEmail] = useState('');
+  const [senderAddress, setSenderAddress] = useState('');
   const [stripeData, setStripeData] = useState(null);
 
   const [loading, setLoading] = useState('');
@@ -123,6 +144,36 @@ const AddressScreen = ({navigation}) => {
     }
   };
 
+  const buildOrderObject = async () => {
+    const isSender = Boolean(toggleCheckBox === 'sender');
+    const order = {
+      Status: 'Orderd',
+      address: address,
+      city: city,
+      isSender,
+      name: fullname,
+      phone: phone,
+      senderAddress: isSender ? senderAddress : '',
+      userID: '123',
+      Products: JSON.stringify(globalThis.cart),
+    };
+
+    try {
+      const authUser = await Auth.currentAuthenticatedUser();
+      console.log('----->', authUser);
+
+      order.userID = authUser?.attributes?.sub;
+      console.log(order);
+      const res = await API.graphql(
+        graphqlOperation(createOrder, {input: order}),
+      );
+      Alert.alert('Success', 'Order Created Successfully!');
+      console.log('----->', res);
+    } catch (error) {
+      console.log('----->', error);
+    }
+  };
+
   const onCheckout = () => {
     if (!fullname) {
       Alert.alert('Please fill in the full name');
@@ -153,7 +204,8 @@ const AddressScreen = ({navigation}) => {
       return;
     }
 
-    console.warn('Success. Checkout');
+    // console.warn('Success. Checkout');
+    buildOrderObject();
     getStripeIntent();
   };
 
@@ -193,12 +245,6 @@ const AddressScreen = ({navigation}) => {
       <ScrollView style={styles.root}>
         <View style={styles.row}></View>
 
-        {/*  <Picker selectedValue={country} onValueChange={setCountry}>
-            {countries.map(c => (
-              <Picker.Item value={c.code} label={c.name} />
-            ))}
-          </Picker>
-        Full name */}
         <View style={styles.row}>
           <Text style={styles.label}>Full Name (First and Last Name)</Text>
           <TextInput
@@ -237,6 +283,18 @@ const AddressScreen = ({navigation}) => {
             <Text>reciver </Text>
           </View>
         </View>
+        {/* Sender Address */}
+        {toggleCheckBox === 'sender' && (
+          <View style={styles.row}>
+            <Text style={styles.label}>Sender Address </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Sender Address"
+              value={senderAddress}
+              onChangeText={setSenderAddress}
+            />
+          </View>
+        )}
 
         {/* Phone */}
         <View style={styles.row}>

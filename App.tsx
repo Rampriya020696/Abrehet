@@ -33,6 +33,4 @@ const App = () => {
   );
 };
 
-// export default withAuthenticator(App, {Signin});
-// export default withAuthenticator(App);
 export default App;

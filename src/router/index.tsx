@@ -3,7 +3,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import BottomTabNav from './bottomTabNav';
-import MainStackNavigator from './stackNavigator';
+
 import Signin from '../screens/Signin';
 import {Auth, Hub, API, graphqlOperation} from 'aws-amplify';
 import Splash from '../screens/Splash';

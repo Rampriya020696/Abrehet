@@ -1,0 +1,49 @@
+type Products 
+@model (subscriptions: { level: public }) 
+@auth(rules: [
+      {allow: public, operations: [read]},
+      {allow: groups, groups: ["Admin"], operations: [create, update, delete, read]}
+]) {
+  id: ID!
+  title: String!
+  category: String!
+  content: AWSJSON!
+  country: String
+}
+ 
+type Users @model @auth(rules: [{allow: public}]) {
+  email: String!
+  phone: String
+  name: String
+  address: String
+  other: AWSJSON
+  orders: [Order] @hasMany
+}
+
+type Mutation {
+  createPayment(input: PaymentInput): PaymentResult
+    @function(name: "makePayment-${env}")
+}
+
+input PaymentInput {
+  amount: Float
+  total: Int
+  name: String
+  email: String
+}
+
+type PaymentResult {
+  statusCode: Int
+  body: String
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  userID: String
+  phone: String
+  name: String
+  address: String
+  city: String
+  Products: AWSJSON
+  Status: String
+}
+ 

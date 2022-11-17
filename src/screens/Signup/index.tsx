@@ -19,7 +19,7 @@ import {ResourceContext} from '../../context/ResourceContext';
 
 Amplify.configure({Auth: awsconfig});
 
-const Signup = ({navigation, type}) => {
+const Signup = ({navigation, type}): JSX.Element => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -163,11 +163,7 @@ const Signup = ({navigation, type}) => {
 
             <View style={{alignSelf: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style=
-                {{color: 'white', 
-                fontSize: 20,
-                fontWeight: "300",
-                }}>
+                <Text style={{color: 'white', fontSize: 20, fontWeight: '300'}}>
                   Already have an account ? SignIn
                 </Text>
               </TouchableOpacity>

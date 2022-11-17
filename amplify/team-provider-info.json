@@ -1,4 +1,38 @@
 {
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-abrehet-staging-53841-authRole",
+      "UnauthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-staging-53841-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-staging-53841-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-abrehet-staging-53841-deployment",
+      "UnauthRoleName": "amplify-abrehet-staging-53841-unauthRole",
+      "StackName": "amplify-abrehet-staging-53841",
+      "StackId": "arn:aws:cloudformation:us-east-1:807954077262:stack/amplify-abrehet-staging-53841/5b002570-96c6-11ec-984f-12a1e5ea69b9",
+      "AmplifyAppId": "d3t4jm0uu1bb0n"
+    },
+    "categories": {
+      "auth": {
+        "abrehet2d81a0c0": {}
+      },
+      "function": {
+        "makePayment": {
+          "deploymentBucketName": "amplify-abrehet-staging-53841-deployment",
+          "s3Key": "amplify-builds/makePayment-76336b7734706c536e45-build.zip"
+        },
+        "sendemail": {
+          "deploymentBucketName": "amplify-abrehet-staging-53841-deployment",
+          "s3Key": "amplify-builds/sendemail-324a34544e4e51394579-build.zip"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3t4jm0uu1bb0n",
+          "type": "manual"
+        }
+      }
+    }
+  },
   "dev": {
     "awscloudformation": {
       "AuthRoleName": "amplify-abrehet-dev-130140-authRole",
