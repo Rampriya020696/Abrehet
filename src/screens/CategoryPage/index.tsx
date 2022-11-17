@@ -1,5 +1,12 @@
 /* eslint-disable prettier/prettier */
-import {FlatList, SafeAreaView, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Header from '../../components/Header';
@@ -11,8 +18,10 @@ const CategoryPage = () => {
   const {title, id} = useRoute<any>().params;
   const navigation = useNavigation<any>();
   const [product, setProduct] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
   React.useEffect(() => {
     const getProductByMenuId = async () => {
+      setLoading(true);
       try {
         const res = await API.graphql(
           graphqlOperation(
@@ -38,6 +47,8 @@ const CategoryPage = () => {
         setProduct(res.data.listProducts.items);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -50,6 +61,20 @@ const CategoryPage = () => {
       <FlatList
         style={{
           flex: 1,
+        }}
+        ListEmptyComponent={() => {
+          return loading ? (
+            <View
+              style={{
+                height: 300,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <ActivityIndicator color={colors.primary} size="large" />
+            </View>
+          ) : (
+            <Text style={{textAlign: 'center'}}> no products</Text>
+          );
         }}
         data={product}
         numColumns={2}
