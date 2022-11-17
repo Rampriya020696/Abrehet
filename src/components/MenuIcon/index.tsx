@@ -63,7 +63,10 @@ const MenuIcon = () => {
                   <TouchableOpacity
                     style={[styles.menuIcon]}
                     onPress={() =>
-                      navigation.navigate('StaticPage', {title: item?.name})
+                      navigation.navigate('CategoryPage', {
+                        title: item?.name,
+                        id: item?.id,
+                      })
                     }>
                     {item?.icon ? (
                       <Image

@@ -9,11 +9,11 @@ import {SafeAreaView, View, TextInput, Image} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import HomeProductScreen from '../screens/HomeScreen/main';
-import StaticPage from '../screens/StaticPage';
 import FlashSale from '../screens/FlashSale';
 import ChatScreen from '../screens/ChatScreen';
 import {useNavigation} from '@react-navigation/native';
 import ContactUs from '../screens/ContactUs';
+import CategoryPage from '../screens/CategoryPage';
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -94,7 +94,7 @@ const HomeStack = () => {
         options={{title: 'HomeProduct'}}
       />
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
-      <Stack.Screen component={StaticPage} name="StaticPage" />
+      <Stack.Screen component={CategoryPage} name="CategoryPage" />
       <Stack.Screen component={FlashSale} name="FlashSale" />
       <Stack.Screen component={ChatScreen} name="ChatScreen" />
       <Stack.Screen component={ContactUs} name="ContactUsScreen" />
