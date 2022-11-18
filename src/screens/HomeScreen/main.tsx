@@ -67,7 +67,10 @@ const HomeProductScreen = ({searchValue}: HomeScreenProps) => {
       {/* Render Product Component */}
 
       <View style={{width: '100%', height: 200}}>
-        <Banner images={images} />
+        <Banner
+          images={images}
+          onPress={() => navigation.navigate('FlashSale')}
+        />
       </View>
 
       <View
