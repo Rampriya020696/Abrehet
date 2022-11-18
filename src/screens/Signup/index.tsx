@@ -163,8 +163,16 @@ const Signup = ({navigation, type}): JSX.Element => {
 
             <View style={{alignSelf: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={{color: 'white', fontSize: 20, fontWeight: '300'}}>
+                <Text style={{color: 'white', fontSize: 17, fontWeight: '300'}}>
                   Already have an account ? SignIn
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{alignSelf: 'center', marginTop: 5}}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('EmailConfirmation')}>
+                <Text style={{color: 'white', fontSize: 17, fontWeight: '300'}}>
+                  Confirm Email
                 </Text>
               </TouchableOpacity>
             </View>

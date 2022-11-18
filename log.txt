@@ -1,3 +1,8 @@
-menu items
-trakeing order order history is not showing 
-forget password etc.
+
+3. Federated account with Facebook and Gmail not done.
+
+5. Recommend should fellow users patterns of buying habits 
+6. Product detail add to cart should count while press. For example if u press the item twice the cart icon near chatt should display 2.
+7.cart total not adding the price and quantity selector can't go below 0 and should remove the item if goes to zeros..
+8. Address I don't think you understand what I need I will explain after we meet.
+9. Delete my account I already creat under account shout navigate to chat box.

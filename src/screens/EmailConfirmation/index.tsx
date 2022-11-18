@@ -1,8 +1,17 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {Auth} from 'aws-amplify';
-import {Alert, SafeAreaView, Text, TextInput} from 'react-native';
+import {
+  Alert,
+  ImageBackground,
+  SafeAreaView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Button from '../../components/Button';
+import {colors} from '../../utils';
 
 const EmailConfirmation = () => {
   const navigation = useNavigation<any>();
@@ -47,13 +56,102 @@ const EmailConfirmation = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: 'orange',
       }}>
-      <TextInput value={username} onChangeText={v => setUsername(v)} />
-      <TextInput value={code} onChangeText={v => setCode(v)} />
-      <Button text="Confirm" onPress={handleConfirmPress} />
-      <Button text="Sigin" onPress={() => navigation.navigate('Sigin')} />
-      <Button text="Resend" onPress={handleEmailResend} />
+      <ImageBackground
+        style={{
+          flex: 1,
+          backgroundColor: 'rgba(255,255,255,1)',
+          paddingHorizontal: '10%',
+        }}
+        source={require('../../Assets/Login.png')}>
+        <Text
+          style={{
+            color: 'white',
+            fontWeight: 'bold',
+            fontSize: 28,
+            marginVertical: 20,
+            textAlign: 'center',
+          }}>
+          Confirm Your Email
+        </Text>
+
+        <View
+          style={{
+            backgroundColor: 'white',
+            borderRadius: 15,
+            padding: 5,
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <TextInput
+            style={{
+              fontSize: 15,
+              paddingLeft: 20,
+            }}
+            placeholder="username"
+            placeholderTextColor="gray"
+            value={username}
+            onChangeText={v => setUsername(v)}
+          />
+        </View>
+        <View
+          style={{
+            backgroundColor: 'white',
+            borderRadius: 15,
+            padding: 5,
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <TextInput
+            style={{
+              fontSize: 15,
+              paddingLeft: 20,
+            }}
+            placeholder="code"
+            placeholderTextColor="gray"
+            value={code}
+            onChangeText={v => setCode(v)}
+          />
+        </View>
+
+        <TouchableOpacity
+          onPress={handleConfirmPress}
+          style={{
+            marginTop: 40,
+            height: 45,
+            backgroundColor: colors.blueButton,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{color: 'white', fontSize: 18}}>Confirm</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={handleEmailResend}
+          style={{
+            marginTop: 40,
+            height: 45,
+            backgroundColor: colors.blueButton,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{color: 'white', fontSize: 18}}>Resend Code</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate('Sigin')}>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 15,
+              marginTop: 20,
+              textAlign: 'center',
+            }}>
+            back, to Signin
+          </Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </SafeAreaView>
   );
 };
