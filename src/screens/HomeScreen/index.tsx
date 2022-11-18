@@ -62,40 +62,50 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const navigation = useNavigation<any>();
   useEffect(() => {
     const fetchProducts = async () => {
-      let allProducts = (await API.graphql({query: queries.listProducts})) as {
-        data: types.ListProductsQuery;
-      };
+      try {
+        let allProducts = (await API.graphql({
+          query: queries.listProducts,
+        })) as {
+          data: types.ListProductsQuery;
+        };
 
-      const data = allProducts?.data?.listProducts?.items.map(item => {
-        if (!item?.content) {
-          return item;
-        }
-        let temp = item;
-        temp.content = JSON.parse(item.content);
-        temp.cost = item.content?.cost;
-        temp.country = item.content?.country;
-        temp.description = item.content?.description;
-        temp.image = item.content?.image;
-        temp.images = item.content?.images;
-        temp.price = item.content?.price;
-        return temp;
-      });
+        console.log(allProducts, 'allProductsasdasdasdasdas');
+        const data = allProducts?.data?.listProducts?.items.filter(item => {
+          if (!item?.createdAt) return;
+          if (!item?.content) {
+            return item;
+          }
+          let temp = item;
+          temp.content = JSON.parse(item.content);
+          temp.cost = item.content?.cost;
+          temp.country = item.content?.country;
+          temp.description = item.content?.description;
+          temp.image = item.content?.image;
+          temp.images = item.content?.images;
+          temp.price = item.content?.price;
+          return temp;
+        });
 
-      setProducts(
-        data?.filter(item => item?.title !== 'Product unavailable. '),
-      );
-      // setProducts(
-      //   allProducts.data.listProducts!.items.map(item => {
-      //     return _.pick(JSON.parse(item!.content), [
-      //       'id',
-      //       'title',
-      //       'image',
-      //       'price',
-      //       'oldPrice',
-      //       'country',
-      //     ]);
-      //   }),
-      // );
+        setProducts(
+          data?.filter(item => {
+            return item?.title !== 'Product unavailable. ';
+          }),
+        );
+        // setProducts(
+        //   allProducts.data.listProducts!.items.map(item => {
+        //     return _.pick(JSON.parse(item!.content), [
+        //       'id',
+        //       'title',
+        //       'image',
+        //       'price',
+        //       'oldPrice',
+        //       'country',
+        //     ]);
+        //   }),
+        // );
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const fetchBannerImages = async () => {
@@ -125,6 +135,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     );
   }, [searchString]);
   console.log({filterProducts, searchString}, 'LL');
+  console.log({products}, 'products');
 
   return (
     <View style={{flex: 1}}>

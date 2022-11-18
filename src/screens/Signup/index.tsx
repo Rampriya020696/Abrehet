@@ -27,15 +27,15 @@ const Signup = ({navigation, type}): JSX.Element => {
   const {resource} = React.useContext(ResourceContext) as any;
   const handleSignUp = async () => {
     try {
-      const response = await Auth.signUp(
-        username,
-        password,
-        email,
-        phoneNumber,
-      );
-      console.log(response);
-      console.log('SignUp Done');
-      navigation.navigate('Signin');
+      // const response = await Auth.signUp(
+      //   username,
+      //   password,
+      //   email,
+      //   phoneNumber,
+      // );
+      // console.log(response);
+      // console.log('SignUp Done');
+      navigation.navigate('EmailConfirmation', {username});
     } catch (e: any) {
       Alert.alert('Error', e.message);
     }
@@ -78,7 +78,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                 source={require('../../Assets/userNameAbrehet.png')}
               />
               <TextInput
-                placeholder="Email"
+                placeholder="Username"
                 onChangeText={value => setUsername(value)}
                 style={{
                   fontSize: 14,

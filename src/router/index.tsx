@@ -11,6 +11,9 @@ import OnBoarding from '../screens/OnBoarding';
 import Signup from '../screens/Signup';
 import {ResourceContext} from '../context/ResourceContext';
 import {OnBoardingContext} from '../context/OnBoardingContext';
+import EmailConfirmation from '../screens/EmailConfirmation';
+import ForgetPassword from '../screens/ForgetPassword';
+import ResetPassword from '../screens/ResetPassword';
 
 const resourceQuerie = `
 query MyQuery {
@@ -112,6 +115,12 @@ const Router = () => {
           <>
             <Root.Screen component={OnBoarding} name="OnBorading" />
             <Root.Screen component={Signin} name="Sigin" />
+            <Root.Screen component={ForgetPassword} name="ForgetPassword" />
+            <Root.Screen component={ResetPassword} name="ResetPassword" />
+            <Root.Screen
+              component={EmailConfirmation}
+              name="EmailConfirmation"
+            />
             <Root.Screen component={Signup} name="Signup" />
           </>
         )}

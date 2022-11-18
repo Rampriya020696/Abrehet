@@ -203,7 +203,8 @@ const Signin = ({navigation}) => {
                 </Text>
               </LinearGradient>
               <View style={{alignSelf: 'center', marginTop: 1}}>
-                <TouchableOpacity onPress={() => navigation.navigate('Reset')}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('ForgetPassword')}>
                   <Text style={{color: 'white', fontSize: 15}}>
                     Reset your password
                   </Text>
