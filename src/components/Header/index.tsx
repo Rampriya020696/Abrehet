@@ -4,6 +4,8 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors, fonts} from '../../utils';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
+import CartBadge from '../CartBadge';
+import {selectCartItems} from '../../store/features/cart/cartSlice';
 
 interface Props {
   title?: string;
@@ -13,7 +15,7 @@ interface Props {
 }
 
 const Header = ({title, onPress, icon, type}: Props) => {
-  const {items} = useSelector(s => s.cart);
+  const cartItems = useSelector(selectCartItems);
   if (type === 'brand-page') {
     return (
       <View style={styles.containerBrand}>
@@ -27,8 +29,7 @@ const Header = ({title, onPress, icon, type}: Props) => {
         <Ionicons name="arrow-back" size={30} color="#8398f4" />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.title}>{items.length}</Text>
-      <Image source={icon} style={styles.icon} />
+      <CartBadge count={cartItems.length} />
     </View>
   );
 };

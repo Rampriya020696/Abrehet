@@ -6,7 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import Login from '../screens/Signin';
 import ProductScreen from '../screens/ProductScreen';
 import {SafeAreaView, View, TextInput, Image} from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
+import ShopingCartScreen from '../screens/ShoopingCartScreen';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import HomeProductScreen from '../screens/HomeScreen/main';
 import FlashSale from '../screens/FlashSale';
@@ -94,6 +94,7 @@ const HomeStack = () => {
         options={{title: 'HomeProduct'}}
       />
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
+      <Stack.Screen component={ShopingCartScreen} name="cart" />
       <Stack.Screen component={CategoryPage} name="CategoryPage" />
       <Stack.Screen component={FlashSale} name="FlashSale" />
       <Stack.Screen component={ChatScreen} name="ChatScreen" />
