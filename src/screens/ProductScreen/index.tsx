@@ -18,6 +18,7 @@ import styles from './style';
 import QuantitySelector from '../../components/QuantitySelector';
 //import product from '../../data/product';
 import Button from '../../components/Button';
+import {useDispatch, useSelector} from 'react-redux';
 import ImageCarousel from '../../components/ImageCarousel';
 import * as types from '../../API';
 import {API, graphqlOperation} from 'aws-amplify';
@@ -38,6 +39,7 @@ import Gap from '../../components/Gap';
 import Label from '../../components/atoms/Label';
 import Strip from '../../components/Strip';
 import Recomended from '../../components/Recomended';
+import {addToCart} from '../../store/features/cart/cartSlice';
 
 const images = [
   require('../../Assets/Recomended-Image1.png'),
@@ -60,7 +62,9 @@ interface ProductItemDetails {
 
 const ProductScreen = () => {
   const [product, setProduct] = useState<ProductItemDetails>();
+  const dispatch = useDispatch();
 
+  const {rawItem} = useRoute().params as any;
   const [active, setActive] = React.useState(0);
   const [selectedOption, setSelectedOption] = useState('black');
   const [quantity, setQuantity] = useState(1);
@@ -199,6 +203,10 @@ const ProductScreen = () => {
           style={styles2.payButton}
           // onPress={() => navigation.navigate('Delivery')}
           onPress={() => {
+            dispatch(
+              addToCart({...rawItem, X: quantity} || {...product, X: quantity}),
+            );
+
             if (!globalThis.cart[product.id]) {
               globalThis.cart[product.id] = {};
               globalThis.cart[product.id].id = product.id;

@@ -22,8 +22,15 @@ import {getUsers} from '../../graphql/queries';
 //const countries = countryList.getData();
 import CheckBox from '@react-native-community/checkbox';
 import {createOrder} from '../../graphql/mutations';
+import {useSelector} from 'react-redux';
+import {
+  selectCartItems,
+  selectCartTotal,
+} from '../../store/features/cart/cartSlice';
 
 const AddressScreen = ({navigation}) => {
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const [toggleCheckBox, setToggleCheckBox] = useState('reciver');
   const [fullname, setFullname] = useState('');
@@ -49,7 +56,7 @@ const AddressScreen = ({navigation}) => {
       state: state,
       country: country,
       product: {
-        amount: '1000',
+        amount: cartTotal,
         des: otherDetails,
       },
     };
@@ -136,7 +143,8 @@ const AddressScreen = ({navigation}) => {
       phone: phone,
       senderAddress: isSender ? senderAddress : '',
       userID: '123',
-      Products: JSON.stringify(globalThis.cart),
+      // Products: JSON.stringify(globalThis.cart),
+      Products: JSON.stringify(cartItems),
     };
 
     try {

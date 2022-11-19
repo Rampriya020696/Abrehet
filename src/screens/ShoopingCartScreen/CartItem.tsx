@@ -1,64 +1,66 @@
 import {useNavigation} from '@react-navigation/native';
+import {navItem} from 'aws-amplify';
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
+import {useDispatch} from 'react-redux';
 import {ILCartItem} from '../../Assets';
 import Button from '../../components/Button';
 import CartProductItem from '../../components/CartProductItem';
 import Strip from '../../components/Strip';
+import {addToCart, removeToCart} from '../../store/features/cart/cartSlice';
 import {colors, fonts} from '../../utils';
 
 interface CartProductItemProps {
   cartItem: {
     id: string;
-    quantity: number;
-    option?: string;
-    item: {
-      id: string;
-      description: string;
-      title: string;
-      image: string;
-      price: number;
-      oldPrice: number;
-    };
+    qty: number;
+    cost?: string;
+    description: string;
+    title: string;
+    image: string;
+    price: string;
   };
 }
 const CartItem = ({cartItem}: CartProductItemProps) => {
+  const dispatch = useDispatch();
   const navigation = useNavigation<any>();
-  const {quantity: quantityProp, item} = cartItem;
-  const [quantity, setQuantity] = useState(quantityProp);
+  // const {quantity: quantityProp, item} = cartItem;
+  // const [quantity, setQuantity] = useState(quantityProp);
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
-        <Image source={{uri: cartItem.item.image}} style={styles.image} />
+        <Image source={{uri: cartItem.image}} style={styles.image} />
         <View style={styles.name}>
           <Text numberOfLines={2} style={styles.title}>
-            {cartItem.item.title}
+            {cartItem.title}
           </Text>
           <Text style={styles.desc}>
-            {`${cartItem.item.description.substring(0, 80)}...`}
+            {`${cartItem.description.substring(0, 80)}...`}
           </Text>
-          <Text style={styles.price}>{cartItem.item.price}</Text>
+          <Text style={styles.price}>{cartItem.price}</Text>
           <View style={styles.pilih}>
             <TouchableOpacity
               onPress={() => {
-                let newQty = quantity - 1;
-                globalThis.cart[item.id].quantity = newQty;
-                setQuantity(newQty);
+                dispatch(removeToCart(cartItem));
+                // let newQty = quantity - 1;
+                // globalThis.cart[item.id].quantity = newQty;
+                // setQuantity(newQty);
               }}>
               <Text style={styles.nomer}>-</Text>
             </TouchableOpacity>
             <View style={styles.strip} />
             <TouchableOpacity>
-              <Text style={styles.nomer}>{quantity}</Text>
+              <Text style={styles.nomer}>{cartItem.qty}</Text>
             </TouchableOpacity>
             <View style={styles.strip} />
             <TouchableOpacity
               onPress={() => {
-                let newQty = quantity + 1;
-                globalThis.cart[item.id].quantity = newQty;
-                setQuantity(newQty);
+                dispatch(addToCart(cartItem));
+                // let newQty = quantity + 1;
+                // globalThis.cart[item.id].quantity = newQty;
+                // setQuantity(newQty);
               }}>
               <Text style={styles.nomer}>+</Text>
             </TouchableOpacity>
@@ -67,11 +69,11 @@ const CartItem = ({cartItem}: CartProductItemProps) => {
       </View>
       <Strip />
       <View style={styles.pay}>
-        <Text style={styles.total}> Qty: {cartItem.quantity}</Text>
+        <Text style={styles.total}> Qty: {cartItem.qty}</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            globalThis.itemDetails = item.id;
+            // globalThis.itemDetails = item.id;
             // console.log('item pressed', globalThis);
             navigation.navigate('ProductDetails');
           }}>

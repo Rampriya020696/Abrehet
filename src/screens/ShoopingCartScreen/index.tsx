@@ -2,18 +2,24 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
+import {useSelector} from 'react-redux';
 import {ILCartItem} from '../../Assets';
 import ActionBtn from '../../components/ActionBtn';
 import Button from '../../components/Button';
 import CartProductItem from '../../components/CartProductItem';
 import Strip from '../../components/Strip';
+import {
+  selectCartItems,
+  selectCartTotal,
+} from '../../store/features/cart/cartSlice';
 import {colors, fonts} from '../../utils';
 import CartItem from './CartItem';
 
 const Cart = ({onPress}) => {
   const [products, setProducts] = useState([]);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
   const navigation = useNavigation<any>();
-
   const onCheckout = () => {
     navigation.navigate('Address');
   };
@@ -25,8 +31,7 @@ const Cart = ({onPress}) => {
     return unsubscribe;
   }, [navigation]);
 
-  console.log({products});
-  console.log(globalThis.cart, 'CART');
+  // console.log(globalThis.cart, 'CART');
   return (
     <View style={styles.page}>
       <Text style={styles.cart}>Cart</Text>
@@ -40,9 +45,10 @@ const Cart = ({onPress}) => {
             fontWeight: 'bold',
             fontFamily: fonts.primary[600],
           }}>
-          Subtotal ({products.length} item):
+          {/* Subtotal ({products.length} item): */}
+          Subtotal ({cartItems.length} item):
           <Text style={{color: '#e47911', fontWeight: 'bold'}}>
-            {products
+            {/* {products
               .reduce((summedPrice, product) => {
                 let itemPrice = summedPrice + product['item']['price'];
                 if (typeof itemPrice === 'string') {
@@ -50,7 +56,8 @@ const Cart = ({onPress}) => {
                 }
                 return itemPrice * product['quantity'];
               }, 0)
-              .toFixed(2)}
+              .toFixed(2)} */}
+            {cartTotal.toFixed(2)}
           </Text>
         </Text>
 
@@ -61,7 +68,7 @@ const Cart = ({onPress}) => {
         />
       </View>
       <FlatList
-        data={products}
+        data={cartItems}
         renderItem={({item}) => <CartItem cartItem={item} />}
         showsVerticalScrollIndicator={false}
       />

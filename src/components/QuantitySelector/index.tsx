@@ -3,7 +3,7 @@ import {View, Text, Pressable, StyleSheet} from 'react-native';
 
 const QuantitySelector = ({quantity, setQuantity}) => {
   const onMinus = () => {
-    setQuantity(Math.max(0, quantity - 1));
+    setQuantity(Math.max(1, quantity - 1));
   };
 
   const onPlus = () => {

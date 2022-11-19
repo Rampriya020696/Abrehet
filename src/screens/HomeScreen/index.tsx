@@ -5,6 +5,7 @@ import * as types from '../../API';
 import {API} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import _ from 'lodash';
+import {useDispatch} from 'react-redux';
 
 import Banner from '../../components/Banner';
 import MenuIcon from '../../components/MenuIcon';
@@ -13,6 +14,7 @@ import Gap from '../../components/Gap';
 import {colors, fonts} from '../../utils';
 import Recomended from '../../components/Recomended';
 import {HeaderComponent} from '../../router/HomeStack';
+import {increment} from '../../store/features/cart/cartSlice';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -55,12 +57,15 @@ const makeBanneData = data => {
 
 const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<any>([]);
+
+  const dispatch = useDispatch();
   const [filterProducts, setFilterProducts] = useState<any>([]);
   const [searchString, setSearchString] = useState('');
   const [bannerImages, setBannerImages] = useState<ProductItemProps[]>([]);
 
   const navigation = useNavigation<any>();
   useEffect(() => {
+    // dispatch(increment());
     const fetchProducts = async () => {
       try {
         let allProducts = (await API.graphql({
@@ -185,6 +190,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
             </>
           );
         }}
+        initialNumToRender={10}
         numColumns={2}
         keyExtractor={(item: any) => String(item.id)}
         renderItem={({item}: any) => {
@@ -201,7 +207,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                   category={item.category}
                   onPress={() => {
                     globalThis.itemDetails = item.id;
-                    navigation.navigate('ProductDetails');
+                    navigation.navigate('ProductDetails', {rawItem: item});
                   }}
                 />
               </View>

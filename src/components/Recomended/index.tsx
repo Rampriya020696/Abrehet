@@ -30,7 +30,7 @@ const shadowOpt = {
   },
 };
 
-const Recomended = props => {
+const Recomended = React.memo(props => {
   const [showAlert, setShowAlert] = React.useState(false);
 
   const handleShowAlert = () => {
@@ -78,7 +78,7 @@ const Recomended = props => {
       </BoxShadow>
     </View>
   );
-};
+})
 
 export default Recomended;
 const styles = StyleSheet.create({
