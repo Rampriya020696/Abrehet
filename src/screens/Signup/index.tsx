@@ -81,7 +81,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                 source={require('../../Assets/userNameAbrehet.png')}
               />
               <TextInput
-                placeholder="Email"
+                placeholder="Username"
                 onChangeText={value => setUsername(value)}
                 style={{
                   fontSize: 14,
@@ -89,7 +89,28 @@ const Signup = ({navigation, type}): JSX.Element => {
                 }}
               />
             </View>
-
+            <View
+              style={{
+                backgroundColor: 'white',
+                borderRadius: 15,
+                padding: 3,
+                marginTop: 30,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <Image
+                style={{height: 25, width: 25, marginLeft: 20}}
+                source={require('../../Assets/userNameAbrehet.png')}
+              />
+              <TextInput
+                placeholder="Email"
+                onChangeText={value => setEmail(value)}
+                style={{
+                  fontSize: 14,
+                  paddingLeft: 20,
+                }}
+              />
+            </View>
             <View
               style={{
                 backgroundColor: 'white',
@@ -113,7 +134,7 @@ const Signup = ({navigation, type}): JSX.Element => {
               />
             </View>
 
-          {/*  <View
+            {/*  <View
               style={{
                 backgroundColor: 'white',
                 borderRadius: 19,
