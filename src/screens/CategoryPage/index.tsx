@@ -44,7 +44,16 @@ const CategoryPage = () => {
             {},
           ),
         );
-        setProduct(res.data.listProducts.items);
+        setProduct(
+          res.data.listProducts.items?.map(item => {
+            let temp = {
+              ...item,
+              content: JSON.parse(item.content),
+              ...JSON.parse(item.content),
+            };
+            return temp;
+          }),
+        );
       } catch (error) {
         console.log(error);
       } finally {
@@ -55,6 +64,7 @@ const CategoryPage = () => {
     getProductByMenuId();
   }, [navigation]);
 
+  console.log(product, 'productCat');
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>
       <Header title={title} onPress={navigation.goBack} />
@@ -93,7 +103,7 @@ const CategoryPage = () => {
                   category={item.category}
                   onPress={() => {
                     globalThis.itemDetails = item.id;
-                    navigation.navigate('ProductDetails');
+                    navigation.navigate('ProductDetails', {rawItem: item});
                   }}
                 />
               </View>
