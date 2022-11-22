@@ -1,3 +1,5 @@
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import {
   ActivityIndicator,
@@ -77,7 +79,11 @@ const CategoryPage = () => {
             <View>
               {des && (
                 <Text style={{padding: 10}}>
-                  <Text style={{fontWeight: 'bold'}}>Description: </Text>
+                  <Text style={{fontWeight: 'bold',
+                  color: 'black',
+                  fontSize: 18
+                
+                }}>Description: </Text>
                   {des}
                 </Text>
               )}
@@ -109,8 +115,8 @@ const CategoryPage = () => {
                   image={{uri: item?.image}}
                   title={item?.title}
                   price={item?.price}
-                  rating="4.8"
-                  totalSale="932 Sale"
+                 /* rating="4.8"
+          totalSale="932 Sale" */ 
                   country={item.country}
                   category={item.category}
                   onPress={() => {

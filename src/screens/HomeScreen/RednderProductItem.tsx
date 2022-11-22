@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {useNavigation} from '@react-navigation/native';
 import React, {memo} from 'react';
 import {StyleSheet, View} from 'react-native';

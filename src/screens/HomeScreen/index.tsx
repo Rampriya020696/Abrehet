@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, FlatList, Text, Dimensions} from 'react-native';
 import {graphqlOperation} from 'aws-amplify';
@@ -182,7 +184,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               <View style={styles.gap} />
               {/* Recomended */}
               <Gap height={20} />
-              <Text style={styles.title}>Recomended</Text>
+              <Text style={styles.title}>Recommended</Text>
               <Gap height={5} />
             </>
           );
