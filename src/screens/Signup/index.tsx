@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {
   ImageBackground,
@@ -69,8 +71,8 @@ const Signup = ({navigation, type}): JSX.Element => {
               style={{
                 backgroundColor: 'white',
                 borderRadius: 15,
-                padding: 5,
-                marginTop: 10,
+                padding: 3,
+                marginTop: 30,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
@@ -79,7 +81,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                 source={require('../../Assets/userNameAbrehet.png')}
               />
               <TextInput
-                placeholder="Username"
+                placeholder="Email"
                 onChangeText={value => setUsername(value)}
                 style={{
                   fontSize: 14,
@@ -92,8 +94,8 @@ const Signup = ({navigation, type}): JSX.Element => {
               style={{
                 backgroundColor: 'white',
                 borderRadius: 15,
-                padding: 5,
-                marginTop: 10,
+                padding: 3,
+                marginTop: 30,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
@@ -111,35 +113,35 @@ const Signup = ({navigation, type}): JSX.Element => {
               />
             </View>
 
-            <View
+          {/*  <View
               style={{
                 backgroundColor: 'white',
-                borderRadius: 15,
+                borderRadius: 19,
                 padding: 5,
                 marginTop: 10,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
-              <Image
+               <Image
                 style={{height: 15, width: 25, marginLeft: 20}}
                 source={require('../../Assets/Icon-Mail.png')}
               />
-              <TextInput
-                placeholder="Email"
-                onChangeText={value => setEmail(value)}
-                style={{
-                  fontSize: 14,
-                  paddingLeft: 20,
-                }}
-              />
-            </View>
+             <TextInput
+               placeholder="Email"
+             onChangeText={value => setEmail(value)}
+              style={{
+               fontSize: 14,
+                paddingLeft: 20,
+              }}
+              /> 
+            </View>  */}
 
             <View
               style={{
                 backgroundColor: 'white',
                 borderRadius: 15,
-                padding: 5,
-                marginTop: 10,
+                padding: 3,
+                marginTop: 30,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
@@ -148,7 +150,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                 source={require('../../Assets/phoneNumber.png')}
               />
               <TextInput
-                placeholder="Phone Number"
+                placeholder="Phone Number with country code"
                 // keyboardType="numeric"
                 // onChangeText={(value) => {setPhoneNumber(value)}
                 onChangeText={value => {
@@ -164,12 +166,12 @@ const Signup = ({navigation, type}): JSX.Element => {
 
             <View style={{alignSelf: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={{color: 'white', fontSize: 17, fontWeight: '300'}}>
-                  Already have an account ? SignIn
+                <Text style={{color: 'white', fontSize: 20, fontWeight: '500'}}>
+                  Already have an account ? Sign In
                 </Text>
               </TouchableOpacity>
             </View>
-            <View style={{alignSelf: 'center', marginTop: 5}}>
+            <View style={{alignSelf: 'center', marginTop: 30}}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('EmailConfirmation')}>
                 <Text style={{color: 'white', fontSize: 17, fontWeight: '300'}}>
@@ -250,9 +252,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: fonts.primary[900],
     marginLeft: 1,
-    marginRight: 29,
+    marginRight: 38,
     alignSelf: 'center',
-    color: 'gray',
+    color: 'white',
   },
   or: {
     fontSize: 16,

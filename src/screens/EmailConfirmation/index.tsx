@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {Auth} from 'aws-amplify';
@@ -22,7 +23,7 @@ const EmailConfirmation = () => {
   const handleConfirmPress = async () => {
     console.log({username, code});
     if (!code || !username) {
-      Alert.alert('Alert', 'please provide username and code');
+      Alert.alert('Alert', 'Please provide email and code');
       return;
     }
     try {
@@ -67,7 +68,7 @@ const EmailConfirmation = () => {
         <Text
           style={{
             color: 'white',
-            fontWeight: 'bold',
+            fontWeight: '600',
             fontSize: 28,
             marginVertical: 20,
             textAlign: 'center',
@@ -89,7 +90,7 @@ const EmailConfirmation = () => {
               fontSize: 15,
               paddingLeft: 20,
             }}
-            placeholder="username"
+            placeholder="Email"
             placeholderTextColor="gray"
             value={username}
             onChangeText={v => setUsername(v)}
@@ -144,11 +145,11 @@ const EmailConfirmation = () => {
           <Text
             style={{
               color: 'white',
-              fontSize: 15,
+              fontSize: 19,
               marginTop: 20,
               textAlign: 'center',
             }}>
-            back, to Signin
+            back to Sign In
           </Text>
         </TouchableOpacity>
       </ImageBackground>

@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
 import {Auth} from 'aws-amplify';
@@ -146,7 +148,7 @@ const ResetPassword = () => {
               marginTop: 20,
               textAlign: 'center',
             }}>
-            back, to Signin
+            back, to Sign in
           </Text>
         </TouchableOpacity>
       </ImageBackground>
