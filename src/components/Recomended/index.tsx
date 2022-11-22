@@ -19,6 +19,7 @@ const shadowOpt = {
   width: width * 0.45,
   height: 331,
   color: '#000',
+
   border: 2,
   radius: 10,
   opacity: 0.1,
@@ -78,7 +79,7 @@ const Recomended = React.memo(props => {
       </BoxShadow>
     </View>
   );
-})
+});
 
 export default Recomended;
 const styles = StyleSheet.create({

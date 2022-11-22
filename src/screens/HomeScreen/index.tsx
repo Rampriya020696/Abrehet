@@ -15,6 +15,7 @@ import {colors, fonts} from '../../utils';
 import Recomended from '../../components/Recomended';
 import {HeaderComponent} from '../../router/HomeStack';
 import {increment} from '../../store/features/cart/cartSlice';
+import RenderPorductItem from './RednderProductItem';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -58,7 +59,6 @@ const makeBanneData = data => {
 const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<any>([]);
 
-  const dispatch = useDispatch();
   const [filterProducts, setFilterProducts] = useState<any>([]);
   const [searchString, setSearchString] = useState('');
   const [bannerImages, setBannerImages] = useState<ProductItemProps[]>([]);
@@ -74,7 +74,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           data: types.ListProductsQuery;
         };
 
-        console.log(allProducts, 'allProductsasdasdasdasdas');
         const data = allProducts?.data?.listProducts?.items.filter(item => {
           if (!item?.createdAt) return;
           if (!item?.content) {
@@ -139,8 +138,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
       ),
     );
   }, [searchString]);
-  console.log({filterProducts, searchString}, 'LL');
-  console.log({products}, 'products');
 
   return (
     <View style={{flex: 1}}>
@@ -194,25 +191,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         numColumns={2}
         keyExtractor={(item: any) => String(item.id)}
         renderItem={({item}: any) => {
-          return (
-            <View key={`${item.id}`} style={styles.page}>
-              <View style={styles.recomended}>
-                <Recomended
-                  image={{uri: item?.image}}
-                  title={item?.title}
-                  price={item?.price}
-                  rating="4.8"
-                  totalSale="932 Sale"
-                  country={item.country}
-                  category={item.category}
-                  onPress={() => {
-                    globalThis.itemDetails = item.id;
-                    navigation.navigate('ProductDetails', {rawItem: item});
-                  }}
-                />
-              </View>
-            </View>
-          );
+          return <RenderPorductItem item={item} />;
         }}
       />
     </View>
