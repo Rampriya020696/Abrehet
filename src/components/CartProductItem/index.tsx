@@ -33,7 +33,7 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
             {item.title}
           </Text>
           <Text style={styles.price}>
-             {item.price}
+            {item.price}
             {item.oldPrice && (
               <Text style={styles.oldPrice}> {item.oldPrice}</Text>
             )}

@@ -40,29 +40,22 @@ const CartItem = ({cartItem}: CartProductItemProps) => {
             {`${cartItem.description.substring(0, 80)}...`}
           </Text>
           <Text style={styles.price}>{cartItem.price}</Text>
-          <View style={styles.pilih}>
+          <View style={[styles.pilih]}>
             <TouchableOpacity
-              onPress={() => {
-                dispatch(removeToCart(cartItem));
-                // let newQty = quantity - 1;
-                // globalThis.cart[item.id].quantity = newQty;
-                // setQuantity(newQty);
-              }}>
-              <Text style={styles.nomer}>-</Text>
+              style={styles.innerBtn}
+              onPress={() => dispatch(removeToCart(cartItem))}>
+              <Text style={[styles.innerText]}>-</Text>
             </TouchableOpacity>
+
             <View style={styles.strip} />
-            <TouchableOpacity>
-              <Text style={styles.nomer}>{cartItem.qty}</Text>
+            <TouchableOpacity disabled style={styles.innerBtn}>
+              <Text style={styles.innerText}>{cartItem.qty}</Text>
             </TouchableOpacity>
             <View style={styles.strip} />
             <TouchableOpacity
-              onPress={() => {
-                dispatch(addToCart(cartItem));
-                // let newQty = quantity + 1;
-                // globalThis.cart[item.id].quantity = newQty;
-                // setQuantity(newQty);
-              }}>
-              <Text style={styles.nomer}>+</Text>
+              style={styles.innerBtn}
+              onPress={() => dispatch(addToCart(cartItem))}>
+              <Text style={styles.innerText}>+</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -75,7 +68,7 @@ const CartItem = ({cartItem}: CartProductItemProps) => {
           onPress={() => {
             // globalThis.itemDetails = item.id;
             // console.log('item pressed', globalThis);
-            navigation.navigate('ProductDetails');
+            navigation.navigate('ProductDetails', {rawItem: cartItem});
           }}>
           <Text style={styles.titlePay}>View</Text>
         </TouchableOpacity>
@@ -164,6 +157,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 100,
     height: 30,
+
     borderWidth: 0.5,
     marginBottom: 10,
   },
@@ -171,11 +165,16 @@ const styles = StyleSheet.create({
     width: 1,
     height: 30,
     borderWidth: 0.5,
-    marginRight: 12,
-    marginLeft: 12,
+    // marginRight: 12,
+
+    // marginLeft: 12,
   },
-  nomer: {
+  innerText: {
     fontSize: 16,
     fontFamily: fonts.secondary[600],
+  },
+  innerBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 5,
   },
 });
