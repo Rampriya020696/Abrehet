@@ -39,7 +39,7 @@ import Gap from '../../components/Gap';
 import Label from '../../components/atoms/Label';
 import Strip from '../../components/Strip';
 import Recomended from '../../components/Recomended';
-import {addToCart} from '../../store/features/cart/cartSlice';
+import {addToCart, addToCartWithQty} from '../../store/features/cart/cartSlice';
 
 const images = [
   require('../../Assets/Recomended-Image1.png'),
@@ -203,9 +203,16 @@ const ProductScreen = () => {
           style={styles2.payButton}
           // onPress={() => navigation.navigate('Delivery')}
           onPress={() => {
-            dispatch(
-              addToCart({...rawItem, X: quantity} || {...product, X: quantity}),
-            );
+            if (quantity === 1) {
+              dispatch(addToCart({...rawItem} || {...product}));
+            } else {
+              dispatch(
+                addToCartWithQty({
+                  product: {...rawItem} || {...product},
+                  qty: quantity,
+                }),
+              );
+            }
 
             if (!globalThis.cart[product.id]) {
               globalThis.cart[product.id] = {};

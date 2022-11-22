@@ -20,13 +20,25 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+        addToCartWithQty: (state, action) => {
+            const { product, qty } = action.payload
+            if (state.items.find(p => p.id === product.id)) {
+                state.items = state.items.map(p => {
+                    if (p.id === product.id) {
+                        return { ...p, qty: qty }
+                    }
+                    return p
+                })
+            } else {
+                state.items = [...state.items, { qty: qty, ...product }];
+            }
+        },
+
         addToCart: (state, action) => {
             if (state.items.find(product => product.id === action.payload.id)) {
                 state.items = state.items.map(product => {
                     if (product.id === action.payload.id) {
-                        let newQty = 0;
-                        newQty = action.payload.X ? action.payload.X + product.qty : product.qty + 1
-                        return { ...product, qty: newQty }
+                        return { ...product, qty: product.qty + 1 }
                     }
                     return product
                 })
@@ -52,7 +64,7 @@ export const cartSlice = createSlice({
     },
 })
 
-export const { addToCart, removeToCart } = cartSlice.actions
+export const { addToCart, addToCartWithQty, removeToCart } = cartSlice.actions
 
 // Selector
 export const selectCartItems = (state) => state.cart.items;
