@@ -70,8 +70,8 @@ const Signup = ({navigation, type}): JSX.Element => {
               style={{
                 backgroundColor: 'white',
                 borderRadius: 15,
-                padding: 5,
-                marginTop: 10,
+                padding: 3,
+                marginTop: 15,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
@@ -93,8 +93,8 @@ const Signup = ({navigation, type}): JSX.Element => {
               style={{
                 backgroundColor: 'white',
                 borderRadius: 15,
-                padding: 5,
-                marginTop: 10,
+                padding: 3,
+                marginTop: 15,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
@@ -112,16 +112,16 @@ const Signup = ({navigation, type}): JSX.Element => {
               />
             </View>
 
-            <View
+          {/*  <View
               style={{
                 backgroundColor: 'white',
-                borderRadius: 15,
+                borderRadius: 19,
                 padding: 5,
                 marginTop: 10,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
-              <Image
+               <Image
                 style={{height: 15, width: 25, marginLeft: 20}}
                 source={require('../../Assets/Icon-Mail.png')}
               />
@@ -133,14 +133,14 @@ const Signup = ({navigation, type}): JSX.Element => {
                 paddingLeft: 20,
               }}
               /> 
-            </View> 
+            </View>  */}
 
             <View
               style={{
                 backgroundColor: 'white',
                 borderRadius: 15,
-                padding: 5,
-                marginTop: 10,
+                padding: 3,
+                marginTop: 15,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
@@ -170,7 +170,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View style={{alignSelf: 'center', marginTop: 5}}>
+            <View style={{alignSelf: 'center', marginTop: 30}}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('EmailConfirmation')}>
                 <Text style={{color: 'white', fontSize: 17, fontWeight: '300'}}>
