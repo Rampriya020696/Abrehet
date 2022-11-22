@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';

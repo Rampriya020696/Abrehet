@@ -71,7 +71,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                 backgroundColor: 'white',
                 borderRadius: 15,
                 padding: 3,
-                marginTop: 15,
+                marginTop: 30,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
@@ -94,7 +94,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                 backgroundColor: 'white',
                 borderRadius: 15,
                 padding: 3,
-                marginTop: 15,
+                marginTop: 30,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
@@ -140,7 +140,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                 backgroundColor: 'white',
                 borderRadius: 15,
                 padding: 3,
-                marginTop: 15,
+                marginTop: 30,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>

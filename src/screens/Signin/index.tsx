@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {
@@ -48,10 +49,10 @@ const Signin = ({navigation}) => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.page2}>
-        <View style={{marginTop: 30}}>
+        <View style={{marginTop: 7}}>
           <View style={styles.wraperLogo}>
             <Image
-              style={{height: 80, width: 80}}
+              style={{height: 100, width: 80}}
               source={APP_ICON}
               resizeMode="contain"
             />
@@ -59,7 +60,7 @@ const Signin = ({navigation}) => {
             <Text style={styles.title}>Mesob Store</Text>
           </View>
 
-          <View style={{alignSelf: 'center', marginTop: 20, width: '100%'}}>
+          <View style={{alignSelf: 'center', marginTop: 60, width: '100%'}}>
             {/* <TouchableOpacity
               style={{
                 backgroundColor: '#536DFE',
@@ -131,8 +132,8 @@ const Signin = ({navigation}) => {
             <View
               style={{
                 backgroundColor: 'white',
-                borderRadius: 15,
-                padding: 5,
+                borderRadius: 20,
+                padding: 3,
                 marginTop: 10,
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -154,8 +155,8 @@ const Signin = ({navigation}) => {
             <View
               style={{
                 backgroundColor: 'white',
-                borderRadius: 15,
-                padding: 5,
+                borderRadius: 20,
+                padding: 3,
                 marginTop: 10,
                 flexDirection: 'row',
                 alignItems: 'center',
