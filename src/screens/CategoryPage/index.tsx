@@ -15,7 +15,7 @@ import Recomended from '../../components/Recomended';
 import {colors} from '../../utils';
 
 const CategoryPage = () => {
-  const {title, id} = useRoute<any>().params;
+  const {title, id, des} = useRoute<any>().params;
   const navigation = useNavigation<any>();
   const [product, setProduct] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -71,6 +71,18 @@ const CategoryPage = () => {
       <FlatList
         style={{
           flex: 1,
+        }}
+        ListHeaderComponent={() => {
+          return (
+            <View>
+              {des && (
+                <Text style={{padding: 10}}>
+                  <Text style={{fontWeight: 'bold'}}>Description: </Text>
+                  {des}
+                </Text>
+              )}
+            </View>
+          );
         }}
         ListEmptyComponent={() => {
           return loading ? (

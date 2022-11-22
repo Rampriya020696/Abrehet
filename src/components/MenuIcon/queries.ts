@@ -6,6 +6,7 @@ query MyQuery {
         icon
         id
         name
+        des
       }
     }
   }

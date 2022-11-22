@@ -66,6 +66,7 @@ const MenuIcon = () => {
                       navigation.navigate('CategoryPage', {
                         title: item?.name,
                         id: item?.id,
+                        des: item?.des,
                       })
                     }>
                     {item?.icon ? (
