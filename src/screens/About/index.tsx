@@ -33,7 +33,7 @@ const About = ({navigation}) => {
         </Text>
         <Gap height={25} />
         <Text style={styles.text}>
-        The brand vision is to create a two-way shopping experience not only for Eritrea but for the whole of Africa and beyond. Iwill take time to encourage all young adults to take their dream one step further to accomplish their goals.
+        The brand vision is to create a two-way shopping experience not only for Eritrea but for the whole of Africa and beyond. I will take time to encourage all young adults to take their dream one step further to accomplish their goals.
         </Text>
         <Gap height={20} />
       </ScrollView>

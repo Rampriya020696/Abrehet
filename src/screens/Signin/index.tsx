@@ -61,7 +61,7 @@ const Signin = ({navigation}) => {
           </View>
 
           <View style={{alignSelf: 'center', marginTop: 60, width: '100%'}}>
-            {/* <TouchableOpacity
+             <TouchableOpacity
               style={{
                 backgroundColor: '#536DFE',
                 width: '90%',
@@ -127,7 +127,7 @@ const Signin = ({navigation}) => {
                 marginTop: 10,
               }}>
               OR
-            </Text> */}
+            </Text> 
 
             <View
               style={{
