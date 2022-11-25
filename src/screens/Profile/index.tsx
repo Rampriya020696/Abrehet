@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {
+  Alert,
   Image,
   ImageBackground,
   ScrollView,
@@ -81,6 +82,15 @@ const Profile = ({navigation}) => {
     Auth.signOut();
   }
 
+  async function deleteUser() {
+    try {
+      const result = await Auth.deleteUser();
+      console.log(result);
+      Alert.alert('Account deleted Successfully!');
+    } catch (error) {
+      console.log('Error deleting user', error);
+    }
+  }
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -163,12 +173,27 @@ const Profile = ({navigation}) => {
             <Text style={styles.titleList}>About Mesob Store</Text>
           </TouchableOpacity>
           <View style={styles.strip} />
-        
+
           <View style={styles.strip} />
 
           <TouchableOpacity
             style={styles.list}
-            onPress={() => navigation.navigate('AboutUsScreen')}>
+            onPress={() => {
+              Alert.alert(
+                'Delete Account?',
+                'Are you sure want to delete your account!',
+                [
+                  {
+                    text: 'Cancel',
+                    onPress: () => {
+                      return;
+                    },
+                    style: 'cancel',
+                  },
+                  {text: 'OK', onPress: () => deleteUser()},
+                ],
+              );
+            }}>
             <Image
               style={{width: 20, height: 30, padding: 10, marginRight: 5}}
               source={require('../../Assets/Icon-About-Apps.png')}
