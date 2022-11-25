@@ -48,25 +48,6 @@ const BottomTabNav = () => {
         }}
       />
 
-      {/* <Tab.Screen
-        component={MenuScreen}
-        name="Brand"
-        options={{
-          tabBarIcon: ({focused}) => (
-            <View>
-              <Image
-                style={{
-                  width: 23,
-                  height: 23,
-                  tintColor: focused ? '#6991c7' : '#d9d9d9',
-                }}
-                source={require('../Assets/ic-brand.png')}
-              />
-            </View>
-          ),
-        }}
-      /> */}
-
       <Tab.Screen
         component={ShopingCartStack}
         name="Cart"

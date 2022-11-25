@@ -22,23 +22,17 @@ import {ResourceContext} from '../../context/ResourceContext';
 Amplify.configure({Auth: awsconfig});
 
 const Signup = ({navigation, type}): JSX.Element => {
-  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+
   const {resource} = React.useContext(ResourceContext) as any;
   const handleSignUp = async () => {
     try {
-      const response = await Auth.signUp(
-        username,
-        password,
-        email,
-        phoneNumber,
-      );
+      const response = await Auth.signUp(email, password, email);
       console.log(response);
       console.log('SignUp Done');
       Alert.alert('Alert', 'please check your email!');
-      navigation.navigate('EmailConfirmation', {username});
+      navigation.navigate('EmailConfirmation', {email});
     } catch (e: any) {
       Alert.alert('Error', e.message);
     }
@@ -67,7 +61,7 @@ const Signup = ({navigation, type}): JSX.Element => {
           </View>
 
           <View style={{alignSelf: 'center', marginTop: 30, width: '100%'}}>
-            <View
+            {/* <View
               style={{
                 backgroundColor: 'white',
                 borderRadius: 15,
@@ -88,7 +82,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                   paddingLeft: 20,
                 }}
               />
-            </View>
+            </View> */}
             <View
               style={{
                 backgroundColor: 'white',
@@ -157,7 +151,7 @@ const Signup = ({navigation, type}): JSX.Element => {
               /> 
             </View>  */}
 
-            <View
+            {/* <View
               style={{
                 backgroundColor: 'white',
                 borderRadius: 15,
@@ -183,7 +177,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                   paddingLeft: 20,
                 }}
               />
-            </View>
+            </View> */}
 
             <View style={{alignSelf: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
