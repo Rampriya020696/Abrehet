@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ImageBackground,
   ScrollView,
@@ -8,20 +8,45 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Linking,
   Image,
   Alert,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors, fonts} from '../../utils';
-import Amplify, {Auth} from 'aws-amplify';
+import Amplify, {Auth, Hub} from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import {APP_ICON} from '../../../assets/images';
 import {ResourceContext} from '../../context/ResourceContext';
+import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
+// Amplify.configure({Auth: awsconfig});
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 
-Amplify.configure({Auth: awsconfig});
+Amplify.configure({
+  ...awsconfig,
+  oauth: {
+    ...awsconfig.oauth,
+    urlOpener,
+  },
+});
+
+async function urlOpener(url, redirectUrl) {
+  await InAppBrowser.isAvailable();
+  const {type, url: newUrl} = await InAppBrowser.openAuth(url, redirectUrl, {
+    showTitle: false,
+    enableUrlBarHiding: true,
+    enableDefaultShare: false,
+    ephemeralWebSession: false,
+  });
+
+  if (type === 'success') {
+    Linking.openURL(newUrl);
+  }
+}
 
 const Signin = ({navigation}) => {
+  const [user, setUser] = useState(null);
   const [username, setUsername] = useState('mspl');
   const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
@@ -38,6 +63,35 @@ const Signin = ({navigation}) => {
     }
   };
 
+  useEffect(() => {
+    Hub.listen('auth', ({payload: {event, data}}) => {
+      switch (event) {
+        case 'signIn':
+        case 'cognitoHostedUI':
+          getUser().then(userData => setUser(userData));
+          break;
+        case 'signOut':
+          setUser(null);
+          break;
+        case 'signIn_failure':
+        case 'cognitoHostedUI_failure':
+          console.log('Sign in failure', data);
+          break;
+      }
+    });
+
+    getUser().then(userData => setUser(userData));
+  }, []);
+
+  function getUser() {
+    return Auth.currentAuthenticatedUser()
+      .then(userData => userData)
+      .catch(() => console.log('Not signed in'));
+  }
+
+  const handleGoogleLogin = () => {
+    Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
+  };
   return (
     <ImageBackground
       source={
@@ -61,7 +115,7 @@ const Signin = ({navigation}) => {
           </View>
 
           <View style={{alignSelf: 'center', marginTop: 60, width: '100%'}}>
-             <TouchableOpacity
+            <TouchableOpacity
               style={{
                 backgroundColor: '#536DFE',
                 width: '90%',
@@ -100,7 +154,8 @@ const Signin = ({navigation}) => {
                 marginTop: 10,
                 alignItems: 'center',
                 justifyContent: 'center',
-              }}>
+              }}
+              onPress={handleGoogleLogin}>
               <Image
                 style={{width: 16, height: 16, alignSelf: 'center'}}
                 source={require('../../Assets/Logo-Google.png')}
@@ -127,7 +182,7 @@ const Signin = ({navigation}) => {
                 marginTop: 10,
               }}>
               OR
-            </Text> 
+            </Text>
 
             <View
               style={{

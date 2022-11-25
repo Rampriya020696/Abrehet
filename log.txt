@@ -1,2 +1,7 @@
 1. signup with email and password only done
 2.
+ID
+783617362003-1h25pn9q9rlkq0qblammik1oiu0j0bcv.apps.googleusercontent.com
+SECRET
+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
+
