@@ -160,11 +160,11 @@ const ProductScreen = () => {
           <View style={styles2.strip} />
           <View style={[styles2.sale, {justifyContent: 'center'}]}>
             <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
-            {/* <View style={styles2.rating}>
+             <View style={styles2.rating}>
               <Text style={styles2.nilai}>4.1</Text>
               <Image source={ICStarWhite} style={styles2.starRating} />
             </View>
-            <Text>932 Sale</Text> */}
+            <Text>932 Sale</Text> 
           </View>
         </View>
         <View style={styles2.stripGap} />

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {useNavigation} from '@react-navigation/native';
 import {navItem} from 'aws-amplify';
 import React, {useEffect, useState} from 'react';
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.pay,
   },
   titlePay: {
-    fontSize: 18,
+    fontSize: 20,
     color: colors.white,
     alignSelf: 'center',
     fontFamily: fonts.primary[600],
@@ -133,11 +134,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
+    color: 'black',
     marginTop: 10,
     fontFamily: fonts.primary[700],
   },
   total: {
     fontSize: 16,
+    color: 'black',
     fontFamily: fonts.primary[600],
   },
   desc: {
@@ -148,6 +151,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 16,
+    color: 'black',
     fontFamily: fonts.secondary[600],
     marginBottom: 10,
   },
