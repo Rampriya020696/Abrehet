@@ -96,7 +96,6 @@ const HomeStack = () => {
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
       <Stack.Screen component={ShopingCartScreen} name="cart" />
       <Stack.Screen component={CategoryPage} name="CategoryPage" />
-      <Stack.Screen component={FlashSale} name="FlashSale" />
       <Stack.Screen component={ChatScreen} name="ChatScreen" />
       <Stack.Screen component={ContactUs} name="ContactUsScreen" />
     </Stack.Navigator>
