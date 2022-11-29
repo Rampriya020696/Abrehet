@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
@@ -24,6 +25,7 @@ Amplify.configure({Auth: awsconfig});
 const Signup = ({navigation, type}): JSX.Element => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const {resource} = React.useContext(ResourceContext) as any;
   const handleSignUp = async () => {
@@ -61,28 +63,7 @@ const Signup = ({navigation, type}): JSX.Element => {
           </View>
 
           <View style={{alignSelf: 'center', marginTop: 30, width: '100%'}}>
-            {/* <View
-              style={{
-                backgroundColor: 'white',
-                borderRadius: 15,
-                padding: 3,
-                marginTop: 30,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <Image
-                style={{height: 25, width: 25, marginLeft: 20}}
-                source={require('../../Assets/userNameAbrehet.png')}
-              />
-              <TextInput
-                placeholder="Username"
-                onChangeText={value => setUsername(value)}
-                style={{
-                  fontSize: 14,
-                  paddingLeft: 20,
-                }}
-              />
-            </View> */}
+    
             <View
               style={{
                 backgroundColor: 'white',
@@ -151,7 +132,7 @@ const Signup = ({navigation, type}): JSX.Element => {
               /> 
             </View>  */}
 
-            {/* <View
+            <View
               style={{
                 backgroundColor: 'white',
                 borderRadius: 15,
@@ -166,8 +147,8 @@ const Signup = ({navigation, type}): JSX.Element => {
               />
               <TextInput
                 placeholder="Phone Number with country code"
-                // keyboardType="numeric"
-                // onChangeText={(value) => {setPhoneNumber(value)}
+                 keyboardType="numeric"
+                onChangeText={value => setPhoneNumber(value)}
                 onChangeText={value => {
                   let newValue = '+1' + value;
                   setPhoneNumber(newValue);
@@ -177,7 +158,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                   paddingLeft: 20,
                 }}
               />
-            </View> */}
+            </View> 
 
             <View style={{alignSelf: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
