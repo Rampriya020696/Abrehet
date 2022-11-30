@@ -121,7 +121,7 @@ const Profile = ({navigation}) => {
               style={{width: 25, height: 27}}
               source={require('../../Assets/Icon-Payments.png')}
             />
-            <Text style={styles.titleList}>Payments</Text>
+            <Text style={styles.titleList}>Purchases</Text>
           </TouchableOpacity>
 
           <View style={styles.strip} />
@@ -133,7 +133,7 @@ const Profile = ({navigation}) => {
               style={{height: 18, width: 25}}
               source={require('../../Assets/Icon-My-Orders.png')}
             />
-            <Text style={styles.titleList}>My Orders</Text>
+            <Text style={styles.titleList}>Track My Order</Text>
           </TouchableOpacity>
 
           <View style={styles.strip} />

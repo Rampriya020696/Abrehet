@@ -67,16 +67,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    fontFamily: fonts.secondary[800],
     color: 'black',
     marginHorizontal: 20,
   },
   title1: {
-    fontSize: 16,
+    fontSize: 17,
     fontFamily: fonts.secondary[600],
     color: 'red',
-    marginHorizontal: 30,
-    marginVertical: 290
+    marginHorizontal: 20,
+    marginVertical: 250
   },
   account: {
     flexDirection: 'row',
@@ -89,9 +88,8 @@ const styles = StyleSheet.create({
     height: 15,
   },
   name: {
-    fontSize: 14,
-    fontFamily: fonts.secondary[400],
-    color: colors.text.secondary,
-    marginLeft: 15,
+    fontSize: 16,
+    color: "black",
+    marginLeft: 10,
   },
 });
