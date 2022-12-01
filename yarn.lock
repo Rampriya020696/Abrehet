@@ -3428,6 +3428,11 @@
   resolved "https://registry.npmjs.org/@react-native-community/netinfo/-/netinfo-9.3.6.tgz"
   integrity sha512-SwbBnHZuXcCUpYdL6ebt4HPAZEugPASl+RPxIyNe91Y+boZptzAFLywYW6yU93DYAhiHHFQBL6x6LxwF/K/tOQ==
 
+"@react-native-google-signin/google-signin@7.2.2":
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/@react-native-google-signin/google-signin/-/google-signin-7.2.2.tgz#29e416d5c8484b52de3dc97f982f04b0083f27fe"
+  integrity sha512-FqSJAEYz+SNeIOyokFX3e7nbBgK0js/Hye0YNY+cV0Qf1NxKw1vRt2MQB3kfuVWFCb+OSovgQCl6W8dhYvsblw==
+
 "@react-native-picker/picker@^2.4.8":
   version "2.4.8"
   resolved "https://registry.npmjs.org/@react-native-picker/picker/-/picker-2.4.8.tgz"

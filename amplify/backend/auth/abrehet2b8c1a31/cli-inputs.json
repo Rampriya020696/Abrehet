@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "abrehet2d81a0c0_identitypool_2d81a0c0",
+    "identityPoolName": "abrehet2b8c1a31_identitypool_2b8c1a31",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "abrehe2d81a0c0",
-    "userPoolName": "abrehet2d81a0c0_userpool_2d81a0c0",
+    "resourceNameTruncated": "abrehe2b8c1a31",
+    "userPoolName": "abrehet2b8c1a31_userpool_2b8c1a31",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,12 +31,13 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "abrehe2d81a0c0_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "abrehe2b8c1a31_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "2d81a0c0",
-    "resourceName": "abrehet2d81a0c0",
+    "sharedId": "2b8c1a31",
+    "resourceName": "abrehet2b8c1a31",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
+    "useDefault": "defaultSocial",
+    "hostedUI": true,
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
@@ -54,6 +55,11 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": []
+    "dependsOn": [],
+    "hostedUIDomainName": "abrehet0eae7acf-0eae7acf",
+    "authProvidersUserPool": [],
+    "hostedUIProviderMeta": "[]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:8081/\"],\"LogoutURLs\":[\"http://localhost:8081/\"]}",
+    "authProviders": []
   }
-}
+} 

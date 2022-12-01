@@ -21,7 +21,23 @@ import {APP_ICON} from '../../../assets/images';
 import {ResourceContext} from '../../context/ResourceContext';
 import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 // Amplify.configure({Auth: awsconfig});
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
+
+GoogleSignin.configure({
+  scopes: ['openid', 'email', 'profile'], // what API you want to access on behalf of the user, default is email and profile
+  webClientId:
+    '736906449444-vs23ulo88o0lso94h0cip1pum1fqgi7r.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+  offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+  hostedDomain: '', // specifies a hosted domain restriction
+  loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+  forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login.
+  accountName: '', // [Android] specifies an account name on the device that should be used
+  iosClientId: 'xxxxxxxxxxxxxx.apps.googleusercontent.com', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+});
 
 Amplify.configure({
   ...awsconfig,
@@ -90,7 +106,47 @@ const Signin = ({navigation}) => {
   }
 
   const handleGoogleLogin = () => {
-    Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
+    GoogleSignin.hasPlayServices()
+      .then(() => {
+        GoogleSignin.signIn().then(userInfo => {
+          console.log('userInfo', userInfo);
+
+          Auth.federatedSignIn(
+            'accounts.google.com',
+            {
+              token: userInfo?.idToken,
+              expires_at: 60 * 1000 + new Date().getTime(), // the expiration timestamp
+            },
+            userInfo.user,
+          )
+            .then(cred => {
+              console.log('cred', cred);
+              return Auth.currentAuthenticatedUser();
+            })
+            .then(user => {
+              console.log('user after federated login', user);
+            })
+            .catch(e => {
+              console.log('federated login error', e);
+            });
+        });
+      })
+      .catch(error => {
+        console.log('userInfo error', error);
+        if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+          // user cancelled the login flow
+          console.log('SIGN_IN_CANCELLED', error.code);
+        } else if (error.code === statusCodes.IN_PROGRESS) {
+          // operation (e.g. sign in) is in progress already
+          console.log('IN_PROGRESS', error.code);
+        } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+          // play services not available or outdated
+          console.log('PLAY_SERVICES_NOT_AVAILABLE', error.code);
+        } else {
+          // some other error happened
+          console.log('other error', error.code);
+        }
+      });
   };
   return (
     <ImageBackground
