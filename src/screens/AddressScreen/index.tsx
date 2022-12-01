@@ -285,6 +285,27 @@ const AddressScreen = ({navigation}) => {
           </View>
         )}
 
+        {/* Reciver Address */}
+        <View style={styles.row}>
+          <Text style={styles.label}>Reciver Address </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Reciver Address"
+            value={address}
+            onChangeText={setAddress}
+          />
+        </View>
+        {/* Email */}
+        <View style={styles.row}>
+          <Text style={styles.label}>Email </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="email"
+            value={email}
+            onChangeText={setEmail}
+          />
+        </View>
+
         {/* Phone */}
         <View style={styles.row}>
           <Text style={styles.label}>Phone Number </Text>
@@ -296,26 +317,7 @@ const AddressScreen = ({navigation}) => {
             keyboardType={'phone-pad'}
           />
         </View>
-        {/* Address */}
-        <View style={styles.row}>
-          <Text style={styles.label}>Address </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Full Address"
-            value={address}
-            onChangeText={setAddress}
-          />
-        </View>
-        {/* Address */}
-        <View style={styles.row}>
-          <Text style={styles.label}>Email </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="email"
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
+
         {/* City */}
         <View style={styles.row}>
           <Text style={styles.label}>City </Text>
