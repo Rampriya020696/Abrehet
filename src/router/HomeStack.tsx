@@ -6,10 +6,9 @@ import HomeScreen from '../screens/HomeScreen';
 import Login from '../screens/Signin';
 import ProductScreen from '../screens/ProductScreen';
 import {SafeAreaView, View, TextInput, Image} from 'react-native';
-import ShopingCartScreen from '../screens/ShoopingCartScreen';
+import ShoppingCartScreen from '../screens/ShoopingCartScreen';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import HomeProductScreen from '../screens/HomeScreen/main';
-import FlashSale from '../screens/FlashSale';
 import ChatScreen from '../screens/ChatScreen';
 import {useNavigation} from '@react-navigation/native';
 import ContactUs from '../screens/ContactUs';
@@ -90,13 +89,12 @@ const HomeStack = () => {
       </Stack.Screen>
       <Stack.Screen
         name="HomeProductScreen"
-        component={HomeProductScreen}
+        getComponent={HomeProductScreen}
         options={{title: 'HomeProduct'}}
       />
       <Stack.Screen component={ProductScreen} name="ProductDetails" />
-      <Stack.Screen component={ShopingCartScreen} name="cart" />
+      <Stack.Screen component={ShoppingCartScreen} name="cart" />
       <Stack.Screen component={CategoryPage} name="CategoryPage" />
-      <Stack.Screen component={FlashSale} name="FlashSale" />
       <Stack.Screen component={ChatScreen} name="ChatScreen" />
       <Stack.Screen component={ContactUs} name="ContactUsScreen" />
     </Stack.Navigator>

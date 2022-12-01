@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
 import { fonts } from '../../utils';

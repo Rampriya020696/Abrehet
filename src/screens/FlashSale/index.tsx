@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable prettier/prettier */
+{/*import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {
   DummyBook,
@@ -143,3 +144,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
 });
+*/}

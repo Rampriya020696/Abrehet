@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Header from '../../components/Header';
@@ -6,7 +7,7 @@ import {colors} from '../../utils';
 const Payments = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <Header title="Payments" onPress={() => navigation.goBack()} />
+      <Header title="Purchases" onPress={() => navigation.goBack()} />
     </View>
   );
 };
@@ -17,4 +18,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+
+  
 });
