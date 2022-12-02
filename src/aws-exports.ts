@@ -6,11 +6,12 @@ const awsmobile = {
     "aws_appsync_region": "us-east-1",
     "aws_appsync_authenticationType": "API_KEY",
     "aws_appsync_apiKey": "da2-6sghtmilc5ad7op5irzigglkcu",
-    "aws_cognito_identity_pool_id": "us-east-1:e49d94d7-1b44-42de-b9b9-7eb700fa045a",
+    "aws_cognito_identity_pool_id": "us-east-1:e72ec2cc-c183-4b81-ba04-ca8d5a445f3f",
     "aws_cognito_region": "us-east-1",
-    "aws_user_pools_id": "us-east-1_nC1wpoTKP",
-    "aws_user_pools_web_client_id": "726mp0e11r1hn9jmnm77pruraj",
+    "aws_user_pools_id": "us-east-1_hb5c77GKz",
+    "aws_user_pools_web_client_id": "5fnucjoci760oef2jn587o8bk5",
     "oauth": {
+        "domain": "abrehet7e1875ef-7e1875ef-dev.auth.us-east-1.amazoncognito.com",
         "scope": [
             "phone",
             "email",
@@ -18,12 +19,15 @@ const awsmobile = {
             "profile",
             "aws.cognito.signin.user.admin"
         ],
-        "redirectSignIn": "https://abrehet-signin",
-        "redirectSignOut": "https://abrehet-signout",
+        "redirectSignIn": "abrehet://",
+        "redirectSignOut": "abrehet://",
         "responseType": "code"
     },
+    "federationTarget": "COGNITO_USER_POOLS",
     "aws_cognito_username_attributes": [],
-    "aws_cognito_social_providers": [],
+    "aws_cognito_social_providers": [
+        "GOOGLE"
+    ],
     "aws_cognito_signup_attributes": [
         "EMAIL"
     ],

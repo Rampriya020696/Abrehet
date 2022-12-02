@@ -19,33 +19,17 @@ import Amplify, {Auth, Hub} from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import {APP_ICON} from '../../../assets/images';
 import {ResourceContext} from '../../context/ResourceContext';
-import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
+
 // Amplify.configure({Auth: awsconfig});
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
+import {useNavigation} from '@react-navigation/native';
 
-GoogleSignin.configure({
-  scopes: ['openid', 'email', 'profile'], // what API you want to access on behalf of the user, default is email and profile
-  webClientId:
-    '736906449444-vs23ulo88o0lso94h0cip1pum1fqgi7r.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
-  offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-  hostedDomain: '', // specifies a hosted domain restriction
-  loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
-  forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login.
-  accountName: '', // [Android] specifies an account name on the device that should be used
-  iosClientId: 'xxxxxxxxxxxxxx.apps.googleusercontent.com', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
-});
-
-Amplify.configure({
-  ...awsconfig,
-  oauth: {
-    ...awsconfig.oauth,
-    urlOpener,
-  },
-});
+import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
+Auth.configure(awsconfig);
 
 async function urlOpener(url, redirectUrl) {
   await InAppBrowser.isAvailable();
@@ -61,12 +45,23 @@ async function urlOpener(url, redirectUrl) {
   }
 }
 
-const Signin = ({navigation}) => {
+Amplify.configure({
+  ...awsconfig,
+  oauth: {
+    ...awsconfig.oauth,
+    urlOpener,
+  },
+});
+
+const Signin = ({props}) => {
+  console.log(props, 'props');
+  const navigation = useNavigation();
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState('mspl');
   const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
   const {resource} = React.useContext(ResourceContext) as any;
+
   const handleSignIn = async () => {
     setLoading(true);
     try {
@@ -105,49 +100,6 @@ const Signin = ({navigation}) => {
       .catch(() => console.log('Not signed in'));
   }
 
-  const handleGoogleLogin = () => {
-    GoogleSignin.hasPlayServices()
-      .then(() => {
-        GoogleSignin.signIn().then(userInfo => {
-          console.log('userInfo', userInfo);
-
-          Auth.federatedSignIn(
-            'accounts.google.com',
-            {
-              token: userInfo?.idToken,
-              expires_at: 60 * 1000 + new Date().getTime(), // the expiration timestamp
-            },
-            userInfo.user,
-          )
-            .then(cred => {
-              console.log('cred', cred);
-              return Auth.currentAuthenticatedUser();
-            })
-            .then(user => {
-              console.log('user after federated login', user);
-            })
-            .catch(e => {
-              console.log('federated login error', e);
-            });
-        });
-      })
-      .catch(error => {
-        console.log('userInfo error', error);
-        if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-          // user cancelled the login flow
-          console.log('SIGN_IN_CANCELLED', error.code);
-        } else if (error.code === statusCodes.IN_PROGRESS) {
-          // operation (e.g. sign in) is in progress already
-          console.log('IN_PROGRESS', error.code);
-        } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-          // play services not available or outdated
-          console.log('PLAY_SERVICES_NOT_AVAILABLE', error.code);
-        } else {
-          // some other error happened
-          console.log('other error', error.code);
-        }
-      });
-  };
   return (
     <ImageBackground
       source={
@@ -211,7 +163,11 @@ const Signin = ({navigation}) => {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-              onPress={handleGoogleLogin}>
+              onPress={() =>
+                Auth.federatedSignIn({
+                  provider: CognitoHostedUIIdentityProvider.Google,
+                })
+              }>
               <Image
                 style={{width: 16, height: 16, alignSelf: 'center'}}
                 source={require('../../Assets/Logo-Google.png')}
@@ -344,6 +300,7 @@ const Signin = ({navigation}) => {
   );
 };
 
+// export default withOAuth(Signin);
 export default Signin;
 
 const styles = StyleSheet.create({
