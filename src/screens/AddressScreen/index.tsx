@@ -1,3 +1,6 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import {
   View,
   Text,
@@ -198,14 +201,16 @@ const AddressScreen = ({navigation}) => {
       Alert.alert('Please fill in the full name');
       return;
     }
-    if (!phone) {
-      Alert.alert('Please fill in the Phone number');
-      return;
-    }
+
     if (!address) {
       Alert.alert('Please fill in the address');
       return;
     }
+    if (!phone) {
+      Alert.alert('Please fill in the Phone number');
+      return;
+    }
+   
     if (!city) {
       Alert.alert('Please fill in the city');
       return;
@@ -214,10 +219,10 @@ const AddressScreen = ({navigation}) => {
       Alert.alert('Please fill in the state');
       return;
     }
-    if (!postal_code) {
+    {/* if (!postal_code) {
       Alert.alert('Please fill in the postal code');
       return;
-    }
+    } */}
     if (!country) {
       Alert.alert('Please fill in the country');
       return;
@@ -273,9 +278,25 @@ const AddressScreen = ({navigation}) => {
 
                 padding: 10,
               }}>
-              <Text style={{fontSize: 18}}>Sender Detail's</Text>
+              <Text style={{
+                fontSize: 18, 
+                color: 'black',
+                marginVertical: 9,
 
-              {/* Email */}
+                }}>Sender Detail's</Text>
+
+               {/* Name */}
+               <View style={styles.row}>
+                <Text style={styles.label}>Name </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Sender Name"
+                  value={sName}
+                  onChangeText={setSName}
+                />
+              </View>
+
+              {/* Email 
               <View style={styles.row}>
                 <Text style={styles.label}>Email </Text>
                 <TextInput
@@ -284,13 +305,13 @@ const AddressScreen = ({navigation}) => {
                   value={sEmail}
                   onChangeText={setSEmail}
                 />
-              </View>
+              </View> */}
               {/* Address */}
               <View style={styles.row}>
                 <Text style={styles.label}>Full Address </Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="sender address"
+                  placeholder="Sender address"
                   value={sAddress}
                   onChangeText={setSAddress}
                 />
@@ -300,67 +321,63 @@ const AddressScreen = ({navigation}) => {
                 <Text style={styles.label}>Phone </Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="sender phoneno"
+                  placeholder="Sender phone number"
                   value={sPhone}
                   onChangeText={setSPhone}
                 />
               </View>
-              {/* Name */}
-              <View style={styles.row}>
-                <Text style={styles.label}>Name </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="sender Name"
-                  value={sName}
-                  onChangeText={setSName}
-                />
-              </View>
-              {/* Pin Code*/}
-              <View style={styles.row}>
-                <Text style={styles.label}>Pincode </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="sender Pincode"
-                  value={sPinCode}
-                  onChangeText={setSPinCode}
-                />
-              </View>
-              {/* State */}
-              <View style={styles.row}>
-                <Text style={styles.label}>State </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="sender State"
-                  value={sState}
-                  onChangeText={setSState}
-                />
-              </View>
-              {/* City */}
+
+          
               <View style={styles.row}>
                 <Text style={styles.label}>City </Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="sender City"
+                  placeholder="Sender City"
                   value={sCity}
                   onChangeText={setSCity}
                 />
               </View>
 
+              <View style={styles.row}>
+                <Text style={styles.label}>State </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Sender State"
+                  value={sCity}
+                  onChangeText={setSCity}
+                />
+              </View>
+
+              {/* Pin Code */}
+              <View style={styles.row}>
+                <Text style={styles.label}>Zip code </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Sender Zip code"
+                  value={sPinCode}
+                  onChangeText={setSPinCode}
+                />
+              </View> 
+
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <TouchableOpacity onPress={buildSenderObj}>
-                  <Text>Submit</Text>
+                  <Text style={styles.Submit}>Submit</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => setShowModel(false)}>
-                  <Text>Cancel</Text>
+                  <Text style={styles.Submit}>Cancel</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
         </Modal>
-        <View style={styles.row}></View>
         <View style={styles.row}>
-          <Text style={styles.label}>Full Name (First and Last Name)</Text>
+        </View>
+
+        
+
+        <View style={styles.row}>
+          <Text style={styles.label}>Receiver Full Name</Text>
           <TextInput
             style={styles.input}
             placeholder="Full Name"
@@ -368,37 +385,7 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setFullname}
           />
         </View>
-        {/* Checkbox */}
-        <View style={styles.row}>
-          <Text style={styles.label}>Are You ? ("sender" or "reciver")</Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBox === 'sender'}
-              onValueChange={newValue => {
-                setShowModel(true);
-                setToggleCheckBox('sender');
-              }}
-            />
-            <Text>Sender </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBox === 'reciver'}
-              onValueChange={newValue => setToggleCheckBox('reciver')}
-            />
-            <Text>reciver </Text>
-          </View>
-        </View>
+      
         {/* Sender Address
         {toggleCheckBox === 'sender' && (
           <View style={styles.row}>
@@ -413,15 +400,15 @@ const AddressScreen = ({navigation}) => {
         )} */}
         {/* Reciver Address */}
         <View style={styles.row}>
-          <Text style={styles.label}>Reciver Address </Text>
+          <Text style={styles.label}>Full Address </Text>
           <TextInput
             style={styles.input}
-            placeholder="Reciver Address"
+            placeholder="Full Address"
             value={address}
             onChangeText={setAddress}
           />
         </View>
-        {/* Email */}
+        {/* Email 
         <View style={styles.row}>
           <Text style={styles.label}>Email </Text>
           <TextInput
@@ -430,7 +417,7 @@ const AddressScreen = ({navigation}) => {
             value={email}
             onChangeText={setEmail}
           />
-        </View>
+        </View> */}
         {/* Phone */}
         <View style={styles.row}>
           <Text style={styles.label}>Phone Number </Text>
@@ -462,7 +449,7 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setState}
           />
         </View>
-        {/* postal code */}
+        {/* postal code 
         <View style={styles.row}>
           <Text style={styles.label}>Postal code </Text>
           <TextInput
@@ -471,7 +458,7 @@ const AddressScreen = ({navigation}) => {
             value={postal_code}
             onChangeText={setPostal_code}
           />
-        </View>
+        </View> */}
         {/* country */}
         <View style={styles.row}>
           <Text style={styles.label}>Country </Text>
@@ -481,6 +468,38 @@ const AddressScreen = ({navigation}) => {
             value={country}
             onChangeText={setCountry}
           />
+        </View>
+
+          {/* Checkbox */}
+        <View style={styles.row}>
+          <Text style={styles.label}>If sender details is different from receiver please click the box and enter it.</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <CheckBox
+              disabled={false}
+              value={toggleCheckBox === 'sender'}
+              onValueChange={newValue => {
+                setShowModel(true);
+                setToggleCheckBox('sender');
+              }}
+            />
+            <Text>Sender </Text>
+          </View>
+          {/* <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <CheckBox
+              disabled={false}
+              value={toggleCheckBox === 'reciver'}
+              onValueChange={newValue => setToggleCheckBox('reciver')}
+            />
+            <Text>reciver </Text>
+          </View> */}
         </View>
         <ActionBtn
           title={loading || 'Checkout'}
