@@ -3,6 +3,7 @@ import {
   Text,
   TextInput,
   Alert,
+  TouchableOpacity,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
@@ -23,10 +24,12 @@ import {getUsers} from '../../graphql/queries';
 import CheckBox from '@react-native-community/checkbox';
 import {createOrder} from '../../graphql/mutations';
 import {useSelector} from 'react-redux';
+import Modal from 'react-native-modal';
 import {
   selectCartItems,
   selectCartTotal,
 } from '../../store/features/cart/cartSlice';
+import ButtonGradient from '../../components/ButtonGradient';
 
 const AddressScreen = ({navigation}) => {
   const cartItems = useSelector(selectCartItems);
@@ -44,6 +47,33 @@ const AddressScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [senderAddress, setSenderAddress] = useState('');
   const [stripeData, setStripeData] = useState(null);
+  const [showModel, setShowModel] = useState(false);
+
+  // sender Inputs
+  const [sEmail, setSEmail] = useState('');
+  const [sPhone, setSPhone] = useState('');
+  const [sAddress, setSAddress] = useState('');
+  const [sName, setSName] = useState('');
+  const [sPinCode, setSPinCode] = useState('');
+  const [sState, setSState] = useState('');
+  const [sCity, setSCity] = useState('');
+  const [senderObj, setSenderObj] = useState({});
+  // sender Inputs
+
+  const buildSenderObj = () => {
+    const obj = {
+      email: sEmail,
+      phone: sPhone,
+      address: sAddress,
+      name: sName,
+      pincode: sPinCode,
+      state: sState,
+      city: sCity,
+    };
+    console.log(obj);
+    setSenderObj(obj);
+    setShowModel(false);
+  };
 
   const [loading, setLoading] = useState('');
 
@@ -141,10 +171,10 @@ const AddressScreen = ({navigation}) => {
       isSender,
       name: fullname,
       phone: phone,
-      senderAddress: isSender ? senderAddress : '',
+      senderAddress: isSender ? JSON.stringify(senderObj) : '',
       userID: '123',
       // Products: JSON.stringify(globalThis.cart),
-      Products: JSON.stringify(cartItems),
+      Products: JSON.stringify(cartItems ? cartItems : []),
     };
 
     try {
@@ -232,8 +262,103 @@ const AddressScreen = ({navigation}) => {
         onPress={() => navigation.goBack()}
       />
       <ScrollView style={styles.root}>
-        <View style={styles.row}></View>
+        <Modal isVisible={showModel}>
+          <View
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <View
+              style={{
+                backgroundColor: '#fff',
+                borderRadius: 10,
+                width: '100%',
 
+                padding: 10,
+              }}>
+              <Text style={{fontSize: 18}}>Sender Detail's</Text>
+
+              {/* Email */}
+              <View style={styles.row}>
+                <Text style={styles.label}>Email </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="email"
+                  value={sEmail}
+                  onChangeText={setSEmail}
+                />
+              </View>
+              {/* Address */}
+              <View style={styles.row}>
+                <Text style={styles.label}>Full Address </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="sender address"
+                  value={sAddress}
+                  onChangeText={setSAddress}
+                />
+              </View>
+              {/* Name */}
+              <View style={styles.row}>
+                <Text style={styles.label}>Phone </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="sender phoneno"
+                  value={sPhone}
+                  onChangeText={setSPhone}
+                />
+              </View>
+              {/* Name */}
+              <View style={styles.row}>
+                <Text style={styles.label}>Name </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="sender Name"
+                  value={sName}
+                  onChangeText={setSName}
+                />
+              </View>
+              {/* Pin Code*/}
+              <View style={styles.row}>
+                <Text style={styles.label}>Pincode </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="sender Pincode"
+                  value={sPinCode}
+                  onChangeText={setSPinCode}
+                />
+              </View>
+              {/* State */}
+              <View style={styles.row}>
+                <Text style={styles.label}>State </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="sender State"
+                  value={sState}
+                  onChangeText={setSState}
+                />
+              </View>
+              {/* City */}
+              <View style={styles.row}>
+                <Text style={styles.label}>City </Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="sender City"
+                  value={sCity}
+                  onChangeText={setSCity}
+                />
+              </View>
+
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <TouchableOpacity onPress={buildSenderObj}>
+                  <Text>Submit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setShowModel(false)}>
+                  <Text>Cancel</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+        <View style={styles.row}></View>
         <View style={styles.row}>
           <Text style={styles.label}>Full Name (First and Last Name)</Text>
           <TextInput
@@ -243,7 +368,6 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setFullname}
           />
         </View>
-
         {/* Checkbox */}
         <View style={styles.row}>
           <Text style={styles.label}>Are You ? ("sender" or "reciver")</Text>
@@ -255,7 +379,10 @@ const AddressScreen = ({navigation}) => {
             <CheckBox
               disabled={false}
               value={toggleCheckBox === 'sender'}
-              onValueChange={newValue => setToggleCheckBox('sender')}
+              onValueChange={newValue => {
+                setShowModel(true);
+                setToggleCheckBox('sender');
+              }}
             />
             <Text>Sender </Text>
           </View>
@@ -272,7 +399,7 @@ const AddressScreen = ({navigation}) => {
             <Text>reciver </Text>
           </View>
         </View>
-        {/* Sender Address */}
+        {/* Sender Address
         {toggleCheckBox === 'sender' && (
           <View style={styles.row}>
             <Text style={styles.label}>Sender Address </Text>
@@ -283,8 +410,7 @@ const AddressScreen = ({navigation}) => {
               onChangeText={setSenderAddress}
             />
           </View>
-        )}
-
+        )} */}
         {/* Reciver Address */}
         <View style={styles.row}>
           <Text style={styles.label}>Reciver Address </Text>
@@ -305,7 +431,6 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setEmail}
           />
         </View>
-
         {/* Phone */}
         <View style={styles.row}>
           <Text style={styles.label}>Phone Number </Text>
@@ -317,7 +442,6 @@ const AddressScreen = ({navigation}) => {
             keyboardType={'phone-pad'}
           />
         </View>
-
         {/* City */}
         <View style={styles.row}>
           <Text style={styles.label}>City </Text>
@@ -358,7 +482,6 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setCountry}
           />
         </View>
-
         <ActionBtn
           title={loading || 'Checkout'}
           onPress={onCheckout}
