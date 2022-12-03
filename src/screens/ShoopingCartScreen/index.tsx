@@ -48,7 +48,7 @@ const Cart = ({onPress}) => {
           }}>
           {/* Subtotal ({products.length} item): */}
           Subtotal ({cartItems.length} item):
-          <Text style={{color: '#e47911', fontWeight: 'bold'}}>
+          <Text style={{color: '#e47911', fontWeight: 'bold', fontSize: 18}}>
             {/* {products
               .reduce((summedPrice, product) => {
                 let itemPrice = summedPrice + product['item']['price'];

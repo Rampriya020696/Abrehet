@@ -114,13 +114,15 @@ const styles = StyleSheet.create({
     height: 40,
     width: 140,
     justifyContent: 'center',
-    backgroundColor: colors.pay,
+    backgroundColor: '#3A2E6E',
+    opacity: 10
   },
   titlePay: {
     fontSize: 20,
     color: colors.white,
     alignSelf: 'center',
     fontFamily: fonts.primary[600],
+    
   },
   image: {
     width: 130,

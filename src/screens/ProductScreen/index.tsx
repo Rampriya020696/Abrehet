@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -248,7 +249,7 @@ const styles2 = StyleSheet.create({
   gap: {
     height: 0,
     borderColor: colors.borderGap,
-    borderWidth: 10,
+    borderWidth: 0,
   },
 
   // Header
@@ -295,7 +296,8 @@ const styles2 = StyleSheet.create({
   },
   name: {
     fontSize: 20,
-    fontFamily: fonts.secondary[600],
+    fontFamily: fonts.secondary[800],
+    color: 'black'
   },
   strip: {
     height: 0,
@@ -313,15 +315,16 @@ const styles2 = StyleSheet.create({
   rating: {
     backgroundColor: '#8BC34A',
     width: 80,
-    borderRadius: 50,
+    borderRadius: 10,
+    marginHorizontal: 20,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 4,
   },
   starRating: {
-    width: 14,
-    height: 14,
+    width: 12,
+    height: 12,
   },
   nilai: {
     fontSize: 16,
@@ -340,8 +343,8 @@ const styles2 = StyleSheet.create({
 
   title: {
     fontSize: 14,
-    fontFamily: fonts.primary[500],
-    color: colors.black,
+    fontFamily: fonts.primary[700],
+    color: 'black',
     paddingHorizontal: 20,
   },
 
@@ -358,10 +361,10 @@ const styles2 = StyleSheet.create({
   desc: {
     fontSize: 14,
     fontFamily: fonts.secondary[300],
-    color: colors.text.secondary,
     paddingHorizontal: 20,
     marginTop: 20,
     marginBottom: 10,
+    color: 'black',
   },
   more: {
     fontSize: 14,
