@@ -11,6 +11,7 @@ import {
   Linking,
   Image,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
@@ -27,6 +28,7 @@ const Signin = () => {
   const [username, setUsername] = useState('mspl');
   const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const {resource} = React.useContext(ResourceContext) as any;
 
   const [user, setUser] = useState(null);
@@ -46,13 +48,17 @@ const Signin = () => {
 
   const handleGooglePress = () => {
     Auth.federatedSignIn();
+    setGoogleLoading(true);
   };
 
   useEffect(() => {
     const unsubscribe = Hub.listen('auth', ({payload: {event, data}}) => {
+      console.log(event, data, 'payload');
       switch (event) {
         case 'signIn':
           setUser(data);
+          setGoogleLoading(false);
+
           break;
         case 'signOut':
           setUser(null);
@@ -146,7 +152,7 @@ const Signin = () => {
                   alignSelf: 'center',
                   fontWeight: '600',
                 }}>
-                Login with Google
+                {googleLoading ? <ActivityIndicator /> : 'Login with Google'}
               </Text>
             </TouchableOpacity>
 
