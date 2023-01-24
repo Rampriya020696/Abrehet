@@ -21,19 +21,10 @@ export type CreateProductsInput = {
   category: string,
   content: string,
   country?: string | null,
+  categories?: Array< ModelIDInput | null > | null,
 };
 
-export type ModelProductsConditionInput = {
-  title?: ModelStringInput | null,
-  category?: ModelStringInput | null,
-  content?: ModelStringInput | null,
-  country?: ModelStringInput | null,
-  and?: Array< ModelProductsConditionInput | null > | null,
-  or?: Array< ModelProductsConditionInput | null > | null,
-  not?: ModelProductsConditionInput | null,
-};
-
-export type ModelStringInput = {
+export type ModelIDInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -71,6 +62,32 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
+};
+
+export type ModelProductsConditionInput = {
+  title?: ModelStringInput | null,
+  category?: ModelStringInput | null,
+  content?: ModelStringInput | null,
+  country?: ModelStringInput | null,
+  and?: Array< ModelProductsConditionInput | null > | null,
+  or?: Array< ModelProductsConditionInput | null > | null,
+  not?: ModelProductsConditionInput | null,
+};
+
+export type ModelStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
 };
 
 export type Products = {
@@ -142,6 +159,8 @@ export type Order = {
   name?: string | null,
   address?: string | null,
   city?: string | null,
+  senderAddress?: string | null,
+  isSender?: boolean | null,
   Products?: string | null,
   Status?: string | null,
   id: string,
@@ -169,6 +188,8 @@ export type CreateOrderInput = {
   name?: string | null,
   address?: string | null,
   city?: string | null,
+  senderAddress?: string | null,
+  isSender?: boolean | null,
   Products?: string | null,
   Status?: string | null,
   id?: string | null,
@@ -181,6 +202,8 @@ export type ModelOrderConditionInput = {
   name?: ModelStringInput | null,
   address?: ModelStringInput | null,
   city?: ModelStringInput | null,
+  isSender?: ModelBooleanInput | null,
+  senderAddress?: ModelStringInput | null,
   Products?: ModelStringInput | null,
   Status?: ModelStringInput | null,
   and?: Array< ModelOrderConditionInput | null > | null,
@@ -189,20 +212,11 @@ export type ModelOrderConditionInput = {
   usersOrdersId?: ModelIDInput | null,
 };
 
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
 };
 
 export type UpdateOrderInput = {
@@ -278,6 +292,7 @@ export type CreateMenuInput = {
   content: string,
   price?: number | null,
   rating?: number | null,
+  des?: string | null,
 };
 
 export type Menu = {
@@ -285,6 +300,7 @@ export type Menu = {
   id: string,
   name: string,
   icon?: string | null,
+  des?: string | null,
 };
 
 export type UpdateMenuInput = {
@@ -346,10 +362,39 @@ export type DeleteBannerInput = {
   id: string,
 };
 
+export type CreateOnBoardingInput = {
+  title: string,
+  image: string,
+  subtitle: string,
+  backgroundColor?: string | null,
+};
+
+export type OnBoarding = {
+  __typename: "OnBoarding",
+  id: string,
+  title: string,
+  image: string,
+  subtitle: string,
+  backgroundColor?: string | null,
+};
+
+export type UpdateOnBoardingInput = {
+  id: string,
+  title?: string | null,
+  image?: string | null,
+  subtitle?: string | null,
+  backgroundColor?: string | null,
+};
+
+export type DeleteOnBoardingInput = {
+  id: string,
+};
+
 export type ModelProductsFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
   category?: ModelStringInput | null,
+  categories?: ModelIDInput | null,
   content?: ModelStringInput | null,
   country?: ModelStringInput | null,
   and?: Array< ModelProductsFilterInput | null > | null,
@@ -509,6 +554,20 @@ export type BannerConnection = {
   nextToken?: string | null,
 };
 
+export type TableOnBoardingFilterInput = {
+  id?: TableIDFilterInput | null,
+  title?: TableStringFilterInput | null,
+  image?: TableStringFilterInput | null,
+  subtitle?: TableStringFilterInput | null,
+  backgroundColor?: TableStringFilterInput | null,
+};
+
+export type OnBoardingConnection = {
+  __typename: "OnBoardingConnection",
+  items?:  Array<OnBoarding | null > | null,
+  nextToken?: string | null,
+};
+
 export type CreatePaymentMutationVariables = {
   input?: PaymentInput | null,
 };
@@ -657,6 +716,8 @@ export type CreateOrderMutation = {
     name?: string | null,
     address?: string | null,
     city?: string | null,
+    senderAddress?: string | null,
+    isSender?: boolean | null,
     Products?: string | null,
     Status?: string | null,
     id: string,
@@ -679,6 +740,8 @@ export type UpdateOrderMutation = {
     name?: string | null,
     address?: string | null,
     city?: string | null,
+    senderAddress?: string | null,
+    isSender?: boolean | null,
     Products?: string | null,
     Status?: string | null,
     id: string,
@@ -701,6 +764,8 @@ export type DeleteOrderMutation = {
     name?: string | null,
     address?: string | null,
     city?: string | null,
+    senderAddress?: string | null,
+    isSender?: boolean | null,
     Products?: string | null,
     Status?: string | null,
     id: string,
@@ -804,6 +869,7 @@ export type CreateMenuMutation = {
     id: string,
     name: string,
     icon?: string | null,
+    des?: string | null,
   } | null,
 };
 
@@ -817,6 +883,7 @@ export type UpdateMenuMutation = {
     id: string,
     name: string,
     icon?: string | null,
+    des?: string | null,
   } | null,
 };
 
@@ -830,6 +897,7 @@ export type DeleteMenuMutation = {
     id: string,
     name: string,
     icon?: string | null,
+    des?: string | null,
   } | null,
 };
 
@@ -911,6 +979,51 @@ export type DeleteBannerMutation = {
     title?: string | null,
     content?: string | null,
     image?: string | null,
+  } | null,
+};
+
+export type CreateOnBoardingMutationVariables = {
+  input: CreateOnBoardingInput,
+};
+
+export type CreateOnBoardingMutation = {
+  createOnBoarding?:  {
+    __typename: "OnBoarding",
+    id: string,
+    title: string,
+    image: string,
+    subtitle: string,
+    backgroundColor?: string | null,
+  } | null,
+};
+
+export type UpdateOnBoardingMutationVariables = {
+  input: UpdateOnBoardingInput,
+};
+
+export type UpdateOnBoardingMutation = {
+  updateOnBoarding?:  {
+    __typename: "OnBoarding",
+    id: string,
+    title: string,
+    image: string,
+    subtitle: string,
+    backgroundColor?: string | null,
+  } | null,
+};
+
+export type DeleteOnBoardingMutationVariables = {
+  input: DeleteOnBoardingInput,
+};
+
+export type DeleteOnBoardingMutation = {
+  deleteOnBoarding?:  {
+    __typename: "OnBoarding",
+    id: string,
+    title: string,
+    image: string,
+    subtitle: string,
+    backgroundColor?: string | null,
   } | null,
 };
 
@@ -1012,6 +1125,8 @@ export type GetOrderQuery = {
     name?: string | null,
     address?: string | null,
     city?: string | null,
+    senderAddress?: string | null,
+    isSender?: boolean | null,
     Products?: string | null,
     Status?: string | null,
     id: string,
@@ -1037,6 +1152,8 @@ export type ListOrdersQuery = {
       name?: string | null,
       address?: string | null,
       city?: string | null,
+      senderAddress?: string | null,
+      isSender?: boolean | null,
       Products?: string | null,
       Status?: string | null,
       id: string,
@@ -1127,6 +1244,7 @@ export type GetMenuQuery = {
     id: string,
     name: string,
     icon?: string | null,
+    des?: string | null,
   } | null,
 };
 
@@ -1144,6 +1262,7 @@ export type ListMenusQuery = {
       id: string,
       name: string,
       icon?: string | null,
+      des?: string | null,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -1215,6 +1334,42 @@ export type ListBannersQuery = {
   } | null,
 };
 
+export type GetOnBoardingQueryVariables = {
+  id: string,
+};
+
+export type GetOnBoardingQuery = {
+  getOnBoarding?:  {
+    __typename: "OnBoarding",
+    id: string,
+    title: string,
+    image: string,
+    subtitle: string,
+    backgroundColor?: string | null,
+  } | null,
+};
+
+export type ListOnBoardingsQueryVariables = {
+  filter?: TableOnBoardingFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListOnBoardingsQuery = {
+  listOnBoardings?:  {
+    __typename: "OnBoardingConnection",
+    items?:  Array< {
+      __typename: "OnBoarding",
+      id: string,
+      title: string,
+      image: string,
+      subtitle: string,
+      backgroundColor?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type OnCreateUsersSubscription = {
   onCreateUsers?:  {
     __typename: "Users",
@@ -1277,6 +1432,8 @@ export type OnCreateOrderSubscription = {
     name?: string | null,
     address?: string | null,
     city?: string | null,
+    senderAddress?: string | null,
+    isSender?: boolean | null,
     Products?: string | null,
     Status?: string | null,
     id: string,
@@ -1294,6 +1451,8 @@ export type OnUpdateOrderSubscription = {
     name?: string | null,
     address?: string | null,
     city?: string | null,
+    senderAddress?: string | null,
+    isSender?: boolean | null,
     Products?: string | null,
     Status?: string | null,
     id: string,
@@ -1311,6 +1470,8 @@ export type OnDeleteOrderSubscription = {
     name?: string | null,
     address?: string | null,
     city?: string | null,
+    senderAddress?: string | null,
+    isSender?: boolean | null,
     Products?: string | null,
     Status?: string | null,
     id: string,
@@ -1436,6 +1597,7 @@ export type OnCreateMenuSubscription = {
     id: string,
     name: string,
     icon?: string | null,
+    des?: string | null,
   } | null,
 };
 
@@ -1453,6 +1615,7 @@ export type OnUpdateMenuSubscription = {
     id: string,
     name: string,
     icon?: string | null,
+    des?: string | null,
   } | null,
 };
 
@@ -1470,6 +1633,7 @@ export type OnDeleteMenuSubscription = {
     id: string,
     name: string,
     icon?: string | null,
+    des?: string | null,
   } | null,
 };
 
@@ -1566,5 +1730,62 @@ export type OnDeleteBannerSubscription = {
     title?: string | null,
     content?: string | null,
     image?: string | null,
+  } | null,
+};
+
+export type OnCreateOnBoardingSubscriptionVariables = {
+  id?: string | null,
+  title?: string | null,
+  image?: string | null,
+  subtitle?: string | null,
+  backgroundColor?: string | null,
+};
+
+export type OnCreateOnBoardingSubscription = {
+  onCreateOnBoarding?:  {
+    __typename: "OnBoarding",
+    id: string,
+    title: string,
+    image: string,
+    subtitle: string,
+    backgroundColor?: string | null,
+  } | null,
+};
+
+export type OnUpdateOnBoardingSubscriptionVariables = {
+  id?: string | null,
+  title?: string | null,
+  image?: string | null,
+  subtitle?: string | null,
+  backgroundColor?: string | null,
+};
+
+export type OnUpdateOnBoardingSubscription = {
+  onUpdateOnBoarding?:  {
+    __typename: "OnBoarding",
+    id: string,
+    title: string,
+    image: string,
+    subtitle: string,
+    backgroundColor?: string | null,
+  } | null,
+};
+
+export type OnDeleteOnBoardingSubscriptionVariables = {
+  id?: string | null,
+  title?: string | null,
+  image?: string | null,
+  subtitle?: string | null,
+  backgroundColor?: string | null,
+};
+
+export type OnDeleteOnBoardingSubscription = {
+  onDeleteOnBoarding?:  {
+    __typename: "OnBoarding",
+    id: string,
+    title: string,
+    image: string,
+    subtitle: string,
+    backgroundColor?: string | null,
   } | null,
 };

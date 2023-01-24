@@ -16,13 +16,13 @@ import {TextInput} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors, fonts} from '../../utils';
 import Amplify, {Auth} from 'aws-amplify';
-import awsconfig from '../../aws-exports';
+// import awsconfig from '../../aws-exports';
 import {APP_ICON} from '../../../assets/images';
 import {ResourceContext} from '../../context/ResourceContext';
 
-Amplify.configure({Auth: awsconfig});
+// Amplify.configure({Auth: awsconfig});
 
-const Signup = ({navigation, type}): JSX.Element => {
+const Signup = ({navigation}): JSX.Element => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -63,7 +63,6 @@ const Signup = ({navigation, type}): JSX.Element => {
           </View>
 
           <View style={{alignSelf: 'center', marginTop: 30, width: '100%'}}>
-    
             <View
               style={{
                 backgroundColor: 'white',
@@ -147,7 +146,7 @@ const Signup = ({navigation, type}): JSX.Element => {
               />
               <TextInput
                 placeholder="Phone Number with country code"
-                 keyboardType="numeric"
+                keyboardType="numeric"
                 onChangeText={value => setPhoneNumber(value)}
                 onChangeText={value => {
                   let newValue = '+1' + value;
@@ -158,7 +157,7 @@ const Signup = ({navigation, type}): JSX.Element => {
                   paddingLeft: 20,
                 }}
               />
-            </View> 
+            </View>
 
             <View style={{alignSelf: 'center', marginTop: 20}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>

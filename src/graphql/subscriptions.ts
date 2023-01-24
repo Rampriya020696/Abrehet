@@ -61,6 +61,8 @@ export const onCreateOrder = /* GraphQL */ `
       name
       address
       city
+      senderAddress
+      isSender
       Products
       Status
       id
@@ -78,6 +80,8 @@ export const onUpdateOrder = /* GraphQL */ `
       name
       address
       city
+      senderAddress
+      isSender
       Products
       Status
       id
@@ -95,6 +99,8 @@ export const onDeleteOrder = /* GraphQL */ `
       name
       address
       city
+      senderAddress
+      isSender
       Products
       Status
       id
@@ -218,6 +224,7 @@ export const onCreateMenu = /* GraphQL */ `
       id
       name
       icon
+      des
     }
   }
 `;
@@ -239,6 +246,7 @@ export const onUpdateMenu = /* GraphQL */ `
       id
       name
       icon
+      des
     }
   }
 `;
@@ -260,6 +268,7 @@ export const onDeleteMenu = /* GraphQL */ `
       id
       name
       icon
+      des
     }
   }
 `;
@@ -332,6 +341,75 @@ export const onDeleteBanner = /* GraphQL */ `
       title
       content
       image
+    }
+  }
+`;
+export const onCreateOnBoarding = /* GraphQL */ `
+  subscription OnCreateOnBoarding(
+    $id: ID
+    $title: String
+    $image: String
+    $subtitle: String
+    $backgroundColor: String
+  ) {
+    onCreateOnBoarding(
+      id: $id
+      title: $title
+      image: $image
+      subtitle: $subtitle
+      backgroundColor: $backgroundColor
+    ) {
+      id
+      title
+      image
+      subtitle
+      backgroundColor
+    }
+  }
+`;
+export const onUpdateOnBoarding = /* GraphQL */ `
+  subscription OnUpdateOnBoarding(
+    $id: ID
+    $title: String
+    $image: String
+    $subtitle: String
+    $backgroundColor: String
+  ) {
+    onUpdateOnBoarding(
+      id: $id
+      title: $title
+      image: $image
+      subtitle: $subtitle
+      backgroundColor: $backgroundColor
+    ) {
+      id
+      title
+      image
+      subtitle
+      backgroundColor
+    }
+  }
+`;
+export const onDeleteOnBoarding = /* GraphQL */ `
+  subscription OnDeleteOnBoarding(
+    $id: ID
+    $title: String
+    $image: String
+    $subtitle: String
+    $backgroundColor: String
+  ) {
+    onDeleteOnBoarding(
+      id: $id
+      title: $title
+      image: $image
+      subtitle: $subtitle
+      backgroundColor: $backgroundColor
+    ) {
+      id
+      title
+      image
+      subtitle
+      backgroundColor
     }
   }
 `;

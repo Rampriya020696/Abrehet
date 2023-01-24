@@ -1,6 +1,6 @@
 {
   "auth": {
-    "abrehet2b8c1a31": {
+    "abrehetca91482b": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],

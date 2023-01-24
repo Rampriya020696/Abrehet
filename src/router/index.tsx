@@ -105,7 +105,10 @@ const Router = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      linking={{
+        prefixes: ['abrehet://'],
+      }}>
       <Root.Navigator screenOptions={{headerShown: false}}>
         {user ? (
           <>

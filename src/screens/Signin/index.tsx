@@ -15,52 +15,22 @@ import {
 import {TextInput} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors, fonts} from '../../utils';
-import Amplify, {Auth, Hub} from 'aws-amplify';
-import awsconfig from '../../aws-exports';
 import {APP_ICON} from '../../../assets/images';
 import {ResourceContext} from '../../context/ResourceContext';
-
-// Amplify.configure({Auth: awsconfig});
-import {
-  GoogleSignin,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
-import InAppBrowser from 'react-native-inappbrowser-reborn';
 import {useNavigation} from '@react-navigation/native';
+import {Amplify, Auth, Hub} from 'aws-amplify';
+import awsconfig from '../../aws-exports';
+Amplify.configure(awsconfig);
 
-import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
-Auth.configure(awsconfig);
-
-async function urlOpener(url, redirectUrl) {
-  await InAppBrowser.isAvailable();
-  const {type, url: newUrl} = await InAppBrowser.openAuth(url, redirectUrl, {
-    showTitle: false,
-    enableUrlBarHiding: true,
-    enableDefaultShare: false,
-    ephemeralWebSession: false,
-  });
-
-  if (type === 'success') {
-    Linking.openURL(newUrl);
-  }
-}
-
-Amplify.configure({
-  ...awsconfig,
-  oauth: {
-    ...awsconfig.oauth,
-    urlOpener,
-  },
-});
-
-const Signin = ({props}) => {
-  console.log(props, 'props');
+const Signin = () => {
   const navigation = useNavigation();
-  const [user, setUser] = useState(null);
   const [username, setUsername] = useState('mspl');
   const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
   const {resource} = React.useContext(ResourceContext) as any;
+
+  const [user, setUser] = useState(null);
+  const [customState, setCustomState] = useState(null);
 
   const handleSignIn = async () => {
     setLoading(true);
@@ -74,31 +44,30 @@ const Signin = ({props}) => {
     }
   };
 
+  const handleGooglePress = () => {
+    Auth.federatedSignIn();
+  };
+
   useEffect(() => {
-    Hub.listen('auth', ({payload: {event, data}}) => {
+    const unsubscribe = Hub.listen('auth', ({payload: {event, data}}) => {
       switch (event) {
         case 'signIn':
-        case 'cognitoHostedUI':
-          getUser().then(userData => setUser(userData));
+          setUser(data);
           break;
         case 'signOut':
           setUser(null);
           break;
-        case 'signIn_failure':
-        case 'cognitoHostedUI_failure':
-          console.log('Sign in failure', data);
-          break;
+        case 'customOAuthState':
+          setCustomState(data);
       }
     });
 
-    getUser().then(userData => setUser(userData));
-  }, []);
-
-  function getUser() {
-    return Auth.currentAuthenticatedUser()
-      .then(userData => userData)
+    Auth.currentAuthenticatedUser()
+      .then(currentUser => setUser(currentUser))
       .catch(() => console.log('Not signed in'));
-  }
+
+    return unsubscribe;
+  }, []);
 
   return (
     <ImageBackground
@@ -163,11 +132,7 @@ const Signin = ({props}) => {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-              onPress={() =>
-                Auth.federatedSignIn({
-                  provider: CognitoHostedUIIdentityProvider.Google,
-                })
-              }>
+              onPress={handleGooglePress}>
               <Image
                 style={{width: 16, height: 16, alignSelf: 'center'}}
                 source={require('../../Assets/Logo-Google.png')}
@@ -279,20 +244,6 @@ const Signin = ({props}) => {
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
-
-            {/* <TouchableOpacity
-              // onPress={() => navigation.navigate('BottomTabNav')}
-              style={{
-                backgroundColor: 'red',
-                width: '30%',
-                padding: 6,
-                alignItems: 'center',
-                borderRadius: 30,
-                marginBottom: 1,
-                marginVertical: 60,
-              }}>
-              <Text style={{fontSize: 14, color: 'white'}}>Skip</Text>
-            </TouchableOpacity> */}
           </View>
         </View>
       </ScrollView>
@@ -300,7 +251,6 @@ const Signin = ({props}) => {
   );
 };
 
-// export default withOAuth(Signin);
 export default Signin;
 
 const styles = StyleSheet.create({

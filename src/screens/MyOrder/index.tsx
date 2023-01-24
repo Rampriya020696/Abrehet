@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import {API, Auth, graphqlOperation} from 'aws-amplify';
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {
   ICBlipOrder,
   ICBox,
@@ -15,6 +15,7 @@ import Gap from '../../components/Gap';
 import Header from '../../components/Header';
 
 import {colors, fonts} from '../../utils';
+import TrackingView from './TrackingView';
 
 const MyOrder = ({navigation}) => {
   const [order, setOrder] = useState<any>([]);
@@ -63,7 +64,7 @@ const MyOrder = ({navigation}) => {
     <View style={styles.page}>
       <Header title="Track My Order" onPress={() => navigation.goBack()} />
 
-      <Text>{JSON.stringify(order, '2')}</Text>
+      {/* <Text>{JSON.stringify(order, '2')}</Text> */}
       {/* <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <Gap height={10} />
         <Text style={styles.detail}>Wed, 12 September</Text>
@@ -128,6 +129,7 @@ const MyOrder = ({navigation}) => {
           </View>
         </View>
       </ScrollView> */}
+      <TrackingView />
     </View>
   );
 };

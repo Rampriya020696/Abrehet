@@ -81,6 +81,8 @@ export const getOrder = /* GraphQL */ `
       name
       address
       city
+      senderAddress
+      isSender
       Products
       Status
       id
@@ -103,6 +105,8 @@ export const listOrders = /* GraphQL */ `
         name
         address
         city
+        senderAddress
+        isSender
         Products
         Status
         id
@@ -174,6 +178,7 @@ export const getMenu = /* GraphQL */ `
       id
       name
       icon
+      des
     }
   }
 `;
@@ -188,6 +193,7 @@ export const listMenus = /* GraphQL */ `
         id
         name
         icon
+        des
       }
       nextToken
     }
@@ -240,6 +246,35 @@ export const listBanners = /* GraphQL */ `
         title
         content
         image
+      }
+      nextToken
+    }
+  }
+`;
+export const getOnBoarding = /* GraphQL */ `
+  query GetOnBoarding($id: ID!) {
+    getOnBoarding(id: $id) {
+      id
+      title
+      image
+      subtitle
+      backgroundColor
+    }
+  }
+`;
+export const listOnBoardings = /* GraphQL */ `
+  query ListOnBoardings(
+    $filter: TableOnBoardingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOnBoardings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        image
+        subtitle
+        backgroundColor
       }
       nextToken
     }

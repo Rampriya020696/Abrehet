@@ -7,10 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "ls-key": "cd android && ./gradlew signingReport && cd ..",
-    "clean": "cd android && ./gradlew clean  && cd ..",
+    "ls-key": "cd android && gradlew signingReport && cd ..",
+    "clean": "cd android && gradlew clean  && cd ..",
     "vr": "npx react-native run-android --variant=release",
-    "build-r": "cd android && ./gradlew bundleRelease && cd ..",
+    "build": "cd android && gradlew bundleRelease && cd ..",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {

@@ -1,53 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-abrehet-dev-133855-authRole",
-      "UnauthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-dev-133855-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-dev-133855-authRole",
+      "AuthRoleName": "amplify-abrehet-dev-144722-authRole",
+      "UnauthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-dev-144722-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-dev-144722-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-abrehet-dev-133855-deployment",
-      "UnauthRoleName": "amplify-abrehet-dev-133855-unauthRole",
-      "StackName": "amplify-abrehet-dev-133855",
-      "StackId": "arn:aws:cloudformation:us-east-1:807954077262:stack/amplify-abrehet-dev-133855/ca4d6580-5b4e-11ed-826a-12584d16e9a7",
-      "AmplifyAppId": "dl6t4c201da83"
+      "DeploymentBucketName": "amplify-abrehet-dev-144722-deployment",
+      "UnauthRoleName": "amplify-abrehet-dev-144722-unauthRole",
+      "StackName": "amplify-abrehet-dev-144722",
+      "StackId": "arn:aws:cloudformation:us-east-1:807954077262:stack/amplify-abrehet-dev-144722/ed78fd80-9bc7-11ed-8511-0af2f9a345ff",
+      "AmplifyAppId": "d3oblzrbpswsk2"
     },
     "categories": {
       "auth": {
-        "abrehet2b8c1a31": {}
-      }
-    }
-  },
-  "staging": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-abrehet-staging-53841-authRole",
-      "UnauthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-staging-53841-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::807954077262:role/amplify-abrehet-staging-53841-authRole",
-      "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-abrehet-staging-53841-deployment",
-      "UnauthRoleName": "amplify-abrehet-staging-53841-unauthRole",
-      "StackName": "amplify-abrehet-staging-53841",
-      "StackId": "arn:aws:cloudformation:us-east-1:807954077262:stack/amplify-abrehet-staging-53841/5b002570-96c6-11ec-984f-12a1e5ea69b9",
-      "AmplifyAppId": "d3t4jm0uu1bb0n"
-    },
-    "categories": {
-      "auth": {
-        "abrehet2d81a0c0": {}
-      },
-      "function": {
-        "makePayment": {
-          "deploymentBucketName": "amplify-abrehet-staging-53841-deployment",
-          "s3Key": "amplify-builds/makePayment-76336b7734706c536e45-build.zip"
-        },
-        "sendemail": {
-          "deploymentBucketName": "amplify-abrehet-staging-53841-deployment",
-          "s3Key": "amplify-builds/sendemail-324a34544e4e51394579-build.zip"
-        }
-      },
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d3t4jm0uu1bb0n",
-          "type": "manual"
-        }
+        "abrehetca91482b": {}
       }
     }
   }

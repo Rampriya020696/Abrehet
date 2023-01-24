@@ -129,9 +129,9 @@ export const createOrder = /* GraphQL */ `
       name
       address
       city
-      Products
       senderAddress
       isSender
+      Products
       Status
       id
       createdAt
@@ -151,6 +151,8 @@ export const updateOrder = /* GraphQL */ `
       name
       address
       city
+      senderAddress
+      isSender
       Products
       Status
       id
@@ -171,6 +173,8 @@ export const deleteOrder = /* GraphQL */ `
       name
       address
       city
+      senderAddress
+      isSender
       Products
       Status
       id
@@ -246,6 +250,7 @@ export const createMenu = /* GraphQL */ `
       id
       name
       icon
+      des
     }
   }
 `;
@@ -255,6 +260,7 @@ export const updateMenu = /* GraphQL */ `
       id
       name
       icon
+      des
     }
   }
 `;
@@ -264,6 +270,7 @@ export const deleteMenu = /* GraphQL */ `
       id
       name
       icon
+      des
     }
   }
 `;
@@ -321,6 +328,39 @@ export const deleteBanner = /* GraphQL */ `
       title
       content
       image
+    }
+  }
+`;
+export const createOnBoarding = /* GraphQL */ `
+  mutation CreateOnBoarding($input: CreateOnBoardingInput!) {
+    createOnBoarding(input: $input) {
+      id
+      title
+      image
+      subtitle
+      backgroundColor
+    }
+  }
+`;
+export const updateOnBoarding = /* GraphQL */ `
+  mutation UpdateOnBoarding($input: UpdateOnBoardingInput!) {
+    updateOnBoarding(input: $input) {
+      id
+      title
+      image
+      subtitle
+      backgroundColor
+    }
+  }
+`;
+export const deleteOnBoarding = /* GraphQL */ `
+  mutation DeleteOnBoarding($input: DeleteOnBoardingInput!) {
+    deleteOnBoarding(input: $input) {
+      id
+      title
+      image
+      subtitle
+      backgroundColor
     }
   }
 `;

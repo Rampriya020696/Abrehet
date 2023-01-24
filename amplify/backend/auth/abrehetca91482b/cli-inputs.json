@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "abrehet2b8c1a31_identitypool_2b8c1a31",
+    "identityPoolName": "abrehetca91482b_identitypool_ca91482b",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "abrehe2b8c1a31",
-    "userPoolName": "abrehet2b8c1a31_userpool_2b8c1a31",
+    "resourceNameTruncated": "abreheca91482b",
+    "userPoolName": "abrehetca91482b_userpool_ca91482b",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "abrehe2b8c1a31_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "abreheca91482b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "2b8c1a31",
-    "resourceName": "abrehet2b8c1a31",
+    "sharedId": "ca91482b",
+    "resourceName": "abrehetca91482b",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "defaultSocial",
     "hostedUI": true,
@@ -56,7 +56,7 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "hostedUIDomainName": "abrehet7e1875ef-7e1875ef",
+    "hostedUIDomainName": "abrehet01b4e332-01b4e332",
     "authProvidersUserPool": [
       "Google"
     ],

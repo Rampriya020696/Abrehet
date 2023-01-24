@@ -52,3 +52,22 @@ const buy = async (model, context) => {
     publishableKey: '',
   };
 };
+
+// User name  speryamo@gmail.com
+// Pass: 816HelenSewitSara
+
+// Console sign-in URL
+
+// https://807954077262.signin.aws.amazon.com/console
+// User name
+
+// abrehet-2.0
+// Console password
+
+// ]i4E9Q@e
+// Hide
+
+// Access key
+// AKIA3YHOQ2ZHAI23VLOI
+// Secret access key
+// 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

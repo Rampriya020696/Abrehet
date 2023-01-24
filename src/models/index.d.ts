@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
-
-
+import {
+  ModelInit,
+  MutableModel,
+  PersistentModelConstructor,
+} from '@aws-amplify/datastore';
 
 type ProductsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
-}
+};
 
 type UsersMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
-}
+};
 
 export declare class Products {
   readonly id: string;
@@ -21,7 +21,12 @@ export declare class Products {
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Products, ProductsMetaData>);
-  static copyOf(source: Products, mutator: (draft: MutableModel<Products, ProductsMetaData>) => MutableModel<Products, ProductsMetaData> | void): Products;
+  static copyOf(
+    source: Products,
+    mutator: (
+      draft: MutableModel<Products, ProductsMetaData>,
+    ) => MutableModel<Products, ProductsMetaData> | void,
+  ): Products;
 }
 
 export declare class Users {
@@ -34,6 +39,10 @@ export declare class Users {
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Users, UsersMetaData>);
-  static copyOf(source: Users, mutator: (draft: MutableModel<Users, UsersMetaData>) => MutableModel<Users, UsersMetaData> | void): Users;
+  static copyOf(
+    source: Users,
+    mutator: (
+      draft: MutableModel<Users, UsersMetaData>,
+    ) => MutableModel<Users, UsersMetaData> | void,
+  ): Users;
 }
-
