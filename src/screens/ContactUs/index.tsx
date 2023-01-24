@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {Auth} from 'aws-amplify';
 import React from 'react';
 import {
@@ -64,7 +65,7 @@ const ContactUs = ({navigation}) => {
           <Image source={ICChatNull} style={styles.image} />
           <Text style={styles.title}>We're Happy to Help You!</Text>
           <Text style={styles.text}>
-            If you have complain about {'\n'}the product email me
+            If you have any questions please reach out to us. {'\n'}
           </Text>
 
           <View style={{alignItems: 'center', marginTop: 12}}>
@@ -80,7 +81,7 @@ const ContactUs = ({navigation}) => {
             <Text style={styles.inputLabel}>Message</Text>
             <TextInput
               style={[styles.textInput]}
-              placeholder="enter your message here "
+              placeholder="Enter your message here "
               value={message}
               multiline={true}
               onChangeText={setMessage}
