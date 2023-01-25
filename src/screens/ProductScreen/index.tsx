@@ -12,6 +12,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Alert,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -161,11 +162,11 @@ const ProductScreen = () => {
           <View style={styles2.strip} />
           <View style={[styles2.sale, {justifyContent: 'center'}]}>
             <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
-             <View style={styles2.rating}>
+            <View style={styles2.rating}>
               <Text style={styles2.nilai}>4.1</Text>
               <Image source={ICStarWhite} style={styles2.starRating} />
             </View>
-            <Text>932 Sale</Text> 
+            <Text>932 Sale</Text>
           </View>
         </View>
         <View style={styles2.stripGap} />
@@ -215,15 +216,15 @@ const ProductScreen = () => {
               );
             }
 
-            if (!globalThis.cart[product.id]) {
-              globalThis.cart[product.id] = {};
-              globalThis.cart[product.id].id = product.id;
-              globalThis.cart[product.id].quantity = quantity;
-              globalThis.cart[product.id].item = product;
-            } else {
-              globalThis.cart[product.id].quantity += quantity;
-            }
-            console.log(globalThis.cart);
+            // if (!globalThis.cart[product.id]) {
+            //   globalThis.cart[product.id] = {};
+            //   globalThis.cart[product.id].id = product.id;
+            //   globalThis.cart[product.id].quantity = quantity;
+            //   globalThis.cart[product.id].item = product;
+            // } else {
+            //   globalThis.cart[product.id].quantity += quantity;
+            // }
+            // console.log(globalThis.cart);
           }}>
           <Text style={styles2.pay}>Add To Cart</Text>
         </TouchableOpacity>
@@ -297,7 +298,7 @@ const styles2 = StyleSheet.create({
   name: {
     fontSize: 20,
     fontFamily: fonts.secondary[800],
-    color: 'black'
+    color: 'black',
   },
   strip: {
     height: 0,

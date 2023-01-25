@@ -16,7 +16,7 @@ import {
 import {colors, fonts} from '../../utils';
 import CartItem from './CartItem';
 
-const Cart = ({onPress}) => {
+const Cart = () => {
   const [products, setProducts] = useState([]);
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);

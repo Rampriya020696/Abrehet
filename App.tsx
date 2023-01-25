@@ -37,6 +37,9 @@ const updatedAwsConfig = {
 
 Amplify.configure(updatedAwsConfig);
 
+const STRIPE_PK =
+  'pk_test_51MU2jiKfFoFhc3tbllcV1mFImqKYh5An6DHJDGCUs7x4f6OZvvGAPF4Sf4Z1Tjsuvfqk94nV8fyaTsTxE5EbAG3P00gUH88kPB';
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
@@ -45,7 +48,7 @@ const App = () => {
   };
 
   return (
-    <StripeProvider publishableKey="pk_test_51M0L2VSFJgtn9Lb9roXIXnZekNjTrHMsY4fpXNp5h4QQDIWdkE4ZWRipXmKFd216tS213M9MGRT0vK07udT1FkKI00t1mHCVh3">
+    <StripeProvider publishableKey={STRIPE_PK}>
       <SafeAreaView style={backgroundStyle}>
         <Provider store={store}>
           <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />

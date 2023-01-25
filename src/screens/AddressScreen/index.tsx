@@ -89,19 +89,32 @@ const AddressScreen = ({navigation}) => {
       state: state,
       country: country,
       product: {
-        amount: cartTotal,
-        des: otherDetails,
+        amount: Math.round(cartTotal),
+        des: JSON.stringify(cartItems ? cartItems : []),
       },
     };
 
-    console.log({payload});
+    const payloadString = JSON.stringify(payload);
+    console.log(payloadString, 'payloadString');
     setLoading('connecting to stipe...');
     fetch(CHECKOUT_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: payloadString,
+      // body: `{
+      //   "name": "fullname",
+      //   "address": "address",
+      //   "postal_code": 160019,
+      //   "city": "chandigarh",
+      //   "state": "chandigarh",
+      //   "country": "india",
+      //   "product": {
+      //     "amount": 132,
+      //     "des": "otherDetails"
+      //   }
+      // }`,
     })
       .then(res => res.json())
       .then(res => {
@@ -112,7 +125,7 @@ const AddressScreen = ({navigation}) => {
       })
       .catch(error => {
         console.log(error.message);
-        Alert.alert('Alert', error.message);
+        Alert.alert('Alert-', error.message);
       })
       .finally(() => {
         setLoading('');
@@ -210,7 +223,7 @@ const AddressScreen = ({navigation}) => {
       Alert.alert('Please fill in the Phone number');
       return;
     }
-   
+
     if (!city) {
       Alert.alert('Please fill in the city');
       return;
@@ -219,10 +232,12 @@ const AddressScreen = ({navigation}) => {
       Alert.alert('Please fill in the state');
       return;
     }
-    {/* if (!postal_code) {
+    {
+      /* if (!postal_code) {
       Alert.alert('Please fill in the postal code');
       return;
-    } */}
+    } */
+    }
     if (!country) {
       Alert.alert('Please fill in the country');
       return;
@@ -278,15 +293,17 @@ const AddressScreen = ({navigation}) => {
 
                 padding: 10,
               }}>
-              <Text style={{
-                fontSize: 18, 
-                color: 'black',
-                marginVertical: 9,
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: 'black',
+                  marginVertical: 9,
+                }}>
+                Sender Detail's
+              </Text>
 
-                }}>Sender Detail's</Text>
-
-               {/* Name */}
-               <View style={styles.row}>
+              {/* Name */}
+              <View style={styles.row}>
                 <Text style={styles.label}>Name </Text>
                 <TextInput
                   style={styles.input}
@@ -327,7 +344,6 @@ const AddressScreen = ({navigation}) => {
                 />
               </View>
 
-          
               <View style={styles.row}>
                 <Text style={styles.label}>City </Text>
                 <TextInput
@@ -357,7 +373,7 @@ const AddressScreen = ({navigation}) => {
                   value={sPinCode}
                   onChangeText={setSPinCode}
                 />
-              </View> 
+              </View>
 
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -371,10 +387,7 @@ const AddressScreen = ({navigation}) => {
             </View>
           </View>
         </Modal>
-        <View style={styles.row}>
-        </View>
-
-        
+        <View style={styles.row}></View>
 
         <View style={styles.row}>
           <Text style={styles.label}>Receiver Full Name</Text>
@@ -385,7 +398,7 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setFullname}
           />
         </View>
-      
+
         {/* Sender Address
         {toggleCheckBox === 'sender' && (
           <View style={styles.row}>
@@ -439,6 +452,18 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setCity}
           />
         </View>
+        {/* Postal Code*/}
+        <View style={styles.row}>
+          <Text style={styles.label}>Postal Code </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Postal Code"
+            value={postal_code}
+            keyboardType="number-pad"
+            onChangeText={setPostal_code}
+          />
+        </View>
+
         {/* State */}
         <View style={styles.row}>
           <Text style={styles.label}>State </Text>
@@ -470,9 +495,12 @@ const AddressScreen = ({navigation}) => {
           />
         </View>
 
-          {/* Checkbox */}
+        {/* Checkbox */}
         <View style={styles.row}>
-          <Text style={styles.label}>If sender details is different from receiver please click the box and enter it.</Text>
+          <Text style={styles.label}>
+            If sender details is different from receiver please click the box
+            and enter it.
+          </Text>
           <View
             style={{
               flexDirection: 'row',
