@@ -7,7 +7,7 @@ import * as types from '../../API';
 import {API} from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 import _ from 'lodash';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import Banner from '../../components/Banner';
 import MenuIcon from '../../components/MenuIcon';
@@ -16,6 +16,7 @@ import Gap from '../../components/Gap';
 import {colors, fonts} from '../../utils';
 import Recomended from '../../components/Recomended';
 import {HeaderComponent} from '../../router/HomeStack';
+import {increment} from '../../store/features/cart/cartSlice';
 import RenderPorductItem from './RednderProductItem';
 
 interface HomeScreenProps {

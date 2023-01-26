@@ -13,10 +13,6 @@ import ChatScreen from '../screens/ChatScreen';
 import {useNavigation} from '@react-navigation/native';
 import ContactUs from '../screens/ContactUs';
 import CategoryPage from '../screens/CategoryPage';
-import CartBadge from '../components/CartBadge';
-import {useSelector} from 'react-redux';
-import {selectCartItems} from '../store/features/cart/cartSlice';
-import AddressScreen from '../screens/AddressScreen';
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -30,8 +26,6 @@ const HeaderComponent = ({
   setSearchValue,
 }: HeaderComponentProps) => {
   const navigation = useNavigation<any>();
-  const cartItems = useSelector(selectCartItems);
-  console.log(cartItems.length, 'ABC');
   return (
     <SafeAreaView style={{backgroundColor: '#08b3fc'}}>
       <View
@@ -79,8 +73,6 @@ const HeaderComponent = ({
             source={require('../Assets/ChatICon.png')}
           />
         </TouchableOpacity>
-
-        <CartBadge count={cartItems.length || 0} />
       </View>
     </SafeAreaView>
   );
@@ -105,11 +97,6 @@ const HomeStack = () => {
       <Stack.Screen component={CategoryPage} name="CategoryPage" />
       <Stack.Screen component={ChatScreen} name="ChatScreen" />
       <Stack.Screen component={ContactUs} name="ContactUsScreen" />
-      <Stack.Screen
-        component={AddressScreen}
-        name="Address"
-        options={{title: 'Address', headerShown: false}}
-      />
     </Stack.Navigator>
   );
 };
