@@ -139,7 +139,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
       ),
     );
   }, [searchString]);
-  console.log(products);
 
   return (
     <View style={{flex: 1}}>

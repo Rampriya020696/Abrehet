@@ -31,6 +31,7 @@ const HeaderComponent = ({
 }: HeaderComponentProps) => {
   const navigation = useNavigation<any>();
   const cartItems = useSelector(selectCartItems);
+  console.log(cartItems.length, 'ABC');
   return (
     <SafeAreaView style={{backgroundColor: '#08b3fc'}}>
       <View
