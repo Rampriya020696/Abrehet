@@ -30,6 +30,7 @@ const Signin = () => {
   const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [fbLoading, setFbLoading] = useState(false);
   const {resource} = React.useContext(ResourceContext) as any;
 
   const [user, setUser] = useState(null);
@@ -48,13 +49,14 @@ const Signin = () => {
   };
 
   const handleGooglePress = () => {
-    Auth.federatedSignIn();
+    // Auth.federatedSignIn();
     setGoogleLoading(true);
+    Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
   };
   const handleFacebookPress = () => {
-    console.log('FB LOGIN PRESS');
-    Auth.federatedSignIn();
-    // Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Facebook});
+    // Auth.federatedSignIn();
+    setFbLoading(true);
+    Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Facebook});
   };
 
   useEffect(() => {
@@ -64,13 +66,15 @@ const Signin = () => {
         case 'signIn':
           setUser(data);
           setGoogleLoading(false);
-
+          setFbLoading(false);
           break;
         case 'signOut':
           setUser(null);
           break;
         case 'customOAuthState':
           setCustomState(data);
+          setGoogleLoading(false);
+          setFbLoading(false);
       }
     });
 
@@ -129,7 +133,11 @@ const Signin = () => {
                   alignSelf: 'center',
                   fontWeight: '600',
                 }}>
-                Login with Facebook
+                {fbLoading ? (
+                  <ActivityIndicator color={'white'} />
+                ) : (
+                  'Login with Facebook'
+                )}
               </Text>
             </TouchableOpacity>
 
