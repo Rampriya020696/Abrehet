@@ -1,13 +1,12 @@
 {
   "auth": {
-    "abrehet0db1a473": {
+    "abrehetca91482b": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [
-          "FACEBOOK",
           "GOOGLE"
         ],
         "usernameAttributes": [],

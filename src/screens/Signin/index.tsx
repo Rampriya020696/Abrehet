@@ -21,6 +21,7 @@ import {ResourceContext} from '../../context/ResourceContext';
 import {useNavigation} from '@react-navigation/native';
 import {Amplify, Auth, Hub} from 'aws-amplify';
 import awsconfig from '../../aws-exports';
+import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 Amplify.configure(awsconfig);
 
 const Signin = () => {
@@ -49,6 +50,11 @@ const Signin = () => {
   const handleGooglePress = () => {
     Auth.federatedSignIn();
     setGoogleLoading(true);
+  };
+  const handleFacebookPress = () => {
+    console.log('FB LOGIN PRESS');
+    Auth.federatedSignIn();
+    // Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Facebook});
   };
 
   useEffect(() => {
@@ -99,6 +105,7 @@ const Signin = () => {
 
           <View style={{alignSelf: 'center', marginTop: 60, width: '100%'}}>
             <TouchableOpacity
+              onPress={handleFacebookPress}
               style={{
                 backgroundColor: '#536DFE',
                 width: '90%',
