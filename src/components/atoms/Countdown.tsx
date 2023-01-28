@@ -14,7 +14,7 @@ const Countdown = ({color}: Props) => {
     if (color === 'white') {
       return (
         <CountDown
-          size={16}
+          size={10}
           until={864000}
           digitStyle={{
             backgroundColor: 'transparent',

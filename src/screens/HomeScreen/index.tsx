@@ -167,7 +167,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                 style={{
                   backgroundColor: 'transparent',
                   paddingHorizontal: 20,
-                  paddingVertical: 15,
+                  paddingVertical: 25,
                   zIndex: 100,
                 }}>
                 <Text style={styles.menuText}>Shop Categories</Text>
@@ -175,7 +175,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
 
               <View
                 style={{
-                  marginTop: 4,
+                  marginTop: 1,
                 }}>
                 <MenuIcon />
               </View>
@@ -253,6 +253,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontStyle: 'normal',
     marginLeft: 20,
+    
   },
   titleSearch: {
     flex: 1,
@@ -306,6 +307,7 @@ const styles = StyleSheet.create({
   },
   category: {
     marginLeft: 20,
+    
   },
   slide: {
     marginTop: 0,

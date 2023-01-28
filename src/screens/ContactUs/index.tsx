@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   image: {
-    width: 120,
-    height: 200,
+    width: 0,
+    height: 0,
     alignSelf: 'center',
   },
   title: {

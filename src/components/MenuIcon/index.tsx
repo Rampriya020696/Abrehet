@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
   },
 
   menuIcon: {
-    height: 90,
+    height: 80,
     flexDirection: 'column',
     flex: 3,
     justifyContent: 'center',
@@ -139,11 +140,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   image: {
-    width: 55,
-    height: 55,
+    width: 60,
+    height: 60,
     marginTop: -40,
     marginVertical: 10,
-    marginBottom: -3,
+    marginBottom: -1,
     borderRadius: 15000,
     resizeMode: 'contain',
   },
