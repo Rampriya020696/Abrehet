@@ -21,6 +21,7 @@ import {ResourceContext} from '../../context/ResourceContext';
 import {useNavigation} from '@react-navigation/native';
 import {Amplify, Auth, Hub} from 'aws-amplify';
 import awsconfig from '../../aws-exports';
+import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 Amplify.configure(awsconfig);
 
 const Signin = () => {
@@ -29,6 +30,7 @@ const Signin = () => {
   const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [fbLoading, setFbLoading] = useState(false);
   const {resource} = React.useContext(ResourceContext) as any;
 
   const [user, setUser] = useState(null);
@@ -47,8 +49,14 @@ const Signin = () => {
   };
 
   const handleGooglePress = () => {
-    Auth.federatedSignIn();
+    // Auth.federatedSignIn();
+    Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
     setGoogleLoading(true);
+  };
+
+  const handleFbPress = () => {
+    Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Facebook});
+    setFbLoading(true);
   };
 
   useEffect(() => {
@@ -58,13 +66,15 @@ const Signin = () => {
         case 'signIn':
           setUser(data);
           setGoogleLoading(false);
-
+          setFbLoading(false);
           break;
         case 'signOut':
           setUser(null);
           break;
         case 'customOAuthState':
           setCustomState(data);
+          setGoogleLoading(false);
+          setFbLoading(false);
       }
     });
 
@@ -99,6 +109,7 @@ const Signin = () => {
 
           <View style={{alignSelf: 'center', marginTop: 60, width: '100%'}}>
             <TouchableOpacity
+              onPress={handleFbPress}
               style={{
                 backgroundColor: '#536DFE',
                 width: '90%',
@@ -122,7 +133,11 @@ const Signin = () => {
                   alignSelf: 'center',
                   fontWeight: '600',
                 }}>
-                Login with Facebook
+                {fbLoading ? (
+                  <ActivityIndicator color={'white'} />
+                ) : (
+                  'Login with Facebook'
+                )}
               </Text>
             </TouchableOpacity>
 
