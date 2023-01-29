@@ -214,11 +214,11 @@ export default Profile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.blue,
   },
   image: {
-    width: '100%',
-    height: 200,
+    width: '10%',
+    height: 10,
   },
   strip: {
     height: 1,
@@ -252,15 +252,15 @@ const styles = StyleSheet.create({
   },
   list: {
     flexDirection: 'row',
-    marginLeft: 50,
+    marginLeft: 25,
     alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 15,
+    marginBottom: 15,
+    marginTop: 24,
   },
   titleList: {
     fontSize: 17,
-    fontFamily: fonts.secondary[500],
+    fontFamily: fonts.secondary[900],
     color: '#262b25',
-    marginLeft: 38,
+    marginLeft: 20,
   },
 });
