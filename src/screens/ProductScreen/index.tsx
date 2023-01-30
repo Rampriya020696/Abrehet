@@ -161,11 +161,11 @@ const ProductScreen = () => {
           <View style={styles2.strip} />
           <View style={[styles2.sale, {justifyContent: 'center'}]}>
             <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
-             <View style={styles2.rating}>
+            {/* <View style={styles2.rating}>
               <Text style={styles2.nilai}>4.1</Text>
               <Image source={ICStarWhite} style={styles2.starRating} />
-            </View>
-            <Text>932 Sale</Text> 
+            </View> */}
+            {/* <Text>932 Sale</Text> */}
           </View>
         </View>
         <View style={styles2.stripGap} />
@@ -192,14 +192,14 @@ const ProductScreen = () => {
         <Gap height={20} />
       </ScrollView>
       <View style={styles2.button}>
-        <TouchableOpacity style={styles2.borderIcon}>
+        {/* <TouchableOpacity style={styles2.borderIcon}>
           <Image source={ICCartWarna} style={styles2.icon} />
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableOpacity> */}
+        {/* <TouchableOpacity
           style={styles2.borderIcon}
           onPress={() => navigation.navigate('Chat')}>
           <Image source={ICChatWarna} style={styles2.icon} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={styles2.payButton}
           // onPress={() => navigation.navigate('Delivery')}
@@ -297,7 +297,7 @@ const styles2 = StyleSheet.create({
   name: {
     fontSize: 20,
     fontFamily: fonts.secondary[800],
-    color: 'black'
+    color: 'black',
   },
   strip: {
     height: 0,

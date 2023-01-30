@@ -31,7 +31,16 @@ const shadowOpt = {
   },
 };
 
-const Recomended = React.memo(props => {
+type ProductProps = {
+  image: {uri: string};
+  onPress: () => void;
+  price: string;
+  country: string;
+  title: string;
+  category: string;
+};
+
+const Recomended = React.memo((props: ProductProps) => {
   const [showAlert, setShowAlert] = React.useState(false);
 
   const handleShowAlert = () => {
@@ -67,13 +76,13 @@ const Recomended = React.memo(props => {
             </Text>
             <Text style={styles.price}>{props.price}</Text>
             <Text style={[styles.price, {fontSize: 10}]}>{props.country}</Text>
-            <View style={styles.wrapperRating}>
+            {/* <View style={styles.wrapperRating}>
               <View style={styles.wrapperRating2}>
                 <Text style={styles.titleRating}>{props.rating}</Text>
                 <Image source={ICStar} style={styles.icon} />
               </View>
               <Text style={styles.titleSale}>{props.totalSale}</Text>
-            </View>
+            </View> */}
           </TouchableOpacity>
         </View>
       </BoxShadow>

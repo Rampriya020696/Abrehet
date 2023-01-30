@@ -15,8 +15,6 @@ const RenderPorductItem = ({item}) => {
           image={{uri: item?.image}}
           title={item?.title}
           price={item?.price}
-          rating="4.8"
-          totalSale="932 Sale"
           country={item.country}
           category={item.category}
           onPress={() => {
