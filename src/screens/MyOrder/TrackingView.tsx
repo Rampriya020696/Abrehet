@@ -3,13 +3,6 @@ import React, {useCallback} from 'react';
 import {FlatList, TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 const list = [
   {
-    des: 'The shipment has been successfully delivered',
-    location: 'Xiamen',
-    status: 'completed',
-    date: '10.11.2016',
-    time: '01:15',
-  },
-  {
     des: 'The shipment is ready to be picked up',
     location: 'Beijing',
     status: 'completed',
@@ -24,14 +17,19 @@ const list = [
     time: '03: 24',
   },
   {
-    des: 'The shipment has been processed in location',
-    location: 'Tianjin',
-    status: 'incomplete',
-    date: '17.11.2016',
-    time: '10: 19',
+    des: 'The shipment has been successfully delivered',
+    location: 'Xiamen',
+    status: 'completed',
+    date: '10.11.2016',
+    time: '01:15',
   },
 ];
 
+const STATUS = {
+  Ordered: 0,
+  Shipped: 1,
+  Delivered: 2,
+};
 const Dot = ({filled}) => {
   const SIZE = 17;
   const filledStyle = {
@@ -57,10 +55,11 @@ const Dot = ({filled}) => {
   );
 };
 
-const TrackingView = () => {
+const TrackingView = ({order}) => {
   const [trackData, setTrackData] = React.useState(list);
 
   const handleUpdateTrack = index => {
+    // return;
     const newData = trackData.map((item, idx) => {
       if (idx <= index) {
         return {...item, status: 'completed'};
@@ -70,6 +69,10 @@ const TrackingView = () => {
     });
     setTrackData(newData);
   };
+
+  React.useEffect(() => {
+    handleUpdateTrack(STATUS[order?.Status] || 0);
+  }, [order]);
 
   const renderTrackList = useCallback(
     ({item, index}) => {
@@ -94,8 +97,10 @@ const TrackingView = () => {
   return (
     <View style={{padding: 10}}>
       <View style={styles.headerContainer}>
-        <Text>Order #189-1</Text>
-        <Text style={{fontSize: 10, color: 'orange'}}>in Transit</Text>
+        <Text>Order {order.id}</Text>
+        <Text style={{fontSize: 10, color: 'orange'}}>
+          status: {order.Status}
+        </Text>
       </View>
       <FlatList data={trackData} renderItem={renderTrackList} />
     </View>

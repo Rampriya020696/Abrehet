@@ -126,7 +126,7 @@ const Profile = ({navigation}) => {
 
           <View style={styles.strip} />
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.list}
             onPress={() => navigation.navigate('OrdersScreens')}>
             <Image
@@ -134,7 +134,7 @@ const Profile = ({navigation}) => {
               source={require('../../Assets/Icon-My-Orders.png')}
             />
             <Text style={styles.titleList}>Track My Order</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <View style={styles.strip} />
 
