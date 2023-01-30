@@ -33,10 +33,11 @@ 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
 
 1. remove sales and rating
 2. remove cart and chat from product screen
+3. track my order update whene status change done
 
-3. create recommed list
-5. Track My Order Purchase need to include total money
-6. Recommended please add a table on daynamo db
-7. Checkout needs to show with catagories
 
-4. Change the email that comes from the chat
+Create recommed list
+Track My Order Purchase need to include total money
+Recommended please add a table on daynamo db
+Checkout needs to show with catagories
+Change the email that comes from the chat

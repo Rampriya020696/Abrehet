@@ -80,14 +80,14 @@ const TrackingView = ({order}) => {
         <TouchableOpacity
           onPress={() => handleUpdateTrack(index)}
           style={styles.trackItemContainer}>
-          <View style={styles.timeBox}>
-            <Text style={styles.timeText}>{item.date}</Text>
-            <Text style={styles.dateText}>{item.time}</Text>
+          <View style={[styles.timeBox, {width: 0}]}>
+            {/* <Text style={styles.timeText}>{item.date}</Text>
+            <Text style={styles.dateText}>{item.time}</Text> */}
             <Dot filled={item.status === 'completed' ? true : false} />
           </View>
           <View style={styles.desContainer}>
             <Text style={styles.desText}>{item.des}</Text>
-            <Text style={styles.locationText}>{item.location}</Text>
+            <Text style={styles.locationText}>{order.city}</Text>
           </View>
         </TouchableOpacity>
       );

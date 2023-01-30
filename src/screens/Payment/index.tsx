@@ -60,6 +60,8 @@ const Payments = ({navigation}) => {
     getMyOrders();
   }, []);
 
+  console.log(order);
+
   return (
     <View style={styles.page}>
       <Header title="Purchases" onPress={() => navigation.goBack()} />
@@ -77,6 +79,12 @@ const Payments = ({navigation}) => {
         }}
         renderItem={({item}) => {
           const Products = JSON.parse(item.Products);
+          console.log(Products, 'Products');
+
+          const total = Products.reduce((total, item) => {
+            return (total += Number(item.price.replaceAll(' ', '').slice(1)));
+          }, 0);
+          // console.log(total, 'total');
           return (
             <TouchableOpacity
               onPress={() => {
@@ -85,6 +93,10 @@ const Payments = ({navigation}) => {
               <View style={{flexDirection: 'row'}}>
                 <Text style={{fontSize: 16, fontWeight: 'bold'}}>status: </Text>
                 <Text>{item.Status}</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={{fontSize: 16, fontWeight: 'bold'}}>total: </Text>
+                <Text>{total}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Text style={{fontSize: 16, fontWeight: 'bold'}}>net qty:</Text>
