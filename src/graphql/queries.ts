@@ -12,6 +12,7 @@ export const getProducts = /* GraphQL */ `
       country
       createdAt
       updatedAt
+      isRecommended
     }
   }
 `;
@@ -30,6 +31,7 @@ export const listProducts = /* GraphQL */ `
         country
         createdAt
         updatedAt
+        isRecommended
       }
       nextToken
     }

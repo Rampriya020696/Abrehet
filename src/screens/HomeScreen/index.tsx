@@ -18,6 +18,7 @@ import Recomended from '../../components/Recomended';
 import {HeaderComponent} from '../../router/HomeStack';
 import {increment} from '../../store/features/cart/cartSlice';
 import RenderPorductItem from './RednderProductItem';
+import RecommendedList from './RecommendedList';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -32,6 +33,24 @@ query MyQuery {
     }
   }
 }
+`;
+
+const listProductsQuery = `
+query MyQuery {
+  listProducts {
+    items {
+      id
+      isRecommended
+      createdAt
+      country
+      content
+      category
+      title
+      updatedAt
+    }
+  }
+}
+
 `;
 
 interface ProductItemProps {
@@ -68,13 +87,18 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const navigation = useNavigation<any>();
   useEffect(() => {
     // dispatch(increment());
+
     const fetchProducts = async () => {
       try {
-        let allProducts = (await API.graphql({
-          query: queries.listProducts,
-        })) as {
-          data: types.ListProductsQuery;
-        };
+        // let allProducts = (await API.graphql({
+        //   query: queries.listProducts,
+        // })) as {
+        //   data: types.ListProductsQuery;
+        // };
+
+        const allProducts = (await API.graphql(
+          graphqlOperation(listProductsQuery, {}),
+        )) as any;
 
         const data = allProducts?.data?.listProducts?.items.filter(item => {
           if (!item?.createdAt) return;
@@ -187,6 +211,8 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               <Gap height={20} />
               <Text style={styles.title}>Recommended</Text>
               <Gap height={5} />
+
+              <RecommendedList data={products} />
             </>
           );
         }}
