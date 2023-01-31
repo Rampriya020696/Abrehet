@@ -33,8 +33,10 @@ import {
   selectCartTotal,
 } from '../../store/features/cart/cartSlice';
 import ButtonGradient from '../../components/ButtonGradient';
+import {useRoute} from '@react-navigation/native';
 
 const AddressScreen = ({navigation}) => {
+  const {cartItemData} = useRoute().params;
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
@@ -81,16 +83,24 @@ const AddressScreen = ({navigation}) => {
   const [loading, setLoading] = useState('');
 
   const getStripeIntent = async () => {
+    const total = cartItemData.reduce((total, item) => {
+      let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
+
+      cost = Number(cost) * item.qty;
+      let newTotal = total + cost;
+
+      return newTotal;
+    }, 0);
     const payload = {
       name: fullname,
       address: address,
-      postal_code: postal_code,
+      postal_code: postal_code || '160019',
       city: city,
       state: state,
       country: country,
       product: {
-        amount: cartTotal,
-        des: otherDetails,
+        amount: total,
+        des: JSON.stringify(cartItemData),
       },
     };
 
@@ -177,7 +187,8 @@ const AddressScreen = ({navigation}) => {
       senderAddress: isSender ? JSON.stringify(senderObj) : '',
       userID: '123',
       // Products: JSON.stringify(globalThis.cart),
-      Products: JSON.stringify(cartItems ? cartItems : []),
+      // Products: JSON.stringify(cartItems ? cartItems : []),
+      Products: JSON.stringify(cartItemData || []),
     };
 
     try {
@@ -210,7 +221,7 @@ const AddressScreen = ({navigation}) => {
       Alert.alert('Please fill in the Phone number');
       return;
     }
-   
+
     if (!city) {
       Alert.alert('Please fill in the city');
       return;
@@ -219,10 +230,12 @@ const AddressScreen = ({navigation}) => {
       Alert.alert('Please fill in the state');
       return;
     }
-    {/* if (!postal_code) {
+    {
+      /* if (!postal_code) {
       Alert.alert('Please fill in the postal code');
       return;
-    } */}
+    } */
+    }
     if (!country) {
       Alert.alert('Please fill in the country');
       return;
@@ -278,15 +291,17 @@ const AddressScreen = ({navigation}) => {
 
                 padding: 10,
               }}>
-              <Text style={{
-                fontSize: 18, 
-                color: 'black',
-                marginVertical: 9,
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: 'black',
+                  marginVertical: 9,
+                }}>
+                Sender Detail's
+              </Text>
 
-                }}>Sender Detail's</Text>
-
-               {/* Name */}
-               <View style={styles.row}>
+              {/* Name */}
+              <View style={styles.row}>
                 <Text style={styles.label}>Name </Text>
                 <TextInput
                   style={styles.input}
@@ -327,7 +342,6 @@ const AddressScreen = ({navigation}) => {
                 />
               </View>
 
-          
               <View style={styles.row}>
                 <Text style={styles.label}>City </Text>
                 <TextInput
@@ -357,7 +371,7 @@ const AddressScreen = ({navigation}) => {
                   value={sPinCode}
                   onChangeText={setSPinCode}
                 />
-              </View> 
+              </View>
 
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -371,10 +385,7 @@ const AddressScreen = ({navigation}) => {
             </View>
           </View>
         </Modal>
-        <View style={styles.row}>
-        </View>
-
-        
+        <View style={styles.row}></View>
 
         <View style={styles.row}>
           <Text style={styles.label}>Receiver Full Name</Text>
@@ -385,7 +396,7 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setFullname}
           />
         </View>
-      
+
         {/* Sender Address
         {toggleCheckBox === 'sender' && (
           <View style={styles.row}>
@@ -470,9 +481,12 @@ const AddressScreen = ({navigation}) => {
           />
         </View>
 
-          {/* Checkbox */}
+        {/* Checkbox */}
         <View style={styles.row}>
-          <Text style={styles.label}>If sender details is different from receiver please click the box and enter it.</Text>
+          <Text style={styles.label}>
+            If sender details is different from receiver please click the box
+            and enter it.
+          </Text>
           <View
             style={{
               flexDirection: 'row',

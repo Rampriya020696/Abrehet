@@ -41,7 +41,7 @@ const CartItem = ({cartItem}: CartProductItemProps) => {
             {`${cartItem.description.substring(0, 80)}...`}
           </Text>
           <Text style={styles.price}>{cartItem.price}</Text>
-          <View style={[styles.pilih]}>
+          {/* <View style={[styles.pilih]}>
             <TouchableOpacity
               style={styles.innerBtn}
               onPress={() => dispatch(removeToCart(cartItem))}>
@@ -58,7 +58,7 @@ const CartItem = ({cartItem}: CartProductItemProps) => {
               onPress={() => dispatch(addToCart(cartItem))}>
               <Text style={styles.innerText}>+</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </View>
       <Strip />
@@ -115,14 +115,13 @@ const styles = StyleSheet.create({
     width: 140,
     justifyContent: 'center',
     backgroundColor: '#3A2E6E',
-    opacity: 10
+    opacity: 10,
   },
   titlePay: {
     fontSize: 20,
     color: colors.white,
     alignSelf: 'center',
     fontFamily: fonts.primary[600],
-    
   },
   image: {
     width: 130,

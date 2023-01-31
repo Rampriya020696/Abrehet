@@ -34,10 +34,9 @@ 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
 1. remove sales and rating
 2. remove cart and chat from product screen
 3. track my order update whene status change done
+4. calculating total in orderHistory
 
 
-Create recommed list
-Track My Order Purchase need to include total money
-Recommended please add a table on daynamo db
+
 Checkout needs to show with catagories
 Change the email that comes from the chat

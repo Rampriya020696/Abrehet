@@ -1,12 +1,20 @@
 /* eslint-disable prettier/prettier */
 import {useNavigation} from '@react-navigation/native';
+import {compose} from '@reduxjs/toolkit';
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import {
+  Image,
+  Button,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+
 import {useSelector} from 'react-redux';
 import {ILCartItem} from '../../Assets';
 import ActionBtn from '../../components/ActionBtn';
-import Button from '../../components/Button';
+
 import CartProductItem from '../../components/CartProductItem';
 import Strip from '../../components/Strip';
 import {
@@ -18,6 +26,7 @@ import CartItem from './CartItem';
 
 const Cart = ({onPress}) => {
   const [products, setProducts] = useState([]);
+  const [countryViseProducts, setCountryViseProducts] = useState({});
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
   const navigation = useNavigation<any>();
@@ -32,7 +41,19 @@ const Cart = ({onPress}) => {
     return unsubscribe;
   }, [navigation]);
 
-  // console.log(globalThis.cart, 'CART');
+  useEffect(() => {
+    const data = cartItems.reduce((obj, currentItem) => {
+      if (obj[currentItem?.content?.country] !== undefined) {
+        obj[currentItem?.content?.country].push(currentItem);
+      } else {
+        obj[currentItem?.content?.country] = [currentItem];
+      }
+      return obj;
+    }, {});
+
+    setCountryViseProducts(data);
+  }, [cartItems]);
+
   return (
     <View style={styles.page}>
       <Text style={styles.cart}>Cart</Text>
@@ -40,42 +61,71 @@ const Cart = ({onPress}) => {
         style={{
           marginLeft: 20,
         }}>
-        <Text
+        {/* <Text
           style={{
             fontSize: 15,
             fontWeight: 'bold',
             fontFamily: fonts.primary[600],
           }}>
-          {/* Subtotal ({products.length} item): */}
           Subtotal ({cartItems.length} item):
           <Text style={{color: '#e47911', fontWeight: 'bold', fontSize: 18}}>
-            {/* {products
-              .reduce((summedPrice, product) => {
-                let itemPrice = summedPrice + product['item']['price'];
-                if (typeof itemPrice === 'string') {
-                  itemPrice = Number(itemPrice?.replaceAll('$', ''));
-                }
-                return itemPrice * product['quantity'];
-              }, 0)
-              .toFixed(2)} */}
             {cartTotal.toFixed(2)}
           </Text>
-        </Text>
+        </Text> */}
 
-        <ActionBtn
+        {/* <ActionBtn
           title="Proceed to checkout"
           onPress={onCheckout}
           containerStyle={{marginHorizontal: 20, marginLeft: 0}}
-        />
+        /> */}
       </View>
-      <FlatList
+      {/* Country Vise Start*/}
+      {Object.entries(countryViseProducts).map(([key, items]) => {
+        const total = items.reduce((total, item) => {
+          let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
+
+          cost = Number(cost) * item.qty;
+          let newTotal = total + cost;
+          // console.log(`total ${total} + ${cost} = ${newTotal}`);
+          return newTotal;
+        }, 0);
+        return (
+          <TouchableOpacity
+            key={key}
+            style={{padding: 25}}
+            onPress={() =>
+              navigation.navigate('CartItemScreen', {cartItemData: items})
+            }>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontWeight: 'bold'}}>Country:</Text>
+              <Text>{key}</Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontWeight: 'bold'}}>Net Qty :</Text>
+              <Text>{items.length}</Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{fontWeight: 'bold'}}>Total :</Text>
+              <Text>{total}</Text>
+            </View>
+            <ActionBtn
+              title="Proceed to checkout"
+              onPress={() =>
+                navigation.navigate('CartItemScreen', {cartItemData: items})
+              }
+            />
+          </TouchableOpacity>
+        );
+      })}
+
+      {/* Country Vise End */}
+
+      {/* ALL PRODUCTS */}
+      {/* <FlatList
         data={cartItems}
         renderItem={({item}) => <CartItem cartItem={item} />}
         showsVerticalScrollIndicator={false}
-      />
-      {/* item start */}
-
-      {/* item end */}
+      /> */}
     </View>
   );
 };

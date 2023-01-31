@@ -141,6 +141,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     );
   }, [searchString]);
 
+  console.log(products, 'products');
   return (
     <View style={{flex: 1}}>
       <HeaderComponent
@@ -253,7 +254,6 @@ const styles = StyleSheet.create({
     color: 'black',
     fontStyle: 'normal',
     marginLeft: 20,
-    
   },
   titleSearch: {
     flex: 1,
@@ -307,7 +307,6 @@ const styles = StyleSheet.create({
   },
   category: {
     marginLeft: 20,
-    
   },
   slide: {
     marginTop: 0,
