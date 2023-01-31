@@ -1,7 +1,9 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {FlatList, Image, TouchableOpacity} from 'react-native';
 const SIZE = 75;
 const RecommendedList = ({data}) => {
+  const navigation = useNavigation();
   return (
     <FlatList
       data={data}
@@ -11,6 +13,9 @@ const RecommendedList = ({data}) => {
         if (!isRecommended) return null;
         return (
           <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('ProductDetails', {rawItem: item})
+            }
             style={{
               borderRadius: 10,
               borderColor: 'rgba(0,0,0,0.2)',
