@@ -13,9 +13,10 @@ const RecommendedList = ({data}) => {
         if (!isRecommended) return null;
         return (
           <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('ProductDetails', {rawItem: item})
-            }
+            onPress={() => {
+              globalThis.itemDetails = item.id;
+              navigation.navigate('ProductDetails', {rawItem: item});
+            }}
             style={{
               borderRadius: 10,
               borderColor: 'rgba(0,0,0,0.2)',
