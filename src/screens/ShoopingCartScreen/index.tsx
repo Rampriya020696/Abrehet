@@ -12,34 +12,26 @@ import {
 } from 'react-native';
 
 import {useSelector} from 'react-redux';
-import {ILCartItem} from '../../Assets';
 import ActionBtn from '../../components/ActionBtn';
 
-import CartProductItem from '../../components/CartProductItem';
-import Strip from '../../components/Strip';
-import {
-  selectCartItems,
-  selectCartTotal,
-} from '../../store/features/cart/cartSlice';
+import {selectCartItems} from '../../store/features/cart/cartSlice';
 import {colors, fonts} from '../../utils';
-import CartItem from './CartItem';
 
 const Cart = ({onPress}) => {
-  const [products, setProducts] = useState([]);
   const [countryViseProducts, setCountryViseProducts] = useState({});
   const cartItems = useSelector(selectCartItems);
-  const cartTotal = useSelector(selectCartTotal);
+
   const navigation = useNavigation<any>();
   const onCheckout = () => {
     navigation.navigate('Address');
   };
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', () => {
-      setProducts(globalThis.cart ? Object.values(globalThis.cart) : []);
-    });
-    return unsubscribe;
-  }, [navigation]);
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     // setProducts(globalThis.cart ? Object.values(globalThis.cart) : []);
+  //   });
+  //   return unsubscribe;
+  // }, [navigation]);
 
   useEffect(() => {
     const data = cartItems.reduce((obj, currentItem) => {
@@ -57,75 +49,63 @@ const Cart = ({onPress}) => {
   return (
     <View style={styles.page}>
       <Text style={styles.cart}>Cart</Text>
-      <View
-        style={{
-          marginLeft: 20,
-        }}>
-        {/* <Text
-          style={{
-            fontSize: 15,
-            fontWeight: 'bold',
-            fontFamily: fonts.primary[600],
-          }}>
-          Subtotal ({cartItems.length} item):
-          <Text style={{color: '#e47911', fontWeight: 'bold', fontSize: 18}}>
-            {cartTotal.toFixed(2)}
-          </Text>
-        </Text> */}
 
-        {/* <ActionBtn
-          title="Proceed to checkout"
-          onPress={onCheckout}
-          containerStyle={{marginHorizontal: 20, marginLeft: 0}}
-        /> */}
-      </View>
-      {/* Country Vise Start*/}
-      {Object.entries(countryViseProducts).map(([key, items]) => {
-        const total = items.reduce((total, item) => {
-          let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
+      {Object.values(countryViseProducts).length ? (
+        Object.entries(countryViseProducts).map(([key, items]) => {
+          const total = items.reduce((total, item) => {
+            let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
 
-          cost = Number(cost) * item.qty;
-          let newTotal = total + cost;
-          // console.log(`total ${total} + ${cost} = ${newTotal}`);
-          return newTotal;
-        }, 0);
-        return (
-          <TouchableOpacity
-            key={key}
-            style={{padding: 25}}
-            onPress={() =>
-              navigation.navigate('CartItemScreen', {cartItemData: items})
-            }>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{fontWeight: 'bold'}}>Country:</Text>
-              <Text>{key}</Text>
-            </View>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{fontWeight: 'bold'}}>Net Qty :</Text>
-              <Text>{items.length}</Text>
-            </View>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{fontWeight: 'bold'}}>Total :</Text>
-              <Text>{total}</Text>
-            </View>
-            <ActionBtn
-              title="Proceed to checkout"
+            cost = Number(cost) * item.qty;
+            let newTotal = total + cost;
+            // console.log(`total ${total} + ${cost} = ${newTotal}`);
+            return newTotal;
+          }, 0);
+          return (
+            <TouchableOpacity
+              key={key}
+              style={{padding: 25}}
               onPress={() =>
                 navigation.navigate('CartItemScreen', {cartItemData: items})
-              }
-            />
-          </TouchableOpacity>
-        );
-      })}
-
-      {/* Country Vise End */}
-
-      {/* ALL PRODUCTS */}
-      {/* <FlatList
-        data={cartItems}
-        renderItem={({item}) => <CartItem cartItem={item} />}
-        showsVerticalScrollIndicator={false}
-      /> */}
+              }>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={{fontWeight: 'bold'}}>Country:</Text>
+                <Text>{key}</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={{fontWeight: 'bold'}}>Net Qty :</Text>
+                <Text>{items.length}</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={{fontWeight: 'bold'}}>Total :</Text>
+                <Text>{total}</Text>
+              </View>
+              <ActionBtn
+                title="Proceed to checkout"
+                onPress={() =>
+                  navigation.navigate('CartItemScreen', {cartItemData: items})
+                }
+              />
+            </TouchableOpacity>
+          );
+        })
+      ) : (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Image
+            source={require('../../icons/empty.png')}
+            style={{width: 200, height: 200, transform: [{translateX: -18}]}}
+            resizeMode="contain"
+          />
+          <Text
+            style={{
+              fontWeight: 'bold',
+              fontSize: 16,
+              marginTop: 20,
+              opacity: 0.4,
+            }}>
+            Cart Is Empty!
+          </Text>
+        </View>
+      )}
     </View>
   );
 };

@@ -87,40 +87,66 @@ const Payments = ({navigation}) => {
           // console.log(total, 'total');
           return (
             <TouchableOpacity
+              style={{
+                backgroundColor: 'white',
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                margin: 10,
+                elevation: 5,
+                borderRadius: 10,
+                overflow: 'hidden',
+              }}
               onPress={() => {
                 navigation.navigate('OrdersScreens', {order: item});
               }}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{backgroundColor: 'rgba(0,0,0,0.1)', padding: 5}}>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 'bold',
+                  }}>
+                  {item.id}
+                </Text>
+              </View>
+              <View style={{flexDirection: 'row', padding: 5}}>
                 <Text style={{fontSize: 16, fontWeight: 'bold'}}>status: </Text>
                 <Text>{item.Status}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  backgroundColor: 'rgba(0,0,0,0.1)',
+                  padding: 5,
+                }}>
                 <Text style={{fontSize: 16, fontWeight: 'bold'}}>total: </Text>
                 <Text>{total}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  padding: 5,
+                }}>
                 <Text style={{fontSize: 16, fontWeight: 'bold'}}>net qty:</Text>
                 <Text> {Products.length}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  backgroundColor: 'rgba(0,0,0,0.1)',
+                  padding: 5,
+                }}>
                 <Text style={{fontSize: 16, fontWeight: 'bold'}}>date:</Text>
                 <Text>{item.createdAt.slice(0, 10)}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                  isSender:
-                </Text>
-                <Text>{item.isSender ? 'true' : 'false'}</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
+
+              <View style={{flexDirection: 'row', padding: 5}}>
                 <Text style={{fontSize: 16, fontWeight: 'bold'}}>phone :</Text>
                 <Text>{item.phone}</Text>
-              </View>
-              <View>
-                <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                  Order Id:
-                </Text>
-                <Text>{item.id}</Text>
               </View>
             </TouchableOpacity>
           );
