@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {FlatList, Image, TouchableOpacity} from 'react-native';

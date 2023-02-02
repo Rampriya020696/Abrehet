@@ -209,7 +209,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               <View style={styles.gap} />
               {/* Recomended */}
               <Gap height={20} />
-              <Text style={styles.title}>Recommended</Text>
+              <Text style={styles.title}>Flash Sale</Text>
               <Gap height={5} />
 
               <RecommendedList data={products} />
@@ -274,12 +274,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 23,
+    fontSize: 22,
     fontFamily: fonts.primary[900],
-    fontWeight: '400',
-    color: 'black',
+    fontWeight: '600',
+    color: 'red',
     fontStyle: 'normal',
     marginLeft: 20,
+    marginVertical: 20,
   },
   titleSearch: {
     flex: 1,
@@ -289,8 +290,8 @@ const styles = StyleSheet.create({
     color: colors.borderstrip,
   },
   image: {
-    height: 400,
-    width: 400,
+    height: 40,
+    width: 40,
   },
   icon: {
     width: 20,
@@ -299,6 +300,7 @@ const styles = StyleSheet.create({
   menu: {
     flex: 2,
     height: 250,
+    marginVertical: 3,
   },
   promotionCategory: {
     flexDirection: 'row',

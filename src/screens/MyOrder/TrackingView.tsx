@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import {forHorizontalIOS} from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators';
 import React, {useCallback} from 'react';
 import {FlatList, TouchableOpacity, StyleSheet, Text, View} from 'react-native';
@@ -98,7 +100,7 @@ const TrackingView = ({order}) => {
     <View style={{padding: 10}}>
       <View style={styles.headerContainer}>
         <Text>Order {order.id}</Text>
-        <Text style={{fontSize: 10, color: 'orange'}}>
+        <Text style={{fontSize: 17, color: 'green'}}>
           status: {order.Status}
         </Text>
       </View>
