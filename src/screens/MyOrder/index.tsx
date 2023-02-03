@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontFamily: fonts.secondary[600],
-    color: colors.text.secondary,
+    fontFamily: fonts.secondary[800],
+    color: 'red',
   },
   orders: {
     flexDirection: 'row',

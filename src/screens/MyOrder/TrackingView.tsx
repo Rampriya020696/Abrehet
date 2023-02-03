@@ -1,23 +1,26 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import {forHorizontalIOS} from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators';
 import React, {useCallback} from 'react';
 import {FlatList, TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 const list = [
   {
-    des: 'The shipment is ready to be picked up',
+    des: 'Item Ordered',
     location: 'Beijing',
     status: 'completed',
     date: '13.11.2016',
     time: '12:38',
   },
   {
-    des: 'The shipment has been processed in location',
+    des: 'Item Shipped',
     location: 'Beijing',
     status: 'incomplete',
     date: '14.11.2016',
     time: '03: 24',
   },
   {
-    des: 'The shipment has been successfully delivered',
+    des: 'Item  Successfully Delivered',
     location: 'Xiamen',
     status: 'completed',
     date: '10.11.2016',
@@ -97,10 +100,12 @@ const TrackingView = ({order}) => {
   return (
     <View style={{padding: 10}}>
       <View style={styles.headerContainer}>
-        <Text>Order {order.id}</Text>
-        <Text style={{fontSize: 10, color: 'orange'}}>
-          status: {order.Status}
-        </Text>
+        
+        <Text style={{fontSize: 20, color: 'green'}}>
+        
+          <Text>Status: {order.Status}</Text>
+          <Text style={{fontSize: 24, color: 'green'}}></Text>
+          </Text>
       </View>
       <FlatList data={trackData} renderItem={renderTrackList} />
     </View>
@@ -152,5 +157,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: 30,
+    
   },
 });

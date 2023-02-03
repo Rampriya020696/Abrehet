@@ -414,7 +414,7 @@ const AddressScreen = ({navigation}) => {
           <Text style={styles.label}>Full Address </Text>
           <TextInput
             style={styles.input}
-            placeholder="Full Address"
+            placeholder="Full Address. If address is not available put street name."
             value={address}
             onChangeText={setAddress}
           />
