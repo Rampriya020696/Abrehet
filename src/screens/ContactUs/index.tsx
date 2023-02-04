@@ -83,7 +83,7 @@ const ContactUs = ({navigation}) => {
               style={[styles.textInput]}
               placeholder="Enter your name,
 
-              phone number and questions you need to ask us and we Will respond in a timely manner."
+              phone number and questions you need to ask us and we will respond in a timely manner."
               
               value={message}
               multiline={true}
