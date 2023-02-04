@@ -37,21 +37,18 @@ import {useRoute} from '@react-navigation/native';
 
 const AddressScreen = ({navigation}) => {
   const {cartItemData} = useRoute().params;
-  const cartItems = useSelector(selectCartItems);
-  const cartTotal = useSelector(selectCartTotal);
+  console.log(cartItemData, 'ROUTE___>');
+  console.log(useRoute().params, 'params___>');
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const [toggleCheckBox, setToggleCheckBox] = useState('reciver');
   const [fullname, setFullname] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
-  const [otherDetails, setOtherDetails] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [postal_code, setPostal_code] = useState('');
   const [country, setCountry] = useState('');
   const [email, setEmail] = useState('');
-  const [senderAddress, setSenderAddress] = useState('');
-  const [stripeData, setStripeData] = useState(null);
   const [showModel, setShowModel] = useState(false);
 
   // sender Inputs

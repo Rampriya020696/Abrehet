@@ -81,7 +81,8 @@ const TrackingView = ({order}) => {
     ({item, index}) => {
       return (
         <TouchableOpacity
-          onPress={() => handleUpdateTrack(index)}
+          // onPress={() => handleUpdateTrack(index)}
+          disabled
           style={styles.trackItemContainer}>
           <View style={[styles.timeBox, {width: 0}]}>
             {/* <Text style={styles.timeText}>{item.date}</Text>
@@ -100,12 +101,10 @@ const TrackingView = ({order}) => {
   return (
     <View style={{padding: 10}}>
       <View style={styles.headerContainer}>
-        
         <Text style={{fontSize: 20, color: 'green'}}>
-        
           <Text>Status: {order.Status}</Text>
           <Text style={{fontSize: 24, color: 'green'}}></Text>
-          </Text>
+        </Text>
       </View>
       <FlatList data={trackData} renderItem={renderTrackList} />
     </View>
@@ -157,6 +156,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: 30,
-    
   },
 });

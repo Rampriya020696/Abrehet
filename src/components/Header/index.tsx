@@ -12,9 +12,10 @@ interface Props {
   onPress?: () => void;
   icon?: any;
   type?: any;
+  conatinerStyles?: object;
 }
 
-const Header = ({title, onPress, icon, type}: Props) => {
+const Header = ({title, onPress, icon, type, conatinerStyles}: Props) => {
   const cartItems = useSelector(selectCartItems);
   if (type === 'brand-page') {
     return (
@@ -24,7 +25,7 @@ const Header = ({title, onPress, icon, type}: Props) => {
     );
   }
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, conatinerStyles]}>
       <TouchableOpacity onPress={onPress}>
         <Ionicons name="arrow-back" size={30} color="#8398f4" />
       </TouchableOpacity>
