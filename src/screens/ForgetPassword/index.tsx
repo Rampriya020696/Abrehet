@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Auth} from 'aws-amplify';
@@ -69,7 +71,7 @@ const ForgetPassword = () => {
               fontSize: 15,
               paddingLeft: 20,
             }}
-            placeholder="username"
+            placeholder="Email Address"
             placeholderTextColor="gray"
             value={username}
             onChangeText={v => setUsername(v)}
@@ -92,11 +94,11 @@ const ForgetPassword = () => {
           <Text
             style={{
               color: 'white',
-              fontSize: 15,
+              fontSize: 20,
               marginTop: 20,
               textAlign: 'center',
             }}>
-            back, to Signin
+            Back To Sign In
           </Text>
         </TouchableOpacity>
       </ImageBackground>

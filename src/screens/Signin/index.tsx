@@ -107,7 +107,7 @@ const Signin = () => {
             <Text style={styles.title}>Mesob Store</Text>
           </View>
 
-          <View style={{alignSelf: 'center', marginTop: 60, width: '100%'}}>
+          <View style={{alignSelf: 'center', marginTop: 20, width: '100%'}}>
             <TouchableOpacity
               onPress={handleFbPress}
               style={{

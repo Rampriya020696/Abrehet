@@ -26,7 +26,7 @@ const ResetPassword = () => {
   const handleSubmit = async () => {
     console.log({username, code});
     if (!code || !username || !newPassword) {
-      Alert.alert('Alert', 'please provide username , newPassword and code');
+      Alert.alert('Alert', 'please provide email address , newPassword and code');
       return;
     }
     try {
