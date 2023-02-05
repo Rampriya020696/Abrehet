@@ -408,10 +408,10 @@ const AddressScreen = ({navigation}) => {
         )} */}
         {/* Reciver Address */}
         <View style={styles.row}>
-          <Text style={styles.label}>Full Address </Text>
+          <Text style={styles.label}>Street Address </Text>
           <TextInput
             style={styles.input}
-            placeholder="Full Address. If address is not available put street name."
+            placeholder="If address is not available put street name or zone."
             value={address}
             onChangeText={setAddress}
           />
@@ -431,7 +431,7 @@ const AddressScreen = ({navigation}) => {
           <Text style={styles.label}>Phone Number </Text>
           <TextInput
             style={styles.input}
-            placeholder="Phone Number"
+            placeholder="Reciever`s phone number required"
             value={phone}
             onChangeText={setPhone}
             keyboardType={'phone-pad'}
@@ -449,10 +449,10 @@ const AddressScreen = ({navigation}) => {
         </View>
         {/* State */}
         <View style={styles.row}>
-          <Text style={styles.label}>State </Text>
+          <Text style={styles.label}>State/Province/Zoba</Text>
           <TextInput
             style={styles.input}
-            placeholder="State"
+            placeholder="State/Province/Zoba"
             value={state}
             onChangeText={setState}
           />
@@ -481,8 +481,7 @@ const AddressScreen = ({navigation}) => {
         {/* Checkbox */}
         <View style={styles.row}>
           <Text style={styles.label}>
-            If sender details is different from receiver please click the box
-            and enter it.
+            Check the box below to enter sender`s info.
           </Text>
           <View
             style={{
