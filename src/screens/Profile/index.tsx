@@ -121,7 +121,7 @@ const Profile = ({navigation}) => {
               style={{width: 25, height: 27}}
               source={require('../../Assets/Icon-Payments.png')}
             />
-            <Text style={styles.titleList}>Purchases</Text>
+            <Text style={styles.titleList}>Buy again</Text>
           </TouchableOpacity>
 
           <View style={styles.strip} />
