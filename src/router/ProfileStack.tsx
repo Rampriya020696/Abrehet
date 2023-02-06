@@ -13,6 +13,7 @@ import SettingAccount from '../screens/SettingAccount';
 import ChangePassword from '../screens/ChangePassword';
 import ChangeAddress from '../screens/ChangeAddress';
 import ChatScreen from '../screens/ChatScreen';
+import OrderHistory from '../screens/OrderHistory';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,7 @@ const ProfileStack = () => {
       <Stack.Screen name="PaymentScreen" component={Payments} />
       <Stack.Screen name="ChangeAddress" component={ChangeAddress} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen name="OrderHistoryScreen" component={OrderHistory} />
       <Stack.Screen component={ChatScreen} name="ChatScreen" />
     </Stack.Navigator>
   );

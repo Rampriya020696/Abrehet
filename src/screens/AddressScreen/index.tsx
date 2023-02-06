@@ -26,17 +26,20 @@ import {getUsers} from '../../graphql/queries';
 //const countries = countryList.getData();
 import CheckBox from '@react-native-community/checkbox';
 import {createOrder} from '../../graphql/mutations';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Modal from 'react-native-modal';
 import {
   selectCartItems,
   selectCartTotal,
+  handleOrdersComplete,
 } from '../../store/features/cart/cartSlice';
 import ButtonGradient from '../../components/ButtonGradient';
 import {useRoute} from '@react-navigation/native';
 
 const AddressScreen = ({navigation}) => {
   const {cartItemData} = useRoute().params;
+
+  const dispatch = useDispatch();
   console.log(cartItemData, 'ROUTE___>');
   console.log(useRoute().params, 'params___>');
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
@@ -198,6 +201,11 @@ const AddressScreen = ({navigation}) => {
         graphqlOperation(createOrder, {input: order}),
       );
       Alert.alert('Success', 'Order Created Successfully!');
+      dispatch(
+        handleOrdersComplete({
+          orderData: cartItemData,
+        }),
+      );
       console.log('----->', res);
     } catch (error) {
       console.log('----->', error);

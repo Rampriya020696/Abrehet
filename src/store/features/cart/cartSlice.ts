@@ -33,7 +33,6 @@ export const cartSlice = createSlice({
                 state.items = [...state.items, { qty: qty, ...product }];
             }
         },
-
         addToCart: (state, action) => {
             if (state.items.find(product => product.id === action.payload.id)) {
                 state.items = state.items.map(product => {
@@ -61,10 +60,24 @@ export const cartSlice = createSlice({
                 state.items = state.items.filter(pro => pro.id !== action.payload.id);
             }
         },
+        handleOrdersComplete: (state, action) => {
+            const { orderData } = action.payload
+            const res = state.items?.filter((item, cardInd) => {
+                const ordrRes = orderData.find((od) => od.id === item.id);
+                if (ordrRes) {
+                    return item.id !== ordrRes.id;
+                } else {
+                    return item;
+                }
+            });
+            console.log("RES___ZZZ", res)
+            state.items = res
+        }
     },
 })
 
-export const { addToCart, addToCartWithQty, removeToCart } = cartSlice.actions
+
+export const { addToCart, addToCartWithQty, removeToCart, handleOrdersComplete } = cartSlice.actions
 
 // Selector
 export const selectCartItems = (state) => state.cart.items;

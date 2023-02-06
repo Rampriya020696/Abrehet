@@ -447,7 +447,7 @@ const Cart = () => {
         <View style={{alignItems: 'center', padding: 10}}>
           <BigCheckoutBtn
             title={'Checkout All Carts'}
-            total={`$ ${cartTotal}`}
+            total={`$ ${cartTotal.toFixed(2)}`}
             onPress={() => {
               navigation.navigate('Address', {cartItemData: cartItems});
             }}

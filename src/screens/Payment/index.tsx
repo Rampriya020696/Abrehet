@@ -16,10 +16,14 @@ import {colors} from '../../utils';
 import Accordion from 'react-native-collapsible/Accordion';
 import CartItem from '../ShoopingCartScreen/CartItem';
 import ActionBtn from '../../components/ActionBtn';
+import moment from 'moment';
+import products from '../../data/products';
+import {addToCart, addToCartWithQty} from '../../store/features/cart/cartSlice';
+import {useDispatch} from 'react-redux';
 const Payments = ({navigation}) => {
   const [loading, setLoading] = React.useState(false);
-  const [activeSections, setActiveSections] = useState([0]);
   const [order, setOrder] = useState<any>([]);
+  const dispatch = useDispatch();
   React.useEffect(() => {
     const getMyOrders = async () => {
       const user = await Auth.currentAuthenticatedUser();
@@ -33,7 +37,7 @@ const Payments = ({navigation}) => {
           graphqlOperation(
             `
             query MyQuery {
-            listOrders(limit: 1000, filter: {userID: {eq: "${userSUb}"}}) {
+              listOrders(limit: 1000,filter: {Status: {eq: "Delivered"}, userID: {eq: "${userSUb}"}}) {
               items {
                 userID
                 name
@@ -66,7 +70,6 @@ const Payments = ({navigation}) => {
 
     getMyOrders();
   }, []);
-
   console.log(order);
 
   return (
@@ -77,219 +80,102 @@ const Payments = ({navigation}) => {
         conatinerStyles={{backgroundColor: '#f7f7f7'}}
       />
 
-      {/* <FlatList
+      <FlatList
         data={order}
-        contentContainerStyle={{
-          padding: 10,
-        }}
         ListEmptyComponent={() => {
           if (loading) {
-            return <ActivityIndicator />;
+            return (
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <ActivityIndicator size={'large'} color={'blue'} />
+              </View>
+            );
           }
-          return <Text>No Orders!</Text>;
-        }}
-        renderItem={({item}) => {
-          const Products = JSON.parse(item.Products);
-          console.log(Products, 'Products');
 
-          const total = Products.reduce((total, item) => {
-            return (total += Number(item.price.replaceAll(' ', '').slice(1)));
-          }, 0);
-          // console.log(total, 'total');
           return (
-            <TouchableOpacity
-              style={{
-                backgroundColor: 'white',
-                shadowColor: '#000',
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-                margin: 10,
-                elevation: 5,
-                borderRadius: 10,
-                overflow: 'hidden',
-              }}
-              onPress={() => {
-                navigation.navigate('OrdersScreens', {order: item});
-              }}>
-              <View style={{backgroundColor: 'rgba(0,0,0,0.1)', padding: 5}}>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 'bold',
-                  }}>
-                  {item.id}
-                </Text>
-              </View>
-              <View style={{flexDirection: 'row', padding: 5}}>
-                <Text style={{fontSize: 16, fontWeight: 'bold'}}>status: </Text>
-                <Text>{item.Status}</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  backgroundColor: 'rgba(0,0,0,0.1)',
-                  padding: 5,
-                }}>
-                <Text style={{fontSize: 16, fontWeight: 'bold'}}>total: </Text>
-                <Text>{total}</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  padding: 5,
-                }}>
-                <Text style={{fontSize: 16, fontWeight: 'bold'}}>net qty:</Text>
-                <Text> {Products.length}</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  backgroundColor: 'rgba(0,0,0,0.1)',
-                  padding: 5,
-                }}>
-                <Text style={{fontSize: 16, fontWeight: 'bold'}}>date:</Text>
-                <Text>{item.createdAt.slice(0, 10)}</Text>
-              </View>
-
-              <View style={{flexDirection: 'row', padding: 5}}>
-                <Text style={{fontSize: 16, fontWeight: 'bold'}}>phone :</Text>
-                <Text>{item.phone}</Text>
-              </View>
-            </TouchableOpacity>
+            <View
+              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <Text style={{textAlign: 'center'}}>No Items!</Text>
+            </View>
           );
         }}
-      /> */}
-      {loading && (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator size={'large'} color={'blue'} />
-        </View>
-      )}
-      <ScrollView style={{paddingHorizontal: 25}}>
-        {order.length ? (
-          <Accordion
-            underlayColor="transparent"
-            sections={order}
-            activeSections={activeSections}
-            renderHeader={(section, _, isActive) => {
-              const products = JSON.parse(section.Products);
-              const total = products?.reduce((total, item) => {
-                let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
-                cost = Number(cost) * item.qty;
-                let newTotal = total + cost;
-                // console.log(`total ${total} + ${cost} = ${newTotal}`);
-                return newTotal;
-              }, 0);
-              if (!products.length) return <></>;
-              return (
-                <View
-                  style={{
-                    backgroundColor: isActive ? '#d2d2d2' : 'white',
-                    elevation: 1,
-                    borderRadius: 5,
-                    padding: 15,
-                    marginVertical: 10,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: '900',
-                    }}>
-                    {section.id}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: '900',
-                    }}>
-                    Status: {section.Status}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: '900',
-                    }}>
-                    {section.createdAt.slice(0, 10)}
-                  </Text>
+        renderItem={({item}) => {
+          const products = JSON.parse(item?.Products) || [];
+          const date = item?.updatedAt;
+          const formatedDate = moment(new Date(date)).format('MMM Do YYYY');
 
+          return products.map((item, index) => (
+            <View
+              key={index}
+              style={{
+                padding: 20,
+                borderBottomColor: 'rgba(0,0,0,0.04)',
+                borderWidth: 0.5,
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  globalThis.itemDetails = item.id;
+                  // console.log('item pressed', globalThis);
+                  navigation.navigate('ProductDetails', {rawItem: item});
+                }}
+                style={{flexDirection: 'row'}}>
+                <View style={{flex: 1}}>
+                  <Image
+                    source={{uri: item?.image}}
+                    style={{width: 100, height: 100}}
+                    resizeMode="contain"
+                  />
+                </View>
+                <View style={{flex: 1.3}}>
+                  <Text
+                    style={{fontSize: 14, fontWeight: 'bold', color: '#222'}}>
+                    DELIVERED
+                  </Text>
+                  <Text style={{paddingRight: 10}} numberOfLines={1}>
+                    {item.description}
+                  </Text>
                   <View
                     style={{
                       flexDirection: 'row',
                       justifyContent: 'space-between',
-                      paddingVertical: 2,
                     }}>
-                    <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontWeight: 'bold'}}>Total :</Text>
-                      <Text>$ {total}</Text>
-                    </View>
-                    <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontWeight: 'bold'}}>Net Qty :</Text>
-                      <Text>{products.length}</Text>
-                    </View>
+                    <Text
+                      style={{fontSize: 12, fontWeight: 'bold', color: '#222'}}>
+                      {item.price}
+                    </Text>
+                    <Text>{formatedDate}</Text>
                   </View>
                 </View>
-              );
-            }}
-            renderContent={section => {
-              const products = JSON.parse(section.Products);
-              return (
-                <View style={{paddingBottom: 20}}>
-                  <View style={{alignItems: 'center'}}>
-                    <ActionBtn
-                      title={'track order!'}
-                      containerStyle={{width: '90%', borderRadius: 5}}
-                      onPress={() => {
-                        navigation.navigate('OrdersScreens', {order: section});
-                      }}
-                    />
-                  </View>
-                  {products?.map(item => (
-                    <CartItem cartItem={item} />
-                  ))}
-                </View>
-              );
-            }}
-            onChange={s => {
-              setActiveSections(s);
-            }}
-          />
-        ) : (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: 100,
-            }}>
-            <Image
-              source={require('../../Assets/emptybox.png')}
-              style={{width: 300, height: 300, opacity: 0.6}}
-              resizeMode="contain"
-            />
-            <Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 20}}>
-              There are not order yet!
-            </Text>
-            <TouchableOpacity
-              style={{
-                borderColor: '#222',
-                borderRadius: 5,
-                borderWidth: 1,
-                width: 120,
-                height: 40,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              onPress={() => navigation.navigate('Home')}>
-              <Text style={{fontSize: 16, letterSpacing: 1, color: '#000'}}>
-                SHOP NOW
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      </ScrollView>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  // dispatch(addToCart({...item}));
+                  delete item.qty;
+                  dispatch(
+                    addToCartWithQty({
+                      product: item,
+                      qty: 1,
+                    }),
+                  );
+                }}>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 'bold',
+                    color: '#344feb',
+                    marginTop: 10,
+                  }}>
+                  Re-Order
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ));
+        }}
+      />
     </View>
   );
 };

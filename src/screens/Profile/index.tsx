@@ -126,15 +126,15 @@ const Profile = ({navigation}) => {
 
           <View style={styles.strip} />
 
-          {/* <TouchableOpacity
+          <TouchableOpacity
             style={styles.list}
-            onPress={() => navigation.navigate('OrdersScreens')}>
+            onPress={() => navigation.navigate('OrderHistoryScreen')}>
             <Image
               style={{height: 18, width: 25}}
               source={require('../../Assets/Icon-My-Orders.png')}
             />
-            <Text style={styles.titleList}>Track My Order</Text>
-          </TouchableOpacity> */}
+            <Text style={styles.titleList}>My Orders</Text>
+          </TouchableOpacity>
 
           <View style={styles.strip} />
 

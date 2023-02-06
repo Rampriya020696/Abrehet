@@ -10,7 +10,7 @@
     "ls-key": "cd android && gradlew signingReport && cd ..",
     "clean": "cd android && gradlew clean  && cd ..",
     "vr": "npx react-native run-android --variant=release",
-    "build": "cd android && gradlew bundleRelease && cd ..",
+    "build": "cd android && ./gradlew bundleRelease && cd ..",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "amazon-cognito-identity-js": "^5.2.12",
     "aws-amplify": "^4.3.43",
     "aws-amplify-react-native": "^6.0.8",
+    "moment": "^2.29.4",
     "react": "18.1.0",
     "react-native": "0.70.4",
     "react-native-awesome-alerts": "^2.0.0",

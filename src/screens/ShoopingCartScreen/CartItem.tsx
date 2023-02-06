@@ -22,8 +22,9 @@ interface CartProductItemProps {
     image: string;
     price: string;
   };
+  disableQtyBtn?: boolean;
 }
-const CartItem = ({cartItem}: CartProductItemProps) => {
+const CartItem = ({cartItem, disableQtyBtn}: CartProductItemProps) => {
   const dispatch = useDispatch();
   const navigation = useNavigation<any>();
   // const {quantity: quantityProp, item} = cartItem;
@@ -41,24 +42,26 @@ const CartItem = ({cartItem}: CartProductItemProps) => {
             {`${cartItem.description.substring(0, 80)}...`}
           </Text>
           <Text style={styles.price}>{cartItem.price}</Text>
-          {/* <View style={[styles.pilih]}>
-            <TouchableOpacity
-              style={styles.innerBtn}
-              onPress={() => dispatch(removeToCart(cartItem))}>
-              <Text style={[styles.innerText]}>-</Text>
-            </TouchableOpacity>
+          {disableQtyBtn || (
+            <View style={[styles.pilih]}>
+              <TouchableOpacity
+                style={styles.innerBtn}
+                onPress={() => dispatch(removeToCart(cartItem))}>
+                <Text style={[styles.innerText]}>-</Text>
+              </TouchableOpacity>
 
-            <View style={styles.strip} />
-            <TouchableOpacity disabled style={styles.innerBtn}>
-              <Text style={styles.innerText}>{cartItem.qty}</Text>
-            </TouchableOpacity>
-            <View style={styles.strip} />
-            <TouchableOpacity
-              style={styles.innerBtn}
-              onPress={() => dispatch(addToCart(cartItem))}>
-              <Text style={styles.innerText}>+</Text>
-            </TouchableOpacity>
-          </View> */}
+              <View style={styles.strip} />
+              <TouchableOpacity disabled style={styles.innerBtn}>
+                <Text style={styles.innerText}>{cartItem.qty}</Text>
+              </TouchableOpacity>
+              <View style={styles.strip} />
+              <TouchableOpacity
+                style={styles.innerBtn}
+                onPress={() => dispatch(addToCart(cartItem))}>
+                <Text style={styles.innerText}>+</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </View>
       <Strip />
@@ -67,7 +70,7 @@ const CartItem = ({cartItem}: CartProductItemProps) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            // globalThis.itemDetails = item.id;
+            globalThis.itemDetails = item.id;
             // console.log('item pressed', globalThis);
             navigation.navigate('ProductDetails', {rawItem: cartItem});
           }}>
