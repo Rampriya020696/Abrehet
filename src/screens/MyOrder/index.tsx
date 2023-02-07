@@ -43,11 +43,11 @@ const styles = StyleSheet.create({
   },
   detail: {
     fontSize: 18,
-    fontFamily: fonts.secondary[800],
+    fontFamily: fonts.secondary[400],
     color: colors.text.secondary,
   },
   title: {
-    fontSize: 60,
+    fontSize: 20,
     fontFamily: fonts.secondary[800],
     color: 'red',
   },

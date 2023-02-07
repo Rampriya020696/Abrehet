@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import {API, Auth, graphqlOperation} from 'aws-amplify';
 import React, {useState} from 'react';
@@ -102,11 +101,11 @@ const OrderHistory = ({navigation}) => {
               return (
                 <View
                   style={{
-                    backgroundColor: isActive ? '#efedf2' : 'white',
-                    elevation: 15,
+                    backgroundColor: isActive ? '#d2d2d2' : 'white',
+                    elevation: 1,
                     borderRadius: 5,
-                    padding: 16,
-                    marginVertical: 8,
+                    padding: 15,
+                    marginVertical: 10,
                   }}>
                   {/* <Text
                     style={{
@@ -117,17 +116,15 @@ const OrderHistory = ({navigation}) => {
                   </Text> */}
                   <Text
                     style={{
-                      fontSize: 18,
-                      fontWeight: '400',
-                      color: 'black'
+                      fontSize: 16,
+                      fontWeight: '900',
                     }}>
                     Status: {section.Status}
                   </Text>
                   <Text
                     style={{
-                      fontSize: 12,
+                      fontSize: 16,
                       fontWeight: '900',
-                      color: 'black'
                     }}>
                     {section.createdAt.slice(0, 10)}
                   </Text>
@@ -136,15 +133,15 @@ const OrderHistory = ({navigation}) => {
                     style={{
                       flexDirection: 'row',
                       justifyContent: 'space-between',
-                      paddingVertical: 14,
+                      paddingVertical: 2,
                     }}>
                     <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontWeight: 'bold', color: 'black'}}></Text>
-                      <Text style={{fontWeight: 'bold', color: 'black', fontSize: 19, fontWeight: '600'}}>${total}</Text>
+                      <Text style={{fontWeight: 'bold'}}>Total :</Text>
+                      <Text>$ {total}</Text>
                     </View>
                     <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontWeight: 'bold', color: 'black'}}>Net Qty:  </Text>
-                      <Text style={{fontWeight: 'bold', color: 'red'}}>{products.length} </Text>
+                      <Text style={{fontWeight: 'bold'}}>Net Qty :</Text>
+                      <Text>{products.length}</Text>
                     </View>
                   </View>
                 </View>
