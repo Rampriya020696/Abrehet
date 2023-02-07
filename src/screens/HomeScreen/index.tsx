@@ -228,12 +228,12 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               <Text style={styles.title}>Flash Sale</Text>
               <Gap height={5} />
 
-              <RecommendedList data={products} />
+              {/* <RecommendedList data={products} /> */}
             </>
           );
         }}
         initialNumToRender={10}
-        numColumns={2}
+        numColumns={4}
         keyExtractor={(item: any) => String(item.id)}
         renderItem={({item}: any) => {
           const isRecommended = item?.isRecommended || null;

@@ -17,8 +17,10 @@ import {colors, fonts} from '../../utils';
 const width = Dimensions.get('window').width;
 
 const shadowOpt = {
-  width: width * 0.45,
-  height: 331,
+  // width: width * 0.45,
+  // height: 331,
+  width: 100,
+  height: 100,
   color: '#000',
 
   border: 2,
@@ -54,10 +56,26 @@ const Recomended = React.memo((props: ProductProps) => {
   };
 
   return (
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={{
+        flex: 1,
+        height: 100,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.1)',
+        margin: 2,
+        padding: 5,
+        overflow: 'hidden',
+      }}>
+      <Image source={props.image} style={{height: 100}} resizeMode="contain" />
+    </TouchableOpacity>
+  );
+  return (
     <View style={styles.container}>
       <BoxShadow style={styles.container2} setting={shadowOpt}>
         <View style={styles.card}>
-          <TouchableOpacity onPress={() => handleShowAlert()}>
+          {/* <TouchableOpacity onPress={() => handleShowAlert()}>
             <AwesomeAlert
               customView={
                 <Image source={props.image} style={styles.alertImage} />
@@ -66,9 +84,9 @@ const Recomended = React.memo((props: ProductProps) => {
               showProgress={false}
               closeOnTouchOutside={true}
               closeOnHardwareBackPress={false}
-            />
-            <Image source={props.image} style={styles.image} />
-          </TouchableOpacity>
+            /> */}
+
+          {/* </TouchableOpacity> */}
           <TouchableOpacity
             style={styles.wrapperDetail}
             onPress={props.onPress}>
