@@ -79,6 +79,7 @@ const makeBanneData = data => {
 
 const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [products, setProducts] = useState<any>([]);
+  const [recommendedProduct, setRecommendedProduct] = useState<any>([]);
 
   const [filterProducts, setFilterProducts] = useState<any>([]);
   const [searchString, setSearchString] = useState('');
@@ -121,6 +122,15 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
             return item?.title !== 'Product unavailable. ';
           }),
         );
+
+        setRecommendedProduct(
+          data.filter(item => {
+            const isRecommended = item?.isRecommended || null;
+            if (isRecommended) {
+              return item;
+            }
+          }),
+        );
         // setProducts(
         //   allProducts.data.listProducts!.items.map(item => {
         //     return _.pick(JSON.parse(item!.content), [
@@ -159,10 +169,15 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     }
 
     setFilterProducts(
-      products.filter(item =>
+      recommendedProduct.filter(item =>
         item.title.toLowerCase().includes(searchString.toLowerCase()),
       ),
     );
+    // setFilterProducts(
+    //   products.filter(item =>
+    //     item.title.toLowerCase().includes(searchString.toLowerCase()),
+    //   ),
+    // );
   }, [searchString]);
 
   console.log(products, 'products');
@@ -176,7 +191,8 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         style={{
           flex: 1,
         }}
-        data={searchString ? filterProducts : products}
+        // data={searchString ? filterProducts : products}
+        data={searchString ? filterProducts : recommendedProduct}
         ListHeaderComponent={() => {
           if (searchString) return <View />;
           return (
@@ -220,6 +236,9 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         numColumns={2}
         keyExtractor={(item: any) => String(item.id)}
         renderItem={({item}: any) => {
+          const isRecommended = item?.isRecommended || null;
+          if (!isRecommended) return null;
+
           return <RenderPorductItem item={item} />;
         }}
       />
