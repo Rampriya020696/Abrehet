@@ -57,10 +57,10 @@ const MenuIcon = () => {
       {/* --- */}
       {menuList?.map((group: MenuType[], index) => {
         return (
-          <View key={`${index}`} style={{flexDirection: 'row', marginTop: 5}}>
+          <View key={`${index}`} style={{flexDirection: 'row'}}>
             {group?.map(item => {
               return (
-                <View key={item?.id} style={styles.menuColoumn}>
+                <View key={item?.id} style={[styles.menuColoumn]}>
                   <TouchableOpacity
                     style={[styles.menuIcon]}
                     onPress={() =>
@@ -126,14 +126,13 @@ const styles = StyleSheet.create({
   },
 
   menuIcon: {
-    height: 80,
     flexDirection: 'column',
     flex: 3,
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
-    fontSize: 14,
+    fontSize: 11,
     fontWeight: '600',
     color: 'black',
     marginTop: 4,
@@ -142,9 +141,6 @@ const styles = StyleSheet.create({
   image: {
     width: 60,
     height: 60,
-    marginTop: -40,
-    marginVertical: 10,
-    marginBottom: -1,
     borderRadius: 15000,
     resizeMode: 'contain',
   },

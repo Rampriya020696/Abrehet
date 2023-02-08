@@ -1,7 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, FlatList, Text, Dimensions} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {graphqlOperation} from 'aws-amplify';
 import * as types from '../../API';
 import {API} from 'aws-amplify';
@@ -16,7 +24,6 @@ import Gap from '../../components/Gap';
 import {colors, fonts} from '../../utils';
 import Recomended from '../../components/Recomended';
 import {HeaderComponent} from '../../router/HomeStack';
-import {increment} from '../../store/features/cart/cartSlice';
 import RenderPorductItem from './RednderProductItem';
 import RecommendedList from './RecommendedList';
 
@@ -207,26 +214,15 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               <View
                 style={{
                   backgroundColor: 'transparent',
-                  paddingHorizontal: 20,
-                  paddingVertical: 25,
+
                   zIndex: 100,
                 }}>
                 <Text style={styles.menuText}>Shop Categories</Text>
               </View>
 
-              <View
-                style={{
-                  marginTop: 1,
-                }}>
-                <MenuIcon />
-              </View>
+              <MenuIcon />
 
-              {/* Akhir Category Component */}
-              <View style={styles.gap} />
-              {/* Recomended */}
-              <Gap height={20} />
               <Text style={styles.title}>Flash Sale</Text>
-              <Gap height={5} />
 
               {/* <RecommendedList data={products} /> */}
             </>
@@ -239,7 +235,35 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           const isRecommended = item?.isRecommended || null;
           if (!isRecommended) return null;
 
-          return <RenderPorductItem item={item} />;
+          return (
+            <TouchableOpacity
+              onPress={() => {
+                globalThis.itemDetails = item.id;
+                navigation.navigate('ProductDetails', {rawItem: item});
+              }}
+              style={{
+                flex: 1,
+
+                borderRadius: 4,
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.1)',
+                margin: 2,
+                padding: 5,
+                overflow: 'hidden',
+              }}>
+              <Image
+                source={{uri: item?.image}}
+                style={{height: 100, width: '100%'}}
+                resizeMode="contain"
+              />
+              <Text style={{textAlign: 'left', fontSize: 10}}>
+                {item.title}
+              </Text>
+              <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                <Text>{item.price}</Text>
+              </View>
+            </TouchableOpacity>
+          );
         }}
       />
     </View>
@@ -253,6 +277,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: 'black',
     fontStyle: 'normal',
+    marginVertical: 10,
+    paddingLeft: 20,
   },
   page: {
     flex: 1,
