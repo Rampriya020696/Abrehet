@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
   },
   title: {
-    fontSize: 20,
+    fontSize: 50,
     fontFamily: fonts.secondary[800],
     color: 'red',
   },

@@ -109,7 +109,7 @@ const Profile = ({navigation}) => {
           </ImageBackground>
           <Text style={styles.name}>{info?.email}</Text>
         </View>
-        <Gap height={20} />
+        <Gap height={28} />
 
         <View>
           <View style={styles.strip} />
@@ -239,12 +239,13 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20,
-    fontFamily: fonts.primary[700],
+    fontFamily: fonts.primary[900],
     textAlign: 'center',
     marginTop: 10,
+    color: 'black'
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: fonts.primary[600],
     color: colors.borderstrip,
     textAlign: 'center',
@@ -258,9 +259,9 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   titleList: {
-    fontSize: 17,
-    fontFamily: fonts.secondary[900],
-    color: '#262b25',
-    marginLeft: 20,
+    fontSize: 20,
+    color: 'black',
+    marginLeft: 16,
+    
   },
 });
