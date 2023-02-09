@@ -9,6 +9,9 @@ import {
   Alert,
   ActivityIndicator,
   Dimensions,
+  KeyboardAvoidingView,
+  ScrollView,
+  Keyboard,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
@@ -23,16 +26,20 @@ import {KeyboardAvoidingScrollView} from 'react-native-keyboard-avoiding-scroll-
 import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 Amplify.configure(awsconfig);
 
+let keyboardDidShowListener;
+let keyboardDidHideListener;
+
 const {width} = Dimensions.get('window');
 const Signin = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('mspl');
+  const [heightTop, setHeightTop] = useState(30);
   const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [fbLoading, setFbLoading] = useState(false);
   const {resource} = React.useContext(ResourceContext) as any;
-
+  let ScrollViewRef = React.useRef();
   const [user, setUser] = useState(null);
   const [customState, setCustomState] = useState(null);
 
@@ -85,12 +92,51 @@ const Signin = () => {
     return unsubscribe;
   }, []);
 
+  const keyboardDidShow = () => {
+    console.log(ScrollViewRef, 'REF');
+    // ScrollViewRef?.current?.scrollTo({y: , animated: true});
+    // setHeightTop(260);
+  };
+  const keyboardDidHide = () => {
+    // setHeightTop(30);
+  };
+
+  useEffect(() => {
+    keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      keyboardDidShow,
+    );
+    keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      keyboardDidHide,
+    );
+
+    return () => {
+      keyboardDidShowListener?.remove();
+      keyboardDidHideListener?.remove();
+    };
+  }, []);
+
   return (
-    <KeyboardAvoidingScrollView
-      style={{flex: 1, width: width}}
+    // <KeyboardAvoidingScrollView
+    //   style={{flex: 1, width: width}}
+    //   contentContainerStyle={{
+    //     flex: 1,
+    //     width: width,
+    //   }}>
+    // <KeyboardAvoidingView
+    //   style={{
+    //     backgroundColor: 'transparent',
+    //     flex: 1,
+    //   }}
+    //   behavior={'padding'}>
+    <ScrollView
+      ref={ref => (ScrollViewRef = ref)}
+      bounces={false}
+      style={{flex: 1}}
       contentContainerStyle={{
         flex: 1,
-        width: width,
+        // marginBottom: 500,
       }}>
       <ImageBackground
         source={
@@ -98,8 +144,8 @@ const Signin = () => {
             ? {uri: resource.login}
             : require('../../Assets/Login.png')
         }
-        style={[styles.page, {width: width, height: '100%'}]}>
-        <View style={styles.wraperLogo}>
+        style={[styles.page, {width: width, height: '100%', flex: 1}]}>
+        <View style={[styles.wraperLogo]}>
           <Image
             style={{height: 100, width: 80}}
             source={APP_ICON}
@@ -268,9 +314,13 @@ const Signin = () => {
           </TouchableOpacity>
         </View>
       </ImageBackground>
-    </KeyboardAvoidingScrollView>
+    </ScrollView>
+    // </KeyboardAvoidingView>
   );
 };
+{
+  /* </KeyboardAvoidingScrollView> */
+}
 
 export default Signin;
 
@@ -281,7 +331,7 @@ const styles = StyleSheet.create({
   },
   page2: {
     justifyContent: 'center',
-    height: '75%',
+    // height: '75%',
   },
   wraperLogo: {
     flexDirection: 'row',

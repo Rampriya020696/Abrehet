@@ -219,11 +219,8 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                 }}>
                 <Text style={styles.menuText}>Shop Categories</Text>
               </View>
-
               <MenuIcon />
-
               <Text style={styles.title}>Flash Sale</Text>
-
               {/* <RecommendedList data={products} /> */}
             </>
           );
@@ -243,13 +240,14 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               }}
               style={{
                 flex: 1,
-
                 borderRadius: 4,
                 borderWidth: 1,
                 borderColor: 'rgba(0,0,0,0.1)',
                 margin: 2,
                 padding: 5,
                 overflow: 'hidden',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}>
               <Image
                 source={{uri: item?.image}}
@@ -325,7 +323,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontStyle: 'normal',
     marginLeft: 20,
-    marginVertical: 20,
+    // marginVertical: 20,
   },
   titleSearch: {
     flex: 1,

@@ -50,7 +50,7 @@ const MenuIcon = () => {
   }, []);
 
   return (
-    <View style={styles.menu}>
+    <View style={[styles.menu]}>
       {loading && (
         <ActivityIndicator size={'small'} color={colors.blueButton} />
       )}
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end',
     marginTop: 0,
-    marginBottom: 10,
+    // marginBottom: 10,
   },
   menuColoumn1: {
     flexDirection: 'row',
