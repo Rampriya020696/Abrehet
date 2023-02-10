@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import {API, Auth, graphqlOperation} from 'aws-amplify';
 import React, {useState} from 'react';
@@ -85,7 +86,7 @@ const OrderHistory = ({navigation}) => {
       <ScrollView style={{paddingHorizontal: 25}}>
         {order.length ? (
           <Accordion
-            underlayColor="transparent"
+            underlayColor="white"
             sections={order}
             activeSections={activeSections}
             renderHeader={(section, _, isActive) => {
@@ -116,15 +117,17 @@ const OrderHistory = ({navigation}) => {
                   </Text> */}
                   <Text
                     style={{
-                      fontSize: 16,
-                      fontWeight: '900',
+                      fontSize: 19,
+                      color: 'black',
+                      
                     }}>
                     Status: {section.Status}
                   </Text>
                   <Text
                     style={{
                       fontSize: 16,
-                      fontWeight: '900',
+                      color: 'black',
+                      fontWeight: 'bold'
                     }}>
                     {section.createdAt.slice(0, 10)}
                   </Text>
@@ -133,15 +136,15 @@ const OrderHistory = ({navigation}) => {
                     style={{
                       flexDirection: 'row',
                       justifyContent: 'space-between',
-                      paddingVertical: 2,
+                      paddingVertical: 9,
                     }}>
                     <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontWeight: 'bold'}}>Total :</Text>
-                      <Text>$ {total}</Text>
+                      <Text style={{color: 'black', fontSize: 20}}>Total: </Text>
+                      <Text style={{color: 'black', fontSize: 20, fontWeight: 'bold'}}>${total}</Text>
                     </View>
                     <View style={{flexDirection: 'row'}}>
-                      <Text style={{fontWeight: 'bold'}}>Net Qty :</Text>
-                      <Text>{products.length}</Text>
+                      <Text style={{color: 'black', fontSize: 16}}>Net Qty: </Text>
+                      <Text style={{color: 'green', fontSize: 18, fontWeight: 'bold'}}>{products.length}</Text>
                     </View>
                   </View>
                 </View>
@@ -212,6 +215,6 @@ export default OrderHistory;
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    backgroundColor: '#f7f7f7',
+    backgroundColor: 'white',
   },
 });

@@ -240,7 +240,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               }}
               style={{
                 flex: 1,
-                borderRadius: 4,
+                borderRadius: 10,
                 borderWidth: 1,
                 borderColor: 'rgba(0,0,0,0.1)',
                 margin: 2,
@@ -248,17 +248,19 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                 overflow: 'hidden',
                 justifyContent: 'center',
                 alignItems: 'center',
+                
               }}>
               <Image
                 source={{uri: item?.image}}
-                style={{height: 100, width: '100%'}}
+                style={{height: 80, width: '100%',}}
                 resizeMode="contain"
               />
-              <Text style={{textAlign: 'left', fontSize: 10}}>
+              <Text style={{textAlign: 'left', fontSize: 14, color: 'black'}}>
                 {item.title}
               </Text>
               <View style={{flex: 1, justifyContent: 'flex-end'}}>
-                <Text>{item.price}</Text>
+                <Text style={{textAlign: 'left', fontSize: 17, color: 'black', marginLeft: -6,}}>
+                  {item.price}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -319,7 +321,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontFamily: fonts.primary[900],
-    fontWeight: '600',
+    fontWeight: '500',
     color: 'red',
     fontStyle: 'normal',
     marginLeft: 20,
@@ -372,7 +374,7 @@ const styles = StyleSheet.create({
     marginTop: -10,
   },
   saleTime: {
-    fontSize: 16,
+    fontSize: 10,
     fontFamily: fonts.secondary[400],
     color: colors.white,
   },
