@@ -10,6 +10,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from 'react-native';
 import React, {useState} from 'react';
 import {API, Auth, graphqlOperation} from 'aws-amplify';
@@ -35,7 +36,10 @@ import {
 } from '../../store/features/cart/cartSlice';
 import ButtonGradient from '../../components/ButtonGradient';
 import {useRoute} from '@react-navigation/native';
+import {current} from '@reduxjs/toolkit';
 
+let keyboardDidShowListener;
+let keyboardDidHideListener;
 const AddressScreen = ({navigation}) => {
   const {cartItemData} = useRoute().params;
 
@@ -45,6 +49,7 @@ const AddressScreen = ({navigation}) => {
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const [toggleCheckBox, setToggleCheckBox] = useState('reciver');
   const [fullname, setFullname] = useState('');
+  let ScrollViewRef = React.useRef('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
@@ -275,16 +280,37 @@ const AddressScreen = ({navigation}) => {
     };
     getAuthUser();
   }, []);
+
+  const keyboardDidShow = (number = 110) => {
+    console.log(ScrollViewRef, 'REF', number);
+    ScrollViewRef?.current?.scrollTo({y: number, animated: true});
+  };
+  const keyboardDidHide = () => {};
+  React.useEffect(() => {
+    keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      keyboardDidShow,
+    );
+    keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      keyboardDidHide,
+    );
+
+    return () => {
+      keyboardDidShowListener?.remove();
+      keyboardDidHideListener?.remove();
+    };
+  }, []);
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}>
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 'padding' : ''}>
       <Header
         title="Address"
         icon={ICCart2}
         onPress={() => navigation.goBack()}
       />
-      <ScrollView style={styles.root}>
+      <ScrollView style={styles.root} ref={ScrollViewRef}>
         <Modal isVisible={showModel}>
           <View
             style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -459,6 +485,9 @@ const AddressScreen = ({navigation}) => {
         <View style={styles.row}>
           <Text style={styles.label}>State/Province/Zoba</Text>
           <TextInput
+            onFocus={() => {
+              keyboardDidShow(200);
+            }}
             style={styles.input}
             placeholder="State/Province/Zoba"
             value={state}
@@ -479,6 +508,9 @@ const AddressScreen = ({navigation}) => {
         <View style={styles.row}>
           <Text style={styles.label}>Country </Text>
           <TextInput
+            onFocus={() => {
+              keyboardDidShow(200);
+            }}
             style={styles.input}
             placeholder="Country"
             value={country}

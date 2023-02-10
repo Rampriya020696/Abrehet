@@ -22,6 +22,9 @@ const Tab = createBottomTabNavigator();
 const BottomTabNav = () => {
   return (
     <Tab.Navigator
+      tabBarOptions={{
+        keyboardHidesTabBar: true,
+      }}
       screenOptions={{
         headerShown: false,
         tabBarStyle: {padding: 15, height: 60},
