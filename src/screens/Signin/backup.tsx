@@ -1,17 +1,17 @@
-// /* eslint-disable react-native/no-inline-styles */
-// /* eslint-disable prettier/prettier */
 // import React, {useEffect, useState} from 'react';
 // import {
 //   ImageBackground,
-//   ScrollView,
 //   StyleSheet,
 //   Text,
 //   TouchableOpacity,
 //   View,
-//   Linking,
 //   Image,
 //   Alert,
 //   ActivityIndicator,
+//   Dimensions,
+//   KeyboardAvoidingView,
+//   ScrollView,
+//   Keyboard,
 // } from 'react-native';
 // import {TextInput} from 'react-native-gesture-handler';
 // import LinearGradient from 'react-native-linear-gradient';
@@ -26,15 +26,20 @@
 // import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 // Amplify.configure(awsconfig);
 
+// let keyboardDidShowListener;
+// let keyboardDidHideListener;
+
+// const {width, height} = Dimensions.get('window');
 // const Signin = () => {
 //   const navigation = useNavigation();
 //   const [username, setUsername] = useState('mspl');
+//   const [heightTop, setHeightTop] = useState(30);
 //   const [password, setPassword] = useState('12345678');
 //   const [loading, setLoading] = useState(false);
 //   const [googleLoading, setGoogleLoading] = useState(false);
 //   const [fbLoading, setFbLoading] = useState(false);
 //   const {resource} = React.useContext(ResourceContext) as any;
-
+//   let ScrollViewRef = React.useRef();
 //   const [user, setUser] = useState(null);
 //   const [customState, setCustomState] = useState(null);
 
@@ -87,19 +92,51 @@
 //     return unsubscribe;
 //   }, []);
 
+//   const keyboardDidShow = (number = 1000) => {
+//     console.log(ScrollViewRef, 'REF');
+//     ScrollViewRef?.current?.scrollTo({y: number, animated: true});
+//     // setHeightTop(260);
+//   };
+//   const keyboardDidHide = () => {
+//     // setHeightTop(30);
+//   };
+
+//   useEffect(() => {
+//     keyboardDidShowListener = Keyboard.addListener(
+//       'keyboardDidShow',
+//       keyboardDidShow,
+//     );
+//     keyboardDidHideListener = Keyboard.addListener(
+//       'keyboardDidHide',
+//       keyboardDidHide,
+//     );
+
+//     return () => {
+//       keyboardDidShowListener?.remove();
+//       keyboardDidHideListener?.remove();
+//     };
+//   }, []);
+
 //   return (
-//     <ImageBackground
-//       source={
-//         resource?.login
-//           ? {uri: resource.login}
-//           : require('../../Assets/Login.png')
-//       }
-//       style={styles.page}>
-//       <KeyboardAvoidingScrollView
-//         showsVerticalScrollIndicator={false}
-//         contentContainerStyle={styles.page2}>
-//         <View style={{marginTop: 7}}>
-//           <View style={styles.wraperLogo}>
+//     <KeyboardAvoidingView
+//       style={{flex: 1}}
+//       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+//       keyboardVerticalOffset={Platform.OS === 'ios' ? 'padding' : ''}>
+//       <ScrollView
+//         ref={ScrollViewRef}
+//         bounces={false}
+//         style={{height: height + 10}}
+//         contentContainerStyle={{
+//           flex: 1,
+//         }}>
+//         <ImageBackground
+//           source={
+//             resource?.login
+//               ? {uri: resource.login}
+//               : require('../../Assets/Login.png')
+//           }
+//           style={[styles.page, {width: width, height: '100%', flex: 1}]}>
+//           <View style={[styles.wraperLogo]}>
 //             <Image
 //               style={{height: 100, width: 80}}
 //               source={APP_ICON}
@@ -108,7 +145,6 @@
 
 //             <Text style={styles.title}>Mesob Store</Text>
 //           </View>
-
 //           <View style={{alignSelf: 'center', marginTop: 20, width: '100%'}}>
 //             <TouchableOpacity
 //               onPress={handleFbPress}
@@ -268,9 +304,9 @@
 //               </View>
 //             </TouchableOpacity>
 //           </View>
-//         </View>
-//       </KeyboardAvoidingScrollView>
-//     </ImageBackground>
+//         </ImageBackground>
+//       </ScrollView>
+//     </KeyboardAvoidingView>
 //   );
 // };
 
@@ -283,7 +319,6 @@
 //   },
 //   page2: {
 //     justifyContent: 'center',
-//     height: '75%',
 //   },
 //   wraperLogo: {
 //     flexDirection: 'row',

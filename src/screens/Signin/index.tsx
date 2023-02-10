@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Keyboard,
+  Platform,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
@@ -22,14 +23,11 @@ import {useNavigation} from '@react-navigation/native';
 import {Amplify, Auth, Hub} from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import {KeyboardAvoidingScrollView} from 'react-native-keyboard-avoiding-scroll-view';
-
 import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
-Amplify.configure(awsconfig);
-
 let keyboardDidShowListener;
 let keyboardDidHideListener;
 
-const {width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 const Signin = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('mspl');
@@ -42,6 +40,10 @@ const Signin = () => {
   let ScrollViewRef = React.useRef();
   const [user, setUser] = useState(null);
   const [customState, setCustomState] = useState(null);
+
+  const keyboardDidShow = (number = 110) => {
+    ScrollViewRef?.current?.scrollTo({y: number, animated: true});
+  };
 
   const handleSignIn = async () => {
     setLoading(true);
@@ -56,7 +58,6 @@ const Signin = () => {
   };
 
   const handleGooglePress = () => {
-    // Auth.federatedSignIn();
     Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Google});
     setGoogleLoading(true);
   };
@@ -92,16 +93,8 @@ const Signin = () => {
     return unsubscribe;
   }, []);
 
-  const keyboardDidShow = () => {
-    console.log(ScrollViewRef, 'REF');
-    // ScrollViewRef?.current?.scrollTo({y: , animated: true});
-    // setHeightTop(260);
-  };
-  const keyboardDidHide = () => {
-    // setHeightTop(30);
-  };
-
-  useEffect(() => {
+  const keyboardDidHide = () => {};
+  React.useEffect(() => {
     keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       keyboardDidShow,
@@ -116,43 +109,47 @@ const Signin = () => {
       keyboardDidHideListener?.remove();
     };
   }, []);
-
   return (
-    // <KeyboardAvoidingScrollView
-    //   style={{flex: 1, width: width}}
-    //   contentContainerStyle={{
-    //     flex: 1,
-    //     width: width,
-    //   }}>
-    // <KeyboardAvoidingView
-    //   style={{
-    //     backgroundColor: 'transparent',
-    //     flex: 1,
-    //   }}
-    //   behavior={'padding'}>
-    <ScrollView
-      ref={ref => (ScrollViewRef = ref)}
-      bounces={false}
-      style={{flex: 1}}
-      contentContainerStyle={{
-        flex: 1,
-        // marginBottom: 500,
-      }}>
-      <ImageBackground
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <Image
+        style={{width, height, position: 'absolute'}}
         source={
           resource?.login
             ? {uri: resource.login}
             : require('../../Assets/Login.png')
         }
-        style={[styles.page, {width: width, height: '100%', flex: 1}]}>
-        <View style={[styles.wraperLogo]}>
+      />
+
+      <ScrollView
+        ref={ScrollViewRef}
+        contentContainerStyle={{
+          paddingTop: 30,
+          paddingBottom: 100,
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
           <Image
             style={{height: 100, width: 80}}
             source={APP_ICON}
             resizeMode="contain"
           />
 
-          <Text style={styles.title}>Mesob Store</Text>
+          <Text
+            style={{
+              fontSize: 20,
+              fontFamily: fonts.primary[800],
+              marginLeft: 1,
+              marginRight: 40,
+              alignSelf: 'center',
+              color: 'white',
+            }}>
+            Mesob Store
+          </Text>
         </View>
         <View style={{alignSelf: 'center', marginTop: 20, width: '100%'}}>
           <TouchableOpacity
@@ -187,7 +184,6 @@ const Signin = () => {
               )}
             </Text>
           </TouchableOpacity>
-
           <TouchableOpacity
             style={{
               backgroundColor: 'white',
@@ -217,203 +213,104 @@ const Signin = () => {
               {googleLoading ? <ActivityIndicator /> : 'Login with Google'}
             </Text>
           </TouchableOpacity>
-
-          <Text
+        </View>
+        <Text
+          style={{
+            fontSize: 17,
+            fontWeight: '600',
+            alignSelf: 'center',
+            color: 'white',
+            marginTop: 10,
+          }}>
+          OR
+        </Text>
+        <View
+          style={{
+            backgroundColor: 'white',
+            borderRadius: 20,
+            padding: 3,
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Image
+            style={{height: 25, width: 25, marginLeft: 20}}
+            source={require('../../Assets/userNameAbrehet.png')}
+          />
+          <TextInput
+            onFocus={() => keyboardDidShow(120)}
+            placeholder="Email"
+            onChangeText={value => setUsername(value)}
             style={{
-              fontSize: 17,
-              fontWeight: '600',
-              alignSelf: 'center',
-              color: 'white',
-              marginTop: 10,
-            }}>
-            OR
-          </Text>
-
-          <View
+              fontSize: 14,
+              paddingLeft: 20,
+            }}
+          />
+        </View>
+        <View
+          style={{
+            backgroundColor: 'white',
+            borderRadius: 20,
+            padding: 3,
+            marginTop: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Image
+            style={{height: 15, width: 25, marginLeft: 20}}
+            source={require('../../Assets/Icon-Password.png')}
+          />
+          <TextInput
+            onFocus={() => keyboardDidShow(120)}
+            placeholder="Password"
+            onChangeText={value => setPassword(value)}
             style={{
-              backgroundColor: 'white',
-              borderRadius: 20,
-              padding: 3,
-              marginTop: 10,
-              flexDirection: 'row',
+              fontSize: 14,
+              paddingLeft: 20,
+            }}
+          />
+        </View>
+
+        <View style={{alignSelf: 'center', marginTop: 20}}>
+          <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+            <Text style={{color: 'white', fontSize: 20}}>
+              Not a Member? Register
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity onPress={handleSignIn}>
+          <LinearGradient
+            start={{x: 0.0, y: 0}}
+            end={{x: 0.5, y: 3.5}}
+            locations={[0, 0.5, 1.6]}
+            colors={['#131A41', '#3A2E6E', '#6D47A9']}
+            style={{
+              height: 50,
+              width: '100%',
+              paddingHorizontal: 40,
+              borderRadius: 50,
+              justifyContent: 'center',
+              marginTop: 30,
+              marginBottom: 10,
               alignItems: 'center',
             }}>
-            <Image
-              style={{height: 25, width: 25, marginLeft: 20}}
-              source={require('../../Assets/userNameAbrehet.png')}
-            />
-            <TextInput
-              placeholder="Email"
-              onChangeText={value => setUsername(value)}
-              style={{
-                fontSize: 14,
-                paddingLeft: 20,
-              }}
-            />
-          </View>
-
-          <View
-            style={{
-              backgroundColor: 'white',
-              borderRadius: 20,
-              padding: 3,
-              marginTop: 10,
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <Image
-              style={{height: 15, width: 25, marginLeft: 20}}
-              source={require('../../Assets/Icon-Password.png')}
-            />
-            <TextInput
-              placeholder="Password"
-              onChangeText={value => setPassword(value)}
-              style={{
-                fontSize: 14,
-                paddingLeft: 20,
-              }}
-            />
-          </View>
-
-          <View style={{alignSelf: 'center', marginTop: 20}}>
-            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-              <Text style={{color: 'white', fontSize: 20}}>
-                Not a Member? Register
+            <Text style={{fontSize: 17, color: 'white', fontWeight: '600'}}>
+              {loading ? 'loading...' : 'Sign In'}
+            </Text>
+          </LinearGradient>
+          <View style={{alignSelf: 'center', marginTop: 1}}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ForgetPassword')}>
+              <Text style={{color: 'white', fontSize: 15}}>
+                Reset your password
               </Text>
             </TouchableOpacity>
           </View>
-
-          <TouchableOpacity onPress={() => handleSignIn()}>
-            <LinearGradient
-              start={{x: 0.0, y: 0}}
-              end={{x: 0.5, y: 3.5}}
-              locations={[0, 0.5, 1.6]}
-              colors={['#131A41', '#3A2E6E', '#6D47A9']}
-              style={{
-                height: 50,
-                width: '100%',
-                paddingHorizontal: 40,
-                borderRadius: 50,
-                justifyContent: 'center',
-                marginTop: 30,
-                marginBottom: 10,
-                alignItems: 'center',
-              }}>
-              <Text style={{fontSize: 17, color: 'white', fontWeight: '600'}}>
-                {loading ? 'loading...' : 'Sign In'}
-              </Text>
-            </LinearGradient>
-            <View style={{alignSelf: 'center', marginTop: 1}}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('ForgetPassword')}>
-                <Text style={{color: 'white', fontSize: 15}}>
-                  Reset your password
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
-    </ScrollView>
-    // </KeyboardAvoidingView>
+        </TouchableOpacity>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
-{
-  /* </KeyboardAvoidingScrollView> */
-}
 
 export default Signin;
-
-const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-    paddingHorizontal: 10,
-  },
-  page2: {
-    justifyContent: 'center',
-    // height: '75%',
-  },
-  wraperLogo: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  wrapper: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  choose: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logo: {
-    width: 70,
-    height: 70,
-  },
-  title: {
-    fontSize: 20,
-    fontFamily: fonts.primary[800],
-    marginLeft: 1,
-    marginRight: 40,
-    alignSelf: 'center',
-    color: 'white',
-  },
-  or: {
-    fontSize: 16,
-    fontFamily: fonts.primary[400],
-    alignSelf: 'center',
-    color: 'white',
-  },
-  signin: {
-    fontSize: 14,
-    color: 'white',
-    fontFamily: fonts.secondary[400],
-  },
-  chooseLoginFacebook: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    flexDirection: 'row',
-    backgroundColor: colors.facebook,
-    borderRadius: 30,
-    width: 330,
-    height: 50,
-    elevation: 10,
-  },
-  imageFacebook: {
-    width: 15,
-    height: 30,
-  },
-  loginFacebook: {
-    fontSize: 16,
-    color: 'white',
-    marginLeft: 30,
-    fontFamily: fonts.secondary[400],
-  },
-  chooseLoginGoogle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    flexDirection: 'row',
-    backgroundColor: colors.white,
-    borderRadius: 30,
-    width: 330,
-    height: 50,
-    elevation: 10,
-  },
-  imageGoogle: {
-    width: 25,
-    height: 25,
-  },
-  loginGoogle: {
-    fontSize: 16,
-    color: colors.text.secondary,
-    marginLeft: 20,
-    fontFamily: fonts.secondary[400],
-  },
-  button: {
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-});
