@@ -4,207 +4,19 @@ import {compose} from '@reduxjs/toolkit';
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ActionBtn from '../../components/ActionBtn';
 import CartItem from '../ShoopingCartScreen/CartItem';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
+  handleOrdersComplete,
   selectCartItems,
   selectCartTotal,
 } from '../../store/features/cart/cartSlice';
 import {colors, fonts} from '../../utils';
 import Accordion from 'react-native-collapsible/Accordion';
 import {ScrollView} from 'react-native-gesture-handler';
-
-const test = [
-  {
-    title: 'Asmara, Mendefera, Keren and Dekemhare',
-    content: [
-      {
-        qty: 2,
-        id: 'Eri 276',
-        isRecommended: null,
-        createdAt: '2022-04-23T18:21:43.490Z',
-        country: 'Asmara, Mendefera, Keren and Dekemhare',
-        content: {
-          country: 'Asmara, Mendefera, Keren and Dekemhare',
-          image:
-            'https://s3.amazonaws.com/abrehet.update.data.ui/Electronics/20221228_103415.jpg',
-          images:
-            'https://s3.amazonaws.com/abrehet.update.data.ui/Electronics/20221228_103437.jpg',
-          cost: '$60',
-          price: '$99.99',
-          description: 'Cooker Gas. We deliver to the address provided. ',
-          id: '16',
-          title: 'Cooker Gas',
-        },
-        category: 'Groceries',
-        title: 'Cooker Gas',
-        updatedAt: '2022-07-22T17:56:59.238Z',
-        cost: '$60',
-        description: 'Cooker Gas. We deliver to the address provided. ',
-        image:
-          'https://s3.amazonaws.com/abrehet.update.data.ui/Electronics/20221228_103415.jpg',
-        images:
-          'https://s3.amazonaws.com/abrehet.update.data.ui/Electronics/20221228_103437.jpg',
-        price: '$99.99',
-      },
-      {
-        qty: 2,
-        id: 'Eri 310',
-        isRecommended: null,
-        createdAt: '2022-04-23T18:21:43.490Z',
-        country: 'Asmara, Mendefera, Keren and Dekemhare',
-        content: {
-          country: 'Asmara, Mendefera, Keren and Dekemhare',
-          image:
-            'https://s3.amazonaws.com/abrehet.update.data.ui/Electronics/Water+Filter.jpg',
-          images:
-            'https://s3.amazonaws.com/abrehet.update.data.ui/Electronics/Water+Filter.jpg',
-          cost: '$50',
-          price: '$65.99',
-          description: 'Water Filter 24L. We deliver to the address provided. ',
-          id: '16,2',
-          title: 'Water Filter',
-        },
-        category: 'Groceries',
-        title: 'Water Filter',
-        updatedAt: '2022-07-22T17:56:59.238Z',
-        cost: '$50',
-        description: 'Water Filter 24L. We deliver to the address provided. ',
-        image:
-          'https://s3.amazonaws.com/abrehet.update.data.ui/Electronics/Water+Filter.jpg',
-        images:
-          'https://s3.amazonaws.com/abrehet.update.data.ui/Electronics/Water+Filter.jpg',
-        price: '$65.99',
-      },
-      {
-        qty: 1,
-        id: 'Eri 252',
-        isRecommended: null,
-        createdAt: '2022-04-23T18:21:43.490Z',
-        country: 'Asmara, Mendefera, Keren and Dekemhare',
-        content: {
-          country: 'Asmara, Mendefera, Keren and Dekemhare',
-          image: 'https://appimagesabrehet.s3.amazonaws.com/Potato',
-          images:
-            'https://appimagesabrehet.s3.amazonaws.com/Potato,https://appimagesabrehet.s3.amazonaws.com/Potato,https://appimagesabrehet.s3.amazonaws.com/Potato',
-          cost: '$1.65',
-          price: '$2.40',
-          description:
-            'Per Killo. We deliver to Asmara, Mendefera, Keren and Dekemhare',
-          id: '2',
-          title: 'Potato',
-        },
-        category: 'Groceries',
-        title: 'Potato',
-        updatedAt: '2022-07-22T17:56:59.238Z',
-        cost: '$1.65',
-        description:
-          'Per Killo. We deliver to Asmara, Mendefera, Keren and Dekemhare',
-        image: 'https://appimagesabrehet.s3.amazonaws.com/Potato',
-        images:
-          'https://appimagesabrehet.s3.amazonaws.com/Potato,https://appimagesabrehet.s3.amazonaws.com/Potato,https://appimagesabrehet.s3.amazonaws.com/Potato',
-        price: '$2.40',
-      },
-    ],
-  },
-  {
-    title: 'International',
-    content: [
-      {
-        qty: 2,
-        id: 'Muller 16',
-        isRecommended: null,
-        createdAt: '2022-05-30T20:14:23.315Z',
-        country: 'International',
-        content: {
-          country: 'International',
-          image:
-            'https://s3.amazonaws.com/abrehet.update.data.ui/Muller+Fashion/Zurya+with+green+and+Nesela.jpg',
-          images:
-            'https://s3.amazonaws.com/abrehet.update.data.ui/Muller+Fashion/Zurya+with+green+and+Nesela.jpg',
-          cost: '$110',
-          price: '$150',
-          description:
-            'Zurya green with Nesela delivery fee included. International shippment available. ',
-          title: 'Zurya green with Nesela',
-        },
-        category: 'Muller Fassion',
-        title: 'Zurya green with Nesela',
-        updatedAt: '2022-05-30T20:14:23.315Z',
-        cost: '$110',
-        description:
-          'Zurya green with Nesela delivery fee included. International shippment available. ',
-        image:
-          'https://s3.amazonaws.com/abrehet.update.data.ui/Muller+Fashion/Zurya+with+green+and+Nesela.jpg',
-        images:
-          'https://s3.amazonaws.com/abrehet.update.data.ui/Muller+Fashion/Zurya+with+green+and+Nesela.jpg',
-        price: '$150',
-      },
-      {
-        qty: 2,
-        id: 'Muller 19',
-        isRecommended: true,
-        createdAt: '2022-05-30T20:14:23.315Z',
-        country: 'International',
-        content: {
-          country: 'International',
-          image:
-            'https://s3.amazonaws.com/abrehet.update.data.ui/Muller+Fashion/Red+Shifon.jpg',
-          images:
-            'https://s3.amazonaws.com/abrehet.update.data.ui/Muller+Fashion/Red+Shifon.jpg',
-          cost: '$110',
-          price: '$120',
-          description:
-            'Red Shifon delivery fee included. International shippment available. ',
-          title: 'Red Shifon',
-        },
-        category: 'Muller Fassion',
-        title: 'Red Shifon',
-        updatedAt: '2022-05-30T20:14:23.315Z',
-        cost: '$110',
-        description:
-          'Red Shifon delivery fee included. International shippment available. ',
-        image:
-          'https://s3.amazonaws.com/abrehet.update.data.ui/Muller+Fashion/Red+Shifon.jpg',
-        images:
-          'https://s3.amazonaws.com/abrehet.update.data.ui/Muller+Fashion/Red+Shifon.jpg',
-        price: '$120',
-      },
-      {
-        qty: 1,
-        id: 'Muller 10',
-        isRecommended: null,
-        createdAt: '2022-05-30T20:14:23.315Z',
-        country: 'International',
-        content: {
-          country: 'International',
-          image:
-            'https://appimagesabrehet.s3.amazonaws.com/Muler+Fasion/Light+Green+dress+without+nesela+160.jpg',
-          images:
-            'https://appimagesabrehet.s3.amazonaws.com/Muler+Fasion/Light+Green+dress+without+nesela+160.jpg',
-          cost: '$110',
-          price: '$165',
-          description:
-            'Light green Dress with Nesela delivery fee included. International shipment is available. ',
-          title: 'Light Green Dress with Nesela',
-        },
-        category: 'Muller Fassion',
-        title: 'Light Green Dress with Nesela',
-        updatedAt: '2022-05-30T20:14:23.315Z',
-        cost: '$110',
-        description:
-          'Light green Dress with Nesela delivery fee included. International shipment is available. ',
-        image:
-          'https://appimagesabrehet.s3.amazonaws.com/Muler+Fasion/Light+Green+dress+without+nesela+160.jpg',
-        images:
-          'https://appimagesabrehet.s3.amazonaws.com/Muler+Fasion/Light+Green+dress+without+nesela+160.jpg',
-        price: '$165',
-      },
-    ],
-  },
-];
 
 const BigCheckoutBtn = ({title, total, onPress}) => {
   return (
@@ -250,12 +62,10 @@ const Cart = () => {
   const [activeSections, setActiveSections] = useState([0]);
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
+  const dispatch = useDispatch();
   console.log(cartItems, 'cartItems');
   console.log(countryViseProductsArray, 'countryViseProductsArray');
   const navigation = useNavigation<any>();
-  const onCheckout = () => {
-    navigation.navigate('Address');
-  };
 
   useEffect(() => {
     const data = cartItems.reduce((obj, currentItem) => {
@@ -280,66 +90,14 @@ const Cart = () => {
     setCountryViseProductsArray(arr);
   }, [cartItems]);
 
+  const handleCrossPress = items => {
+    dispatch(handleOrdersComplete({orderData: items}));
+  };
+
   return (
     <View style={styles.page}>
       <Text style={styles.cart}>Cart</Text>
 
-      {/* {Object.values(countryViseProducts).length ? (
-        Object.entries(countryViseProducts).map(([key, items]) => {
-          const total = items.reduce((total, item) => {
-            let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
-
-            cost = Number(cost) * item.qty;
-            let newTotal = total + cost;
-            // console.log(`total ${total} + ${cost} = ${newTotal}`);
-            return newTotal;
-          }, 0);
-          return (
-            <TouchableOpacity
-              key={key}
-              style={{padding: 25}}
-              onPress={() =>
-                navigation.navigate('CartItemScreen', {cartItemData: items})
-              }>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{fontWeight: 'bold'}}>Country:</Text>
-                <Text>{key}</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{fontWeight: 'bold'}}>Net Qty :</Text>
-                <Text>{items.length}</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{fontWeight: 'bold'}}>Total :</Text>
-                <Text>{total}</Text>
-              </View>
-              <ActionBtn
-                title="Proceed to checkout"
-                onPress={() =>
-                  navigation.navigate('CartItemScreen', {cartItemData: items})
-                }
-              />
-            </TouchableOpacity>
-          );
-        })
-      ) : (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <Image
-            source={require('../../icons/empty.png')}
-            style={{width: 200, height: 200, transform: [{translateX: -18}]}}
-            resizeMode="contain"
-          />
-          <Text
-            style={{
-              fontWeight: 'bold',
-              fontSize: 16,
-              marginTop: 20,
-              opacity: 0.4,
-            }}>
-            Cart Is Empty!
-          </Text>
-        </View>
-      )} */}
       {countryViseProductsArray.length ? (
         <>
           <Text
@@ -373,6 +131,22 @@ const Cart = () => {
                       padding: 15,
                       marginVertical: 10,
                     }}>
+                    <TouchableOpacity
+                      onPress={() => handleCrossPress(section.content)}
+                      style={{
+                        backgroundColor: 'tomato',
+                        width: 20,
+                        height: 20,
+                        borderRadius: 20,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'absolute',
+                        top: 5,
+                        right: 5,
+                        zIndex: 1,
+                      }}>
+                      <Ionicons name="close" size={15} color="#fff" />
+                    </TouchableOpacity>
                     <Text
                       style={{
                         fontSize: 16,
@@ -445,6 +219,21 @@ const Cart = () => {
       )}
       {countryViseProductsArray.length ? (
         <View style={{alignItems: 'center', padding: 10}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              paddingVertical: 5,
+              justifyContent: 'space-between',
+              paddingHorizontal: 20,
+              width: '100%',
+            }}>
+            <Text style={{fontSize: 12}}>Subtotal:</Text>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: 'bold',
+              }}>{`$ ${cartTotal.toFixed(2)}`}</Text>
+          </View>
           <BigCheckoutBtn
             title={'Checkout All Carts'}
             total={`$ ${cartTotal.toFixed(2)}`}

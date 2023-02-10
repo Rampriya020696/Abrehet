@@ -70,7 +70,6 @@ export const cartSlice = createSlice({
                     return item;
                 }
             });
-            console.log("RES___ZZZ", res)
             state.items = res
         }
     },
