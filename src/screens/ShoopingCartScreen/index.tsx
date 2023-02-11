@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import {useNavigation} from '@react-navigation/native';
 import {compose} from '@reduxjs/toolkit';
@@ -24,7 +25,7 @@ const BigCheckoutBtn = ({title, total, onPress}) => {
       onPress={onPress}
       style={{
         borderRadius: 10,
-        backgroundColor: '#0bad0a',
+        backgroundColor: '#3A2E6E',
 
         width: 300,
       }}>
@@ -33,20 +34,20 @@ const BigCheckoutBtn = ({title, total, onPress}) => {
           color: 'white',
           textAlign: 'center',
           fontSize: 18,
-          fontWeight: '900',
+          fontWeight: '400',
           padding: 18,
         }}>
         {title}
       </Text>
       <Text
         style={{
-          backgroundColor: '#098a09',
+          backgroundColor: '#3A2E6E',
           color: 'white',
           position: 'absolute',
           right: 20,
-          bottom: 15,
+          bottom: 12,
           padding: 3,
-          fontSize: 12,
+          fontSize: 16,
           paddingVertical: 8,
           borderRadius: 5,
         }}>
@@ -102,12 +103,13 @@ const Cart = () => {
         <>
           <Text
             style={{
-              fontSize: 18,
-              fontWeight: '900',
+              fontSize: 20,
+              
+              color: 'black',
               marginBottom: 10,
               marginLeft: 27,
             }}>
-            Cart By Countries
+            Cart By Categories
           </Text>
           <ScrollView style={{paddingHorizontal: 25}}>
             <Accordion
@@ -134,7 +136,7 @@ const Cart = () => {
                     <TouchableOpacity
                       onPress={() => handleCrossPress(section.content)}
                       style={{
-                        backgroundColor: 'tomato',
+                        backgroundColor: 'white',
                         width: 20,
                         height: 20,
                         borderRadius: 20,
@@ -145,7 +147,7 @@ const Cart = () => {
                         right: 5,
                         zIndex: 1,
                       }}>
-                      <Ionicons name="close" size={15} color="#fff" />
+                      <Ionicons name="close" size={15} color="black" />
                     </TouchableOpacity>
                     <Text
                       style={{
@@ -158,16 +160,16 @@ const Cart = () => {
                     <View
                       style={{
                         flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        paddingVertical: 2,
+                      justifyContent: 'space-between',
+                      paddingVertical: 12,
                       }}>
                       <View style={{flexDirection: 'row'}}>
-                        <Text style={{fontWeight: 'bold'}}>Total :</Text>
-                        <Text>$ {total}</Text>
+                        <Text style={{fontWeight: 'bold', fontSize: 16, color: 'black'}}>Total: </Text>
+                        <Text style={{fontWeight: 'bold', fontSize: 18, color: 'black'}}>$ {total}</Text>
                       </View>
                       <View style={{flexDirection: 'row'}}>
-                        <Text style={{fontWeight: 'bold'}}>Net Qty :</Text>
-                        <Text>{section.content.length}</Text>
+                        <Text style={{fontWeight: 'bold', fontSize: 16, color: 'black'}}>Net Qty: </Text>
+                        <Text style={{fontWeight: 'bold', fontSize: 19, color: 'black'}}>{section.content.length}</Text>
                       </View>
                     </View>
                   </View>
@@ -219,23 +221,9 @@ const Cart = () => {
       )}
       {countryViseProductsArray.length ? (
         <View style={{alignItems: 'center', padding: 10}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              paddingVertical: 5,
-              justifyContent: 'space-between',
-              paddingHorizontal: 20,
-              width: '100%',
-            }}>
-            <Text style={{fontSize: 12}}>Subtotal:</Text>
-            <Text
-              style={{
-                fontSize: 16,
-                fontWeight: 'bold',
-              }}>{`$ ${cartTotal.toFixed(2)}`}</Text>
-          </View>
+         
           <BigCheckoutBtn
-            title={'Checkout All Carts'}
+            title={'All Carts Checkout                         '} 
             total={`$ ${cartTotal.toFixed(2)}`}
             onPress={() => {
               navigation.navigate('Address', {cartItemData: cartItems});
@@ -257,10 +245,10 @@ const styles = StyleSheet.create({
   wrapper: {paddingHorizontal: 10},
   cart: {
     fontSize: 20,
+    color: 'black',
     alignItems: 'center',
     textAlign: 'center',
     paddingVertical: 20,
-    color: colors.text.secondary,
     fontFamily: fonts.secondary[600],
   },
   container: {
