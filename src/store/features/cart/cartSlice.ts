@@ -82,10 +82,12 @@ export const { addToCart, addToCartWithQty, removeToCart, handleOrdersComplete }
 export const selectCartItems = (state) => state.cart.items;
 export const selectCartItemsWithId = (state, id) =>
     state.cart.items.filter((item) => item.id === id);
+
+
 export const selectCartTotal = (state) =>
     state.cart.items.reduce((total, item) => {
-        let currentValue = item.price.replaceAll(" ", "")
-        total = total + (Number(currentValue.slice(1)) * item.qty)
+        let currentValue = item?.content?.cost?.replaceAll(" ", "")?.slice(1) || item.price.replaceAll(" ", "").slice(1);
+        total = total + (Number(currentValue) * item.qty)
         return total
     }, 0);
 

@@ -41,7 +41,9 @@ const CartItem = ({cartItem, disableQtyBtn}: CartProductItemProps) => {
           <Text style={styles.desc}>
             {`${cartItem.description.substring(0, 80)}...`}
           </Text>
-          <Text style={styles.price}>{cartItem.price}</Text>
+          <Text style={styles.price}>
+            {cartItem?.content?.cost || cartItem?.price}
+          </Text>
           {disableQtyBtn || (
             <View style={[styles.pilih]}>
               <TouchableOpacity

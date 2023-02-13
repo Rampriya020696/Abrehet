@@ -57,11 +57,11 @@ const ProductDetail = props => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header
+      {/* <Header
         title="Product Detail"
         icon={ICCart2}
         onPress={() => navigation.goBack()}
-      />
+      /> */}
       <ScrollView>
         <View style={styles.wrap}>
           <ScrollView

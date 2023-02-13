@@ -104,7 +104,7 @@ const Cart = () => {
           <Text
             style={{
               fontSize: 20,
-              
+
               color: 'black',
               marginBottom: 10,
               marginLeft: 27,
@@ -160,16 +160,44 @@ const Cart = () => {
                     <View
                       style={{
                         flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      paddingVertical: 12,
+                        justifyContent: 'space-between',
+                        paddingVertical: 12,
                       }}>
                       <View style={{flexDirection: 'row'}}>
-                        <Text style={{fontWeight: 'bold', fontSize: 16, color: 'black'}}>Total: </Text>
-                        <Text style={{fontWeight: 'bold', fontSize: 18, color: 'black'}}>$ {total}</Text>
+                        <Text
+                          style={{
+                            fontWeight: 'bold',
+                            fontSize: 16,
+                            color: 'black',
+                          }}>
+                          Total:{' '}
+                        </Text>
+                        <Text
+                          style={{
+                            fontWeight: 'bold',
+                            fontSize: 18,
+                            color: 'black',
+                          }}>
+                          $ {total?.toFixed(2)}
+                        </Text>
                       </View>
                       <View style={{flexDirection: 'row'}}>
-                        <Text style={{fontWeight: 'bold', fontSize: 16, color: 'black'}}>Net Qty: </Text>
-                        <Text style={{fontWeight: 'bold', fontSize: 19, color: 'black'}}>{section.content.length}</Text>
+                        <Text
+                          style={{
+                            fontWeight: 'bold',
+                            fontSize: 16,
+                            color: 'black',
+                          }}>
+                          Net Qty:{' '}
+                        </Text>
+                        <Text
+                          style={{
+                            fontWeight: 'bold',
+                            fontSize: 19,
+                            color: 'black',
+                          }}>
+                          {section.content.length}
+                        </Text>
                       </View>
                     </View>
                   </View>
@@ -221,9 +249,8 @@ const Cart = () => {
       )}
       {countryViseProductsArray.length ? (
         <View style={{alignItems: 'center', padding: 10}}>
-         
           <BigCheckoutBtn
-            title={'All Carts Checkout                         '} 
+            title={'All Carts Checkout                         '}
             total={`$ ${cartTotal.toFixed(2)}`}
             onPress={() => {
               navigation.navigate('Address', {cartItemData: cartItems});

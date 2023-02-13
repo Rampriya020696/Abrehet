@@ -248,19 +248,25 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                 overflow: 'hidden',
                 justifyContent: 'center',
                 alignItems: 'center',
-                
               }}>
               <Image
                 source={{uri: item?.image}}
-                style={{height: 80, width: '100%',}}
+                style={{height: 80, width: '100%'}}
                 resizeMode="contain"
               />
               <Text style={{textAlign: 'left', fontSize: 14, color: 'black'}}>
                 {item.title}
               </Text>
               <View style={{flex: 1, justifyContent: 'flex-end'}}>
-                <Text style={{textAlign: 'left', fontSize: 17, color: 'black', marginLeft: -6,}}>
-                  {item.price}</Text>
+                <Text
+                  style={{
+                    textAlign: 'left',
+                    fontSize: 17,
+                    color: 'black',
+                    marginLeft: -6,
+                  }}>
+                  {item?.content?.price || item?.price}
+                </Text>
               </View>
             </TouchableOpacity>
           );

@@ -83,28 +83,35 @@ const ProductScreen = () => {
         data: types.GetProductsQuery;
       };
 
-      let parsed = _.pick(JSON.parse(getProducts.data.getProducts!.content), [
-        'id',
-        'title',
-        'description',
-        'image',
-        'images',
-        'price',
-        'options',
-        'oldPrice',
-        'ratings',
-        'title',
-        'avgRating',
-        'country',
-      ]);
-      parsed.images = parsed.images.split(',');
-      if (!parsed.options) {
-        parsed.options = [];
-      } else {
-        parsed.options = parsed.options.split(',');
-      }
-      console.log({parsed});
-      setProduct(parsed);
+      const pro = getProducts.data.getProducts;
+      pro['content'] = JSON.parse(getProducts?.data?.getProducts?.content);
+
+      pro['images'] = pro?.content?.images?.split(',');
+
+      console.log('llll', pro);
+
+      // let parsed = _.pick(JSON.parse(getProducts.data.getProducts!.content), [
+      //   'id',
+      //   'title',
+      //   'description',
+      //   'image',
+      //   'images',
+      //   'price',
+      //   'options',
+      //   'oldPrice',
+      //   'ratings',
+      //   'title',
+      //   'avgRating',
+      //   'country',
+      // ]);
+      // parsed.images = parsed.images.split(',');
+      // if (!parsed.options) {
+      //   parsed.options = [];
+      // } else {
+      //   parsed.options = parsed.options.split(',');
+      // }
+      // console.log({parsed});
+      setProduct(pro);
     };
     fetchProducts();
   }, []);
@@ -157,7 +164,9 @@ const ProductScreen = () => {
         {/* Name of Item */}
         <View style={styles2.section1}>
           <Text style={styles2.name}>{product.title}</Text>
-          <Text style={styles2.name}>{product.price}</Text>
+          <Text style={styles2.name}>
+            {product?.content?.cost || product.price}
+          </Text>
           <View style={styles2.strip} />
           <View style={[styles2.sale, {justifyContent: 'center'}]}>
             <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
@@ -187,7 +196,9 @@ const ProductScreen = () => {
 
         {/* Description */}
         <Text style={styles2.title}>Description</Text>
-        <Text style={styles2.desc}>{product.description}</Text>
+        <Text style={styles2.desc}>
+          {product?.content?.description || product.description}
+        </Text>
 
         <Gap height={20} />
       </ScrollView>
