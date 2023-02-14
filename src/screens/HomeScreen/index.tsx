@@ -244,7 +244,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                 borderWidth: 1,
                 borderColor: 'rgba(0,0,0,0.1)',
                 margin: 2,
-                padding: 5,
+                padding: 1,
                 overflow: 'hidden',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -283,12 +283,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: 'black',
     fontStyle: 'normal',
-    marginVertical: 10,
-    paddingLeft: 20,
+    marginVertical: 20,
+    paddingLeft: 10,
   },
   page: {
     flex: 1,
     backgroundColor: colors.white,
+    
   },
   gap: {
     height: 0,
@@ -328,10 +329,11 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: fonts.primary[900],
     fontWeight: '500',
-    color: 'red',
+    color: 'black',
     fontStyle: 'normal',
-    marginLeft: 20,
-    // marginVertical: 20,
+    marginLeft: 10,
+     marginVertical: 38,
+     marginBottom: 10
   },
   titleSearch: {
     flex: 1,

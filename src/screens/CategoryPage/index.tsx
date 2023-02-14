@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
@@ -73,6 +74,7 @@ const CategoryPage = () => {
       <FlatList
         style={{
           flex: 1,
+          padding: 1,
         }}
         ListHeaderComponent={() => {
           return (
@@ -81,10 +83,10 @@ const CategoryPage = () => {
                 <Text style={{padding: 10}}>
                   <Text style={{fontWeight: 'bold',
                   color: 'black',
-                  fontSize: 19
-                
+                  fontSize: 20   
                 }}>Description: </Text>
                   {des}
+                  
                 </Text>
               )}
             </View>
@@ -101,13 +103,14 @@ const CategoryPage = () => {
               <ActivityIndicator color={colors.primary} size="large" />
             </View>
           ) : (
-            <Text style={{textAlign: 'center'}}> no products</Text>
+            <Text style={{textAlign: 'center', }}> no products</Text>
           );
         }}
         data={product}
         numColumns={2}
         keyExtractor={(item: any) => String(item.id)}
         renderItem={({item}: any) => {
+          
           return (
             <View key={`${item.id}`} style={styles.page}>
               <View style={styles.recomended}>
@@ -139,6 +142,11 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: colors.white,
+    marginVertical: 20,
+    marginBottom: -60,
+    marginTop: 20,
+    
+    
   },
   recomended: {
     flex: 1,
@@ -146,5 +154,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
+    marginVertical: -27
   },
 });
