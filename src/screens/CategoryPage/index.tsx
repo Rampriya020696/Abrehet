@@ -81,12 +81,11 @@ const CategoryPage = () => {
             <View>
               {des && (
                 <Text style={{padding: 10}}>
-                  <Text style={{fontWeight: 'bold',
-                  color: 'black',
-                  fontSize: 20   
-                }}>Description: </Text>
+                  <Text
+                    style={{fontWeight: 'bold', color: 'black', fontSize: 20}}>
+                    Description:{' '}
+                  </Text>
                   {des}
-                  
                 </Text>
               )}
             </View>
@@ -103,23 +102,20 @@ const CategoryPage = () => {
               <ActivityIndicator color={colors.primary} size="large" />
             </View>
           ) : (
-            <Text style={{textAlign: 'center', }}> no products</Text>
+            <Text style={{textAlign: 'center'}}> no products</Text>
           );
         }}
         data={product}
         numColumns={2}
         keyExtractor={(item: any) => String(item.id)}
         renderItem={({item}: any) => {
-          
           return (
             <View key={`${item.id}`} style={styles.page}>
               <View style={styles.recomended}>
                 <Recomended
                   image={{uri: item?.image}}
                   title={item?.title}
-                  price={item?.price}
-                 /* rating="4.8"
-          totalSale="932 Sale" */ 
+                  price={item?.content?.cost || item?.price}
                   country={item.country}
                   category={item.category}
                   onPress={() => {
@@ -145,8 +141,6 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     marginBottom: -60,
     marginTop: 20,
-    
-    
   },
   recomended: {
     flex: 1,
@@ -154,6 +148,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
-    marginVertical: -27
+    marginVertical: -27,
   },
 });
