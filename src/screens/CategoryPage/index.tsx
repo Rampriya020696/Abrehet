@@ -115,7 +115,7 @@ const CategoryPage = () => {
                 <Recomended
                   image={{uri: item?.image}}
                   title={item?.title}
-                  price={item?.content?.cost || item?.price}
+                  price={item?.price || item?.content?.cost}
                   country={item.country}
                   category={item.category}
                   onPress={() => {

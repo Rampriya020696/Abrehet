@@ -118,9 +118,10 @@ const Cart = () => {
               activeSections={activeSections}
               renderHeader={(section, _, isActive) => {
                 const total = section.content?.reduce((total, item) => {
-                  let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
-                  cost = Number(cost) * item.qty;
-                  let newTotal = total + cost;
+                  // let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
+                  let price = item?.price?.replaceAll(' ', '')?.slice(1);
+                  price = Number(price) * item.qty;
+                  let newTotal = total + price;
                   // console.log(`total ${total} + ${cost} = ${newTotal}`);
                   return newTotal;
                 }, 0);

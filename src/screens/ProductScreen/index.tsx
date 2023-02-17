@@ -165,7 +165,9 @@ const ProductScreen = () => {
         <View style={styles2.section1}>
           <Text style={styles2.name}>{product.title}</Text>
           <Text style={styles2.name}>
-            {product?.content?.cost || product.price}
+            {product?.price ||
+              product?.content?.price ||
+              product?.content?.cost}
           </Text>
           <View style={styles2.strip} />
           <View style={[styles2.sale, {justifyContent: 'center'}]}>

@@ -92,9 +92,10 @@ const OrderHistory = ({navigation}) => {
             renderHeader={(section, _, isActive) => {
               const products = JSON.parse(section.Products);
               const total = products?.reduce((total, item) => {
-                let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
-                cost = Number(cost) * item.qty;
-                let newTotal = total + cost;
+                // let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
+                let price = item?.price?.replaceAll(' ', '')?.slice(1);
+                price = Number(price) * item.qty;
+                let newTotal = total + price;
                 // console.log(`total ${total} + ${cost} = ${newTotal}`);
                 return newTotal;
               }, 0);
@@ -119,7 +120,6 @@ const OrderHistory = ({navigation}) => {
                     style={{
                       fontSize: 19,
                       color: 'black',
-                      
                     }}>
                     Status: {section.Status}
                   </Text>
@@ -127,7 +127,7 @@ const OrderHistory = ({navigation}) => {
                     style={{
                       fontSize: 16,
                       color: 'black',
-                      fontWeight: 'bold'
+                      fontWeight: 'bold',
                     }}>
                     {section.createdAt.slice(0, 10)}
                   </Text>
@@ -139,12 +139,30 @@ const OrderHistory = ({navigation}) => {
                       paddingVertical: 9,
                     }}>
                     <View style={{flexDirection: 'row'}}>
-                      <Text style={{color: 'black', fontSize: 20}}>Total: </Text>
-                      <Text style={{color: 'black', fontSize: 20, fontWeight: 'bold'}}>${total}</Text>
+                      <Text style={{color: 'black', fontSize: 20}}>
+                        Total:{' '}
+                      </Text>
+                      <Text
+                        style={{
+                          color: 'black',
+                          fontSize: 20,
+                          fontWeight: 'bold',
+                        }}>
+                        ${total}
+                      </Text>
                     </View>
                     <View style={{flexDirection: 'row'}}>
-                      <Text style={{color: 'black', fontSize: 16}}>Net Qty: </Text>
-                      <Text style={{color: 'green', fontSize: 18, fontWeight: 'bold'}}>{products.length}</Text>
+                      <Text style={{color: 'black', fontSize: 16}}>
+                        Net Qty:{' '}
+                      </Text>
+                      <Text
+                        style={{
+                          color: 'green',
+                          fontSize: 18,
+                          fontWeight: 'bold',
+                        }}>
+                        {products.length}
+                      </Text>
                     </View>
                   </View>
                 </View>

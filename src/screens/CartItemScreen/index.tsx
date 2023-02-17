@@ -28,9 +28,10 @@ const CartItemScreen = () => {
             <Text>
               {cartItemData?.reduce((total, item) => {
                 console.log(item, 'op');
-                let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
-                cost = Number(cost) * item.qty;
-                let newTotal = total + cost;
+                // let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
+                let price = item?.price?.replaceAll(' ', '')?.slice(1);
+                price = Number(price) * item.qty;
+                let newTotal = total + price;
                 return newTotal;
               }, 0)}
             </Text>

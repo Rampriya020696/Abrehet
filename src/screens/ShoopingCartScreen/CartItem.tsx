@@ -42,7 +42,7 @@ const CartItem = ({cartItem, disableQtyBtn}: CartProductItemProps) => {
             {`${cartItem.description.substring(0, 80)}...`}
           </Text>
           <Text style={styles.price}>
-            {cartItem?.content?.cost || cartItem?.price}
+            {cartItem?.price || cartItem?.content?.cost}
           </Text>
           {disableQtyBtn || (
             <View style={[styles.pilih]}>
@@ -72,7 +72,8 @@ const CartItem = ({cartItem, disableQtyBtn}: CartProductItemProps) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            globalThis.itemDetails = item.id;
+            globalThis.itemDetails = cartItem.id;
+
             // console.log('item pressed', globalThis);
             navigation.navigate('ProductDetails', {rawItem: cartItem});
           }}>

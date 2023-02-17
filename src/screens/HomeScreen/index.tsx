@@ -231,7 +231,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         renderItem={({item}: any) => {
           const isRecommended = item?.isRecommended || null;
           if (!isRecommended) return null;
-
+          console.log(item);
           return (
             <TouchableOpacity
               onPress={() => {
@@ -265,7 +265,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                     color: 'black',
                     marginLeft: -6,
                   }}>
-                  {item?.content?.price || item?.price}
+                  {item?.price || item?.content?.price}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -289,7 +289,6 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: colors.white,
-    
   },
   gap: {
     height: 0,
@@ -332,8 +331,8 @@ const styles = StyleSheet.create({
     color: 'black',
     fontStyle: 'normal',
     marginLeft: 10,
-     marginVertical: 38,
-     marginBottom: 10
+    marginVertical: 38,
+    marginBottom: 10,
   },
   titleSearch: {
     flex: 1,
