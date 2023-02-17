@@ -13,6 +13,7 @@ import {BoxShadow} from 'react-native-shadow';
 import {ICStar} from '../../Assets';
 
 import {colors, fonts} from '../../utils';
+import ProductModal from '../ProducModal';
 
 const width = Dimensions.get('window').width;
 
@@ -41,10 +42,12 @@ type ProductProps = {
   country: string;
   title: string;
   category: string;
+  des: string;
 };
 
 const Recomended = React.memo((props: ProductProps) => {
   const [showAlert, setShowAlert] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
 
   const handleShowAlert = () => {
     setShowAlert(true);
@@ -71,27 +74,30 @@ const Recomended = React.memo((props: ProductProps) => {
   //     <Image source={props.image} style={{height: 100}} resizeMode="contain" />
   //   </TouchableOpacity>
   // );
+
+  console.log(props, 'xxxxxx');
   return (
     <View style={styles.container}>
       {/* <BoxShadow style={styles.container2} setting={shadowOpt}> */}
+      <ProductModal
+        title={props.title}
+        price={props.price}
+        image={props.image.uri}
+        country={props.country}
+        des={props.des}
+        onClose={() => setVisible(false)}
+        visible={visible}
+      />
+
       <View style={styles.container2}>
         <View style={[styles.card]}>
-          {/* <TouchableOpacity onPress={() => handleShowAlert()}>
-            <AwesomeAlert
-              customView={
-                <Image source={props.image} style={styles.alertImage} />
-              }
-              show={showAlert}
-              showProgress={false}
-              closeOnTouchOutside={true}
-              closeOnHardwareBackPress={false}
+          <TouchableOpacity onPress={() => setVisible(true)}>
+            <Image
+              source={props.image}
+              style={{width: '100%', height: 150}}
+              resizeMode="contain"
             />
-          </TouchableOpacity> */}
-          <Image
-            source={props.image}
-            style={{width: '100%', height: 150}}
-            resizeMode="contain"
-          />
+          </TouchableOpacity>
           <TouchableOpacity
             style={styles.wrapperDetail}
             onPress={props.onPress}>
@@ -114,13 +120,6 @@ const Recomended = React.memo((props: ProductProps) => {
               {props.price}
             </Text>
             <Text style={[styles.price, {fontSize: 14}]}>{props.country}</Text>
-            {/* <View style={styles.wrapperRating}>
-              <View style={styles.wrapperRating2}>
-                <Text style={styles.titleRating}>{props.rating}</Text>
-                <Image source={ICStar} style={styles.icon} />
-              </View>
-              <Text style={styles.titleSale}>{props.totalSale}</Text>
-            </View> */}
           </TouchableOpacity>
         </View>
       </View>

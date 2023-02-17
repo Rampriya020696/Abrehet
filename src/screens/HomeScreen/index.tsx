@@ -26,6 +26,7 @@ import Recomended from '../../components/Recomended';
 import {HeaderComponent} from '../../router/HomeStack';
 import RenderPorductItem from './RednderProductItem';
 import RecommendedList from './RecommendedList';
+import ProductModal from '../../components/ProducModal';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -82,6 +83,64 @@ const makeBanneData = data => {
   return data.map(item => {
     return {uri: item.image, ...item};
   });
+};
+
+const RecommendedBox = ({item}) => {
+  const [visible, setVisible] = useState(false);
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        globalThis.itemDetails = item.id;
+        navigation.navigate('ProductDetails', {rawItem: item});
+      }}
+      style={{
+        flex: 1,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.1)',
+        margin: 2,
+        padding: 1,
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <ProductModal
+        title={item.title}
+        price={item?.price || item?.content?.price}
+        image={item.image || item.content.image}
+        country={item.country}
+        des={item?.description || item.content.description}
+        onClose={() => setVisible(false)}
+        visible={visible}
+      />
+      <TouchableOpacity
+        style={{height: 80, width: '100%'}}
+        onPress={() => {
+          setVisible(true);
+        }}>
+        <Image
+          source={{uri: item?.image}}
+          style={{height: 80, width: '100%'}}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
+      <Text style={{textAlign: 'left', fontSize: 14, color: 'black'}}>
+        {item.title}
+      </Text>
+      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+        <Text
+          style={{
+            textAlign: 'left',
+            fontSize: 17,
+            color: 'black',
+            marginLeft: -6,
+          }}>
+          {item?.price || item?.content?.price}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
 };
 
 const HomeScreen = ({searchValue}: HomeScreenProps) => {
@@ -232,44 +291,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           const isRecommended = item?.isRecommended || null;
           if (!isRecommended) return null;
           console.log(item);
-          return (
-            <TouchableOpacity
-              onPress={() => {
-                globalThis.itemDetails = item.id;
-                navigation.navigate('ProductDetails', {rawItem: item});
-              }}
-              style={{
-                flex: 1,
-                borderRadius: 10,
-                borderWidth: 1,
-                borderColor: 'rgba(0,0,0,0.1)',
-                margin: 2,
-                padding: 1,
-                overflow: 'hidden',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={{uri: item?.image}}
-                style={{height: 80, width: '100%'}}
-                resizeMode="contain"
-              />
-              <Text style={{textAlign: 'left', fontSize: 14, color: 'black'}}>
-                {item.title}
-              </Text>
-              <View style={{flex: 1, justifyContent: 'flex-end'}}>
-                <Text
-                  style={{
-                    textAlign: 'left',
-                    fontSize: 17,
-                    color: 'black',
-                    marginLeft: -6,
-                  }}>
-                  {item?.price || item?.content?.price}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
+          return <RecommendedBox item={item} />;
         }}
       />
     </View>

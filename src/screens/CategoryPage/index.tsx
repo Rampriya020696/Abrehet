@@ -16,6 +16,7 @@ import Header from '../../components/Header';
 import {API, graphqlOperation} from 'aws-amplify';
 import Recomended from '../../components/Recomended';
 import {colors} from '../../utils';
+import ProductModal from '../../components/ProducModal';
 
 const CategoryPage = () => {
   const {title, id, des} = useRoute<any>().params;
@@ -118,6 +119,7 @@ const CategoryPage = () => {
                   price={item?.price || item?.content?.cost}
                   country={item.country}
                   category={item.category}
+                  des={item.description || item.content.description}
                   onPress={() => {
                     globalThis.itemDetails = item.id;
                     navigation.navigate('ProductDetails', {rawItem: item});
