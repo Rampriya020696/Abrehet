@@ -73,8 +73,9 @@ const Recomended = React.memo((props: ProductProps) => {
   // );
   return (
     <View style={styles.container}>
-      <BoxShadow style={styles.container2} setting={shadowOpt}>
-        <View style={styles.card}>
+      {/* <BoxShadow style={styles.container2} setting={shadowOpt}> */}
+      <View style={styles.container2}>
+        <View style={[styles.card]}>
           {/* <TouchableOpacity onPress={() => handleShowAlert()}>
             <AwesomeAlert
               customView={
@@ -94,11 +95,25 @@ const Recomended = React.memo((props: ProductProps) => {
           <TouchableOpacity
             style={styles.wrapperDetail}
             onPress={props.onPress}>
-            <Text numberOfLines={1} style={styles.title}>
+            <Text
+              numberOfLines={1}
+              style={[
+                styles.title,
+                {
+                  fontSize: 17,
+                  color: '#000',
+                },
+              ]}>
               {props.title}
             </Text>
-            <Text style={styles.price}>{props.price}</Text>
-            <Text style={[styles.price, {fontSize: 10}]}>{props.country}</Text>
+            <Text
+              style={
+                (styles.price,
+                {fontSize: 18, color: 'black', fontWeight: 'bold'})
+              }>
+              {props.price}
+            </Text>
+            <Text style={[styles.price, {fontSize: 14}]}>{props.country}</Text>
             {/* <View style={styles.wrapperRating}>
               <View style={styles.wrapperRating2}>
                 <Text style={styles.titleRating}>{props.rating}</Text>
@@ -108,7 +123,8 @@ const Recomended = React.memo((props: ProductProps) => {
             </View> */}
           </TouchableOpacity>
         </View>
-      </BoxShadow>
+      </View>
+      {/* </BoxShadow> */}
     </View>
   );
 });
