@@ -11,22 +11,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {graphqlOperation} from 'aws-amplify';
-import * as types from '../../API';
 import {API} from 'aws-amplify';
-import * as queries from '../../graphql/queries';
 import _ from 'lodash';
-import {useDispatch} from 'react-redux';
-
 import Banner from '../../components/Banner';
 import MenuIcon from '../../components/MenuIcon';
 import {useNavigation} from '@react-navigation/native';
-import Gap from '../../components/Gap';
 import {colors, fonts} from '../../utils';
-import Recomended from '../../components/Recomended';
 import {HeaderComponent} from '../../router/HomeStack';
-import RenderPorductItem from './RednderProductItem';
-import RecommendedList from './RecommendedList';
 import ProductModal from '../../components/ProducModal';
+import CartActionShortcut from '../../components/CartActionShortcut';
+import ListFooterComponent from './ListFooterComponent';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -70,22 +64,13 @@ interface ProductItemProps {
   country?: string;
 }
 
-const images = [
-  require('../../Assets/Banner.png'),
-  require('../../Assets/Baner2.png'),
-  require('../../Assets/Category3.png'),
-  require('../../Assets/Baner5.png'),
-  require('../../Assets/Category1.png'),
-  require('../../Assets/Baner3.png'),
-];
-
 const makeBanneData = data => {
   return data.map(item => {
     return {uri: item.image, ...item};
   });
 };
 
-const RecommendedBox = ({item}) => {
+export const RecommendedBox = ({item}) => {
   const [visible, setVisible] = useState(false);
   const navigation = useNavigation();
   return (
@@ -101,10 +86,22 @@ const RecommendedBox = ({item}) => {
         borderColor: 'rgba(0,0,0,0.1)',
         margin: 2,
         padding: 1,
-        overflow: 'hidden',
+        // overflow: 'hidden',
         justifyContent: 'center',
         alignItems: 'center',
       }}>
+      <View
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          left: 0,
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1,
+        }}>
+        <CartActionShortcut />
+      </View>
       <ProductModal
         title={item.title}
         price={item?.price || item?.content?.price}
@@ -157,12 +154,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
 
     const fetchProducts = async () => {
       try {
-        // let allProducts = (await API.graphql({
-        //   query: queries.listProducts,
-        // })) as {
-        //   data: types.ListProductsQuery;
-        // };
-
         const allProducts = (await API.graphql(
           graphqlOperation(listProductsQuery, {}),
         )) as any;
@@ -197,18 +188,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
             }
           }),
         );
-        // setProducts(
-        //   allProducts.data.listProducts!.items.map(item => {
-        //     return _.pick(JSON.parse(item!.content), [
-        //       'id',
-        //       'title',
-        //       'image',
-        //       'price',
-        //       'oldPrice',
-        //       'country',
-        //     ]);
-        //   }),
-        // );
       } catch (error) {
         console.log(error);
       }
@@ -239,11 +218,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         item.title.toLowerCase().includes(searchString.toLowerCase()),
       ),
     );
-    // setFilterProducts(
-    //   products.filter(item =>
-    //     item.title.toLowerCase().includes(searchString.toLowerCase()),
-    //   ),
-    // );
   }, [searchString]);
 
   console.log(products, 'products');
@@ -257,7 +231,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         style={{
           flex: 1,
         }}
-        // data={searchString ? filterProducts : products}
         data={searchString ? filterProducts : recommendedProduct}
         ListHeaderComponent={() => {
           if (searchString) return <View />;
@@ -280,7 +253,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               </View>
               <MenuIcon />
               <Text style={styles.title}>Flash Sale</Text>
-              {/* <RecommendedList data={products} /> */}
             </>
           );
         }}
@@ -293,6 +265,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           console.log(item);
           return <RecommendedBox item={item} />;
         }}
+        ListFooterComponent={<ListFooterComponent />}
       />
     </View>
   );

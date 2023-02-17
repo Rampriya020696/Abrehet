@@ -13,6 +13,7 @@ import {BoxShadow} from 'react-native-shadow';
 import {ICStar} from '../../Assets';
 
 import {colors, fonts} from '../../utils';
+import CartActionShortcut from '../CartActionShortcut';
 import ProductModal from '../ProducModal';
 
 const width = Dimensions.get('window').width;
@@ -22,17 +23,17 @@ const shadowOpt = {
   height: 331,
   // width: 100,
   // height: 100,
-  color: '#000',
+  // color: '#000',
 
-  border: 2,
+  border: 0,
   radius: 10,
-  opacity: 0.1,
-  x: 0.2,
-  y: 0.3,
-  style: {
-    marginTop: 15,
-    marginRight: 6,
-  },
+  opacity: 0,
+  // x: 0.2,
+  // y: 0.3,
+  // style: {
+  //   marginTop: 15,
+  //   marginRight: 6,
+  // },
 };
 
 type ProductProps = {
@@ -79,51 +80,66 @@ const Recomended = React.memo((props: ProductProps) => {
   return (
     <View style={styles.container}>
       {/* <BoxShadow style={styles.container2} setting={shadowOpt}> */}
-      <ProductModal
-        title={props.title}
-        price={props.price}
-        image={props.image.uri}
-        country={props.country}
-        des={props.des}
-        onClose={() => setVisible(false)}
-        visible={visible}
-      />
-
       <View style={styles.container2}>
-        <View style={[styles.card]}>
-          <TouchableOpacity onPress={() => setVisible(true)}>
-            <Image
-              source={props.image}
-              style={{width: '100%', height: 150}}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.wrapperDetail}
-            onPress={props.onPress}>
-            <Text
-              numberOfLines={1}
-              style={[
-                styles.title,
-                {
-                  fontSize: 17,
-                  color: '#000',
-                },
-              ]}>
-              {props.title}
-            </Text>
-            <Text
-              style={
-                (styles.price,
-                {fontSize: 18, color: 'black', fontWeight: 'bold'})
-              }>
-              {props.price}
-            </Text>
-            <Text style={[styles.price, {fontSize: 14}]}>{props.country}</Text>
-          </TouchableOpacity>
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            left: 0,
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1,
+          }}>
+          <CartActionShortcut />
+        </View>
+        <ProductModal
+          title={props.title}
+          price={props.price}
+          image={props.image.uri}
+          country={props.country}
+          des={props.des}
+          onClose={() => setVisible(false)}
+          visible={visible}
+        />
+
+        <View style={styles.container2}>
+          <View style={[styles.card]}>
+            <TouchableOpacity onPress={() => setVisible(true)}>
+              <Image
+                source={props.image}
+                style={{width: '100%', height: 150}}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.wrapperDetail}
+              onPress={props.onPress}>
+              <Text
+                numberOfLines={1}
+                style={[
+                  styles.title,
+                  {
+                    fontSize: 17,
+                    color: '#000',
+                  },
+                ]}>
+                {props.title}
+              </Text>
+              <Text
+                style={
+                  (styles.price,
+                  {fontSize: 18, color: 'black', fontWeight: 'bold'})
+                }>
+                {props.price}
+              </Text>
+              <Text style={[styles.price, {fontSize: 14}]}>
+                {props.country}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-      {/* </BoxShadow> */}
     </View>
   );
 });
@@ -132,8 +148,10 @@ export default Recomended;
 const styles = StyleSheet.create({
   container: {paddingVertical: 5},
   container2: {
-    flex: 1,
-    width: '100%',
+    // flex: 1,
+    // width: '100%',
+    width: width * 0.45,
+    height: 331,
   },
   card: {
     backgroundColor: colors.white,
