@@ -337,11 +337,11 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: fonts.primary[900],
     fontWeight: '500',
-    color: 'black',
+    color: 'red',
     fontStyle: 'normal',
     marginLeft: 10,
     marginVertical: 38,
-    marginBottom: 10,
+    marginBottom: -60,
   },
   titleSearch: {
     flex: 1,

@@ -87,11 +87,15 @@ const CategoryPage = () => {
                     Description:{' '}
                   </Text>
                   {des}
+                  
                 </Text>
               )}
             </View>
           );
         }}
+
+        //List of empty catagories
+
         ListEmptyComponent={() => {
           return loading ? (
             <View
@@ -142,7 +146,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     marginVertical: 10,
-    marginBottom: -30,
+    marginBottom: -50,
     marginTop: 30,
   },
   recomended: {
