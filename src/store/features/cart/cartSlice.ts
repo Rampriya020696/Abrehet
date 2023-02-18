@@ -78,8 +78,9 @@ export const {addToCart, addToCartWithQty, removeToCart, handleOrdersComplete} =
 
 // Selector
 export const selectCartItems = state => state.cart.items;
-export const selectCartItemsWithId = (state, id) =>
-  state.cart.items.filter(item => item.id === id);
+export const selectCartItemsWithId = (state, id) => {
+  return state.cart.items.find(item => item.id === id);
+};
 
 export const selectCartTotal = state =>
   state.cart.items.reduce((total, item) => {

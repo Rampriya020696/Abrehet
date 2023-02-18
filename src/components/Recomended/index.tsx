@@ -83,7 +83,11 @@ const Recomended = React.memo((props: ProductProps) => {
             alignItems: 'center',
             zIndex: 1,
           }}>
-          <CartActionShortcut add={handleAdd} remove={handleRemove} />
+          <CartActionShortcut
+            add={handleAdd}
+            remove={handleRemove}
+            productId={props?.raw?.id}
+          />
         </View>
         <ProductModal
           title={props.title}

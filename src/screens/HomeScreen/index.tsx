@@ -110,7 +110,11 @@ export const RecommendedBox = ({item}) => {
           alignItems: 'center',
           zIndex: 1,
         }}>
-        <CartActionShortcut add={handleAdd} remove={handleRemove} />
+        <CartActionShortcut
+          add={handleAdd}
+          remove={handleRemove}
+          productId={item?.id}
+        />
       </View>
       <ProductModal
         title={item.title}

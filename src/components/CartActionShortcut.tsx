@@ -2,21 +2,27 @@ import {View, Alert, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useSelector} from 'react-redux';
+import {selectCartItemsWithId} from '../store/features/cart/cartSlice';
 // minus plus
 
 //  delete
 const INACTIVE_BTN_SIZE = 30;
 
-const CartActionShortcut = ({add, remove}) => {
+const CartActionShortcut = ({add, remove, productId}) => {
   const [isExpaned, setIsExpaned] = React.useState(false);
+  // const productQty =
+  // useSelector(s => selectCartItemsWithId(s, productId))?.qty || 0;
   const [count, setCount] = React.useState(0);
-
+  let timerRef = React.useRef<any>(null).current;
   const handleAddPress = () => {
+    updateTimeout();
     setCount(count + 1);
     setIsExpaned(true);
     add();
   };
   const handleRemovePress = () => {
+    updateTimeout();
     remove();
     if (count <= 1) {
       setCount(0);
@@ -26,6 +32,17 @@ const CartActionShortcut = ({add, remove}) => {
     }
   };
 
+  const updateTimeout = () => {
+    if (timerRef) {
+      clearTimeout(timerRef);
+    }
+
+    timerRef = setTimeout(() => {
+      setIsExpaned(false);
+    }, 4500);
+  };
+
+  React.useEffect(() => {}, []);
   return (
     <View
       style={{
@@ -74,7 +91,16 @@ const CartActionShortcut = ({add, remove}) => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Entypo name="plus" color="#FFF" size={24} />
+        {count > 1 && !isExpaned ? (
+          <Text
+            style={{
+              color: '#FFF',
+            }}>
+            {count}
+          </Text>
+        ) : (
+          <Entypo name="plus" color="#FFF" size={24} />
+        )}
       </TouchableOpacity>
     </View>
   );
