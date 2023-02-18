@@ -47,3 +47,25 @@ Entypo  minus plus
 
 MaterialIcons delete
  
+
+
+
+
+abrehet
+* increased fontSize in catagory List
+* added product details model popup from all products 
+* price calculating with "price" key insted of "cost" key
+* added horizontal list of catagories below flash sale
+* created quickAdd/Remove to cart for all product in catagory and homeScreen (STATIC FOR NOW)
+
+
+* pick photo from gallery feature added
+* capture photo from camera feature added
+* flash on/off feature added
+
+* history sheet removed and added history screen
+* scanned answer updated with new data
+* Help and support screen updated
+* FAQ screen , Question with answer update according to new desgin update
+* subscription sheet implemented when click on 3 scan left
+

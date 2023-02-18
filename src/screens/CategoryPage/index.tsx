@@ -114,6 +114,7 @@ const CategoryPage = () => {
             <View key={`${item.id}`} style={styles.page}>
               <View style={styles.recomended}>
                 <Recomended
+                  raw={item}
                   image={{uri: item?.image}}
                   title={item?.title}
                   price={item?.price || item?.content?.cost}

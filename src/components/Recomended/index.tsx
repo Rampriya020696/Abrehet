@@ -10,7 +10,9 @@ import {
 } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import {BoxShadow} from 'react-native-shadow';
+import {useDispatch} from 'react-redux';
 import {ICStar} from '../../Assets';
+import {addToCart, removeToCart} from '../../store/features/cart/cartSlice';
 
 import {colors, fonts} from '../../utils';
 import CartActionShortcut from '../CartActionShortcut';
@@ -44,11 +46,13 @@ type ProductProps = {
   title: string;
   category: string;
   des: string;
+  raw?: object;
 };
 
 const Recomended = React.memo((props: ProductProps) => {
   const [showAlert, setShowAlert] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleShowAlert = () => {
     setShowAlert(true);
@@ -59,24 +63,12 @@ const Recomended = React.memo((props: ProductProps) => {
     setShowAlert(false);
   };
 
-  // return (
-  //   <TouchableOpacity
-  //     onPress={props.onPress}
-  //     style={{
-  //       flex: 1,
-  //       height: 100,
-  //       borderRadius: 4,
-  //       borderWidth: 1,
-  //       borderColor: 'rgba(0,0,0,0.1)',
-  //       margin: 2,
-  //       padding: 5,
-  //       overflow: 'hidden',
-  //     }}>
-  //     <Image source={props.image} style={{height: 100}} resizeMode="contain" />
-  //   </TouchableOpacity>
-  // );
-
-  console.log(props, 'xxxxxx');
+  const handleAdd = () => {
+    dispatch(addToCart(props.raw));
+  };
+  const handleRemove = () => {
+    dispatch(removeToCart(props.raw));
+  };
   return (
     <View style={styles.container}>
       {/* <BoxShadow style={styles.container2} setting={shadowOpt}> */}
@@ -91,7 +83,7 @@ const Recomended = React.memo((props: ProductProps) => {
             alignItems: 'center',
             zIndex: 1,
           }}>
-          <CartActionShortcut />
+          <CartActionShortcut add={handleAdd} remove={handleRemove} />
         </View>
         <ProductModal
           title={props.title}

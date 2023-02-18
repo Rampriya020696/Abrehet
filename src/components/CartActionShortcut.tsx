@@ -7,17 +7,17 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 //  delete
 const INACTIVE_BTN_SIZE = 30;
 
-let WATING_TIME = 5000;
-const CartActionShortcut = () => {
+const CartActionShortcut = ({add, remove}) => {
   const [isExpaned, setIsExpaned] = React.useState(false);
   const [count, setCount] = React.useState(0);
-  let timer = React.useRef(null).current;
+
   const handleAddPress = () => {
     setCount(count + 1);
     setIsExpaned(true);
-    // setOrUpdate();
+    add();
   };
   const handleRemovePress = () => {
+    remove();
     if (count <= 1) {
       setCount(0);
       setIsExpaned(false);
@@ -26,19 +26,6 @@ const CartActionShortcut = () => {
     }
   };
 
-  const test = () => {
-    Alert.alert('ALERT', 'alert');
-    //   setIsExpaned(false);
-  };
-  const setOrUpdate = () => {
-    // if (timer) clearTimeout(timer);
-    // timer =
-    // setTimeout(test, 5000);
-  };
-
-  //   React.useEffect(() => {
-  //     if (count > 0) setOrUpdate();
-  //   }, [count]);
   return (
     <View
       style={{

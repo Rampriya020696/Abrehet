@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   StyleSheet,
@@ -21,6 +21,8 @@ import {HeaderComponent} from '../../router/HomeStack';
 import ProductModal from '../../components/ProducModal';
 import CartActionShortcut from '../../components/CartActionShortcut';
 import ListFooterComponent from './ListFooterComponent';
+import {addToCart, removeToCart} from '../../store/features/cart/cartSlice';
+import {useDispatch} from 'react-redux';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -73,6 +75,14 @@ const makeBanneData = data => {
 export const RecommendedBox = ({item}) => {
   const [visible, setVisible] = useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const handleAdd = () => {
+    dispatch(addToCart(item));
+  };
+  const handleRemove = () => {
+    dispatch(removeToCart(item));
+  };
   return (
     <TouchableOpacity
       onPress={() => {
@@ -100,7 +110,7 @@ export const RecommendedBox = ({item}) => {
           alignItems: 'center',
           zIndex: 1,
         }}>
-        <CartActionShortcut />
+        <CartActionShortcut add={handleAdd} remove={handleRemove} />
       </View>
       <ProductModal
         title={item.title}
