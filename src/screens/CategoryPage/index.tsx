@@ -140,9 +140,9 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: colors.white,
-    marginVertical: 20,
-    marginBottom: -60,
-    marginTop: 20,
+    marginVertical: 10,
+    marginBottom: -30,
+    marginTop: 30,
   },
   recomended: {
     flex: 1,
