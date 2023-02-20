@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 import {View, Text, FlatList, ActivityIndicator} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {API, graphqlOperation} from 'aws-amplify';
@@ -108,7 +110,7 @@ const FooterList = ({item}) => {
     <View key={item?.id} style={{display: show ? 'flex' : 'none'}}>
       <Text
         style={{
-          fontSize: 22,
+          fontSize: 16,
           fontFamily: fonts.primary[900],
           fontWeight: '500',
           color: 'black',

@@ -1,8 +1,9 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {StyleSheet, Text, View, Image, ScrollView, ImageBackground} from 'react-native';
+import {StyleSheet, Text, View, Image, ScrollView, ImageBackground, Linking} from 'react-native';
 
 import Gap from '../../components/Gap';
 import Header from '../../components/Header';
@@ -31,11 +32,15 @@ const About = ({navigation}) => {
         <Text style={styles.text}>
         I started building the Mesob store on October 5th, 2021 for a school project. At that time I didn’t have any plan to publish it. A good friend and family of mine by the name of Peter Tesfamichael advises me that it will be a good business model for our country Eritrea. In addition to the support, I got from my father, my wife, friends, family, and the Eritrean community thankfully by God`s grace I was able to publish this amazing app on March 20th 2022.
         </Text>
-        <Gap height={25} />
+        <Gap height={16} />
         <Text style={styles.text}>
-        The brand vision is to create a two-way shopping experience not only for Eritrea but for the whole of Africa and beyond. I will take time to encourage all young adults to take their dream one step further to accomplish their goals.
+        The brand vision is to create a two-way shopping experience not only for Eritrea but for the whole of Africa and beyond. I will take time to encourage all young adults to take their dream one step further to accomplish their goals. 
         </Text>
-        <Gap height={20} />
+        <Gap height={10} />
+        <Text style={styles.text}>
+       
+        </Text>
+        <Gap height={10} />
       </ScrollView>
     </View>
     

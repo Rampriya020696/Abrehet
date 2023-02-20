@@ -269,7 +269,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                 <Text style={styles.menuText}>Shop Categories</Text>
               </View>
               <MenuIcon />
-              <Text style={[styles.title, {marginBottom: 40}]}>Flash Sale</Text>
+              <Text style={[styles.title, {marginBottom: -50}]}>Flash Sale</Text>
             </>
           );
         }}
@@ -290,7 +290,7 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   menuText: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: '600',
     color: 'black',
     fontStyle: 'normal',
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     marginLeft: 10,
     marginVertical: 38,
-    marginBottom: -60,
+    marginBottom: -40,
   },
   titleSearch: {
     flex: 1,
