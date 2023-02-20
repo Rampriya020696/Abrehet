@@ -57,7 +57,14 @@ const OrderHistory = ({navigation}) => {
           ),
         )) as any;
         console.log(res, 'res');
-        setOrder(res?.data?.listOrders?.items);
+        const resData = res?.data?.listOrders?.items;
+        setOrder(resData);
+        console.log(
+          'sort',
+          resData.sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+          }),
+        );
       } catch (error) {
         console.log(error);
       } finally {
@@ -148,7 +155,7 @@ const OrderHistory = ({navigation}) => {
                           fontSize: 20,
                           fontWeight: 'bold',
                         }}>
-                        ${total}
+                        ${total?.toFixed(2)}
                       </Text>
                     </View>
                     <View style={{flexDirection: 'row'}}>
