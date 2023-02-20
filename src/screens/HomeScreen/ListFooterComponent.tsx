@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {getMenuItems} from '../../components/MenuIcon/queries';
 import {fonts} from '../../utils';
 import {RecommendedBox} from '.';
-const ProductListV2 = ({id}) => {
+const ProductListV2 = ({id, setShow}) => {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +24,7 @@ const ProductListV2 = ({id}) => {
               title
               category
               content
+              isRecommended
               country
               createdAt
               id
@@ -36,16 +37,19 @@ const ProductListV2 = ({id}) => {
             {},
           ),
         );
-        setProduct(
-          res.data?.listProducts.items?.map(item => {
-            let temp = {
-              ...item,
-              content: JSON.parse(item.content),
-              ...JSON.parse(item.content),
-            };
-            return temp;
-          }),
-        );
+
+        const dataPro = res.data?.listProducts.items?.map(item => {
+          let temp = {
+            ...item,
+            content: JSON.parse(item.content),
+            ...JSON.parse(item.content),
+          };
+          return temp;
+        });
+        setProduct(dataPro);
+        if (dataPro.length) {
+          setShow(true);
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -87,6 +91,7 @@ const ProductListV2 = ({id}) => {
       }}
       data={product}
       renderItem={({item}) => {
+        if (!item.isRecommended) return null;
         return (
           <View style={{width: 95}}>
             <RecommendedBox item={item} />
@@ -96,6 +101,29 @@ const ProductListV2 = ({id}) => {
     />
   );
 };
+
+const FooterList = ({item}) => {
+  const [show, setShow] = React.useState(false);
+  return (
+    <View key={item?.id} style={{display: show ? 'flex' : 'none'}}>
+      <Text
+        style={{
+          fontSize: 22,
+          fontFamily: fonts.primary[900],
+          fontWeight: '500',
+          color: 'black',
+          fontStyle: 'normal',
+          marginLeft: 10,
+          marginVertical: 38,
+          marginBottom: 10,
+        }}>
+        {item.name}
+      </Text>
+      <ProductListV2 id={item?.id} setShow={setShow} />
+    </View>
+  );
+};
+
 export default function ListFooterComponent() {
   const navigation = useNavigation<any>();
   const [menuList, setMenuList] = useState([]);
@@ -122,24 +150,7 @@ export default function ListFooterComponent() {
   return (
     <View style={{flex: 1, marginVertical: 25}}>
       {menuList?.map(item => {
-        return (
-          <View key={item?.id}>
-            <Text
-              style={{
-                fontSize: 22,
-                fontFamily: fonts.primary[900],
-                fontWeight: '500',
-                color: 'black',
-                fontStyle: 'normal',
-                marginLeft: 10,
-                marginVertical: 38,
-                marginBottom: 10,
-              }}>
-              {item.name}
-            </Text>
-            <ProductListV2 id={item?.id} />
-          </View>
-        );
+        return <FooterList menuList={menuList} item={item} />;
       })}
     </View>
   );

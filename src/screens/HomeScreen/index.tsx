@@ -172,6 +172,8 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           graphqlOperation(listProductsQuery, {}),
         )) as any;
 
+        console.log(allProducts);
+
         const data = allProducts?.data?.listProducts?.items.filter(item => {
           if (!item?.createdAt) return;
           if (!item?.content) {
@@ -235,6 +237,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
   }, [searchString]);
 
   console.log(products, 'products');
+  console.log(products, 'recommendedProduct');
   return (
     <View style={{flex: 1}}>
       <HeaderComponent
@@ -266,7 +269,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                 <Text style={styles.menuText}>Shop Categories</Text>
               </View>
               <MenuIcon />
-              <Text style={styles.title}>Flash Sale</Text>
+              <Text style={[styles.title, {marginBottom: 40}]}>Flash Sale</Text>
             </>
           );
         }}
@@ -276,7 +279,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         renderItem={({item}: any) => {
           const isRecommended = item?.isRecommended || null;
           if (!isRecommended) return null;
-          console.log(item);
           return <RecommendedBox item={item} />;
         }}
         ListFooterComponent={<ListFooterComponent />}
