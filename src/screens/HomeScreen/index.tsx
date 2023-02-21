@@ -41,7 +41,7 @@ query MyQuery {
 
 const listProductsQuery = `
 query MyQuery {
-  listProducts {
+  listProducts (limit: 10000) {
     items {
       id
       isRecommended
@@ -269,7 +269,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
                 <Text style={styles.menuText}>Shop Categories</Text>
               </View>
               <MenuIcon />
-              <Text style={[styles.title, {marginBottom: -50}]}>Flash Sale</Text>
+              <Text style={[styles.title, {marginBottom: 20}]}>Flash Sale</Text>
             </>
           );
         }}
