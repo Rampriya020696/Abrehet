@@ -40,7 +40,7 @@ class Banner extends React.Component {
           });
         },
       );
-    }, 100000);
+    }, 1000);
   };
 
   setSelectedIndex = event => {
@@ -58,7 +58,7 @@ class Banner extends React.Component {
     const {selectedIndex} = this.state;
     return (
       <View style={{height: '100%', width: '100%'}}>
-        <TouchableOpacity onPress={this.props.onPress}>
+        <TouchableOpacity disabled={true} onPress={this.props.onPress}>
           <ScrollView
             showsHorizontalScrollIndicator={false}
             horizontal
