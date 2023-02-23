@@ -104,55 +104,108 @@ const ProductListV2 = ({id, setShow}) => {
   );
 };
 
-const FooterList = ({item}) => {
-  const [show, setShow] = React.useState(false);
-  return (
-    <View key={item?.id} style={{display: show ? 'flex' : 'none'}}>
-      <Text
-        style={{
-          fontSize: 16,
-          fontFamily: fonts.primary[900],
-          fontWeight: '500',
-          color: 'black',
-          fontStyle: 'normal',
-          marginLeft: 10,
-          marginVertical: 38,
-          marginBottom: 10,
-        }}>
-        {item.name}
-      </Text>
-      <ProductListV2 id={item?.id} setShow={setShow} />
-    </View>
-  );
-};
-
-export default function ListFooterComponent() {
+function groupAllRecommendedByCategory(arr) {
+  if (!arr?.length) return null;
+  const final = {};
+  for (let item of arr) {
+    if (item.isRecommended) {
+      console.log(item);
+      const category = item.category;
+      if (final[category]) {
+        // category already present -> add/push
+        final[category].push(item);
+      } else {
+        // category is not there -> create
+        final[category] = [item];
+      }
+    }
+  }
+  return final;
+}
+export default function ListFooterComponent({allProduct}) {
   const navigation = useNavigation<any>();
   const [menuList, setMenuList] = useState([]);
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const getMenuList = async () => {
-      setLoading(true);
-      try {
-        const res = (await API.graphql(
-          graphqlOperation(getMenuItems, {}),
-        )) as any;
-        setMenuList(res?.data?.listMenus?.items);
-      } catch (error: any) {
-        console.log(error?.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getMenuList();
-  }, []);
 
-  console.log(menuList, 'menulist');
+  const [categoryGroupList, setCategoryGroupList] = React.useState(null);
+  useEffect(() => {
+    // const getMenuList = async () => {
+    //   setLoading(true);
+    //   try {
+    //     const res = (await API.graphql(
+    //       graphqlOperation(getMenuItems, {}),
+    //     )) as any;
+    //     setMenuList(res?.data?.listMenus?.items);
+    //   } catch (error: any) {
+    //     console.log(error?.message);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
+    // getMenuList();
+
+    const data = groupAllRecommendedByCategory(allProduct);
+    setCategoryGroupList(data ? Object.entries(data) : null);
+  }, [allProduct]);
+
+  console.log(categoryGroupList, 'categoryGroupList');
 
   return (
     <View style={{flex: 1, marginVertical: 25}}>
-      {menuList?.map(item => {
-        return <FooterList menuList={menuList} item={item} />;
+      {/* {menuList?.map(item => {
+        return (
+          <View key={item?.id}>
+            <Text
+              style={{
+                fontSize: 22,
+                fontFamily: fonts.primary[900],
+                fontWeight: '500',
+                color: 'black',
+                fontStyle: 'normal',
+                marginLeft: 10,
+                marginVertical: 38,
+                marginBottom: 10,
+              }}>
+              {item.name}
+            </Text>
+            <ProductListV2 id={item?.id} />
+          </View>
+        );
+      })} */}
+
+      {categoryGroupList?.map(item => {
+        const [title, innerItems] = item;
+        if (!innerItems.length) return <></>;
+        return (
+          <View key={title}>
+            <Text
+              style={{
+                fontSize: 22,
+                fontFamily: fonts.primary[900],
+                fontWeight: '500',
+                color: 'black',
+                fontStyle: 'normal',
+                marginLeft: 10,
+                marginVertical: 38,
+                marginBottom: 10,
+              }}>
+              {title}
+            </Text>
+
+            <FlatList
+              horizontal
+              data={innerItems}
+              keyExtractor={(item, idx) => `${item?.id}-${idx}`}
+              renderItem={({item}) => {
+                return (
+                  <View style={{width: 100, marginHorizontal: 5}}>
+                    <RecommendedBox item={item} />
+                  </View>
+                );
+              }}
+            />
+          </View>
+        );
       })}
     </View>
   );

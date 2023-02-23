@@ -263,7 +263,6 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
               <View
                 style={{
                   backgroundColor: 'transparent',
-
                   zIndex: 100,
                 }}>
                 <Text style={styles.menuText}>Shop Categories</Text>
@@ -279,9 +278,11 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         renderItem={({item}: any) => {
           const isRecommended = item?.isRecommended || null;
           if (!isRecommended) return null;
-          return <RecommendedBox item={item} />;
+          console.log(item);
+          return null;
+          // return <RecommendedBox item={item} />;
         }}
-        ListFooterComponent={<ListFooterComponent />}
+        ListFooterComponent={<ListFooterComponent allProduct={products} />}
       />
     </View>
   );
