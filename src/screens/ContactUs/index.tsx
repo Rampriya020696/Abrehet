@@ -90,7 +90,8 @@ const ContactUs = ({navigation}) => {
               onChangeText={setMessage}
             />
           </View>
-          <TouchableOpacity style={styles.button} onPress={sendOrderMail}>
+          <TouchableOpacity style={styles.button} onPress={sendOrderMail} 
+          >
             <Text style={styles.textButton}>
               {loading ? 'Sending Email...' : 'Send Mail'}
             </Text>
@@ -133,10 +134,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   button: {
-    backgroundColor: colors.header,
-    height: 45,
+    backgroundColor: '#3A2E6E',
+    height: 42,
     width: '100%',
-    borderRadius: 30,
+    borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 40,
