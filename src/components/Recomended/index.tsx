@@ -129,7 +129,7 @@ const Recomended = React.memo((props: ProductProps) => {
                 }>
                 {props.price}
               </Text>
-              <Text style={[styles.price, {fontSize: 14}]}>
+              <Text style={[styles.price, {fontSize: 16}]}>
                 {props.country}
               </Text>
             </TouchableOpacity>
