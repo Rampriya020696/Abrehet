@@ -217,7 +217,7 @@ const Profile = ({navigation}) => {
               style={{width: 20, height: 30, padding: 10, marginRight: 5}}
               source={require('../../Assets/Icon-About-Apps.png')}
             />
-            <Text style={styles.titleList}>Change Server</Text>
+            <Text style={styles.titleList}>Change Payment Zone</Text>
           </TouchableOpacity>
 
           <View style={styles.strip} />

@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import {View, Text, Modal, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {colors} from '../utils';
@@ -35,7 +37,7 @@ const RegionalPopup = ({visible, onClose}) => {
             padding: 20,
             borderRadius: 10,
           }}>
-          <Text style={{fontSize: 20, color: 'black'}}>Choose server</Text>
+          <Text style={{fontSize: 18, color: 'black'}}>Change Payment Zone</Text>
           <View
             style={{
               flexDirection: 'row',
@@ -53,11 +55,15 @@ const RegionalPopup = ({visible, onClose}) => {
                 }}
                 source={require('../../assets/images/global.png')}
               />
-              <Text>Global</Text>
+              <Text style={{fontSize: 15, color: 'black'}}>Global</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setRegion('eu')}
-              style={{justifyContent: 'center', alignItems: 'center'}}>
+              style={{
+                justifyContent: 'center', 
+                alignItems: 'center',
+                
+                }}>
               <Image
                 style={{
                   width: 60,
@@ -66,7 +72,8 @@ const RegionalPopup = ({visible, onClose}) => {
                 }}
                 source={require('../../assets/images/eu.png')}
               />
-              <Text>Europe</Text>
+              <Text style={{fontSize: 15, color: 'black'}}>Europe</Text>
+              <Text style={{fontSize: 13, color: 'black'}}>Klarna & AfterPay users</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity
