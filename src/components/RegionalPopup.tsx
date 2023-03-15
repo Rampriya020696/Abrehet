@@ -2,11 +2,15 @@ import {View, Text, Modal, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {colors} from '../utils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useDispatch} from 'react-redux';
+import {updateRegion} from '../store/features/region/regionSlice';
 
 const RegionalPopup = ({visible, onClose}) => {
   const [region, setRegion] = useState('global');
 
+  const dispatch = useDispatch();
   const handleConfirm = async () => {
+    dispatch(updateRegion(region));
     await AsyncStorage.setItem('SERVER', region);
     onClose();
   };

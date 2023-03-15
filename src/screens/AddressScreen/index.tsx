@@ -37,6 +37,7 @@ import {
 import ButtonGradient from '../../components/ButtonGradient';
 import {useRoute} from '@react-navigation/native';
 import {current} from '@reduxjs/toolkit';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 let keyboardDidShowListener;
 let keyboardDidHideListener;
@@ -97,16 +98,21 @@ const AddressScreen = ({navigation}) => {
 
       return newTotal;
     }, 0);
+
+    const region = await AsyncStorage.getItem('SERVER');
     const payload = {
-      name: fullname,
-      address: address,
-      postal_code: postal_code || '160019',
-      city: city,
-      state: state,
-      country: country,
-      product: {
-        amount: total,
-        des: JSON.stringify(cartItemData),
+      region,
+      event: {
+        name: fullname,
+        address: address,
+        postal_code: postal_code || '160019',
+        city: city,
+        state: state,
+        country: country,
+        product: {
+          amount: total,
+          des: JSON.stringify(cartItemData),
+        },
       },
     };
 

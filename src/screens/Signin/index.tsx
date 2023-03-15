@@ -28,6 +28,8 @@ import {KeyboardAvoidingScrollView} from 'react-native-keyboard-avoiding-scroll-
 import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 import RegionalPopup from '../../components/RegionalPopup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {updateRegion} from '../../store/features/region/regionSlice';
+import {useDispatch} from 'react-redux';
 let keyboardDidShowListener;
 let keyboardDidHideListener;
 
@@ -45,7 +47,7 @@ const Signin = () => {
   const [user, setUser] = useState(null);
   const [customState, setCustomState] = useState(null);
   const [regionPopupShow, setRegionPopupShow] = useState(false);
-
+  const dispatch = useDispatch();
   const keyboardDidShow = (number = 110) => {
     ScrollViewRef?.current?.scrollTo({y: number, animated: true});
   };
@@ -121,6 +123,8 @@ const Signin = () => {
       console.log({region});
       if (!region) {
         setRegionPopupShow(true);
+      } else {
+        dispatch(updateRegion(region));
       }
     };
     init();
