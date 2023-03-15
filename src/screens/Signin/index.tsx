@@ -24,6 +24,8 @@ import {Amplify, Auth, Hub} from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import {KeyboardAvoidingScrollView} from 'react-native-keyboard-avoiding-scroll-view';
 import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
+import RegionalPopup from '../../components/RegionalPopup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 let keyboardDidShowListener;
 let keyboardDidHideListener;
 
@@ -40,6 +42,7 @@ const Signin = () => {
   let ScrollViewRef = React.useRef();
   const [user, setUser] = useState(null);
   const [customState, setCustomState] = useState(null);
+  const [regionPopupShow, setRegionPopupShow] = useState(false);
 
   const keyboardDidShow = (number = 110) => {
     ScrollViewRef?.current?.scrollTo({y: number, animated: true});
@@ -109,6 +112,17 @@ const Signin = () => {
       keyboardDidHideListener?.remove();
     };
   }, []);
+
+  React.useEffect(() => {
+    const init = async () => {
+      const region = await AsyncStorage.getItem('SERVER');
+      console.log({region});
+      if (!region) {
+        setRegionPopupShow(true);
+      }
+    };
+    init();
+  }, []);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -127,6 +141,10 @@ const Signin = () => {
           paddingTop: 30,
           paddingBottom: 100,
         }}>
+        <RegionalPopup
+          visible={regionPopupShow}
+          onClose={() => setRegionPopupShow(false)}
+        />
         <View
           style={{
             flexDirection: 'row',

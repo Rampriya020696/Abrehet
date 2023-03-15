@@ -19,6 +19,7 @@ import * as types from '../../API';
 import * as queries from '../../graphql/queries';
 import * as mutations from '../../graphql/mutations';
 import _ from 'lodash';
+import RegionalPopup from '../../components/RegionalPopup';
 
 const Profile = ({navigation}) => {
   const [info, setInfo] = useState<any>(null);
@@ -26,6 +27,8 @@ const Profile = ({navigation}) => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [id, setID] = useState('');
+  const [regionPopupShow, setRegionPopupShow] = useState(false);
+
   useEffect(() => {
     const userInfo = async () => {
       let auth_user = await Auth.currentAuthenticatedUser();
@@ -93,6 +96,10 @@ const Profile = ({navigation}) => {
   }
   return (
     <ScrollView>
+      <RegionalPopup
+        visible={regionPopupShow}
+        onClose={() => setRegionPopupShow(false)}
+      />
       <View style={styles.container}>
         <View>
           <ImageBackground
@@ -201,6 +208,18 @@ const Profile = ({navigation}) => {
             <Text style={styles.titleList}>Delete Account</Text>
           </TouchableOpacity>
 
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => {
+              setRegionPopupShow(true);
+            }}>
+            <Image
+              style={{width: 20, height: 30, padding: 10, marginRight: 5}}
+              source={require('../../Assets/Icon-About-Apps.png')}
+            />
+            <Text style={styles.titleList}>Change Server</Text>
+          </TouchableOpacity>
+
           <View style={styles.strip} />
           <Gap height={50} />
         </View>
@@ -242,7 +261,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[900],
     textAlign: 'center',
     marginTop: 10,
-    color: 'black'
+    color: 'black',
   },
   title: {
     fontSize: 20,
@@ -262,6 +281,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'black',
     marginLeft: 16,
-    
   },
 });
