@@ -384,13 +384,13 @@ const AddressScreen = ({navigation}) => {
                 />
               </View>
 
-              <View style={styles.row}>
+              <View style={styles.row1}>
                 <Text style={styles.label}>State </Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Sender State"
-                  value={sCity}
-                  onChangeText={setSCity}
+                  value={sState}
+                  onChangeText={setState}
                 />
               </View>
 

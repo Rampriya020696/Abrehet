@@ -14,6 +14,10 @@ const styles = StyleSheet.create({
     marginVertical: 1,
   },
 
+  row1: {
+    marginVertical: 1,
+  },
+
   Submit: {
     fontSize: 17,
     color: 'blue',

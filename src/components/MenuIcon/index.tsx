@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+// Home Shop catagories Style change
+
 import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
@@ -97,6 +99,8 @@ const MenuIcon = () => {
 
 export default MenuIcon;
 
+// Home Shop catagories Style change
+
 const styles = StyleSheet.create({
   menu: {
     flex: 1,
@@ -132,15 +136,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 11,
+    fontSize: 16,
     fontWeight: '600',
     color: 'black',
     marginTop: 4,
     marginBottom: 10,
   },
   image: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
     borderRadius: 15000,
     resizeMode: 'contain',
   },

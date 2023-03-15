@@ -136,7 +136,7 @@ export const RecommendedBox = ({item}) => {
           resizeMode="contain"
         />
       </TouchableOpacity>
-      <Text style={{textAlign: 'left', fontSize: 14, color: 'black'}}>
+      <Text style={{textAlign: 'left', fontSize: 16, color: 'black'}}>
         {item.title}
       </Text>
       <View style={{flex: 1, justifyContent: 'flex-end'}}>
@@ -230,7 +230,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     }
 
     setFilterProducts(
-      recommendedProduct.filter(item =>
+      products.filter(item =>
         item.title.toLowerCase().includes(searchString.toLowerCase()),
       ),
     );
@@ -238,51 +238,78 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
 
   console.log(products, 'products');
   console.log(products, 'recommendedProduct');
+  console.log(filterProducts, 'filterProducts');
   return (
     <View style={{flex: 1}}>
       <HeaderComponent
         searchValue={searchString}
         setSearchValue={setSearchString}
       />
-      <FlatList
-        style={{
-          flex: 1,
-        }}
-        data={searchString ? filterProducts : recommendedProduct}
-        ListHeaderComponent={() => {
-          if (searchString) return <View />;
-          return (
-            <>
-              <View style={{width: '100%', height: 200}}>
-                <Banner
-                  images={bannerImages}
-                  onPress={() => navigation.navigate('FlashSale')}
-                />
-              </View>
 
-              <View
-                style={{
-                  backgroundColor: 'transparent',
-
-                  zIndex: 100,
-                }}>
-                <Text style={styles.menuText}>Shop Categories</Text>
+      {filterProducts.length ? (
+        <FlatList
+          data={filterProducts}
+          initialNumToRender={10}
+          numColumns={4}
+          contentContainerStyle={{}}
+          keyExtractor={(item: any) => String(item.id)}
+          renderItem={({item}) => {
+            return (
+              <View style={{flex: 1, margin: 5}}>
+                <RecommendedBox item={item} />
               </View>
-              <MenuIcon />
-              <Text style={[styles.title, {marginBottom: 20}]}>Flash Sale</Text>
-            </>
-          );
-        }}
-        initialNumToRender={10}
-        numColumns={4}
-        keyExtractor={(item: any) => String(item.id)}
-        renderItem={({item}: any) => {
-          const isRecommended = item?.isRecommended || null;
-          if (!isRecommended) return null;
-          return <RecommendedBox item={item} />;
-        }}
-        ListFooterComponent={<ListFooterComponent />}
-      />
+            );
+          }}
+        />
+      ) : (
+        <FlatList
+          style={{
+            flex: 1,
+          }}
+          data={recommendedProduct}
+          ListHeaderComponent={() => {
+            if (searchString) return <View />;
+            return (
+              <>
+                <View style={{width: '100%', height: 200}}>
+                  <Banner
+                    images={bannerImages}
+                    onPress={() => navigation.navigate('FlashSale')}
+                  />
+                </View>
+
+                <View
+                  style={{
+                    backgroundColor: 'transparent',
+                    zIndex: 100,
+                  }}>
+                  <Text style={styles.menuText}>Shop Categories</Text>
+                </View>
+                <MenuIcon />
+                <Text style={[styles.title, {marginBottom: -50}]}>
+                  Flash Sale
+                </Text>
+              </>
+            );
+          }}
+          initialNumToRender={10}
+          numColumns={4}
+          keyExtractor={(item: any) => String(item.id)}
+          renderItem={({item}: any) => {
+            const isRecommended = item?.isRecommended || null;
+            if (!isRecommended) return null;
+            console.log(item);
+            return null;
+          }}
+          ListFooterComponent={
+            filterProducts.length ? (
+              <></>
+            ) : (
+              <ListFooterComponent allProduct={products} />
+            )
+          }
+        />
+      )}
     </View>
   );
 };
@@ -336,13 +363,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: fonts.primary[900],
     fontWeight: '500',
     color: 'red',
     fontStyle: 'normal',
     marginLeft: 10,
-    marginVertical: 38,
+    marginVertical: 28,
     marginBottom: -40,
   },
   titleSearch: {
