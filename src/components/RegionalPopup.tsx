@@ -35,14 +35,19 @@ const RegionalPopup = ({visible, onClose}) => {
             width: '80%',
             height: 250,
             padding: 20,
-            borderRadius: 10,
+            borderRadius: 40,
           }}>
-          <Text style={{fontSize: 18, color: 'black'}}>Change Payment Zone</Text>
+          <Text style={{
+            fontSize: 20, 
+            color: 'black',
+            marginLeft: 30
+
+            }}>Change Payment Zone</Text>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'space-around',
-              marginTop: 30,
+              marginTop: 20,
             }}>
             <TouchableOpacity
               onPress={() => setRegion('global')}
@@ -55,7 +60,7 @@ const RegionalPopup = ({visible, onClose}) => {
                 }}
                 source={require('../../assets/images/global.png')}
               />
-              <Text style={{fontSize: 15, color: 'black'}}>Global</Text>
+              <Text style={{fontSize: 15, color: 'black'}}>Global Users</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setRegion('eu')}
@@ -73,14 +78,14 @@ const RegionalPopup = ({visible, onClose}) => {
                 source={require('../../assets/images/eu.png')}
               />
               <Text style={{fontSize: 15, color: 'black'}}>Europe</Text>
-              <Text style={{fontSize: 13, color: 'black'}}>Klarna & AfterPay users</Text>
+              <Text style={{fontSize: 13, color: 'black'}}>Klarna & AfterPay Users</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity
             onPress={handleConfirm}
             style={{
               width: '80%',
-              height: 30,
+              height: 33,
               backgroundColor: colors.facebook,
               alignItems: 'center',
               justifyContent: 'center',
