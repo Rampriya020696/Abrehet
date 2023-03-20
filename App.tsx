@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import 'react-native-gesture-handler';
 import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {Linking, SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Router from './src/router';
 import ResourceContext from './src/context/ResourceContext';
@@ -9,7 +9,7 @@ import {StripeProvider} from '@stripe/stripe-react-native';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 import {store} from './src/store';
 import OnBoardingProvider from './src/context/OnBoardingContext';
-import Amplify from 'aws-amplify';
+import Amplify, {Auth, Hub} from 'aws-amplify';
 import awsConfig from './src/aws-exports';
 import {
   selectRegion,

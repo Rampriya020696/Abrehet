@@ -258,7 +258,7 @@ const AddressScreen = ({navigation}) => {
     }
 
     // console.warn('Success. Checkout');
-    // buildOrderObject();
+    buildOrderObject();
     getStripeIntent();
   };
 
