@@ -92,10 +92,8 @@ const AddressScreen = ({navigation}) => {
     const total = cartItemData.reduce((total, item) => {
       // let cost = item?.content?.cost?.replaceAll(' ', '')?.slice(1);
       let price = item?.price?.replaceAll(' ', '')?.slice(1);
-
       price = Number(price) * item.qty;
       let newTotal = total + price;
-
       return newTotal;
     }, 0);
 
@@ -110,31 +108,34 @@ const AddressScreen = ({navigation}) => {
         state: state,
         country: country,
         product: {
-          amount: total,
-          des: JSON.stringify(cartItemData),
+          amount: Math.round(Number(total) * 100),
+          des: 'some description',
         },
       },
     };
 
     console.log({payload});
+    const body = JSON.stringify(payload);
+    console.log(body, 'JSON.stringify');
     setLoading('connecting to stipe...');
     fetch(CHECKOUT_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: body,
     })
       .then(res => res.json())
       .then(res => {
+        console.log(res, '123');
         const data = JSON.parse(res.data);
         console.log(data);
-        setStripeData(data);
+        // setStripeData(data);
         initializePaymentSheet(data);
       })
       .catch(error => {
         console.log(error.message);
-        Alert.alert('Alert', error.message);
+        Alert.alert('Alert:', error.message);
       })
       .finally(() => {
         setLoading('');
@@ -171,14 +172,12 @@ const AddressScreen = ({navigation}) => {
     try {
       //@ts-ignore
       const res = await presentPaymentSheet({clientSecret: paymentIntent});
-
       if (res?.error) {
         Alert.alert(`Error code: ${res?.error.code}`, res?.error.message);
       } else {
         sendOrderMail();
         Alert.alert('Success', 'Your order is confirmed!');
       }
-
       console.log(res, 'kkk');
     } catch (error) {
       console.log(error);
@@ -259,7 +258,7 @@ const AddressScreen = ({navigation}) => {
     }
 
     // console.warn('Success. Checkout');
-    buildOrderObject();
+    // buildOrderObject();
     getStripeIntent();
   };
 

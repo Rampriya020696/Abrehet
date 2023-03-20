@@ -23,6 +23,7 @@ import CartActionShortcut from '../../components/CartActionShortcut';
 import ListFooterComponent from './ListFooterComponent';
 import {addToCart, removeToCart} from '../../store/features/cart/cartSlice';
 import {useDispatch} from 'react-redux';
+import FilterModal from '../../components/FilterModal';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -159,9 +160,11 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
   const [recommendedProduct, setRecommendedProduct] = useState<any>([]);
 
   const [filterProducts, setFilterProducts] = useState<any>([]);
+  const [countryFilter, setCountryFilter] = useState<any>('ALL');
+  const [countryFilterModalOpen, setCountryFilterModalOpen] = useState(false);
   const [searchString, setSearchString] = useState('');
   const [bannerImages, setBannerImages] = useState<ProductItemProps[]>([]);
-
+  console.log(countryFilter, 'countryFilter');
   const navigation = useNavigation<any>();
   useEffect(() => {
     // dispatch(increment());
@@ -241,9 +244,16 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
   console.log(filterProducts, 'filterProducts');
   return (
     <View style={{flex: 1}}>
+      <FilterModal
+        visible={countryFilterModalOpen}
+        onClose={() => setCountryFilterModalOpen(false)}
+        products={products}
+        onSelect={val => setCountryFilter(val)}
+      />
       <HeaderComponent
         searchValue={searchString}
         setSearchValue={setSearchString}
+        onFilterSelect={() => setCountryFilterModalOpen(true)}
       />
 
       {filterProducts.length ? (
@@ -254,11 +264,24 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           contentContainerStyle={{}}
           keyExtractor={(item: any) => String(item.id)}
           renderItem={({item}) => {
-            return (
-              <View style={{flex: 1, margin: 5}}>
-                <RecommendedBox item={item} />
-              </View>
-            );
+            const itemCountry = item?.country || item?.content?.country;
+            if (countryFilter === 'ALL') {
+              return (
+                <View style={{flex: 1, margin: 5}}>
+                  <RecommendedBox item={item} />
+                </View>
+              );
+            } else {
+              if (itemCountry === countryFilter) {
+                return (
+                  <View style={{flex: 1, margin: 5}}>
+                    <RecommendedBox item={item} />
+                  </View>
+                );
+              } else {
+                return null;
+              }
+            }
           }}
         />
       ) : (

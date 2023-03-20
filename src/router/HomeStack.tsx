@@ -3,6 +3,7 @@
 import React, {useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Login from '../screens/Signin';
 import ProductScreen from '../screens/ProductScreen';
 import {SafeAreaView, View, TextInput, Image} from 'react-native';
@@ -20,12 +21,14 @@ import {useSelector} from 'react-redux';
 interface HeaderComponentProps {
   searchValue: string;
   setSearchValue: (s: string) => void;
+  onFilterSelect: () => void;
 }
 
 const Stack = createStackNavigator();
 
 const HeaderComponent = ({
   searchValue,
+  onFilterSelect,
   setSearchValue,
 }: HeaderComponentProps) => {
   const navigation = useNavigation<any>();
@@ -63,6 +66,8 @@ const HeaderComponent = ({
               height: 40,
               marginLeft: 10,
               padding: 7,
+              flex: 1,
+
               color: '#0a0300',
               fontSize: 17,
             }}
@@ -70,6 +75,11 @@ const HeaderComponent = ({
             value={searchValue}
             onChangeText={setSearchValue}
           />
+          <TouchableOpacity
+            style={{marginHorizontal: 2}}
+            onPress={onFilterSelect}>
+            <Ionicons name="filter" size={24} color="black" />
+          </TouchableOpacity>
         </View>
         <TouchableOpacity
           style={{marginHorizontal: 10}}
@@ -80,15 +90,6 @@ const HeaderComponent = ({
           />
         </TouchableOpacity>
         <TouchableOpacity>
-          {/* <TouchableOpacity
-          style={{marginHorizontal: 10}}
-          onPress={() => navigation.navigate('ContactUsScreen')}>
-          <Image
-            style={{width: 22, height: 20}}
-            source={require('../Assets/ChatICon.png')}
-          />
-        </TouchableOpacity> */}
-
           <CartBadge count={cartItems.length} />
         </TouchableOpacity>
       </View>

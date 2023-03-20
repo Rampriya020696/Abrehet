@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import 'react-native-gesture-handler';
-import React, {useEffect, useState} from 'react';
-import {Linking, SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import React from 'react';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Router from './src/router';
 import ResourceContext from './src/context/ResourceContext';
@@ -9,7 +9,7 @@ import {StripeProvider} from '@stripe/stripe-react-native';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 import {store} from './src/store';
 import OnBoardingProvider from './src/context/OnBoardingContext';
-import Amplify, {Auth, Hub} from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import awsConfig from './src/aws-exports';
 import {
   selectRegion,
@@ -20,10 +20,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const isLocalhost = Boolean(__DEV__);
 const isLocalhost = Boolean(true);
-const STRIPE_GLOBAL_PK =
-  'pk_test_51M0L2VSFJgtn9Lb9roXIXnZekNjTrHMsY4fpXNp5h4QQDIWdkE4ZWRipXmKFd216tS213M9MGRT0vK07udT1FkKI00t1mHCVh3';
-const STRIPE_EU_PK =
-  'pk_test_51M0L2VSFJgtn9Lb9roXIXnZekNjTrHMsY4fpXNp5h4QQDIWdkE4ZWRipXmKFd216tS213M9MGRT0vK07udT1FkKI00t1mHCVh3';
+const STRIPE_GLOBAL_PK = '';
+const STRIPE_EU_PK = '';
 // Assuming you have two redirect URIs, and the first is for localhost and second is for production
 const [localRedirectSignIn, productionRedirectSignIn] =
   awsConfig.oauth.redirectSignIn.split(',');
@@ -88,3 +86,5 @@ const Appx = () => {
     </StripeProvider>
   );
 };
+
+// "{\"publishableKey\":\"sk_test_51Ma0UlHlGffSuHzfXqLxMCx4WwZPl2InuHG7TFmdFPczonVev6xnsrQzyJ0QkiCNP04yyUMiJGGnt8XXWiWEmAG700oh8MwmIz\",\"paymentIntent\":\"pi_3MndNtHlGffSuHzf1YATmdoJ_secret_Xe15M5WwxY6EAty0vmDmQC4KD\",\"customer\":\"cus_NYkte1JUhYq7wy\",\"ephemeralKey\":\"ek_test_YWNjdF8xTWEwVWxIbEdmZlN1SHpmLFZzdjh0dXI3MDZLRExMbXdYenpQZjVqWk55cEdWUGY_00SMo7hrDC\",\"region\":\"eu\"}"
