@@ -1,3 +1,5 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable jsx-quotes */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -37,10 +39,17 @@ const About = ({navigation}) => {
         The brand vision is to create a two-way shopping experience not only for Eritrea but for the whole of Africa and beyond. I will take time to encourage all young adults to take their dream one step further to accomplish their goals. 
         </Text>
         <Gap height={10} />
+        <Gap height={10} />
+        <Gap height={16} />
         <Text style={styles.text}>
-       
+        <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL('https://s3.amazonaws.com/abrehet.update.data.ui/Privacy+Policy.txt')}>
+        Mesob Privacy Policy
+      </Text>
         </Text>
         <Gap height={10} />
+        <Gap height={10} />
+
       </ScrollView>
     </View>
     
