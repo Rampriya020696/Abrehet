@@ -3,6 +3,13 @@ import React from 'react';
 import {TouchableWithoutFeedback} from 'react-native';
 
 const FilterModal = ({products, onSelect, visible, onClose}) => {
+  console.log('FilterModal', [
+    ...new Set(
+      products?.map(item => {
+        return item?.country;
+      }),
+    ),
+  ]);
   return (
     <Modal visible={visible} transparent={true}>
       <TouchableWithoutFeedback
@@ -29,11 +36,12 @@ const FilterModal = ({products, onSelect, visible, onClose}) => {
             data={[
               ...new Set(
                 products?.map(item => {
-                  return item?.country || item?.content?.country;
+                  return item?.country;
                 }),
               ),
             ]}
             renderItem={({item, index}) => {
+              if (item === undefined) return null;
               if (index === 0) {
                 return (
                   <>

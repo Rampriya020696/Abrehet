@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -264,7 +264,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           contentContainerStyle={{}}
           keyExtractor={(item: any) => String(item.id)}
           renderItem={({item}) => {
-            const itemCountry = item?.country || item?.content?.country;
+            const itemCountry = item?.country;
             if (countryFilter === 'ALL') {
               return (
                 <View style={{flex: 1, margin: 5}}>
