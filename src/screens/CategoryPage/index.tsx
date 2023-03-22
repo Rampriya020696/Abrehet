@@ -31,7 +31,7 @@ const CategoryPage = () => {
           graphqlOperation(
             `
         query MyQuery {
-          listProducts(filter: {categories: {contains: "${id}"}}) {
+          listProducts(limit: 10000,filter: {categories: {contains: "${id}"}}) {
             items {
               title
               category
@@ -84,16 +84,14 @@ const CategoryPage = () => {
                 <Text style={{padding: 10}}>
                   <Text
                     style={{fontWeight: 'bold', color: 'black', fontSize: 20}}>
-                    Description:{' '}
+                    Descriptionzz:{' '}
                   </Text>
                   {des}
-                  
                 </Text>
               )}
             </View>
           );
         }}
-
         //List of empty catagories
 
         ListEmptyComponent={() => {
