@@ -71,7 +71,7 @@ const About = ({navigation}) => {
         <Text style={styles.text}>
         <Text style={{color: 'blue'}}
       onPress={() => Linking.openURL('https://s3.amazonaws.com/abrehet.update.data.ui/Policies/Children%60s+Privacy.txt')}>
-        Children`s Privacy
+        Children`s Privacy Policy
       </Text>
       </Text>
         <Gap height={1} />
