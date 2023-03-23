@@ -84,7 +84,7 @@ const CategoryPage = () => {
                 <Text style={{padding: 10}}>
                   <Text
                     style={{fontWeight: 'bold', color: 'black', fontSize: 20}}>
-                    Descriptionzz:{' '}
+                    Description:{' '}
                   </Text>
                   {des}
                 </Text>
