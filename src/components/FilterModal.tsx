@@ -6,7 +6,7 @@ const FilterModal = ({products, onSelect, visible, onClose}) => {
   console.log('FilterModal', [
     ...new Set(
       products?.map(item => {
-        return item?.country;
+        return item?.countryF;
       }),
     ),
   ]);
@@ -36,7 +36,7 @@ const FilterModal = ({products, onSelect, visible, onClose}) => {
             data={[
               ...new Set(
                 products?.map(item => {
-                  return item?.country;
+                  return item?.countryF;
                 }),
               ),
             ]}

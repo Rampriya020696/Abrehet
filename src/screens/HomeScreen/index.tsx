@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   View,
   StyleSheet,
@@ -22,8 +22,9 @@ import ProductModal from '../../components/ProducModal';
 import CartActionShortcut from '../../components/CartActionShortcut';
 import ListFooterComponent from './ListFooterComponent';
 import {addToCart, removeToCart} from '../../store/features/cart/cartSlice';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import FilterModal from '../../components/FilterModal';
+import {selectRegionCurrency} from '../../store/features/region/regionSlice';
 
 interface HomeScreenProps {
   searchValue: string;
@@ -76,6 +77,7 @@ const makeBanneData = data => {
 export const RecommendedBox = ({item}) => {
   const [visible, setVisible] = useState(false);
   const navigation = useNavigation();
+  const cur = useSelector(selectRegionCurrency);
   const dispatch = useDispatch();
 
   const handleAdd = () => {
@@ -175,23 +177,29 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           graphqlOperation(listProductsQuery, {}),
         )) as any;
 
-        console.log(allProducts);
+        const deepCloned = JSON.parse(
+          JSON.stringify(allProducts?.data?.listProducts?.items),
+        );
+        console.log(deepCloned, 'deepCloned');
 
-        const data = allProducts?.data?.listProducts?.items.filter(item => {
+        const data = deepCloned.filter(item => {
           if (!item?.createdAt) return;
           if (!item?.content) {
             return item;
           }
           let temp = item;
+          const data = {...item};
           temp.content = JSON.parse(item.content);
           temp.cost = item.content?.cost;
-          temp.country = item.content?.country;
+          temp.country = data.content?.country;
+          temp.countryF = data.country || undefined;
           temp.description = item.content?.description;
           temp.image = item.content?.image;
           temp.images = item.content?.images;
           temp.price = item.content?.price;
           return temp;
         });
+        console.log(data, 'deepClonedDATA');
 
         setProducts(
           data?.filter(item => {
@@ -222,8 +230,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         console.log(error, 'fetchBannerImages');
       }
     };
-    fetchProducts();
-    fetchBannerImages();
+    Promise.all([fetchProducts(), fetchBannerImages()]).then(() => {});
   }, []);
 
   useEffect(() => {
@@ -239,9 +246,32 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
     );
   }, [searchString]);
 
+  const renderItem = ({item}) => {
+    const itemCountry = item?.countryF;
+    if (countryFilter === 'ALL') {
+      return (
+        <View style={{flex: 1, margin: 5}}>
+          <RecommendedBox item={item} />
+        </View>
+      );
+    } else {
+      if (itemCountry === countryFilter) {
+        console.log('AAAAA', item);
+        return (
+          <View style={{flex: 1, margin: 5}}>
+            <RecommendedBox item={item} />
+          </View>
+        );
+      } else {
+        return null;
+      }
+    }
+  };
+
   console.log(products, 'products');
   console.log(products, 'recommendedProduct');
   console.log(filterProducts, 'filterProducts');
+  console.log(countryFilterModalOpen, 'countryFilterModalOpen');
   return (
     <View style={{flex: 1}}>
       <FilterModal
@@ -263,26 +293,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
           numColumns={4}
           contentContainerStyle={{}}
           keyExtractor={(item: any) => String(item.id)}
-          renderItem={({item}) => {
-            const itemCountry = item?.country;
-            if (countryFilter === 'ALL') {
-              return (
-                <View style={{flex: 1, margin: 5}}>
-                  <RecommendedBox item={item} />
-                </View>
-              );
-            } else {
-              if (itemCountry === countryFilter) {
-                return (
-                  <View style={{flex: 1, margin: 5}}>
-                    <RecommendedBox item={item} />
-                  </View>
-                );
-              } else {
-                return null;
-              }
-            }
-          }}
+          renderItem={renderItem}
         />
       ) : (
         <FlatList

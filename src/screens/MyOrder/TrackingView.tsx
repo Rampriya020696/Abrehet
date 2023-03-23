@@ -84,7 +84,11 @@ const TrackingView = ({order}) => {
           // onPress={() => handleUpdateTrack(index)}
           disabled
           style={styles.trackItemContainer}>
-          <View style={[styles.timeBox, {width: 0}]}>
+          <View
+            style={[
+              styles.timeBox,
+              {width: 0, borderRightWidth: index === 2 ? 0 : 1},
+            ]}>
             {/* <Text style={styles.timeText}>{item.date}</Text>
             <Text style={styles.dateText}>{item.time}</Text> */}
             <Dot filled={item.status === 'completed' ? true : false} />

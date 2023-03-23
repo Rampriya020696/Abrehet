@@ -86,5 +86,3 @@ const Appx = () => {
     </StripeProvider>
   );
 };
-
-// "{\"publishableKey\":\"sk_test_51Ma0UlHlGffSuHzfXqLxMCx4WwZPl2InuHG7TFmdFPczonVev6xnsrQzyJ0QkiCNP04yyUMiJGGnt8XXWiWEmAG700oh8MwmIz\",\"paymentIntent\":\"pi_3MndNtHlGffSuHzf1YATmdoJ_secret_Xe15M5WwxY6EAty0vmDmQC4KD\",\"customer\":\"cus_NYkte1JUhYq7wy\",\"ephemeralKey\":\"ek_test_YWNjdF8xTWEwVWxIbEdmZlN1SHpmLFZzdjh0dXI3MDZLRExMbXdYenpQZjVqWk55cEdWUGY_00SMo7hrDC\",\"region\":\"eu\"}"
