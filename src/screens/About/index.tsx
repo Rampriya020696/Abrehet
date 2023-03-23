@@ -18,9 +18,9 @@ const About = ({navigation}) => {
     <View style={styles.page}>
       <Header title="About App" onPress={() => navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Gap height={10} />
+        <Gap height={1} />
         <View style={styles.strip} />
-        <Gap height={20} />
+        <Gap height={1} />
         <View style={styles.container}>
           {/* <Image source={ICLogoNotification} style={styles.icon} /> */}
           <View style={styles.title}>
@@ -28,9 +28,9 @@ const About = ({navigation}) => {
             <Text style={styles.desc}>E-Commerce</Text>
           </View>
         </View>
-        <Gap height={14} />
+        <Gap height={4} />
         <View style={styles.strip} />
-        <Gap height={20} />
+        <Gap height={0} />
         <Text style={styles.text}>
         I started building the Mesob store on October 5th, 2021 for a school project. At that time I didn’t have any plan to publish it. A good friend and family of mine by the name of Peter Tesfamichael advises me that it will be a good business model for our country Eritrea. In addition to the support, I got from my father, my wife, friends, family, and the Eritrean community thankfully by God`s grace I was able to publish this amazing app on March 20th 2022.
         </Text>
@@ -40,14 +40,50 @@ const About = ({navigation}) => {
         </Text>
         <Gap height={10} />
         <Gap height={10} />
-        <Gap height={16} />
+        <Gap height={10} />
         <Text style={styles.text}>
         <Text style={{color: 'blue'}}
       onPress={() => Linking.openURL('https://s3.amazonaws.com/abrehet.update.data.ui/Privacy+Policy.txt')}>
         Mesob Privacy Policy
       </Text>
-        </Text>
+      </Text>
+        <Gap height={1} />
         <Gap height={10} />
+
+        <Text style={styles.text}>
+        <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL('https://s3.amazonaws.com/abrehet.update.data.ui/Policies/Google+Play+Services.txt')}>
+        Google Play Services Log Data Policy
+      </Text>
+      </Text>
+        <Gap height={1} />
+        <Gap height={10} />
+
+        <Text style={styles.text}>
+        <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL('https://s3.amazonaws.com/abrehet.update.data.ui/Policies/Information+Collection+and+Use.txt')}>
+        Information Collection and Use Policy
+      </Text>
+      </Text>
+        <Gap height={1} />
+        <Gap height={10} />
+
+        <Text style={styles.text}>
+        <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL('https://s3.amazonaws.com/abrehet.update.data.ui/Policies/Children%60s+Privacy.txt')}>
+        Children`s Privacy Policy
+      </Text>
+      </Text>
+        <Gap height={1} />
+        <Gap height={10} />
+
+        <Text style={styles.text}>
+        <Text style={{color: 'blue'}}
+      onPress={() => Linking.openURL('https://s3.amazonaws.com/abrehet.update.data.ui/Policies/Links+to+Other+Sites.txt')}>
+        Links to Other Sites Policy
+      </Text>
+      </Text>
+        <Gap height={1} />
         <Gap height={10} />
 
       </ScrollView>
