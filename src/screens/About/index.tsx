@@ -18,9 +18,9 @@ const About = ({navigation}) => {
     <View style={styles.page}>
       <Header title="About App" onPress={() => navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Gap height={10} />
+        <Gap height={1} />
         <View style={styles.strip} />
-        <Gap height={20} />
+        <Gap height={1} />
         <View style={styles.container}>
           {/* <Image source={ICLogoNotification} style={styles.icon} /> */}
           <View style={styles.title}>
@@ -38,8 +38,8 @@ const About = ({navigation}) => {
         <Text style={styles.text}>
         The brand vision is to create a two-way shopping experience not only for Eritrea but for the whole of Africa and beyond. I will take time to encourage all young adults to take their dream one step further to accomplish their goals. 
         </Text>
-        <Gap height={1} />
-        <Gap height={1} />
+        <Gap height={10} />
+        <Gap height={10} />
         <Gap height={10} />
         <Text style={styles.text}>
         <Text style={{color: 'blue'}}
