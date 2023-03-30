@@ -72,6 +72,7 @@ const Appx = () => {
     };
     init();
   }, []);
+
   return (
     <StripeProvider
       publishableKey={region === 'eu' ? STRIPE_EU_PK : STRIPE_GLOBAL_PK}>
