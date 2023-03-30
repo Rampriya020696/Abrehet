@@ -41,6 +41,7 @@ const Signin = () => {
   const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [appleLoading, setAppleLoading] = useState(false);
   const [fbLoading, setFbLoading] = useState(false);
   const {resource} = React.useContext(ResourceContext) as any;
   let ScrollViewRef = React.useRef();
@@ -62,6 +63,10 @@ const Signin = () => {
     } finally {
       setLoading(false);
     }
+  };
+  const handleApplePress = () => {
+    Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Apple});
+    setGoogleLoading(true);
   };
 
   const handleGooglePress = () => {
@@ -144,7 +149,7 @@ const Signin = () => {
       <ScrollView
         ref={ScrollViewRef}
         contentContainerStyle={{
-          paddingTop: 30,
+          paddingTop: 20,
           paddingBottom: 100,
         }}>
         <RegionalPopup
@@ -165,8 +170,8 @@ const Signin = () => {
 
           <Text
             style={{
-              fontSize: 20,
-              fontFamily: fonts.primary[800],
+              fontSize: 30,
+              fontFamily: fonts.primary[900],
               marginLeft: 1,
               marginRight: 40,
               alignSelf: 'center',
@@ -175,7 +180,7 @@ const Signin = () => {
             Mesob Store
           </Text>
         </View>
-        <View style={{alignSelf: 'center', marginTop: 20, width: '100%'}}>
+        <View style={{alignSelf: 'center', marginTop: 10, width: '100%'}}>
           <TouchableOpacity
             onPress={handleFbPress}
             style={{
@@ -200,6 +205,7 @@ const Signin = () => {
                 paddingLeft: 20,
                 alignSelf: 'center',
                 fontWeight: '600',
+                
               }}>
               {fbLoading ? (
                 <ActivityIndicator color={'white'} />
@@ -235,6 +241,36 @@ const Signin = () => {
                 fontWeight: '600',
               }}>
               {googleLoading ? <ActivityIndicator /> : 'Login with Google'}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'white',
+              width: '90%',
+              padding: 10,
+              flexDirection: 'row',
+              borderRadius: 12,
+              alignSelf: 'center',
+              marginTop: 10,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={handleApplePress}>
+            <Image
+              style={{width: 20, height: 20, alignSelf: 'center'}}
+              source={require('../../Assets/Logo-Apple.png')}
+            />
+            <Text
+              style={{
+                fontSize: 14,
+                color: 'black',
+                padding: 2,
+                paddingLeft: 20,
+                alignSelf: 'center',
+                fontWeight: '600',
+              }}>
+              {appleLoading ? <ActivityIndicator /> : 'Login with Apple'}
             </Text>
           </TouchableOpacity>
         </View>
