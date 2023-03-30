@@ -186,23 +186,24 @@ const Signin = () => {
             style={{
               backgroundColor: '#536DFE',
               width: '90%',
-              padding: 10,
+              padding: 6,
               flexDirection: 'row',
               alignItems: 'center',
               borderRadius: 12,
               alignSelf: 'center',
               justifyContent: 'center',
+              
             }}>
             <Image
-              style={{width: 10, height: 20, alignSelf: 'center'}}
+              style={{width: 10, height: 20, alignSelf: 'center', marginVertical: 10}}
               source={require('../../Assets/icon_facebook.png')}
             />
             <Text
               style={{
-                fontSize: 14,
+                fontSize: 15,
                 color: 'white',
                 padding: 2,
-                paddingLeft: 20,
+                paddingLeft: 25,
                 alignSelf: 'center',
                 fontWeight: '600',
                 
@@ -222,18 +223,18 @@ const Signin = () => {
               flexDirection: 'row',
               borderRadius: 12,
               alignSelf: 'center',
-              marginTop: 10,
+              marginTop: 20,
               alignItems: 'center',
               justifyContent: 'center',
             }}
             onPress={handleGooglePress}>
             <Image
-              style={{width: 16, height: 16, alignSelf: 'center'}}
+              style={{width: 18, height: 18, alignSelf: 'center',}}
               source={require('../../Assets/Logo-Google.png')}
             />
             <Text
               style={{
-                fontSize: 14,
+                fontSize: 16,
                 color: 'black',
                 padding: 2,
                 paddingLeft: 20,
@@ -252,23 +253,28 @@ const Signin = () => {
               flexDirection: 'row',
               borderRadius: 12,
               alignSelf: 'center',
-              marginTop: 10,
+              marginTop: 20,
               alignItems: 'center',
               justifyContent: 'center',
+              
             }}
             onPress={handleApplePress}>
             <Image
-              style={{width: 20, height: 20, alignSelf: 'center'}}
+              style={{width: 20, 
+                height: 20, 
+                alignSelf: 'center'             
+              }}
               source={require('../../Assets/Logo-Apple.png')}
             />
             <Text
               style={{
-                fontSize: 14,
+                fontSize: 16,
                 color: 'black',
                 padding: 2,
                 paddingLeft: 20,
                 alignSelf: 'center',
                 fontWeight: '600',
+            
               }}>
               {appleLoading ? <ActivityIndicator /> : 'Login with Apple'}
             </Text>
@@ -280,7 +286,7 @@ const Signin = () => {
             fontWeight: '600',
             alignSelf: 'center',
             color: 'white',
-            marginTop: 10,
+            marginTop: 20,
           }}>
           OR
         </Text>
