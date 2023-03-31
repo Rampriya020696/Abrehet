@@ -36,7 +36,7 @@ const HeaderComponent = ({
   const cartItems = useSelector(selectCartItems);
 
   return (
-    <SafeAreaView style={{backgroundColor: '#08b3fc'}}>
+    // <SafeAreaView style={{backgroundColor: '#08b3fc'}}>
       <View
         style={{
           flexDirection: 'row',
@@ -93,7 +93,7 @@ const HeaderComponent = ({
           <CartBadge count={cartItems.length} />
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 };
 const HomeStack = () => {

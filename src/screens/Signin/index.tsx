@@ -15,6 +15,7 @@ import {
   ScrollView,
   Keyboard,
   Platform,
+  SafeAreaView,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
@@ -135,8 +136,10 @@ const Signin = () => {
     init();
   }, []);
   return (
-    <KeyboardAvoidingView
+    
+      <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      
       <Image
         style={{width, height, position: 'absolute'}}
         source={
@@ -145,6 +148,8 @@ const Signin = () => {
             : require('../../Assets/Login.png')
         }
       />
+     
+
 
       <ScrollView
         ref={ScrollViewRef}
@@ -298,6 +303,7 @@ const Signin = () => {
             marginTop: 10,
             flexDirection: 'row',
             alignItems: 'center',
+            marginHorizontal: 10
           }}>
           <Image
             style={{height: 25, width: 25, marginLeft: 20}}
@@ -310,6 +316,7 @@ const Signin = () => {
             style={{
               fontSize: 14,
               paddingLeft: 20,
+              height: 45
             }}
           />
         </View>
@@ -321,6 +328,7 @@ const Signin = () => {
             marginTop: 10,
             flexDirection: 'row',
             alignItems: 'center',
+            marginHorizontal: 10
           }}>
           <Image
             style={{height: 15, width: 25, marginLeft: 20}}
@@ -333,6 +341,8 @@ const Signin = () => {
             style={{
               fontSize: 14,
               paddingLeft: 20,
+              height: 45,
+              
             }}
           />
         </View>
@@ -345,7 +355,7 @@ const Signin = () => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity onPress={handleSignIn}>
+        <TouchableOpacity onPress={handleSignIn} style={{ marginHorizontal: 10}}>
           <LinearGradient
             start={{x: 0.0, y: 0}}
             end={{x: 0.5, y: 3.5}}
@@ -376,6 +386,7 @@ const Signin = () => {
         </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
+   
   );
 };
 

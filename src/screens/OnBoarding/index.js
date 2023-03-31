@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Onboarding from 'react-native-onboarding-swiper';
 import {OnBoardingContext} from '../../context/OnBoardingContext';
@@ -31,6 +31,9 @@ const OnBoarding = ({navigation}) => {
   console.log(onboardingRes, 'onboardingRes');
 
   return (
+    <SafeAreaView style={{flex:1, backgroundColor: 'white'}}>
+
+  
     <Onboarding
       SkipButtonComponent={Skip}
       showNext={false}
@@ -96,7 +99,7 @@ const OnBoarding = ({navigation}) => {
             'Shop from thousand brands in the \n world in one application at \n throwaway prices',
         },
       ]}
-    />
+    /></SafeAreaView>
   );
 };
 

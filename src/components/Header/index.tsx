@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors, fonts} from '../../utils';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
@@ -25,13 +25,15 @@ const Header = ({title, onPress, icon, type, conatinerStyles}: Props) => {
     );
   }
   return (
+    <SafeAreaView style={{flex:1, backgroundColor: 'white'}}>
+
     <View style={[styles.container, conatinerStyles]}>
       <TouchableOpacity onPress={onPress}>
         <Ionicons name="arrow-back" size={30} color="#8398f4" />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <CartBadge count={cartItems.length} />
-    </View>
+    </View></SafeAreaView>
   );
 };
 

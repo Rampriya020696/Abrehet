@@ -9,6 +9,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  SafeAreaView
 } from 'react-native';
 import Gap from '../../components/Gap';
 
@@ -95,6 +96,7 @@ const Profile = ({navigation}) => {
     }
   }
   return (
+    <SafeAreaView style={{flex:1, backgroundColor: 'white'}}>
     <ScrollView>
       <RegionalPopup
         visible={regionPopupShow}
@@ -224,7 +226,7 @@ const Profile = ({navigation}) => {
           <Gap height={50} />
         </View>
       </View>
-    </ScrollView>
+    </ScrollView></SafeAreaView>
   );
 };
 

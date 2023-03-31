@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
   View,
+  SafeAreaView,
   Alert,
 } from 'react-native';
 import {api_send_mail, CUSTOMER_SUPPORT_EMAIL_ID} from '../../api_service';
@@ -58,7 +59,7 @@ const ContactUs = ({navigation}) => {
   }, []);
 
   return (
-    <>
+    <SafeAreaView  style={{flex:1, backgroundColor: 'white'}}>
       <Header title="Contact Us" onPress={navigation.goBack} />
       <View style={styles.page}>
         <View style={{}}>
@@ -99,7 +100,7 @@ const ContactUs = ({navigation}) => {
         </View>
         <Gap height={20} />
       </View>
-    </>
+    </SafeAreaView>
   );
 };
 

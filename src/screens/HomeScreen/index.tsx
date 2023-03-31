@@ -9,6 +9,7 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import {graphqlOperation} from 'aws-amplify';
 import {API} from 'aws-amplify';
@@ -280,11 +281,14 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         products={products}
         onSelect={val => setCountryFilter(val)}
       />
+    <SafeAreaView style={{
+          backgroundColor: '#6A91C7',}}>
       <HeaderComponent
         searchValue={searchString}
         setSearchValue={setSearchString}
         onFilterSelect={() => setCountryFilterModalOpen(true)}
       />
+      </SafeAreaView>
 
       {filterProducts.length ? (
         <FlatList
@@ -345,6 +349,7 @@ const HomeScreen = ({searchValue}: HomeScreenProps) => {
         />
       )}
     </View>
+   
   );
 };
 const width = Dimensions.get('window').width;

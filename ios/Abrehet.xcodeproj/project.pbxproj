@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,28 +48,25 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = "Abrehet";
+			remoteInfo = Abrehet;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* AbrehetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AbrehetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* AbrehetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AbrehetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* AbrehetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AbrehetTests.m"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Abrehet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Abrehet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "Abrehet/AppDelegate.h"; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = "Abrehet/AppDelegate.mm"; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Abrehet/Images.xcassets"; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Abrehet/Info.plist"; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Abrehet/main.m"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* AbrehetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbrehetTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Abrehet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Abrehet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Abrehet/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Abrehet/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Abrehet/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Abrehet/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Abrehet/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Abrehet-AbrehetTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Abrehet-AbrehetTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-Abrehet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Abrehet.debug.xcconfig"; path = "Target Support Files/Pods-Abrehet/Pods-Abrehet.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Abrehet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Abrehet.release.xcconfig"; path = "Target Support Files/Pods-Abrehet/Pods-Abrehet.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Abrehet-AbrehetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Abrehet-AbrehetTests.debug.xcconfig"; path = "Target Support Files/Pods-Abrehet-AbrehetTests/Pods-Abrehet-AbrehetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Abrehet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Abrehet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-<<<<<<< HEAD
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "Abrehet/LaunchScreen.storyboard"; sourceTree = "<group>"; };
-=======
 		76C9FD4B29D2C61A00770D08 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		76C9FD4C29D2C61A00770D08 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		76C9FD4D29D2C61A00770D08 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -99,8 +96,8 @@
 		76C9FD7529D2C65400770D08 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-ExtraBold.ttf"; path = "../../../assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		76C9FD7629D2C65400770D08 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../../../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		76C9FD7729D2C65400770D08 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-ExtraBold.ttf"; path = "../../../assets/fonts/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		76E1E3A929D6A12A0065A9E8 /* Abrehet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Abrehet.entitlements; path = Abrehet/Abrehet.entitlements; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Abrehet/LaunchScreen.storyboard; sourceTree = "<group>"; };
->>>>>>> 969859132552bbef51c4f4df61417e41db7f5586
 		89C6BE57DB24E9ADA2F236DE /* Pods-Abrehet-AbrehetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Abrehet-AbrehetTests.release.xcconfig"; path = "Target Support Files/Pods-Abrehet-AbrehetTests/Pods-Abrehet-AbrehetTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -131,7 +128,7 @@
 				00E356F21AD99517003FC87E /* AbrehetTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = "AbrehetTests";
+			path = AbrehetTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -145,6 +142,7 @@
 		13B07FAE1A68108700A75B9A /* Abrehet */ = {
 			isa = PBXGroup;
 			children = (
+				76E1E3A929D6A12A0065A9E8 /* Abrehet.entitlements */,
 				76C9FD4A29D2C61A00770D08 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -153,7 +151,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = "Abrehet";
+			name = Abrehet;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -264,8 +262,7 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = "AbrehetTests";
-			productname = "AbrehetTests";
+			name = AbrehetTests;
 			productReference = 00E356EE1AD99517003FC87E /* AbrehetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -286,8 +283,8 @@
 			);
 			dependencies = (
 			);
-			name = "Abrehet";
-			productName = "Abrehet";
+			name = Abrehet;
+			productName = Abrehet;
 			productReference = 13B07F961A680F5B00A75B9A /* Abrehet.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -309,7 +306,7 @@
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Abrehet" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -560,7 +557,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "AbrehetTests/Info.plist";
+				INFOPLIST_FILE = AbrehetTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -572,7 +569,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesob.store.app";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesob.store.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Abrehet.app/Abrehet";
 			};
@@ -584,7 +581,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = "AbrehetTests/Info.plist";
+				INFOPLIST_FILE = AbrehetTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -596,7 +593,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesob.store.app";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mesob.store.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Abrehet.app/Abrehet";
 			};
@@ -608,22 +605,30 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Abrehet/Abrehet.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T7F65ZFA5T;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "Abrehet/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "Abrehet";
+				INFOPLIST_FILE = Abrehet/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Abrehet;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesob.store.app";
-				PRODUCT_NAME = "Abrehet";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Abrehet;
+				PRODUCT_NAME = Abrehet;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = NewProvisioning;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -636,25 +641,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Abrehet/Abrehet.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-<<<<<<< HEAD
-				INFOPLIST_FILE = "Abrehet/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "Abrehet";
-=======
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T7F65ZFA5T;
 				INFOPLIST_FILE = Abrehet/Info.plist;
->>>>>>> 969859132552bbef51c4f4df61417e41db7f5586
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mesob.store.app";
-				PRODUCT_NAME = "Abrehet";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Abrehet;
+				PRODUCT_NAME = Abrehet;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = NewProvisioning;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

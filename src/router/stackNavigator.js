@@ -25,6 +25,7 @@ import ContactUs from '../screens/ContactUs';
 import SettingAccount from '../screens/SettingAccount';
 import OfferDeals from '../screens/OfferDeals';
 import Payments from '../screens/Payment';
+import { SafeAreaView } from 'react-native';
 
 
 const Root = createStackNavigator();
@@ -32,7 +33,8 @@ const Stack = createNativeStackNavigator();
 
 const MainStackNavigator = () => {
   return (
-    <Stack.Navigator>
+  //  <SafeAreaView style={{backgroundColor:'red', flex:1}}>
+     <Stack.Navigator>
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -157,6 +159,7 @@ const MainStackNavigator = () => {
         options={{headerShown: false}}
       />
     </Stack.Navigator>
+  //  </SafeAreaView>
   );
 };
 

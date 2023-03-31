@@ -10,6 +10,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  SafeAreaView,
   Keyboard,
 } from 'react-native';
 import React, {useState} from 'react';
@@ -308,9 +309,11 @@ const AddressScreen = ({navigation}) => {
     };
   }, []);
   return (
+    <SafeAreaView style={{flex:1, backgroundColor: 'white'}}>
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 'padding' : ''}>
+      // keyboardVerticalOffset={Platform.OS === 'ios' ? 'padding' : ''}
+      >
       <Header
         title="Address"
         icon={ICCart2}
@@ -566,6 +569,7 @@ const AddressScreen = ({navigation}) => {
         />
       </ScrollView>
     </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 

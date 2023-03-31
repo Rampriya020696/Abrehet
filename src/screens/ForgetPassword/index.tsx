@@ -70,6 +70,7 @@ const ForgetPassword = () => {
             style={{
               fontSize: 15,
               paddingLeft: 20,
+              height:40
             }}
             placeholder="Email Address"
             placeholderTextColor="gray"
@@ -86,6 +87,7 @@ const ForgetPassword = () => {
             backgroundColor: colors.blueButton,
             justifyContent: 'center',
             alignItems: 'center',
+            borderRadius:15
           }}>
           <Text style={{color: 'white', fontSize: 18}}>Forget Password</Text>
         </TouchableOpacity>

@@ -89,6 +89,7 @@ const EmailConfirmation = () => {
             style={{
               fontSize: 15,
               paddingLeft: 20,
+              height:40
             }}
             placeholder="Email"
             placeholderTextColor="gray"
@@ -109,6 +110,7 @@ const EmailConfirmation = () => {
             style={{
               fontSize: 15,
               paddingLeft: 20,
+              height:40
             }}
             placeholder="code"
             placeholderTextColor="gray"
@@ -125,11 +127,13 @@ const EmailConfirmation = () => {
             backgroundColor: colors.blueButton,
             justifyContent: 'center',
             alignItems: 'center',
+            borderRadius:15
           }}>
           <Text style={{color: 'white', fontSize: 18}}>Confirm</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
+
           onPress={handleEmailResend}
           style={{
             marginTop: 40,
@@ -137,6 +141,7 @@ const EmailConfirmation = () => {
             backgroundColor: colors.blueButton,
             justifyContent: 'center',
             alignItems: 'center',
+            borderRadius:15
           }}>
           <Text style={{color: 'white', fontSize: 18}}>Resend Code</Text>
         </TouchableOpacity>

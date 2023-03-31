@@ -82,6 +82,7 @@ const Signup = ({navigation}): JSX.Element => {
                 style={{
                   fontSize: 14,
                   paddingLeft: 20,
+                  height:45
                 }}
               />
             </View>
@@ -104,6 +105,7 @@ const Signup = ({navigation}): JSX.Element => {
                 style={{
                   fontSize: 14,
                   paddingLeft: 20,
+                  height:45
                 }}
               />
             </View>
@@ -155,6 +157,7 @@ const Signup = ({navigation}): JSX.Element => {
                 style={{
                   fontSize: 14,
                   paddingLeft: 20,
+                  height:45
                 }}
               />
             </View>
@@ -175,7 +178,9 @@ const Signup = ({navigation}): JSX.Element => {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity onPress={() => handleSignUp()}>
+            <TouchableOpacity onPress={() => handleSignUp()}
+            style={{ marginHorizontal: 10}}
+            >
               <LinearGradient
                 start={{x: 0.0, y: 0}}
                 end={{x: 0.5, y: 3.5}}

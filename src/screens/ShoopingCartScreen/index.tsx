@@ -3,7 +3,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {compose} from '@reduxjs/toolkit';
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, Image,SafeAreaView} from 'react-native';
 
 import {useDispatch, useSelector} from 'react-redux';
 import ActionBtn from '../../components/ActionBtn';
@@ -96,6 +96,7 @@ const Cart = () => {
   };
 
   return (
+    <SafeAreaView style={{flex:1, backgroundColor: 'white'}}>
     <View style={styles.page}>
       <Text style={styles.cart}>Cart</Text>
 
@@ -259,7 +260,7 @@ const Cart = () => {
           />
         </View>
       ) : null}
-    </View>
+    </View></SafeAreaView>
   );
 };
 

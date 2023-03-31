@@ -127,6 +127,8 @@ const ProductScreen = () => {
   }
 
   return (
+    <SafeAreaView style={{flex:1, backgroundColor: 'white'}}>
+
     <View style={{flex: 1}}>
       <Header
         title="Product Detail"
@@ -242,6 +244,8 @@ const ProductScreen = () => {
         </TouchableOpacity>
       </View>
     </View>
+    </SafeAreaView>
+
   );
 };
 
