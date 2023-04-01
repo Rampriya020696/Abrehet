@@ -100,9 +100,9 @@
   	<array>
     	<dict>
       	<key>CFBundleURLSchemes</key>
-      	<array>
-        	<string>abrehet</string>
-      	</array>
+      		<array>
+        		<string>abrehet</string>
+      		</array>
     	</dict>
   	</array>
 </dict>
