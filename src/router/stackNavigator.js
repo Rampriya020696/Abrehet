@@ -26,6 +26,7 @@ import SettingAccount from '../screens/SettingAccount';
 import OfferDeals from '../screens/OfferDeals';
 import Payments from '../screens/Payment';
 import { SafeAreaView } from 'react-native';
+import Cart from '../screens/ShoopingCartScreen'
 
 
 const Root = createStackNavigator();
@@ -158,6 +159,7 @@ const MainStackNavigator = () => {
         component={Payments}
         options={{headerShown: false}}
       />
+      {/* <Stack.Screen component={Cart} name="cart" /> */}
     </Stack.Navigator>
   //  </SafeAreaView>
   );

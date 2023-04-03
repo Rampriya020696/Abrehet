@@ -89,7 +89,7 @@ const HeaderComponent = ({
             source={require('../Assets/ChatICon.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('cart')}>
           <CartBadge count={cartItems.length} />
         </TouchableOpacity>
       </View>

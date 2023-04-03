@@ -25,7 +25,7 @@ const Header = ({title, onPress, icon, type, conatinerStyles}: Props) => {
     );
   }
   return (
-    <SafeAreaView style={{flex:1, backgroundColor: 'white'}}>
+    <SafeAreaView style={{ backgroundColor: 'white'}}>
 
     <View style={[styles.container, conatinerStyles]}>
       <TouchableOpacity onPress={onPress}>

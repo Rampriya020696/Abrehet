@@ -194,6 +194,8 @@ const AddressScreen = ({navigation}) => {
       address: address,
       city: city,
       isSender,
+      country,
+      state,
       name: fullname,
       phone: phone,
       senderAddress: isSender ? JSON.stringify(senderObj) : '',
@@ -203,15 +205,18 @@ const AddressScreen = ({navigation}) => {
       Products: JSON.stringify(cartItemData || []),
     };
 
+    console.log(order,"buildOrderObject")
+
     try {
       const authUser = await Auth.currentAuthenticatedUser();
       console.log('----->', authUser);
 
       order.userID = authUser?.attributes?.sub;
-      console.log(order);
+      console.log('--order--->', order);
       const res = await API.graphql(
         graphqlOperation(createOrder, {input: order}),
       );
+
       Alert.alert('Success', 'Order Created Successfully!');
       dispatch(
         handleOrdersComplete({
@@ -220,7 +225,7 @@ const AddressScreen = ({navigation}) => {
       );
       console.log('----->', res);
     } catch (error) {
-      console.log('----->', error);
+      console.log('---err-->', error);
     }
   };
 
@@ -260,7 +265,7 @@ const AddressScreen = ({navigation}) => {
 
     // console.warn('Success. Checkout');
     buildOrderObject();
-    getStripeIntent();
+    // getStripeIntent();
   };
 
   const sendOrderMail = async () => {
@@ -397,7 +402,7 @@ const AddressScreen = ({navigation}) => {
                 <TextInput
                   style={styles.input}
                   placeholder="Sender State"
-                  value={sState}
+                  value={state}
                   onChangeText={setState}
                 />
               </View>

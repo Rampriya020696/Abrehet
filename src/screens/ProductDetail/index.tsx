@@ -55,6 +55,7 @@ const ProductDetail = props => {
     }
   };
 
+
   return (
     <SafeAreaView style={styles.container}>
       {/* <Header
