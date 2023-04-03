@@ -265,7 +265,7 @@ const AddressScreen = ({navigation}) => {
 
     // console.warn('Success. Checkout');
     buildOrderObject();
-    // getStripeIntent();
+    getStripeIntent();
   };
 
   const sendOrderMail = async () => {
