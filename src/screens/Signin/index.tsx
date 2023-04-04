@@ -50,9 +50,7 @@ const Signin = () => {
   const [customState, setCustomState] = useState(null);
   const [regionPopupShow, setRegionPopupShow] = useState(false);
   const dispatch = useDispatch();
-  const keyboardDidShow = (number = 110) => {
-    ScrollViewRef?.current?.scrollTo({y: number, animated: true});
-  };
+
 
   const handleSignIn = async () => {
     setLoading(true);
@@ -106,6 +104,10 @@ const Signin = () => {
     return unsubscribe;
   }, []);
 
+
+  const keyboardDidShow = () => {
+    ScrollViewRef?.current?.scrollTo({y: 120, animated: true});
+  };
   const keyboardDidHide = () => {};
   React.useEffect(() => {
     keyboardDidShowListener = Keyboard.addListener(
@@ -136,9 +138,11 @@ const Signin = () => {
     init();
   }, []);
   return (
-    
-      <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <>
+      <KeyboardAvoidingView 
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}
+
+     behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       
       <Image
         style={{width, height, position: 'absolute'}}
@@ -385,7 +389,10 @@ const Signin = () => {
           </View>
         </TouchableOpacity>
       </ScrollView>
-    </KeyboardAvoidingView>
+     
+   
+  </KeyboardAvoidingView> 
+       </>
    
   );
 };

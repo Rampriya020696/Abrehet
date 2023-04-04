@@ -12,23 +12,24 @@ import {
   Platform,
   SafeAreaView,
   Keyboard,
+  KeyboardEventListener,
 } from 'react-native';
-import React, {useState} from 'react';
-import {API, Auth, graphqlOperation} from 'aws-amplify';
-import {Picker} from '@react-native-picker/picker';
+import React, { useState } from 'react';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
+import { Picker } from '@react-native-picker/picker';
 //import countryList from 'country-list';
 import Button from '../../components/Button';
 import styles from './styles';
 import Header from '../../components/Header';
-import {ICCart2} from '../../Assets';
+import { ICCart2 } from '../../Assets';
 import ActionBtn from '../../components/ActionBtn';
-import {useStripe} from '@stripe/stripe-react-native';
-import {api_send_mail, CHECKOUT_API_URL} from '../../api_service';
-import {getUsers} from '../../graphql/queries';
+import { useStripe } from '@stripe/stripe-react-native';
+import { api_send_mail, CHECKOUT_API_URL } from '../../api_service';
+import { getUsers } from '../../graphql/queries';
 //const countries = countryList.getData();
 import CheckBox from '@react-native-community/checkbox';
-import {createOrder} from '../../graphql/mutations';
-import {useDispatch, useSelector} from 'react-redux';
+import { createOrder } from '../../graphql/mutations';
+import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
 import {
   selectCartItems,
@@ -36,19 +37,19 @@ import {
   handleOrdersComplete,
 } from '../../store/features/cart/cartSlice';
 import ButtonGradient from '../../components/ButtonGradient';
-import {useRoute} from '@react-navigation/native';
-import {current} from '@reduxjs/toolkit';
+import { useRoute } from '@react-navigation/native';
+import { current } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 let keyboardDidShowListener;
 let keyboardDidHideListener;
-const AddressScreen = ({navigation}) => {
-  const {cartItemData} = useRoute().params;
+const AddressScreen = ({ navigation }) => {
+  const { cartItemData } = useRoute().params;
 
   const dispatch = useDispatch();
   console.log(cartItemData, 'ROUTE___>');
   console.log(useRoute().params, 'params___>');
-  const {initPaymentSheet, presentPaymentSheet} = useStripe();
+  const { initPaymentSheet, presentPaymentSheet } = useStripe();
   const [toggleCheckBox, setToggleCheckBox] = useState('reciver');
   const [fullname, setFullname] = useState('');
   let ScrollViewRef = React.useRef('');
@@ -115,7 +116,7 @@ const AddressScreen = ({navigation}) => {
       },
     };
 
-    console.log({payload});
+    console.log({ payload });
     const body = JSON.stringify(payload);
     console.log(body, 'JSON.stringify');
     setLoading('connecting to stipe...');
@@ -147,7 +148,7 @@ const AddressScreen = ({navigation}) => {
     setLoading('initialize payment...');
     try {
       //@ts-ignore
-      const {paymentOption, error} = await initPaymentSheet({
+      const { paymentOption, error } = await initPaymentSheet({
         customerId: data.customer,
         customerEphemeralKeySecret: data.ephemeralKey,
         paymentIntentClientSecret: data.paymentIntent,
@@ -172,7 +173,7 @@ const AddressScreen = ({navigation}) => {
     setLoading('almost done!');
     try {
       //@ts-ignore
-      const res = await presentPaymentSheet({clientSecret: paymentIntent});
+      const res = await presentPaymentSheet({ clientSecret: paymentIntent });
       if (res?.error) {
         Alert.alert(`Error code: ${res?.error.code}`, res?.error.message);
       } else {
@@ -205,7 +206,7 @@ const AddressScreen = ({navigation}) => {
       Products: JSON.stringify(cartItemData || []),
     };
 
-    console.log(order,"buildOrderObject")
+    console.log(order, "buildOrderObject")
 
     try {
       const authUser = await Auth.currentAuthenticatedUser();
@@ -214,7 +215,7 @@ const AddressScreen = ({navigation}) => {
       order.userID = authUser?.attributes?.sub;
       console.log('--order--->', order);
       const res = await API.graphql(
-        graphqlOperation(createOrder, {input: order}),
+        graphqlOperation(createOrder, { input: order }),
       );
 
       Alert.alert('Success', 'Order Created Successfully!');
@@ -293,11 +294,14 @@ const AddressScreen = ({navigation}) => {
     getAuthUser();
   }, []);
 
-  const keyboardDidShow = (number = 110) => {
-    console.log(ScrollViewRef, 'REF', number);
-    ScrollViewRef?.current?.scrollTo({y: number, animated: true});
+  const keyboardDidShow = () => {
+    // if (
+    //   Platform.OS === 'ios') {
+    //   return
+    // }
+    ScrollViewRef?.current?.scrollTo({ y: 110, animated: true });
   };
-  const keyboardDidHide = () => {};
+  const keyboardDidHide = () => { };
   React.useEffect(() => {
     keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
@@ -314,49 +318,50 @@ const AddressScreen = ({navigation}) => {
     };
   }, []);
   return (
-    <SafeAreaView style={{flex:1, backgroundColor: 'white'}}>
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
       // keyboardVerticalOffset={Platform.OS === 'ios' ? 'padding' : ''}
       >
-      <Header
-        title="Address"
-        icon={ICCart2}
-        onPress={() => navigation.goBack()}
-      />
-      <ScrollView style={styles.root} ref={ScrollViewRef}>
-        <Modal isVisible={showModel}>
-          <View
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Header
+          title="Address"
+          icon={ICCart2}
+          onPress={() => navigation.goBack()}
+        />
+        <ScrollView style={styles.root} ref={ScrollViewRef}>
+          <Modal isVisible={showModel}>
             <View
-              style={{
-                backgroundColor: '#fff',
-                borderRadius: 10,
-                width: '100%',
-
-                padding: 10,
-              }}>
-              <Text
+              style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <View
                 style={{
-                  fontSize: 18,
-                  color: 'black',
-                  marginVertical: 9,
+                  backgroundColor: '#fff',
+                  borderRadius: 10,
+                  width: '100%',
+
+                  padding: 10,
                 }}>
-                Sender Detail's
-              </Text>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    color: 'black',
+                    marginVertical: 9,
+                  }}>
+                  Sender Detail's
+                </Text>
 
-              {/* Name */}
-              <View style={styles.row}>
-                <Text style={styles.label}>Name </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Sender Name"
-                  value={sName}
-                  onChangeText={setSName}
-                />
-              </View>
+                {/* Name */}
+                <View style={styles.row}>
+                  <Text style={styles.label}>Name </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Sender Name"
+                    value={sName}
+                    onChangeText={setSName}
+                  />
+                </View>
 
-              {/* Email 
+                {/* Email 
               <View style={styles.row}>
                 <Text style={styles.label}>Email </Text>
                 <TextInput
@@ -366,83 +371,83 @@ const AddressScreen = ({navigation}) => {
                   onChangeText={setSEmail}
                 />
               </View> */}
-              {/* Address */}
-              <View style={styles.row}>
-                <Text style={styles.label}>Full Address </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Sender address"
-                  value={sAddress}
-                  onChangeText={setSAddress}
-                />
-              </View>
-              {/* Name */}
-              <View style={styles.row}>
-                <Text style={styles.label}>Phone </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Sender phone number"
-                  value={sPhone}
-                  onChangeText={setSPhone}
-                />
-              </View>
+                {/* Address */}
+                <View style={styles.row}>
+                  <Text style={styles.label}>Full Address </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Sender address"
+                    value={sAddress}
+                    onChangeText={setSAddress}
+                  />
+                </View>
+                {/* Name */}
+                <View style={styles.row}>
+                  <Text style={styles.label}>Phone </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Sender phone number"
+                    value={sPhone}
+                    onChangeText={setSPhone}
+                  />
+                </View>
 
-              <View style={styles.row}>
-                <Text style={styles.label}>City </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Sender City"
-                  value={sCity}
-                  onChangeText={setSCity}
-                />
-              </View>
+                <View style={styles.row}>
+                  <Text style={styles.label}>City </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Sender City"
+                    value={sCity}
+                    onChangeText={setSCity}
+                  />
+                </View>
 
-              <View style={styles.row1}>
-                <Text style={styles.label}>State </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Sender State"
-                  value={state}
-                  onChangeText={setState}
-                />
-              </View>
+                <View style={styles.row1}>
+                  <Text style={styles.label}>State </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Sender State"
+                    value={state}
+                    onChangeText={setState}
+                  />
+                </View>
 
-              {/* Pin Code */}
-              <View style={styles.row}>
-                <Text style={styles.label}>Zip code </Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Sender Zip code"
-                  value={sPinCode}
-                  onChangeText={setSPinCode}
-                />
-              </View>
+                {/* Pin Code */}
+                <View style={styles.row}>
+                  <Text style={styles.label}>Zip code </Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Sender Zip code"
+                    value={sPinCode}
+                    onChangeText={setSPinCode}
+                  />
+                </View>
 
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <TouchableOpacity onPress={buildSenderObj}>
-                  <Text style={styles.Submit}>Submit</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setShowModel(false)}>
-                  <Text style={styles.Submit}>Cancel</Text>
-                </TouchableOpacity>
+                <View
+                  style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <TouchableOpacity onPress={buildSenderObj}>
+                    <Text style={styles.Submit}>Submit</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => setShowModel(false)}>
+                    <Text style={styles.Submit}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
+          </Modal>
+          <View style={styles.row}></View>
+
+          <View style={styles.row}>
+            <Text style={styles.label}>Receiver Full Name</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Full Name"
+              value={fullname}
+              onChangeText={setFullname}
+            />
           </View>
-        </Modal>
-        <View style={styles.row}></View>
 
-        <View style={styles.row}>
-          <Text style={styles.label}>Receiver Full Name</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Full Name"
-            value={fullname}
-            onChangeText={setFullname}
-          />
-        </View>
-
-        {/* Sender Address
+          {/* Sender Address
         {toggleCheckBox === 'sender' && (
           <View style={styles.row}>
             <Text style={styles.label}>Sender Address </Text>
@@ -454,17 +459,17 @@ const AddressScreen = ({navigation}) => {
             />
           </View>
         )} */}
-        {/* Reciver Address */}
-        <View style={styles.row}>
-          <Text style={styles.label}>Street Address </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="If address is not available put street name or zone."
-            value={address}
-            onChangeText={setAddress}
-          />
-        </View>
-        {/* Email 
+          {/* Reciver Address */}
+          <View style={styles.row}>
+            <Text style={styles.label}>Street Address </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="If address is not available put street name or zone."
+              value={address}
+              onChangeText={setAddress}
+            />
+          </View>
+          {/* Email 
         <View style={styles.row}>
           <Text style={styles.label}>Email </Text>
           <TextInput
@@ -474,41 +479,41 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setEmail}
           />
         </View> */}
-        {/* Phone */}
-        <View style={styles.row}>
-          <Text style={styles.label}>Phone Number </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Reciever`s phone number required"
-            value={phone}
-            onChangeText={setPhone}
-            keyboardType={'phone-pad'}
-          />
-        </View>
-        {/* City */}
-        <View style={styles.row}>
-          <Text style={styles.label}>City </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="City"
-            value={city}
-            onChangeText={setCity}
-          />
-        </View>
-        {/* State */}
-        <View style={styles.row}>
-          <Text style={styles.label}>State/Province/Zoba</Text>
-          <TextInput
-            onFocus={() => {
-              keyboardDidShow(200);
-            }}
-            style={styles.input}
-            placeholder="State/Province/Zoba"
-            value={state}
-            onChangeText={setState}
-          />
-        </View>
-        {/* postal code 
+          {/* Phone */}
+          <View style={styles.row}>
+            <Text style={styles.label}>Phone Number </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Reciever`s phone number required"
+              value={phone}
+              onChangeText={setPhone}
+              keyboardType={'phone-pad'}
+            />
+          </View>
+          {/* City */}
+          <View style={styles.row}>
+            <Text style={styles.label}>City </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="City"
+              value={city}
+              onChangeText={setCity}
+            />
+          </View>
+          {/* State */}
+          <View style={styles.row}>
+            <Text style={styles.label}>State/Province/Zoba</Text>
+            <TextInput
+              onFocus={() => {
+                keyboardDidShow(200);
+              }}
+              style={styles.input}
+              placeholder="State/Province/Zoba"
+              value={state}
+              onChangeText={setState}
+            />
+          </View>
+          {/* postal code 
         <View style={styles.row}>
           <Text style={styles.label}>Postal code </Text>
           <TextInput
@@ -518,41 +523,41 @@ const AddressScreen = ({navigation}) => {
             onChangeText={setPostal_code}
           />
         </View> */}
-        {/* country */}
-        <View style={styles.row}>
-          <Text style={styles.label}>Country </Text>
-          <TextInput
-            onFocus={() => {
-              keyboardDidShow(200);
-            }}
-            style={styles.input}
-            placeholder="Country"
-            value={country}
-            onChangeText={setCountry}
-          />
-        </View>
-
-        {/* Checkbox */}
-        <View style={styles.row}>
-          <Text style={styles.label}>
-            Check the box below to enter sender`s info.
-          </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBox === 'sender'}
-              onValueChange={newValue => {
-                setShowModel(true);
-                setToggleCheckBox('sender');
+          {/* country */}
+          <View style={styles.row}>
+            <Text style={styles.label}>Country </Text>
+            <TextInput
+              onFocus={() => {
+                keyboardDidShow(200);
               }}
+              style={styles.input}
+              placeholder="Country"
+              value={country}
+              onChangeText={setCountry}
             />
-            <Text>Sender </Text>
           </View>
-          {/* <View
+
+          {/* Checkbox */}
+          <View style={styles.row}>
+            <Text style={styles.label}>
+              Check the box below to enter sender`s info.
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <CheckBox
+                disabled={false}
+                value={toggleCheckBox === 'sender'}
+                onValueChange={newValue => {
+                  setShowModel(true);
+                  setToggleCheckBox('sender');
+                }}
+              />
+              <Text>Sender </Text>
+            </View>
+            {/* <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -564,16 +569,16 @@ const AddressScreen = ({navigation}) => {
             />
             <Text>reciver </Text>
           </View> */}
-        </View>
-        <ActionBtn
-          title={loading || 'Checkout'}
-          onPress={onCheckout}
-          containerStyle={{
-            borderRadius: 5,
-          }}
-        />
-      </ScrollView>
-    </KeyboardAvoidingView>
+          </View>
+          <ActionBtn
+            title={loading || 'Checkout'}
+            onPress={onCheckout}
+            containerStyle={{
+              borderRadius: 5,
+            }}
+          />
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
