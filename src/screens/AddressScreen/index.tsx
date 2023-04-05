@@ -296,7 +296,9 @@ const AddressScreen = ({navigation}) => {
   }, []);
 
   const handleModalScroll = () => {
-    ModalScrollViewRef?.current?.scrollTo({y: 200, animated: true});
+    setTimeout(() => {
+      ModalScrollViewRef?.current?.scrollTo({y: 300, animated: true});
+    }, 200);
   };
 
   const keyboardDidShow = () => {
