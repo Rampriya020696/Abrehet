@@ -348,7 +348,13 @@ const AddressScreen = ({navigation}) => {
                   flex: 1,
                   width: '100%',
                 }}
-                contentContainerStyle={{
+                contentContainerStyle={
+                  Platform.OS === 'ios' ? {
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    paddingBottom:350
+                  }:
+                  {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
