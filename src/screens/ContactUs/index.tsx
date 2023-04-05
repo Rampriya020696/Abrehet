@@ -10,14 +10,13 @@ import {
   View,
   SafeAreaView,
   Alert,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import {api_send_mail, CUSTOMER_SUPPORT_EMAIL_ID} from '../../api_service';
-
 import {ICChatNull} from '../../Assets';
-
 import Gap from '../../components/Gap';
 import Header from '../../components/Header';
-
 import {colors, fonts} from '../../utils';
 
 const ContactUs = ({navigation}) => {
@@ -59,7 +58,12 @@ const ContactUs = ({navigation}) => {
   }, []);
 
   return (
+    <TouchableWithoutFeedback 
+    onPress={() => Keyboard.dismiss()}
+    >
     <SafeAreaView  style={{flex:1, backgroundColor: 'white'}}>
+    
+
       <Header title="Contact Us" onPress={navigation.goBack} />
       <View style={styles.page}>
         <View style={{}}>
@@ -83,9 +87,7 @@ const ContactUs = ({navigation}) => {
             <TextInput
               style={[styles.textInput]}
               placeholder="Enter your name,
-
               phone number and questions you need to ask us and we will respond in a timely manner."
-              
               value={message}
               multiline={true}
               onChangeText={setMessage}
@@ -100,7 +102,10 @@ const ContactUs = ({navigation}) => {
         </View>
         <Gap height={20} />
       </View>
+
     </SafeAreaView>
+    </TouchableWithoutFeedback>
+
   );
 };
 
