@@ -2,8 +2,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {
-  ImageBackground,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -15,7 +13,6 @@ import {
   ScrollView,
   Keyboard,
   Platform,
-  SafeAreaView,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';

@@ -12,18 +12,21 @@ import {
   Alert,
   TouchableWithoutFeedback,
   Keyboard,
+  ScrollView,
 } from 'react-native';
 import {api_send_mail, CUSTOMER_SUPPORT_EMAIL_ID} from '../../api_service';
 import {ICChatNull} from '../../Assets';
 import Gap from '../../components/Gap';
 import Header from '../../components/Header';
 import {colors, fonts} from '../../utils';
+let keyboardDidShowListener;
+let keyboardDidHideListener;
 
 const ContactUs = ({navigation}) => {
   const [message, setMessage] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-
+  let ScrollViewRef = React.useRef();
   const sendOrderMail = async () => {
     if (!email) return;
     setLoading(true);
@@ -57,55 +60,71 @@ const ContactUs = ({navigation}) => {
     getAuthUser();
   }, []);
 
+  const keyboardDidShow = () => {
+    ScrollViewRef?.current?.scrollTo({y: 120, animated: true});
+  };
+  const keyboardDidHide = () => {};
+  React.useEffect(() => {
+    keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      keyboardDidShow,
+    );
+    keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      keyboardDidHide,
+    );
+
+    return () => {
+      keyboardDidShowListener?.remove();
+      keyboardDidHideListener?.remove();
+    };
+  }, []);
+
   return (
-    <TouchableWithoutFeedback 
-    onPress={() => Keyboard.dismiss()}
-    >
-    <SafeAreaView  style={{flex:1, backgroundColor: 'white'}}>
-    
-
-      <Header title="Contact Us" onPress={navigation.goBack} />
-      <View style={styles.page}>
-        <View style={{}}>
-          <Image source={ICChatNull} style={styles.image} />
-          <Text style={styles.title}>We're Happy to Help You!</Text>
-          <Text style={styles.text}>
-            If you have any questions please reach out to us. {'\n'}
-          </Text>
-
-          <View style={{alignItems: 'center', marginTop: 12}}>
-            <Text style={styles.inputLabel}>Email Address</Text>
-            <TextInput
-              placeholder="Enter Your Email Address"
-              style={styles.textInput}
-              value={email}
-              onChangeText={setEmail}
-            />
-          </View>
-          <View style={{alignItems: 'center', marginTop: 12}}>
-            <Text style={styles.inputLabel}>Message</Text>
-            <TextInput
-              style={[styles.textInput]}
-              placeholder="Enter your name,
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+          <Header title="Contact Us" onPress={navigation.goBack} />
+          <View style={styles.page}>
+            <View>
+              <Image source={ICChatNull} style={styles.image} />
+              <Text style={styles.title}>We're Happy to Help You!</Text>
+              <Text style={styles.text}>
+                If you have any questions please reach out to us. {'\n'}
+              </Text>
+              <View style={{alignItems: 'center', marginTop: 12}}>
+                <Text style={styles.inputLabel}>Email Address</Text>
+                <TextInput
+                  onFocus={keyboardDidShow}
+                  placeholder="Enter Your Email Address"
+                  style={styles.textInput}
+                  value={email}
+                  onChangeText={setEmail}
+                />
+              </View>
+              <View style={{alignItems: 'center', marginTop: 12}}>
+                <Text style={styles.inputLabel}>Message</Text>
+                <TextInput
+                  onFocus={keyboardDidShow}
+                  style={[styles.textInput]}
+                  placeholder="Enter your name,
               phone number and questions you need to ask us and we will respond in a timely manner."
-              value={message}
-              multiline={true}
-              onChangeText={setMessage}
-            />
+                  value={message}
+                  multiline={true}
+                  onChangeText={setMessage}
+                />
+              </View>
+              <TouchableOpacity style={styles.button} onPress={sendOrderMail}>
+                <Text style={styles.textButton}>
+                  {loading ? 'Sending Email...' : 'Send Mail'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <Gap height={20} />
           </View>
-          <TouchableOpacity style={styles.button} onPress={sendOrderMail} 
-          >
-            <Text style={styles.textButton}>
-              {loading ? 'Sending Email...' : 'Send Mail'}
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <Gap height={20} />
-      </View>
-
-    </SafeAreaView>
+        </SafeAreaView>
+      </ScrollView>
     </TouchableWithoutFeedback>
-
   );
 };
 
