@@ -3,7 +3,8 @@ import {Auth} from 'aws-amplify';
 import React from 'react';
 import {
   Image,
-  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
   Text,
   TouchableOpacity,
   TextInput,
@@ -13,6 +14,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ScrollView,
+  StyleSheet
 } from 'react-native';
 import {api_send_mail, CUSTOMER_SUPPORT_EMAIL_ID} from '../../api_service';
 import {ICChatNull} from '../../Assets';
@@ -61,7 +63,7 @@ const ContactUs = ({navigation}) => {
   }, []);
 
   const keyboardDidShow = () => {
-    ScrollViewRef?.current?.scrollTo({y: 120, animated: true});
+    ScrollViewRef?.current?.scrollTo({y: 200, animated: true});
   };
   const keyboardDidHide = () => {};
   React.useEffect(() => {
@@ -81,12 +83,17 @@ const ContactUs = ({navigation}) => {
   }, []);
 
   return (
+    
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
+    <KeyboardAvoidingView
+    style={{flex:1,  backgroundColor: 'white'}}
+    keyboardVerticalOffset={Platform.OS === 'ios' ? 5 : 0}
+    behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <ScrollView  ref={ScrollViewRef.current} style={{flex: 1, backgroundColor: 'white'}}>
         <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
           <Header title="Contact Us" onPress={navigation.goBack} />
-          <View style={styles.page}>
-            <View>
+          <View style={[styles.page,{paddingBottom:200}]}>
+            <View style={{}}>
               <Image source={ICChatNull} style={styles.image} />
               <Text style={styles.title}>We're Happy to Help You!</Text>
               <Text style={styles.text}>
@@ -124,7 +131,9 @@ const ContactUs = ({navigation}) => {
           </View>
         </SafeAreaView>
       </ScrollView>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
+  
   );
 };
 
