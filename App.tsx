@@ -21,14 +21,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // const isLocalhost = Boolean(__DEV__);
 const isLocalhost = Boolean(true);
 
-
-const STRIPE_GLOBAL_PK =
-  'pk_test_51KZzWbAhBlpHU9kBF7mHsYqqk6Ma8MGqjS9PB2pfwRcSW9npj1fv3YCqsFOESqTYvzoGIdBuZ9y3qKpTkhwpc9TO00kMQrezA4';
-const STRIPE_EU_PK =
-  'pk_test_51Ma0UlHlGffSuHzfQ0MLtY2NxXXevZvjKNBMh1gLgrHedV5ZqbTvX8aLAFQC4YaFmdAlwUVmhjrcCevWbopcfHNQ00c9HutQd3';
-
-
-
+const STRIPE_GLOBAL_PK = '';
+const STRIPE_EU_PK = '';
 
 // Assuming you have two redirect URIs, and the first is for localhost and second is for production
 const [localRedirectSignIn, productionRedirectSignIn] =
@@ -64,7 +58,7 @@ export default App;
 const Appx = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
-    backgroundColor:'transparent',
+    backgroundColor: 'transparent',
     flex: 1,
   };
 
@@ -85,12 +79,12 @@ const Appx = () => {
     <StripeProvider
       publishableKey={region === 'eu' ? STRIPE_EU_PK : STRIPE_GLOBAL_PK}>
       {/* <SafeAreaView style={backgroundStyle}> */}
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <OnBoardingProvider>
-          <ResourceContext>
-            <Router />
-          </ResourceContext>
-        </OnBoardingProvider>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <OnBoardingProvider>
+        <ResourceContext>
+          <Router />
+        </ResourceContext>
+      </OnBoardingProvider>
       {/* </SafeAreaView> */}
     </StripeProvider>
   );
