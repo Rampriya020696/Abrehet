@@ -105,29 +105,25 @@ const Router = () => {
   }
 
   return (
-    
     <NavigationContainer
       linking={{
         prefixes: ['abrehet://'],
       }}>
       <Root.Navigator screenOptions={{headerShown: false}}>
-        {user ? (
-          <>
-            <Root.Screen component={BottomTabNav} name="HomeTabs" />
-          </>
+        <Root.Screen component={OnBoarding} name="OnBorading" />
+        {/* {user ? (
+          <> */}
+        <Root.Screen component={BottomTabNav} name="HomeTabs" />
+        {/* </>
         ) : (
-          <>
-            <Root.Screen component={OnBoarding} name="OnBorading" />
-            <Root.Screen component={Signin} name="Sigin" />
-            <Root.Screen component={ForgetPassword} name="ForgetPassword" />
-            <Root.Screen component={ResetPassword} name="ResetPassword" />
-            <Root.Screen
-              component={EmailConfirmation}
-              name="EmailConfirmation"
-            />
-            <Root.Screen component={Signup} name="Signup" />
-          </>
-        )}
+          <> */}
+        <Root.Screen component={Signin} name="Sigin" />
+        <Root.Screen component={ForgetPassword} name="ForgetPassword" />
+        <Root.Screen component={ResetPassword} name="ResetPassword" />
+        <Root.Screen component={EmailConfirmation} name="EmailConfirmation" />
+        <Root.Screen component={Signup} name="Signup" />
+        {/* </> */}
+        {/* )} */}
       </Root.Navigator>
     </NavigationContainer>
   );

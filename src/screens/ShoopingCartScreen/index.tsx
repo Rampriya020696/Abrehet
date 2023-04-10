@@ -25,6 +25,8 @@ import {
 import {colors, fonts} from '../../utils';
 import Accordion from 'react-native-collapsible/Accordion';
 import {ScrollView} from 'react-native-gesture-handler';
+import {Auth} from 'aws-amplify';
+import {authSelector} from '../../store/features/auth';
 
 const BigCheckoutBtn = ({title, total, onPress}) => {
   return (
@@ -74,6 +76,22 @@ const Cart = () => {
   console.log(cartItems, 'cartItems');
   console.log(countryViseProductsArray, 'countryViseProductsArray');
   const navigation = useNavigation<any>();
+  const auth = useSelector(authSelector);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const res = await Auth.currentAuthenticatedUser({bypassCache: true});
+        console.log(res);
+        setUser(res);
+      } catch (error: any) {
+        console.log(error.message, 'checkUser');
+        setUser(null);
+      }
+    };
+    checkUser();
+  }, [navigation]);
 
   useEffect(() => {
     const data = cartItems.reduce((obj, currentItem) => {
@@ -223,9 +241,11 @@ const Cart = () => {
                           title={'checkout now!'}
                           containerStyle={{width: '90%', borderRadius: 5}}
                           onPress={() => {
-                            navigation.navigate('Address', {
-                              cartItemData: section?.content,
-                            });
+                            auth
+                              ? navigation.navigate('Address', {
+                                  cartItemData: section?.content,
+                                })
+                              : navigation.navigate('Sigin');
                           }}
                         />
                       </View>
@@ -263,7 +283,9 @@ const Cart = () => {
               title={'All Carts Checkout                         '}
               total={`$ ${cartTotal.toFixed(2)}`}
               onPress={() => {
-                navigation.navigate('Address', {cartItemData: cartItems});
+                auth
+                  ? navigation.navigate('Address', {cartItemData: cartItems})
+                  : navigation.navigate('Sigin');
               }}
             />
           </View>

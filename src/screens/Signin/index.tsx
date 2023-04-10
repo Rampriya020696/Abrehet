@@ -29,6 +29,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {updateRegion} from '../../store/features/region/regionSlice';
 import {useDispatch} from 'react-redux';
 import Feather from 'react-native-vector-icons/Feather';
+import {updateAuth} from '../../store/features/auth';
 let keyboardDidShowListener;
 let keyboardDidHideListener;
 
@@ -82,8 +83,10 @@ const Signin = () => {
       switch (event) {
         case 'signIn':
           setUser(data);
+          dispatch(updateAuth(data));
           setGoogleLoading(false);
           setFbLoading(false);
+          navigation.goBack();
           break;
         case 'signOut':
           setUser(null);
@@ -96,7 +99,10 @@ const Signin = () => {
     });
 
     Auth.currentAuthenticatedUser()
-      .then(currentUser => setUser(currentUser))
+      .then(currentUser => {
+        setUser(currentUser);
+        dispatch(updateAuth(currentUser));
+      })
       .catch(() => console.log('Not signed in'));
 
     return unsubscribe;

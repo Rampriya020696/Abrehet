@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Profile from '../screens/Profile';
@@ -14,6 +14,9 @@ import ChangePassword from '../screens/ChangePassword';
 import ChangeAddress from '../screens/ChangeAddress';
 import ChatScreen from '../screens/ChatScreen';
 import OrderHistory from '../screens/OrderHistory';
+import {Auth} from 'aws-amplify';
+import {useNavigation} from '@react-navigation/native';
+import AddressScreen from '../screens/AddressScreen';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +37,11 @@ const ProfileStack = () => {
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
       <Stack.Screen name="OrderHistoryScreen" component={OrderHistory} />
       <Stack.Screen component={ChatScreen} name="ChatScreen" />
+      <Stack.Screen
+        component={AddressScreen}
+        name="Address"
+        options={{title: 'Address', headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

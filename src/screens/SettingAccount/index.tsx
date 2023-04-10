@@ -14,9 +14,16 @@ import Header from '../../components/Header';
 import Strip from '../../components/Strip';
 import {Auth} from 'aws-amplify';
 import {colors, fonts} from '../../utils';
+import {useDispatch} from 'react-redux';
+import {updateAuth} from '../../store/features/auth';
 
 const SettingAccount = ({navigation}) => {
-  const onLogOutPress = () => Auth.signOut();
+  const dispatch = useDispatch();
+  const onLogOutPress = () => {
+    Auth.signOut().then(() => {
+      dispatch(updateAuth(null));
+    });
+  };
   return (
     <View style={styles.page}>
       <Header title="Setting Account" onPress={navigation.goBack} />
@@ -75,7 +82,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.secondary[600],
     color: 'red',
     marginHorizontal: 20,
-    marginVertical: 250
+    marginVertical: 250,
   },
   account: {
     flexDirection: 'row',
@@ -89,7 +96,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    color: "black",
+    color: 'black',
     marginLeft: 10,
   },
 });

@@ -1,7 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Dimensions, Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Onboarding from 'react-native-onboarding-swiper';
 import {OnBoardingContext} from '../../context/OnBoardingContext';
@@ -31,75 +38,76 @@ const OnBoarding = ({navigation}) => {
   console.log(onboardingRes, 'onboardingRes');
 
   return (
-    <SafeAreaView style={{flex:1, backgroundColor: 'white'}}>
-
-  
-    <Onboarding
-      SkipButtonComponent={Skip}
-      showNext={false}
-      DoneButtonComponent={Done}
-      DotComponent={Dots}
-      bottomBarColor={colors.white}
-      titleStyles={styles.title}
-      subTitleStyles={styles.subtitle}
-      bottomBarHeight={50}
-      onSkip={() => navigation.navigate('Sigin')}
-      onDone={() => navigation.navigate('Sigin')}
-      // pages={data}
-      pages={[
-        {
-          backgroundColor: onboardingRes[0]?.backgroundColor || colors.white,
-          image: (
-            <Image
-              style={styles.image}
-              source={
-                onboardingRes[0]?.image
-                  ? {uri: onboardingRes[0]?.image}
-                  : require('../../Assets/illustration/Ilustration-Onboarding1.png')
-              }
-            />
-          ),
-          title: onboardingRes[0]?.title || 'E-Commerce App',
-          subtitle:
-            onboardingRes[0]?.subtitle ||
-            'E commerce aplication template \n buy this code template in codecanyon',
-        },
-        {
-          backgroundColor: onboardingRes[1]?.backgroundColor || colors.white,
-          image: (
-            <Image
-              style={styles.image}
-              source={
-                onboardingRes[1]?.image
-                  ? {uri: onboardingRes[1]?.image}
-                  : require('../../Assets/illustration/Ilustration-Onboarding2.png')
-              }
-            />
-          ),
-          title: onboardingRes[1]?.title || 'Choose Item',
-          subtitle:
-            onboardingRes[1]?.subtitle ||
-            'Choose items whereever you are with \n this application to make life \n easier',
-        },
-        {
-          backgroundColor: onboardingRes[2]?.backgroundColor || colors.white,
-          image: (
-            <Image
-              style={styles.image}
-              source={
-                onboardingRes[2]?.image
-                  ? {uri: onboardingRes[2]?.image}
-                  : require('../../Assets/illustration/Ilustration-Onboarding3.png')
-              }
-            />
-          ),
-          title: onboardingRes[2]?.title || 'Buy Item',
-          subtitle:
-            onboardingRes[2]?.subtitle ||
-            'Shop from thousand brands in the \n world in one application at \n throwaway prices',
-        },
-      ]}
-    /></SafeAreaView>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <Onboarding
+        SkipButtonComponent={Skip}
+        showNext={false}
+        DoneButtonComponent={Done}
+        DotComponent={Dots}
+        bottomBarColor={colors.white}
+        titleStyles={styles.title}
+        subTitleStyles={styles.subtitle}
+        bottomBarHeight={50}
+        // onSkip={() => navigation.navigate('Sigin')}
+        // onDone={() => navigation.navigate('Sigin')}
+        onSkip={() => navigation.navigate('HomeTabs')}
+        onDone={() => navigation.navigate('HomeTabs')}
+        // pages={data}
+        pages={[
+          {
+            backgroundColor: onboardingRes[0]?.backgroundColor || colors.white,
+            image: (
+              <Image
+                style={styles.image}
+                source={
+                  onboardingRes[0]?.image
+                    ? {uri: onboardingRes[0]?.image}
+                    : require('../../Assets/illustration/Ilustration-Onboarding1.png')
+                }
+              />
+            ),
+            title: onboardingRes[0]?.title || 'E-Commerce App',
+            subtitle:
+              onboardingRes[0]?.subtitle ||
+              'E commerce aplication template \n buy this code template in codecanyon',
+          },
+          {
+            backgroundColor: onboardingRes[1]?.backgroundColor || colors.white,
+            image: (
+              <Image
+                style={styles.image}
+                source={
+                  onboardingRes[1]?.image
+                    ? {uri: onboardingRes[1]?.image}
+                    : require('../../Assets/illustration/Ilustration-Onboarding2.png')
+                }
+              />
+            ),
+            title: onboardingRes[1]?.title || 'Choose Item',
+            subtitle:
+              onboardingRes[1]?.subtitle ||
+              'Choose items whereever you are with \n this application to make life \n easier',
+          },
+          {
+            backgroundColor: onboardingRes[2]?.backgroundColor || colors.white,
+            image: (
+              <Image
+                style={styles.image}
+                source={
+                  onboardingRes[2]?.image
+                    ? {uri: onboardingRes[2]?.image}
+                    : require('../../Assets/illustration/Ilustration-Onboarding3.png')
+                }
+              />
+            ),
+            title: onboardingRes[2]?.title || 'Buy Item',
+            subtitle:
+              onboardingRes[2]?.subtitle ||
+              'Shop from thousand brands in the \n world in one application at \n throwaway prices',
+          },
+        ]}
+      />
+    </SafeAreaView>
   );
 };
 
@@ -127,14 +135,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: fonts.secondary[900],
     color: colors.blueButton,
-    
   },
   title: {
     fontSize: 24,
-    marginTop: -height * 0.40,
+    marginTop: -height * 0.4,
     fontFamily: fonts.secondary[100],
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   subtitle: {
     fontSize: 19,

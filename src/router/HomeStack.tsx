@@ -17,6 +17,7 @@ import CategoryPage from '../screens/CategoryPage';
 import CartBadge from '../components/CartBadge';
 import {selectCartItems} from '../store/features/cart/cartSlice';
 import {useSelector} from 'react-redux';
+import AddressScreen from '../screens/AddressScreen';
 
 interface HeaderComponentProps {
   searchValue: string;
@@ -37,62 +38,62 @@ const HeaderComponent = ({
 
   return (
     // <SafeAreaView style={{backgroundColor: '#08b3fc'}}>
+    <View
+      style={{
+        flexDirection: 'row',
+        // justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: '#6A91C7',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        height: 60,
+      }}>
       <View
         style={{
+          backgroundColor: 'white',
           flexDirection: 'row',
-          // justifyContent: 'space-evenly',
+          width: '80%',
           alignItems: 'center',
-          backgroundColor: '#6A91C7',
-          paddingHorizontal: 20,
-          paddingVertical: 10,
-          height: 60,
+          paddingLeft: 5,
+          borderRadius: 12,
+          flex: 1,
         }}>
-        <View
+        <Image
+          style={{width: 20, height: 20}}
+          source={require('../Assets/SearchIcon.png')}
+        />
+        <TextInput
           style={{
-            backgroundColor: 'white',
-            flexDirection: 'row',
-            width: '80%',
-            alignItems: 'center',
-            paddingLeft: 5,
-            borderRadius: 12,
+            height: 40,
+            marginLeft: 10,
+            padding: 7,
             flex: 1,
-          }}>
-          <Image
-            style={{width: 20, height: 20}}
-            source={require('../Assets/SearchIcon.png')}
-          />
-          <TextInput
-            style={{
-              height: 40,
-              marginLeft: 10,
-              padding: 7,
-              flex: 1,
 
-              color: '#0a0300',
-              fontSize: 17,
-            }}
-            placeholder="Search..."
-            value={searchValue}
-            onChangeText={setSearchValue}
-          />
-          <TouchableOpacity
-            style={{marginHorizontal: 2}}
-            onPress={onFilterSelect}>
-            <Ionicons name="filter" size={24} color="black" />
-          </TouchableOpacity>
-        </View>
+            color: '#0a0300',
+            fontSize: 17,
+          }}
+          placeholder="Search..."
+          value={searchValue}
+          onChangeText={setSearchValue}
+        />
         <TouchableOpacity
-          style={{marginHorizontal: 10}}
-          onPress={() => navigation.navigate('ContactUsScreen')}>
-          <Image
-            style={{width: 22, height: 20}}
-            source={require('../Assets/ChatICon.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('cart')}>
-          <CartBadge count={cartItems.length} />
+          style={{marginHorizontal: 2}}
+          onPress={onFilterSelect}>
+          <Ionicons name="filter" size={24} color="black" />
         </TouchableOpacity>
       </View>
+      <TouchableOpacity
+        style={{marginHorizontal: 10}}
+        onPress={() => navigation.navigate('ContactUsScreen')}>
+        <Image
+          style={{width: 22, height: 20}}
+          source={require('../Assets/ChatICon.png')}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('cart')}>
+        <CartBadge count={cartItems.length} />
+      </TouchableOpacity>
+    </View>
     // </SafeAreaView>
   );
 };
@@ -116,6 +117,11 @@ const HomeStack = () => {
       <Stack.Screen component={CategoryPage} name="CategoryPage" />
       <Stack.Screen component={ChatScreen} name="ChatScreen" />
       <Stack.Screen component={ContactUs} name="ContactUsScreen" />
+      <Stack.Screen
+        component={AddressScreen}
+        name="Address"
+        options={{title: 'Address', headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };
