@@ -20,9 +20,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const isLocalhost = Boolean(true);
 
 const STRIPE_GLOBAL_PK =
-  'pk_test_51KZzWbAhBlpHU9kBF7mHsYqqk6Ma8MGqjS9PB2pfwRcSW9npj1fv3YCqsFOESqTYvzoGIdBuZ9y3qKpTkhwpc9TO00kMQrezA4';
+  '';
 const STRIPE_EU_PK =
-  'pk_test_51Ma0UlHlGffSuHzfQ0MLtY2NxXXevZvjKNBMh1gLgrHedV5ZqbTvX8aLAFQC4YaFmdAlwUVmhjrcCevWbopcfHNQ00c9HutQd3';
+  '';
 
 // Assuming you have two redirect URIs, and the first is for localhost and second is for production
 const [localRedirectSignIn, productionRedirectSignIn] =
