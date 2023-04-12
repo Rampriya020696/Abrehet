@@ -11,18 +11,27 @@ import OnBoardingProvider from './src/context/OnBoardingContext';
 import Amplify from 'aws-amplify';
 import awsConfig from './src/aws-exports';
 import {
+  STRIPE_EU_LIVE_PK,
+  STRIPE_EU_TEST_PK,
+  STRIPE_GLOBAL_LIVE_PK,
+  STRIPE_GLOBAL_TEST_PK,
+} from '@env';
+import {
   selectRegion,
   updateRegion,
 } from './src/store/features/region/regionSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // Amplify.configure(awsConfig);
 // const isLocalhost = Boolean(__DEV__);
+
 const isLocalhost = Boolean(true);
 
-const STRIPE_GLOBAL_PK =
-  'pk_test_51KZzWbAhBlpHU9kBF7mHsYqqk6Ma8MGqjS9PB2pfwRcSW9npj1fv3YCqsFOESqTYvzoGIdBuZ9y3qKpTkhwpc9TO00kMQrezA4';
-const STRIPE_EU_PK =
-  'pk_test_51Ma0UlHlGffSuHzfQ0MLtY2NxXXevZvjKNBMh1gLgrHedV5ZqbTvX8aLAFQC4YaFmdAlwUVmhjrcCevWbopcfHNQ00c9HutQd3';
+const STRIPE_DEV_MODE = false;
+
+const STRIPE_GLOBAL_PK = STRIPE_DEV_MODE
+  ? STRIPE_GLOBAL_TEST_PK
+  : STRIPE_GLOBAL_LIVE_PK;
+const STRIPE_EU_PK = STRIPE_DEV_MODE ? STRIPE_EU_TEST_PK : STRIPE_EU_LIVE_PK;
 
 // Assuming you have two redirect URIs, and the first is for localhost and second is for production
 const [localRedirectSignIn, productionRedirectSignIn] =
