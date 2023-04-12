@@ -625,7 +625,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MesobStore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Abrehet;
 				PRODUCT_NAME = MesobStore;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -658,7 +658,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MesobStore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Abrehet;
 				PRODUCT_NAME = MesobStore;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
