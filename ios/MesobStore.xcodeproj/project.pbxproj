@@ -609,7 +609,7 @@
 				CODE_SIGN_ENTITLEMENTS = MesobStore/MesobStore.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T7F65ZFA5T;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "MesobStore/Info.plist";
@@ -619,7 +619,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.1;
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -644,7 +644,7 @@
 				CODE_SIGN_ENTITLEMENTS = MesobStore/MesobStore.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T7F65ZFA5T;
 				INFOPLIST_FILE = "MesobStore/Info.plist";
              INFOPLIST_KEY_CFBundleDisplayName = "Mesob Store";
@@ -652,7 +652,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.1;
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
