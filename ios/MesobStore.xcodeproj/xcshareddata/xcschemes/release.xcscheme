@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Abrehet.app"
-               BlueprintName = "Abrehet"
-               ReferencedContainer = "container:Abrehet.xcodeproj">
+               BuildableName = "MesobStore.app"
+               BlueprintName = "MesobStore"
+               ReferencedContainer = "container:MesobStore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Abrehet.app"
-            BlueprintName = "Abrehet"
-            ReferencedContainer = "container:Abrehet.xcodeproj">
+            BuildableName = "MesobStore.app"
+            BlueprintName = "MesobStore"
+            ReferencedContainer = "container:MesobStore.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Abrehet.app"
-            BlueprintName = "Abrehet"
-            ReferencedContainer = "container:Abrehet.xcodeproj">
+            BuildableName = "MesobStore.app"
+            BlueprintName = "MesobStore"
+            ReferencedContainer = "container:MesobStore.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
