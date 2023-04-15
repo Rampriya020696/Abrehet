@@ -21,6 +21,9 @@ import {
   updateRegion,
 } from './src/store/features/region/regionSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {SheetProvider} from 'react-native-actions-sheet';
+import './src/sheets/sheets';
+
 // Amplify.configure(awsConfig);
 // const isLocalhost = Boolean(__DEV__);
 
@@ -84,16 +87,18 @@ const Appx = () => {
   }, []);
 
   return (
-    <StripeProvider
-      publishableKey={region === 'eu' ? STRIPE_EU_PK : STRIPE_GLOBAL_PK}>
-      {/* <SafeAreaView style={backgroundStyle}> */}
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <OnBoardingProvider>
-        <ResourceContext>
-          <Router />
-        </ResourceContext>
-      </OnBoardingProvider>
-      {/* </SafeAreaView> */}
-    </StripeProvider>
+    <SheetProvider>
+      <StripeProvider
+        publishableKey={region === 'eu' ? STRIPE_EU_PK : STRIPE_GLOBAL_PK}>
+        {/* <SafeAreaView style={backgroundStyle}> */}
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <OnBoardingProvider>
+          <ResourceContext>
+            <Router />
+          </ResourceContext>
+        </OnBoardingProvider>
+        {/* </SafeAreaView> */}
+      </StripeProvider>
+    </SheetProvider>
   );
 };

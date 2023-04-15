@@ -40,6 +40,9 @@ import ButtonGradient from '../../components/ButtonGradient';
 import {useRoute} from '@react-navigation/native';
 import {current} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {SheetManager} from 'react-native-actions-sheet';
+import {stripeCountryList} from '../../utils/constant';
+import {SHEETS} from '../../sheets/sheets';
 
 let keyboardDidShowListener;
 let keyboardDidHideListener;
@@ -59,7 +62,7 @@ const AddressScreen = ({navigation}) => {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [postal_code, setPostal_code] = useState('');
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState('US');
   const [email, setEmail] = useState('');
   const [showModel, setShowModel] = useState(false);
 
@@ -349,15 +352,17 @@ const AddressScreen = ({navigation}) => {
                   width: '100%',
                 }}
                 contentContainerStyle={
-                  Platform.OS === 'ios' ? {
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    paddingBottom:350
-                  }:
-                  {
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
+                  Platform.OS === 'ios'
+                    ? {
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        paddingBottom: 350,
+                      }
+                    : {
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }
+                }>
                 <View
                   style={{
                     flex: 1,
@@ -550,15 +555,28 @@ const AddressScreen = ({navigation}) => {
           {/* country */}
           <View style={styles.row}>
             <Text style={styles.label}>Country </Text>
-            <TextInput
+
+            <TouchableOpacity
+              style={[styles.input, {justifyContent: 'center'}]}
+              onPress={() => {
+                keyboardDidShow(200);
+                SheetManager.show(SHEETS.STRIPE_COUNTRY_SHEET, {
+                  payload: {
+                    onSelect: val => setCountry(val),
+                  },
+                });
+              }}>
+              <Text> {country}</Text>
+            </TouchableOpacity>
+
+            {/* <TextInput
               onFocus={() => {
                 keyboardDidShow(200);
               }}
-              style={styles.input}
               placeholder="Country"
               value={country}
               onChangeText={setCountry}
-            />
+            /> */}
           </View>
 
           {/* Checkbox */}
