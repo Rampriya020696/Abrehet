@@ -42,6 +42,7 @@
     "react-native-image-slider-banner": "^1.0.3",
     "react-native-inappbrowser-reborn": "^3.7.0",
     "react-native-keyboard-avoiding-scroll-view": "^1.0.1",
+    "react-native-klarna-inapp-sdk": "^2.1.10",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-modal": "^13.0.1",
     "react-native-onboarding-swiper": "^1.2.0",

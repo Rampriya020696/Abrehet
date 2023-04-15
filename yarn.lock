@@ -8770,6 +8770,11 @@ react-native-keyboard-avoiding-scroll-view@^1.0.1:
   resolved "https://registry.npmjs.org/react-native-keyboard-avoiding-scroll-view/-/react-native-keyboard-avoiding-scroll-view-1.0.1.tgz"
   integrity sha512-l+CYCbQ7fueM4kat28zSdi7r1ABxRBHikVCTmjGQLIvJBABxS7qgi3Y9ozU8CpqD6wEeqPb02AnBS+jiAYXBvA==
 
+react-native-klarna-inapp-sdk@^2.1.10:
+  version "2.1.10"
+  resolved "https://registry.yarnpkg.com/react-native-klarna-inapp-sdk/-/react-native-klarna-inapp-sdk-2.1.10.tgz#84cec816a56e6812e32a40ce99410bf40b0bf307"
+  integrity sha512-u6gCzuDx+AzZtIzIz4KkSnFcubL6wYMQmdNnS5p4SG5ifco/ERQ5aDZpYtj9ZpxqodCjpFQDsI8wvpxlLx4MkA==
+
 react-native-linear-gradient@^2.6.2:
   version "2.6.2"
   resolved "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz"

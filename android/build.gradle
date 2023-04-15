@@ -49,7 +49,10 @@ allprojects {
         }
         google()
         mavenCentral()  
-        maven { url 'https://www.jitpack.io' }
+        maven { 
+            url 'https://www.jitpack.io'
+            url 'https://x.klarnacdn.net/mobile-sdk/'
+        }
     }
      configurations.all {
         resolutionStrategy {
@@ -57,3 +60,6 @@ allprojects {
         }
     }
 }
+
+
+

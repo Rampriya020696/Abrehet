@@ -12,13 +12,13 @@ import {
   Platform,
   SafeAreaView,
   Keyboard,
+  Button,
   KeyboardEventListener,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {API, Auth, graphqlOperation} from 'aws-amplify';
 import {Picker} from '@react-native-picker/picker';
 //import countryList from 'country-list';
-import Button from '../../components/Button';
 import styles from './styles';
 import Header from '../../components/Header';
 import {ICCart2} from '../../Assets';
@@ -43,12 +43,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SheetManager} from 'react-native-actions-sheet';
 import {stripeCountryList} from '../../utils/constant';
 import {SHEETS} from '../../sheets/sheets';
-
+import KlarnaPaymentView from 'react-native-klarna-inapp-sdk';
 let keyboardDidShowListener;
 let keyboardDidHideListener;
+
+const ABC =
+  'eyJhbGciOiJSUzI1NiIsImtpZCI6IjgyMzA1ZWJjLWI4MTEtMzYzNy1hYTRjLTY2ZWNhMTg3NGYzZCJ9.eyJzZXNzaW9uX2lkIjoiODRiNDE4MjktYjZiNC01MTcwLThkYTMtOGY3OTRmOTU5OTExIiwiYmFzZV91cmwiOiJodHRwczovL2pzLnBsYXlncm91bmQua2xhcm5hLmNvbS9ldS9rcCIsImRlc2lnbiI6ImtsYXJuYSIsImxhbmd1YWdlIjoiZW4iLCJwdXJjaGFzZV9jb3VudHJ5IjoiR0IiLCJlbnZpcm9ubWVudCI6InBsYXlncm91bmQiLCJtZXJjaGFudF9uYW1lIjoiWW91ciBidXNpbmVzcyBuYW1lIiwic2Vzc2lvbl90eXBlIjoiUEFZTUVOVFMiLCJjbGllbnRfZXZlbnRfYmFzZV91cmwiOiJodHRwczovL2V1LnBsYXlncm91bmQua2xhcm5hZXZ0LmNvbSIsInNjaGVtZSI6dHJ1ZSwiZXhwZXJpbWVudHMiOlt7Im5hbWUiOiJrcGMtUFNFTC0zMDk5IiwidmFyaWF0ZSI6InZhcmlhdGUtMSJ9LHsibmFtZSI6ImtwLWNsaWVudC11dG9waWEtcG9wdXAtcmV0cmlhYmxlIiwidmFyaWF0ZSI6InZhcmlhdGUtMSJ9LHsibmFtZSI6ImtwLWNsaWVudC11dG9waWEtc3RhdGljLXdpZGdldCIsInZhcmlhdGUiOiJpbmRleCIsInBhcmFtZXRlcnMiOnsiZHluYW1pYyI6InRydWUifX0seyJuYW1lIjoia3AtY2xpZW50LXV0b3BpYS1mbG93IiwidmFyaWF0ZSI6InZhcmlhdGUtMSJ9LHsibmFtZSI6ImtwLWNsaWVudC1vbmUtcHVyY2hhc2UtZmxvdyIsInZhcmlhdGUiOiJ2YXJpYXRlLTEifSx7Im5hbWUiOiJpbi1hcHAtc2RrLW5ldy1pbnRlcm5hbC1icm93c2VyIiwicGFyYW1ldGVycyI6eyJ2YXJpYXRlX2lkIjoibmV3LWludGVybmFsLWJyb3dzZXItZW5hYmxlIn19LHsibmFtZSI6ImtwLWNsaWVudC11dG9waWEtc2RrLWZsb3ciLCJ2YXJpYXRlIjoidmFyaWF0ZS0xIn0seyJuYW1lIjoia3AtY2xpZW50LXV0b3BpYS13ZWJ2aWV3LWZsb3ciLCJ2YXJpYXRlIjoidmFyaWF0ZS0xIn0seyJuYW1lIjoiaW4tYXBwLXNkay1jYXJkLXNjYW5uaW5nIiwicGFyYW1ldGVycyI6eyJ2YXJpYXRlX2lkIjoiY2FyZC1zY2FubmluZy1lbmFibGUifX1dLCJyZWdpb24iOiJldSIsIm9yZGVyX2Ftb3VudCI6MjAwMDAsIm9mZmVyaW5nX29wdHMiOjAsIm9vIjoiN3MifQ.LZYS5YN-dSLkgqOIoeDF_B9YR4YriodyWdFtEJRJmu59eTziMtx31V8DnAjLOTufLaztQrerZ8IYXy66sU-owK022LdHV6KbgVWB8wb7o8y-mLH6YSTjtA73z-Phqq4w05O0D5ruE-tJLSuAxlSQ4c3nUrF0_4kBGOyGH3rOs27rBjPHyeWysF1NrNXFCZBOyr7NZSfIgXx22KHjrcS8CMFCMNfURMP3fpZ_wPI4hVSgFLjBg1_-3gcih2LWkaoxkfnrQ1wFVdM8g_dqNfwRWqbqnKjfe4rXZ_tyHe7WgxzIPUaQZWa6o7pfHl8_EYascgYi1wjsbAXSrJeywf5S3A';
 const AddressScreen = ({navigation}) => {
   const {cartItemData} = useRoute().params;
-
+  const [klranaPaymentViewLoaded, setKlranaPaymentViewLoaded] = useState(false);
+  const KlarnaRef = useRef(null);
   const dispatch = useDispatch();
   console.log(cartItemData, 'ROUTE___>');
   console.log(useRoute().params, 'params___>');
@@ -323,6 +327,43 @@ const AddressScreen = ({navigation}) => {
       keyboardDidHideListener?.remove();
     };
   }, []);
+
+  // React.useEffect(() => {
+  //   // KlarnaRef?.current?.initialize('my_session_token', 'my_apps_return_url');
+  //   KlarnaRef?.current?.initialize(ABC, 'abrehet://');
+  // }, []);
+
+  const onInitialized = () => {
+    console.log('A');
+    KlarnaRef?.current?.load();
+  };
+
+  const onLoaded = () => {
+    console.log('B');
+    setKlranaPaymentViewLoaded(true);
+  };
+  const buyButtonPressed = () => {
+    console.log('c');
+    KlarnaRef?.current?.authorize();
+  };
+
+  const onAuthorized = event => {
+    event.persist();
+    console.log('D');
+    console.log(event, 'onAuthorized');
+    let params = event.nativeEvent;
+    if (params.authorized) {
+      console.log(params.authorized, 'params.authorized');
+      // submitAuthToken(params.authToken)
+    }
+  };
+
+  const onError = ({...res}) => console.log('onError', res);
+  const onFinalized = ({...res}) => {
+    console.log('onFinalized', res);
+    Alert.alert('A');
+  };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <KeyboardAvoidingView
@@ -334,6 +375,12 @@ const AddressScreen = ({navigation}) => {
           title="Address"
           icon={ICCart2}
           onPress={() => navigation.goBack()}
+        />
+
+        <Button
+          title="pay"
+          onPress={buyButtonPressed}
+          disabled={!klranaPaymentViewLoaded}
         />
         <ScrollView style={styles.root} ref={ScrollViewRef}>
           {/* ------ -- - - -- ----------- */}
@@ -462,6 +509,16 @@ const AddressScreen = ({navigation}) => {
               </ScrollView>
             </View>
           </Modal>
+          {/* 
+          <KlarnaPaymentView
+            onFinalized={onFinalized}
+            category={'pay_later'}
+            ref={KlarnaRef}
+            onInitialized={onInitialized}
+            onLoaded={onLoaded}
+            onAuthorized={onAuthorized}
+            onError={onError}
+          /> */}
 
           {/* ------ -- - - -- ----------- */}
           <View style={styles.row}></View>
