@@ -376,12 +376,12 @@ const AddressScreen = ({navigation}) => {
           icon={ICCart2}
           onPress={() => navigation.goBack()}
         />
-
+        {/* 
         <Button
           title="pay"
           onPress={buyButtonPressed}
           disabled={!klranaPaymentViewLoaded}
-        />
+        /> */}
         <ScrollView style={styles.root} ref={ScrollViewRef}>
           {/* ------ -- - - -- ----------- */}
           <Modal isVisible={showModel}>
