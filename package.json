@@ -11,6 +11,8 @@
     "clean": "cd android && ./gradlew clean  && cd ..",
     "vr": "npx react-native run-android --variant=release",
     "build": "cd android && ./gradlew bundleRelease && cd ..",
+    "ios2": "react-native run-ios --simulator=\"iPhone 14 Pro Max\"",
+    "ios-devices": "xcrun simctl list devices",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
