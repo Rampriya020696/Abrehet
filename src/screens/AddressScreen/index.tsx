@@ -15,6 +15,7 @@ import {
   Button,
   KeyboardEventListener,
 } from 'react-native';
+
 import React, {useRef, useState} from 'react';
 import {API, Auth, graphqlOperation} from 'aws-amplify';
 import {Picker} from '@react-native-picker/picker';
@@ -79,8 +80,8 @@ const AddressScreen = ({navigation}) => {
   const [sState, setSState] = useState('');
   const [sCity, setSCity] = useState('');
   const [senderObj, setSenderObj] = useState({});
-  // sender Inputs
 
+  // sender Inputs
   const buildSenderObj = () => {
     const obj = {
       email: sEmail,
@@ -328,10 +329,10 @@ const AddressScreen = ({navigation}) => {
     };
   }, []);
 
-  // React.useEffect(() => {
-  //   // KlarnaRef?.current?.initialize('my_session_token', 'my_apps_return_url');
-  //   KlarnaRef?.current?.initialize(ABC, 'abrehet://');
-  // }, []);
+  React.useEffect(() => {
+    // KlarnaRef?.current?.initialize('my_session_token', 'my_apps_return_url');
+    KlarnaRef?.current?.initialize(ABC, 'abrehet://');
+  }, []);
 
   const onInitialized = () => {
     console.log('A');
@@ -376,12 +377,12 @@ const AddressScreen = ({navigation}) => {
           icon={ICCart2}
           onPress={() => navigation.goBack()}
         />
-        {/* 
+        
         <Button
           title="pay"
           onPress={buyButtonPressed}
           disabled={!klranaPaymentViewLoaded}
-        /> */}
+        />
         <ScrollView style={styles.root} ref={ScrollViewRef}>
           {/* ------ -- - - -- ----------- */}
           <Modal isVisible={showModel}>
@@ -509,7 +510,7 @@ const AddressScreen = ({navigation}) => {
               </ScrollView>
             </View>
           </Modal>
-          {/* 
+          
           <KlarnaPaymentView
             onFinalized={onFinalized}
             category={'pay_later'}
@@ -518,7 +519,7 @@ const AddressScreen = ({navigation}) => {
             onLoaded={onLoaded}
             onAuthorized={onAuthorized}
             onError={onError}
-          /> */}
+          />
 
           {/* ------ -- - - -- ----------- */}
           <View style={styles.row}></View>
