@@ -46,69 +46,71 @@ const BottomTabNav = () => {
   }, [navigation]);
 
   return (
-    <Tab.Navigator
-      tabBarOptions={{
-        keyboardHidesTabBar: true,
-      }}
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {padding: 15, height: Platform.OS === 'ios' ? 90 : 60},
-        tabBarShowLabel: true,
-        tabBarLabelStyle: {
-          fontSize: 14,
-          height: 20,
-          fontWeight: 'bold',
-          fontFamily: 'Poppins-ExtraBold',
-        },
-        tabBarInactiveTintColor: '#d9d9d9',
-        tabBarActiveTintColor: '#6991c7',
-      }}>
-      <Tab.Screen
-        component={HomeStack}
-        name="Home"
-        options={{
-          headerStyle: {
-            backgroundColor: '#08b3fc',
-          },
-          tabBarIcon: ({color}) => (
-            <Entypo name="home" color={color} size={25} />
-          ),
+    <>
+      <Tab.Navigator
+        tabBarOptions={{
+          keyboardHidesTabBar: true,
         }}
-      />
-
-      <Tab.Screen
-        component={ShopingCartStack}
-        name="Cart"
-        options={{
+        screenOptions={{
           headerShown: false,
-          tabBarIcon: ({color}) => (
-            <Icon2 name="shopping-cart" color={color} size={27} />
-          ),
-        }}
-      />
-      {auth ? (
+          tabBarStyle: {padding: 15, height: Platform.OS === 'ios' ? 90 : 60},
+          tabBarShowLabel: true,
+          tabBarLabelStyle: {
+            fontSize: 14,
+            height: 20,
+            fontWeight: 'bold',
+            fontFamily: 'Poppins-ExtraBold',
+          },
+          tabBarInactiveTintColor: '#d9d9d9',
+          tabBarActiveTintColor: '#6991c7',
+        }}>
         <Tab.Screen
-          component={ProfileStack}
-          name="Account"
+          component={HomeStack}
+          name="Home"
           options={{
+            headerStyle: {
+              backgroundColor: '#08b3fc',
+            },
             tabBarIcon: ({color}) => (
-              <Icon name="user" color={color} size={25} />
+              <Entypo name="home" color={color} size={25} />
             ),
           }}
         />
-      ) : (
+
         <Tab.Screen
-          component={Signin}
-          name="Login"
+          component={ShopingCartStack}
+          name="Cart"
           options={{
+            headerShown: false,
             tabBarIcon: ({color}) => (
-              <Icon name="user" color={color} size={25} />
+              <Icon2 name="shopping-cart" color={color} size={27} />
             ),
-            tabBarStyle: {display: 'none'},
           }}
         />
-      )}
-    </Tab.Navigator>
+        {auth ? (
+          <Tab.Screen
+            component={ProfileStack}
+            name="Account"
+            options={{
+              tabBarIcon: ({color}) => (
+                <Icon name="user" color={color} size={25} />
+              ),
+            }}
+          />
+        ) : (
+          <Tab.Screen
+            component={Signin}
+            name="Login"
+            options={{
+              tabBarIcon: ({color}) => (
+                <Icon name="user" color={color} size={25} />
+              ),
+              tabBarStyle: {display: 'none'},
+            }}
+          />
+        )}
+      </Tab.Navigator>
+    </>
   );
 };
 

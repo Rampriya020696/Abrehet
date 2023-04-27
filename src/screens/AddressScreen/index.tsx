@@ -167,6 +167,8 @@ const AddressScreen = ({navigation}) => {
         setupIntentClientSecret: data.paymentIntent,
       });
       openPaymentSheet(data.paymentIntent);
+      console.log('data.paymentIntent', data);
+
       if (!error) {
       } else {
         Alert.alert('alert', error?.message || 'something went wrong!');
@@ -183,6 +185,9 @@ const AddressScreen = ({navigation}) => {
     try {
       //@ts-ignore
       const res = await presentPaymentSheet({clientSecret: paymentIntent});
+
+      console.log('resr===', res);
+
       if (res?.error) {
         Alert.alert(`Error code: ${res?.error.code}`, res?.error.message);
       } else {
@@ -377,7 +382,7 @@ const AddressScreen = ({navigation}) => {
           icon={ICCart2}
           onPress={() => navigation.goBack()}
         />
-        
+
         <Button
           title="pay"
           onPress={buyButtonPressed}
@@ -510,7 +515,7 @@ const AddressScreen = ({navigation}) => {
               </ScrollView>
             </View>
           </Modal>
-          
+
           <KlarnaPaymentView
             onFinalized={onFinalized}
             category={'pay_later'}
