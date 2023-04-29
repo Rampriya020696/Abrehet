@@ -74,7 +74,7 @@ const Appx = () => {
   };
 
   const region = useSelector(selectRegion);
-  console.log('xxxxxx', region);
+  console.log('xxxxxx', region, STRIPE_GLOBAL_PK);
   const dispatch = useDispatch();
   React.useEffect(() => {
     const init = async () => {

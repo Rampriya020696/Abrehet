@@ -143,6 +143,7 @@ const Signin = () => {
   return (
     <>
       <KeyboardAvoidingView
+      
         keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <Image

@@ -117,7 +117,6 @@ const Profile = () => {
       dispatch(updateAuth(null));
     });
   };
-
   async function deleteUser() {
     try {
       const user = await Auth.currentAuthenticatedUser();
