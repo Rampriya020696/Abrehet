@@ -64,7 +64,7 @@ const Signin = () => {
   };
   const handleApplePress = () => {
     Auth.federatedSignIn({provider: CognitoHostedUIIdentityProvider.Apple});
-    setGoogleLoading(true);
+    setAppleLoading(true);
   };
 
   const handleGooglePress = () => {

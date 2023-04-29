@@ -22,6 +22,8 @@ import * as mutations from '../../graphql/mutations';
 import _ from 'lodash';
 import RegionalPopup from '../../components/RegionalPopup';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {updateAuth} from '../../store/features/auth';
 
 const Profile = () => {
   const [info, setInfo] = useState<any>(null);
@@ -109,10 +111,19 @@ const Profile = () => {
   function handleSignOut() {
     Auth.signOut();
   }
+  const dispatch = useDispatch();
+  const onLogOutPress = () => {
+    Auth.signOut().then(() => {
+      dispatch(updateAuth(null));
+    });
+  };
 
   async function deleteUser() {
     try {
-      const result = await Auth.deleteUser();
+      const user = await Auth.currentAuthenticatedUser();
+      const result = await user.deleteUser();
+      navigation.navigate('Sigin');
+      onLogOutPress();
       console.log(result);
       Alert.alert('Account deleted Successfully!');
     } catch (error) {
