@@ -13,6 +13,8 @@ export const api_send_mail = async payload => {
     },
     body: JSON.stringify(payload),
   }).then(res => res.json());
+  console.log('res====,', response);
+
   return response;
 };
 

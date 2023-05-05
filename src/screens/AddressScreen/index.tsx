@@ -45,6 +45,7 @@ import {SheetManager} from 'react-native-actions-sheet';
 import {stripeCountryList} from '../../utils/constant';
 import {SHEETS} from '../../sheets/sheets';
 import KlarnaPaymentView from 'react-native-klarna-inapp-sdk';
+import {StripeKeyContext} from '../../components/Strip/StripContext';
 let keyboardDidShowListener;
 let keyboardDidHideListener;
 
@@ -55,8 +56,7 @@ const AddressScreen = ({navigation}) => {
   const [klranaPaymentViewLoaded, setKlranaPaymentViewLoaded] = useState(false);
   const KlarnaRef = useRef(null);
   const dispatch = useDispatch();
-  console.log(cartItemData, 'ROUTE___>');
-  console.log(useRoute().params, 'params___>');
+
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const [toggleCheckBox, setToggleCheckBox] = useState('reciver');
   const [fullname, setFullname] = useState('');
@@ -92,12 +92,13 @@ const AddressScreen = ({navigation}) => {
       state: sState,
       city: sCity,
     };
-    console.log(obj);
+
     setSenderObj(obj);
     setShowModel(false);
   };
 
   const [loading, setLoading] = useState('');
+  const {stripKeyDispatch} = React.useContext(StripeKeyContext);
 
   const getStripeIntent = async () => {
     const total = cartItemData.reduce((total, item) => {
@@ -125,9 +126,8 @@ const AddressScreen = ({navigation}) => {
       },
     };
 
-    console.log({payload});
     const body = JSON.stringify(payload);
-    console.log(body, 'JSON.stringify');
+
     setLoading('connecting to stipe...');
     fetch(CHECKOUT_API_URL, {
       method: 'POST',
@@ -138,14 +138,17 @@ const AddressScreen = ({navigation}) => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res, '123');
         const data = JSON.parse(res.data);
-        console.log(data);
+
         // setStripeData(data);
+
+        stripKeyDispatch({
+          type: 'UPDATE_STRIPE_KEY',
+          payload: data?.publishableKey,
+        });
         initializePaymentSheet(data);
       })
       .catch(error => {
-        console.log(error.message);
         Alert.alert('Alert:', error.message);
       })
       .finally(() => {
@@ -167,14 +170,12 @@ const AddressScreen = ({navigation}) => {
         setupIntentClientSecret: data.paymentIntent,
       });
       openPaymentSheet(data.paymentIntent);
-      console.log('data.paymentIntent', data);
 
       if (!error) {
       } else {
-        Alert.alert('alert', error?.message || 'something went wrong!');
+        // Alert.alert('alert', error?.message || 'something went wrong!');
       }
     } catch (error: any) {
-      console.log(error?.message, 'initPaymentsheet');
     } finally {
       setLoading('');
     }
@@ -186,17 +187,12 @@ const AddressScreen = ({navigation}) => {
       //@ts-ignore
       const res = await presentPaymentSheet({clientSecret: paymentIntent});
 
-      console.log('resr===', res);
-
       if (res?.error) {
-        Alert.alert(`Error code: ${res?.error.code}`, res?.error.message);
+        // Alert.alert(`Error code: ${res?.error.code}`, res?.error.message);
       } else {
         sendOrderMail();
-        Alert.alert('Success', 'Your order is confirmed!');
       }
-      console.log(res, 'kkk');
     } catch (error) {
-      console.log(error);
     } finally {
       setLoading('');
     }
@@ -220,28 +216,22 @@ const AddressScreen = ({navigation}) => {
       Products: JSON.stringify(cartItemData || []),
     };
 
-    console.log(order, 'buildOrderObject');
-
     try {
       const authUser = await Auth.currentAuthenticatedUser();
-      console.log('----->', authUser);
 
       order.userID = authUser?.attributes?.sub;
-      console.log('--order--->', order);
+
       const res = await API.graphql(
         graphqlOperation(createOrder, {input: order}),
       );
 
-      Alert.alert('Success', 'Order Created Successfully!');
+      // Alert.alert('Success', 'Order Created Successfully!');
       dispatch(
         handleOrdersComplete({
           orderData: cartItemData,
         }),
       );
-      console.log('----->', res);
-    } catch (error) {
-      console.log('---err-->', error);
-    }
+    } catch (error) {}
   };
 
   const onCheckout = () => {
@@ -284,6 +274,8 @@ const AddressScreen = ({navigation}) => {
   };
 
   const sendOrderMail = async () => {
+    console.log('test', email);
+
     if (!email) return;
     try {
       const payload = {
@@ -292,9 +284,9 @@ const AddressScreen = ({navigation}) => {
         subject: 'Order Placed Successfully!',
       };
       const res = await api_send_mail(payload);
-      Alert.alert('Alert', res?.message);
+      // Alert.alert('Alert', res?.message);
     } catch (error: any) {
-      Alert.alert('Alert', error.message);
+      // Alert.alert('Alert', error.message);
     }
   };
 
@@ -334,39 +326,32 @@ const AddressScreen = ({navigation}) => {
     };
   }, []);
 
-  React.useEffect(() => {
-    // KlarnaRef?.current?.initialize('my_session_token', 'my_apps_return_url');
-    KlarnaRef?.current?.initialize(ABC, 'abrehet://');
-  }, []);
+  // React.useEffect(() => {
+  //   // KlarnaRef?.current?.initialize('my_session_token', 'my_apps_return_url');
+  //   KlarnaRef?.current?.initialize(ABC, 'abrehet://');
+  // }, []);
 
   const onInitialized = () => {
-    console.log('A');
     KlarnaRef?.current?.load();
   };
 
   const onLoaded = () => {
-    console.log('B');
     setKlranaPaymentViewLoaded(true);
   };
   const buyButtonPressed = () => {
-    console.log('c');
     KlarnaRef?.current?.authorize();
   };
 
   const onAuthorized = event => {
     event.persist();
-    console.log('D');
-    console.log(event, 'onAuthorized');
+
     let params = event.nativeEvent;
     if (params.authorized) {
-      console.log(params.authorized, 'params.authorized');
       // submitAuthToken(params.authToken)
     }
   };
 
-  const onError = ({...res}) => console.log('onError', res);
   const onFinalized = ({...res}) => {
-    console.log('onFinalized', res);
     Alert.alert('A');
   };
 
@@ -383,11 +368,6 @@ const AddressScreen = ({navigation}) => {
           onPress={() => navigation.goBack()}
         />
 
-        <Button
-          title="pay"
-          onPress={buyButtonPressed}
-          disabled={!klranaPaymentViewLoaded}
-        />
         <ScrollView style={styles.root} ref={ScrollViewRef}>
           {/* ------ -- - - -- ----------- */}
           <Modal isVisible={showModel}>
@@ -516,15 +496,14 @@ const AddressScreen = ({navigation}) => {
             </View>
           </Modal>
 
-          <KlarnaPaymentView
+          {/* <KlarnaPaymentView
             onFinalized={onFinalized}
             category={'pay_later'}
             ref={KlarnaRef}
             onInitialized={onInitialized}
             onLoaded={onLoaded}
             onAuthorized={onAuthorized}
-            onError={onError}
-          />
+          /> */}
 
           {/* ------ -- - - -- ----------- */}
           <View style={styles.row}></View>

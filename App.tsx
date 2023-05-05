@@ -24,17 +24,23 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SheetProvider} from 'react-native-actions-sheet';
 import './src/sheets/sheets';
 
+import StripeKeyContextProvider, {
+  StripeKeyContext,
+} from './src/components/Strip/StripContext';
+
 // Amplify.configure(awsConfig);
 // const isLocalhost = Boolean(__DEV__);
 
 const isLocalhost = Boolean(true);
 
-const STRIPE_DEV_MODE = false;
+const STRIPE_DEV_MODE = true;
 
-const STRIPE_GLOBAL_PK = STRIPE_DEV_MODE
+export const STRIPE_GLOBAL_PK = STRIPE_DEV_MODE
   ? STRIPE_GLOBAL_TEST_PK
   : STRIPE_GLOBAL_LIVE_PK;
-const STRIPE_EU_PK = STRIPE_DEV_MODE ? STRIPE_EU_TEST_PK : STRIPE_EU_LIVE_PK;
+export const STRIPE_EU_PK = STRIPE_DEV_MODE
+  ? STRIPE_EU_TEST_PK
+  : STRIPE_EU_LIVE_PK;
 
 // Assuming you have two redirect URIs, and the first is for localhost and second is for production
 const [localRedirectSignIn, productionRedirectSignIn] =
@@ -59,7 +65,9 @@ Amplify.configure(updatedAwsConfig);
 const App = () => {
   return (
     <Provider store={store}>
-      <Appx />
+      <StripeKeyContextProvider>
+        <Appx />
+      </StripeKeyContextProvider>
     </Provider>
   );
 };
@@ -67,6 +75,7 @@ const App = () => {
 export default App;
 
 const Appx = () => {
+  const {state} = React.useContext(StripeKeyContext);
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: 'transparent',
@@ -74,7 +83,7 @@ const Appx = () => {
   };
 
   const region = useSelector(selectRegion);
-  console.log('xxxxxx', region, STRIPE_GLOBAL_PK);
+
   const dispatch = useDispatch();
   React.useEffect(() => {
     const init = async () => {
@@ -86,18 +95,19 @@ const Appx = () => {
     init();
   }, []);
 
+  React.useEffect(() => {
+    console.log('stripeKey===', state);
+  }, [state]);
+
   return (
     <SheetProvider>
-      <StripeProvider
-        publishableKey={region === 'eu' ? STRIPE_EU_PK : STRIPE_GLOBAL_PK}>
-        {/* <SafeAreaView style={backgroundStyle}> */}
+      <StripeProvider publishableKey={state?.stripeKey}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <OnBoardingProvider>
           <ResourceContext>
             <Router />
           </ResourceContext>
         </OnBoardingProvider>
-        {/* </SafeAreaView> */}
       </StripeProvider>
     </SheetProvider>
   );
