@@ -33,7 +33,7 @@ import StripeKeyContextProvider, {
 
 const isLocalhost = Boolean(true);
 
-const STRIPE_DEV_MODE = true;
+const STRIPE_DEV_MODE = false;
 
 export const STRIPE_GLOBAL_PK = STRIPE_DEV_MODE
   ? STRIPE_GLOBAL_TEST_PK
