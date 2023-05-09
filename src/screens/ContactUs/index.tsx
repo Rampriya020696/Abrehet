@@ -44,7 +44,7 @@ const ContactUs = ({navigation}) => {
       const res = await api_send_mail(payload);
       setMessage('');
       setEmail('');
-      // Alert.alert('Alert', res?.message);
+      Alert.alert('Alert', res?.message);
     } catch (error: any) {
       // Alert.alert('Alert', error.message);
     } finally {

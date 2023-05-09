@@ -284,7 +284,7 @@ const AddressScreen = ({navigation}) => {
         subject: 'Order Placed Successfully!',
       };
       const res = await api_send_mail(payload);
-      // Alert.alert('Alert', res?.message);
+      Alert.alert('Alert', res?.message);
     } catch (error: any) {
       // Alert.alert('Alert', error.message);
     }
@@ -571,7 +571,7 @@ const AddressScreen = ({navigation}) => {
               onChangeText={setCity}
             />
           </View>
-          {/* State */}
+
           <View style={styles.row}>
             <Text style={styles.label}>State/Province/Zoba</Text>
             <TextInput
@@ -584,18 +584,17 @@ const AddressScreen = ({navigation}) => {
               onChangeText={setState}
             />
           </View>
-          {/* postal code 
-        <View style={styles.row}>
-          <Text style={styles.label}>Postal code </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Postal Code"
-            value={postal_code}
-            onChangeText={setPostal_code}
-          />
-        </View> */}
-          {/* country */}
           <View style={styles.row}>
+            <Text style={styles.label}>Country </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Country"
+              value={country}
+              onChangeText={setCountry}
+            />
+          </View>
+
+          {/* <View style={styles.row}>
             <Text style={styles.label}>Country </Text>
 
             <TouchableOpacity
@@ -610,18 +609,8 @@ const AddressScreen = ({navigation}) => {
               }}>
               <Text> {country}</Text>
             </TouchableOpacity>
+          </View> */}
 
-            {/* <TextInput
-              onFocus={() => {
-                keyboardDidShow(200);
-              }}
-              placeholder="Country"
-              value={country}
-              onChangeText={setCountry}
-            /> */}
-          </View>
-
-          {/* Checkbox */}
           <View style={styles.row}>
             <Text style={styles.label}>
               Check the box below to enter sender`s info.
@@ -641,18 +630,6 @@ const AddressScreen = ({navigation}) => {
               />
               <Text>Sender </Text>
             </View>
-            {/* <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBox === 'reciver'}
-              onValueChange={newValue => setToggleCheckBox('reciver')}
-            />
-            <Text>reciver </Text>
-          </View> */}
           </View>
           <ActionBtn
             title={loading || 'Checkout'}
